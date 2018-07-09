@@ -1,5 +1,5 @@
 {
-  "name": "hsNode",
+  "name": "hsnode",
   "version": "2.0.0",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -10,13 +10,15 @@
     "email": "hauke.schmidt@us.bosch.com"
   },
   "scripts": {
-    "start": "grunt",
-    "test": "ospec"
+    "build": "grunt travis",
+    "test": "grunt test"
   },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "plugins": [
-    "plugins/markdown"
-  ]
+  "plugins": [],
+  "devDependencies": {
+    "hslayout": "^2.0.0",
+    "hsutil": "^2.0.0"
+  }
 }
