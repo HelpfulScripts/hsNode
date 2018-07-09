@@ -12,7 +12,7 @@
 const XLSX	= require('xlsx');
 
 import { log }      from './';
-import { DataRow}   from 'hsdata';
+import { DataRow}   from 'hsdatab';
 import { WorkBook,
          WorkSheet,
          CellObject

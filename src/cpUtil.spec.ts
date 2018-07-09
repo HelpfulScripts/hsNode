@@ -1,62 +1,43 @@
-import { exec } from './';
+import { exec } from './cpUtil';
+import { o }    from 'hslayout';
 
-
-describe("cpUtil", () => {
+o.spec('cpUtil', () => {
     let cpOut:string, cpErr:string, cpE:string;
-    const helper = {
-        out: (out:string, err:string) => { cpOut = out; cpErr = err; },
-        err: (e:string) => { cpE = e; }
-    };
 
     function call(cmd:string, done:any) {
         exec(cmd)
-            .then((result:{out:string, err:string}) => { helper.out(result.out, result.err); done(); })
-            .catch((e:string) => { helper.err(e); done(); });
-    }
+        .then((result:{out:string, err:string}) => { cpOut = result.out; cpErr = result.err; done(); })
+        .catch((e:string) => { cpE = e; done(); });
+}
 
-    beforeEach(() => {
-        cpE = cpErr = cpOut = undefined;
-        spyOn(helper, 'out').and.callThrough();
-        spyOn(helper, 'err').and.callThrough();
+    o.beforeEach(() => {
+        cpE = cpErr = cpOut = '';
     });
 
-    describe('valid command', () => {
-        beforeEach(done => { call("pwd", done);
-//            cp.exec("pwd")
-//                .then((result:{out:string, err:string}) => { helper.out(result.out, result.err); done(); })
-//                .catch((e:string) => { helper.err(e); done(); });
-        });
+    o.spec('valid command', () => {
+        o.beforeEach((done:any) => call("pwd", done));
 
-        it('should execute "pwd" in a shell without error', done => {
-            expect(helper.out).toHaveBeenCalled();
-            expect(helper.err).not.toHaveBeenCalled();
+        o('should execute "pwd" in a shell without error', (done:any) => {
+            o(typeof cpOut).equals('string')('stdout type');
+            o(cpOut).notEquals('')('stdout result');
+            o(cpErr).equals('')('stderr result');  
             done();
         });
 
-        it('should result in path', () => {
-            expect(cpOut.trim().endsWith('/hsNode')).toEqual(true);
-            expect(cpE).not.toBeDefined();
-            expect(cpErr).toBe('');
+        o('should result in path', () => {
+            o(cpOut.trim().endsWith('/hsNode')).equals(true);
+            o(cpE).equals('')('e result');
+            o(cpErr).equals('')('err result');
         });  
     });
 
-    describe('invalid command', () => {
-        beforeEach(done => { call("abcd", done);
-//            cp.exec("abcd")
-//                .then((result:{out:string, err:string}) => { helper.out(result.out, result.err); done(); })
-//                .catch((e:string) => { helper.err(e); done(); });
-        });
+    o.spec('invalid command', () => {
+        o.beforeEach((done:any) => call("abcd", done));
 
-        it('should fail executing "abcd" in a shell', done => {
-            expect(helper.out).not.toHaveBeenCalled();
-            expect(helper.err).toHaveBeenCalled();
-            done();
-        });
-
-        it('should result in error', () => {
-            expect(cpOut).not.toBeDefined();
-            expect(cpErr).not.toBeDefined();
-            expect(cpE).toMatch('abcd: command not found');
+        o('should result in error', () => {
+            o(cpOut).equals('')('out');
+            o(cpErr).equals('')('err');
+            o(cpE.toString().match(/abcd: command not found/)).notEquals(null)('e');
         });  
     });
 });

@@ -71,8 +71,8 @@ function lstat(thePath:string) {
 
 function error(err:any):any {
     const msg = `*** error in fsUtil: ${err}`;
-    console.log(msg);
-    console.log(err.trace);
+//    console.log(msg);
+//    console.log(err.trace);
     throw new Error(msg);
 }
 
@@ -148,7 +148,7 @@ function readDir(thePath:string):Promise<string[]> {
 				}
 			});
 		}))
-    .catch(error);
+        .catch(error);
 }
 
 
@@ -160,10 +160,10 @@ function readDir(thePath:string):Promise<string[]> {
  */
 function readFile(thePath:string, isText=true):Promise<any> {
 	return new Promise((resolve:(data:any)=>void, reject:(err:any)=>void) => {
-		let encoding = isText? 'utf8' : undefined;
+		let encoding = isText? 'utf8' : {};
 		fs.readFile(thePath, encoding, (err:any, data:any) => {
-			if (err) { reject(err); }
-			resolve(data);
+            if (err) { reject(err); }
+            else { resolve(data); }
 		});
 	})
     .catch(error);

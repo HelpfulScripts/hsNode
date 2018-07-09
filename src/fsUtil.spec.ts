@@ -1,11 +1,14 @@
-import { fsUtil } from './';
+import { fsUtil } from './fsUtil';
+import { o }    from 'hslayout';
 
 
 
-describe("hsFSutil", function() {
+o.spec("hsFSutil", () => {
 	let called:any;
-    const dir = __dirname; // + '/testTmp/';
-    const TEST_DIR = dir+'/../example/';
+    const dir = __dirname+'/'; // + '/testTmp/';
+    const TEST_DIR = dir+'../../example/';
+    
+    let spyRes:any,  spyRej:any;
 
     function getCalled(done:()=>void) {
         let result:string, error:string;
@@ -15,532 +18,541 @@ describe("hsFSutil", function() {
             getResult: () => result,
             getError:  () => error
         };
-        spyOn(called, 'resolved').and.callThrough(); 
-        spyOn(called, 'rejected').and.callThrough(); 
+        spyRes = o.spy(called.resolved); 
+        spyRej = o.spy(called.rejected); 
         return called;
     }
 
-	describe('pathExists' , () => {
-		describe(process.cwd() , () => {
-			beforeEach(done => {
+	o.spec('pathExists' , () => {
+		o.spec(process.cwd() , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.pathExists(process.cwd()).then(called.resolved).catch(called.rejected);
+				fsUtil.pathExists(process.cwd()).then(spyRes).catch(spyRej);
 			});
 			
-			it('should exist', function(done) {
-				expect(called.resolved).toHaveBeenCalledWith(process.cwd());
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should exist', (done:any) => {
+                o(spyRes.callCount).notEquals(0);
+				o(spyRes.args.indexOf(process.cwd())).notEquals(-1);
+				o(spyRej.callCount).equals(0);
 				done();
 			});
 		});
 		
-		describe('./' , () => { 
-			beforeEach(done => {
+		o.spec('./' , () => { 
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.pathExists('./').then(called.resolved).catch(called.rejected);
+				fsUtil.pathExists('./').then(spyRes).catch(spyRej);
 			});
 			
-			it('should exist', function(done) {
-				expect(called.resolved).toHaveBeenCalledWith(process.cwd());
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should exist', (done:any) => {
+				o(spyRes.args.indexOf(process.cwd())).notEquals(-1);
+				o(spyRej.callCount).equals(0);
 				done();
 			});
 		});
 		
-		describe('/does-not-exists/', () => {
-			beforeEach(done => {
+		o.spec('/does-not-exists/', () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.pathExists('/does-not-exists/').then(called.resolved).catch(called.rejected);
+				fsUtil.pathExists('/does-not-exists/').then(spyRes).catch(spyRej);
 			});
 			
-			it('should not exist', function(done) {
-				expect(called.resolved).toHaveBeenCalledWith(false);
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should not exist', (done:any) => {
+				o(spyRes.args.indexOf(false)).notEquals(-1);
+				o(spyRej.callCount).equals(0);
 				done();
 			});
 		});
 	});
 	
-	describe('isFile' , () => {
-		describe(dir, () => {
-			beforeEach(done => {
+	o.spec('isFile' , () => {
+		o.spec(dir, () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.isFile(dir).then(called.resolved).catch(called.rejected);
+				fsUtil.isFile(dir).then(spyRes).catch(spyRej);
 			});
 		
-			it('should not be a file', function(done) {
-				expect(called.resolved).toHaveBeenCalledWith(false);
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should not be a file', (done:any) => {
+				o(spyRes.args.indexOf(false)).notEquals(-1);
+				o(spyRej.callCount).equals(0);
 				done();
 			});
 		});
 		
-		describe('Gruntfile.js' , () => {
+		o.spec('Gruntfile.js' , () => {
             let rp:string;
-			beforeEach(done => {
-                fsUtil.realPath(dir+'/../../Gruntfile.js')
+			o.beforeEach((done:any) => {
+                fsUtil.realPath(dir+'/../../../Gruntfile.js')
                 .then((path:string) => {
     				called = getCalled(done);
                     rp = path;
-    				fsUtil.isFile(rp).then(called.resolved).catch(called.rejected);
+    				fsUtil.isFile(rp).then(spyRes).catch(spyRej);
                 });
 			});
 		
-			it('should be a file', function(done) {
-				expect(called.resolved).toHaveBeenCalledWith(rp);
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should be a file', (done:any) => {
+				o(spyRes.args.indexOf(rp)).notEquals(-1);
+				o(spyRej.callCount).equals(0);
 				done();
 			});
 		});
 		
-		describe('./Gruntfile.js' , () => { 
-			beforeEach(done => {
+		o.spec('./Gruntfile.js' , () => { 
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.isFile('./Gruntfile.js').then(called.resolved).catch(called.rejected);
+				fsUtil.isFile('./Gruntfile.js').then(spyRes).catch(spyRej);
 			});
 			
-			it('should be a file', function(done) {
-				expect(called.resolved).toHaveBeenCalledWith(process.cwd()+'/Gruntfile.js');
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should be a file', (done:any) => {
+				o(spyRes.args.indexOf(process.cwd()+'/Gruntfile.js')).notEquals(-1);
+				o(spyRej.callCount).equals(0);
 				done();
 			});
 		});
 		
-		describe('./Gruntfile.js2', () => {
-			beforeEach(done => {
+		o.spec('./Gruntfile.js2', () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.isFile('./Gruntfile.js2').then(called.resolved).catch(called.rejected);
+				fsUtil.isFile('./Gruntfile.js2').then(spyRes).catch(spyRej);
 			});
 			 
-			it('should not be a file an not be rejected', function(done) {
-				expect(called.resolved).toHaveBeenCalledWith(false);
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should not be a file an not be rejected', (done:any) => {
+				o(spyRes.args.indexOf(false)).notEquals(-1);
+				o(spyRej.callCount).equals(0);
 				done();
 			});
 		});
 	});
 
-	describe('isDirectory' , () => {
-		describe(process.cwd(), () => {
-			beforeEach(done => {
+	o.spec('isDirectory' , () => {
+		o.spec(process.cwd(), () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.isDirectory(process.cwd()).then(called.resolved).catch(called.rejected);
+				fsUtil.isDirectory(process.cwd()).then(spyRes).catch(spyRej);
 			});
 		
-			it('should be a directory', function(done) {
-				expect(called.resolved).toHaveBeenCalledWith(process.cwd());
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should be a directory', (done:any) => {
+				o(spyRes.args.indexOf(process.cwd())).notEquals(-1);
+				o(spyRej.callCount).equals(0);
 				done();
 			});
 		});
 	
-		describe('./' , () => { 
-			beforeEach(done => {
+		o.spec('./' , () => { 
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.isDirectory('./').then(called.resolved).catch(called.rejected);
+				fsUtil.isDirectory('./').then(spyRes).catch(spyRej);
 			});
 			
-			it('should be a directory', function(done) {
-				expect(called.resolved).toHaveBeenCalledWith(process.cwd());
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should be a directory', (done:any) => {
+				o(spyRes.args.indexOf(process.cwd())).notEquals(-1);
+				o(spyRej.callCount).equals(0);
 				done();
 			});
 		});
 		
-		describe('./Gruntfile.js', () => {
-			beforeEach(done => {
+		o.spec('./Gruntfile.js', () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.isDirectory('./Gruntfile.js').then(called.resolved).catch(called.rejected);
+				fsUtil.isDirectory('./Gruntfile.js').then(spyRes).catch(spyRej);
 			});
 			 
-			it('valid file should not be a directory an not be rejected', function(done) {
-				expect(called.resolved).toHaveBeenCalledWith(false);
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('valid file should not be a directory an not be rejected', (done:any) => {
+				o(spyRes.args.indexOf(false)).notEquals(-1);
+				o(spyRej.callCount).equals(0);
 				done();
 			});
 		});
 		
-		describe('./Gruntfile.js2', () => {
-			beforeEach(done => {
+		o.spec('./Gruntfile.js2', () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.isDirectory('./Gruntfile.js2').then(called.resolved).catch(called.rejected);
+				fsUtil.isDirectory('./Gruntfile.js2').then(spyRes).catch(spyRej);
 			});
 			 
-			it('invalid file should not be a directory an not be rejected', function(done) {
-				expect(called.resolved).toHaveBeenCalledWith(false);
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('invalid file should not be a directory an not be rejected', (done:any) => {
+				o(spyRes.args.indexOf(false)).notEquals(-1);
+				o(spyRej.callCount).equals(0);
 				done();
 			});
 		});
 	});
 	
-	describe('isLink' , () => {
-		describe(__dirname , () => {
-			beforeEach(done => {
+	o.spec('isLink' , () => {
+		o.spec(__dirname , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.isLink(__dirname).then(called.resolved).catch(called.rejected);
+				fsUtil.isLink(__dirname).then(spyRes).catch(spyRej);
 			});
 			
-			it('should not be a link', function(done) {
-				expect(called.resolved).toHaveBeenCalledWith(false);
-				expect(called.rejected).not.toHaveBeenCalled(); 
+			o('should not be a link', (done:any) => {
+				o(spyRes.args.indexOf(false)).notEquals(-1);
+				o(spyRej.callCount).equals(0);
 				done();
 			});
 		});
 		
-		describe(dir+'/../../node_Modules' , () => {
-			beforeEach(done => {
+		o.spec(dir+'/../../node_Modules' , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.isLink(dir+'/../../node_Modules').then(called.resolved).catch(called.rejected);
+				fsUtil.isLink(dir+'/../../../node_Modules').then(spyRes).catch(spyRej);
 			});
 			
-			it('should be a link', function(done) {
-				expect(called.resolved).toHaveBeenCalled();
-				expect(called.resolved).not.toHaveBeenCalledWith(false); // instead: real path
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should be a link', (done:any) => {
+				o(spyRes.callCount).notEquals(0);           // has been called
+				o(spyRes.args.indexOf(false)).equals(-1);   // not called with false
+				o(spyRej.callCount).equals(0);              // has not been called
 				done();
 			});
 		});
 		
-		describe(__dirname+'/abc' , () => {
-			beforeEach(done => {
+		o.spec(__dirname+'/abc' , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.isLink(__dirname+'/abc').then(called.resolved).catch(called.rejected);
+				fsUtil.isLink(__dirname+'/abc').then(spyRes).catch(spyRej);
 			});
 			
-			it('should reject for invalid names', function(done) {
-				expect(called.resolved).toHaveBeenCalledWith(false);
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should reject for invalid names', (done:any) => {
+				o(spyRes.args.indexOf(false)).notEquals(-1);   
+				o(spyRej.callCount).equals(0);              
 				done();
 			});
 		});
 		
 	});
 	
-	describe('readDir' , () => {
-		describe(__dirname , () => {
-			beforeEach(done => {
-				called = getCalled(done);
-				fsUtil.readDir(__dirname).then(called.resolved).catch(called.rejected);
+	o.spec('readDir' , () => {
+		o.spec(__dirname , () => {
+			o.beforeEach((done:any) => {
+                called = getCalled(done);
+				fsUtil.readDir(__dirname+'/').then(spyRes).catch(spyRej);
 			});
 			
-			it('should return list of spec files', function(done) {
-				expect(called.resolved).toHaveBeenCalled();
-				expect(called.rejected).not.toHaveBeenCalled();
-				expect(called.getResult()).toBeDefined();
-				expect(called.getResult().length).toBeGreaterThan(6);
-				done();
+			o('should return list of spec files', (done:any) => {
+                const result = called.getResult();
+				o(spyRes.callCount).notEquals(0);           // has been called
+				o(spyRej.callCount).equals(0);              // has not been called
+				o(result).notEquals(undefined);
+                o(result.length>6).equals(true);
+                done();
 			});
 		});
 		
-		describe(__dirname+'/abcde' , () => {
-			beforeEach(done => {
+		o.spec(__dirname+'/abcde' , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.readDir(__dirname+'/abcde').then(called.resolved).catch(called.rejected);
+				fsUtil.readDir(__dirname+'/abcde').then(spyRes).catch(spyRej);
 			});
 			
-			it('should reject', function(done) {
-				expect(called.resolved).not.toHaveBeenCalled();
-				expect(called.rejected).toHaveBeenCalled();
+			o('should reject', (done:any) => {
+				o(spyRes.callCount).equals(0);      
+				o(spyRej.callCount).notEquals(0);   
 				done();
 			});
 		});		
 	});
 	
-	describe('readFile' , () => {
+	o.spec('readFile' , () => {
         const file1 = TEST_DIR+'test.xlsx';
         const file2 = TEST_DIR+'test.xlsx2';
-		describe(file1 , () => {
-			beforeEach(done => {
+		o.spec(file1 , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.readFile(file1, false).then(called.resolved).catch(called.rejected);
+				fsUtil.readFile(file1, false).then(spyRes).catch(spyRej);
 			});
 			
-			it('should read binary file', function(done) {
-				expect(called.resolved).toHaveBeenCalled();
-				expect(typeof called.getResult()).toBe('object');
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should read binary file', (done:any) => {
+                const result = called.getResult();
+				o(spyRes.callCount).notEquals(0);     
+                o(spyRej.callCount).equals(0);   
+                o(typeof result).equals('object');
 				done();
 			});
 		});
 		
-		describe(file2 , () => {
-			beforeEach(done => {
+		o.spec(file2 , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.readFile(file2, false).then(called.resolved).catch(called.rejected);
+				fsUtil.readFile(file2, false).then(spyRes).catch(spyRej);
 			});
 			
-			it('should reject', function(done) {
-				expect(called.resolved).not.toHaveBeenCalled();
-				expect(called.rejected).toHaveBeenCalled();
-				expect(called.getError()+'').toMatch(/Error: ENOENT: no such file or directory/);
+			o('should reject', (done:any) => {
+                const error = called.getError();
+				o(spyRes.callCount).equals(0);     
+                o(spyRej.callCount).notEquals(0);   
+                o((error+'').match(/Error: ENOENT: no such file or directory/)).notEquals(null);
 				done();
 			});
 		});
 		
 	});
 	
-	describe('readTextFile' , () => {
-		describe(__dirname+'/fsUtil.spec.js' , () => {
-			beforeEach(done => {
+	o.spec('readTextFile' , () => {
+		o.spec(__dirname+'/fsUtil.spec.js' , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.readTextFile(__dirname+'/fsUtil.spec.js').then(called.resolved).catch(called.rejected);
+				fsUtil.readTextFile(__dirname+'/fsUtil.spec.js').then(spyRes).catch(spyRej);
 			});
 			
-			it('should read text file', function(done) {
-				expect(called.resolved).toHaveBeenCalled();
-				expect(typeof called.getResult()).toBe('string');
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should read text file', (done:any) => {
+                const result = called.getResult();
+				o(spyRes.callCount).notEquals(0);     
+                o(spyRej.callCount).equals(0);   
+				o(typeof result).equals('string');
 				done();
 			});
 		});		
 	});
 	
-	describe('readJsonFile' , () => {
-        const file = __dirname+'/../../package.json';
-		describe(file , () => {
-			beforeEach(done => {
+	o.spec('readJsonFile' , () => {
+        const file = __dirname+'/../../../package.json';
+		o.spec(file , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.readJsonFile(file).then(called.resolved).catch(called.rejected);
+				fsUtil.readJsonFile(file).then(spyRes).catch(spyRej);
 			});
 			
-			it('should read text file', function(done) {
-				expect(called.resolved).toHaveBeenCalled();
-				expect(called.rejected).not.toHaveBeenCalled();
-				expect(typeof called.getResult()).toBe('object');
-				expect(called.getResult().name).toBe('hsNode');
+			o('should read text file', (done:any) => {
+                const result = called.getResult();
+				o(spyRes.callCount).notEquals(0);     
+                o(spyRej.callCount).equals(0);   
+				o(typeof result).equals('object');
+				o(result.name).equals('hsNode');
 				done();
 			});
 		});
 	});
 	
-	describe('writeFile' , () => {
-		describe(dir+'binFile' , () => {
-			beforeEach(done => {
+	o.spec('writeFile' , () => {
+		o.spec(dir+'binFile' , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.writeFile(dir+'binFile', 'test2', false).then(called.resolved).catch(called.rejected);
+				fsUtil.writeFile(dir+'binFile', 'test2', false).then(spyRes).catch(spyRej);
 			});
 			
-			it('should resolve', function(done) {
-				expect(called.resolved).toHaveBeenCalled();
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should resolve', (done:any) => {
+				o(spyRes.callCount).notEquals(0);     
+                o(spyRej.callCount).equals(0);   
 				done();
 			});
 			
-			describe('check for bin file', function() {
-				beforeEach(done => {
+			o.spec('check for bin file', () => {
+				o.beforeEach((done:any) => {
 					called = getCalled(done);
-					fsUtil.readFile(dir+'binFile', false).then(called.resolved).catch(called.rejected);
+					fsUtil.readFile(dir+'binFile', false).then(spyRes).catch(spyRej);
 				});
 				
-				it('should exist', function(done) {
-					expect(called.resolved).toHaveBeenCalled();
-					expect(called.rejected).not.toHaveBeenCalled();
-					done();
+				o('should exist', (done:any) => {
+					o(spyRes.callCount).notEquals(0);     
+                    o(spyRej.callCount).equals(0);   
+                    done();
 				});
 				
-				it('should contain payload', function(done) {
-					expect(typeof called.getResult()).toBe('object');
-					expect(Buffer.from('test2').equals(called.getResult())).toBe(true);
+				o('should contain payload', (done:any) => {
+                    const result = called.getResult();
+					o(typeof result).equals('object');
+					o(Buffer.from('test2').equals(result)).equals(true);
 					done();
 				});
 			});
 		});
 		
-		describe(dir+'binFile2' , () => {
-			beforeEach(done => {
+		o.spec(dir+'binFile2' , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.readFile(dir+'binFile2', false).then(called.resolved).catch(called.rejected);
+				fsUtil.readFile(dir+'binFile2', false).then(spyRes).catch(spyRej);
 			});
 			
-			it('should reject', function(done) {
-				expect(called.resolved).not.toHaveBeenCalled();
-				expect(called.rejected).toHaveBeenCalled();
+			o('should reject', (done:any) => {
+				o(spyRes.callCount).equals(0);     
+                o(spyRej.callCount).notEquals(0);   
 				done();
 			});
 		});
 	});
 	
 	
-	describe('appendFile' , () => {
-		describe(dir+'binFile' , () => {
-			beforeEach(done => {
+	o.spec('appendFile' , () => {
+		o.spec(dir+'binFile' , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.appendFile(dir+'binFile', 'test2', false).then(called.resolved).catch(called.rejected);
+				fsUtil.appendFile(dir+'binFile', 'test2', false).then(spyRes).catch(spyRej);
 			});
 
-            afterAll(done => {
+            o.after((done:any) => {
                 fsUtil.remove(dir+'binFile');
                 done();
             });
 			
-			it('should resolve', function(done) {
-				expect(called.resolved).toHaveBeenCalled();
-				expect(called.rejected).not.toHaveBeenCalled();
+			o('should resolve', (done:any) => {
+				o(spyRes.callCount).notEquals(0);     
+                o(spyRej.callCount).equals(0);   
 				done();
 			});
 			
-			describe('check for bin file', function() {
-				beforeEach(done => {
+			o.spec('check for bin file', () => {
+				o.beforeEach((done:any) => {
 					called = getCalled(done);
-					fsUtil.readFile(dir+'binFile', false).then(called.resolved).catch(called.rejected);
+                    fsUtil.readFile(dir+'binFile', false).then(spyRes).catch(spyRej);
 				});
 				
-				it('should exist', function(done) {
-					expect(called.resolved).toHaveBeenCalled();
-					expect(called.rejected).not.toHaveBeenCalled();
-					done();
+				o('should exist', (done:any) => {
+					o(spyRes.callCount).notEquals(0);     
+                    o(spyRej.callCount).equals(0);   
+                    done();
 				});
 				
-				it('should contain payload', function(done) {
-					expect(typeof called.getResult()).toBe('object');
-					expect(called.getResult().toString()).toMatch('test2test2test2test2');
+				o('should contain payload', (done:any) => {
+                    const result = called.getResult();
+					o(typeof result).equals('object');
+					o(result.toString()).equals('test2test2test2test2');
 					done();
 				});
 			});
 		});
 		
-		describe(dir+'binFile2' , () => {
-			beforeEach(done => {
+		o.spec(dir+'binFile2' , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.readFile(dir+'binFile2', false).then(called.resolved).catch(called.rejected);
+				fsUtil.readFile(dir+'binFile2', false).then(spyRes).catch(spyRej);
 			});
 			
-			it('should reject', function(done) {
-				expect(called.resolved).not.toHaveBeenCalled();
-				expect(called.rejected).toHaveBeenCalled();
-				done();
+			o('should reject', (done:any) => {
+				o(spyRes.callCount).equals(0);     
+                o(spyRej.callCount).notEquals(0);   
+                done();
 			});
 		});
 	});
 	
-	describe('writeTextFile' , () => {
-		describe(dir+'txtFile' , () => {
-			beforeEach(done => {
+	o.spec('writeTextFile' , () => {
+		o.spec(dir+'txtFile' , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.writeTextFile(dir+'txtFile', 'test2').then(called.resolved).catch(called.rejected);
+				fsUtil.writeTextFile(dir+'txtFile', 'test2').then(spyRes).catch(spyRej);
 			});
 			
-			it('should resolve', function(done) {
-				expect(called.resolved).toHaveBeenCalled();
-				expect(called.rejected).not.toHaveBeenCalled();
-				done();
+			o('should resolve', (done:any) => {
+				o(spyRes.callCount).notEquals(0);     
+                o(spyRej.callCount).equals(0);   
+                done();
 			});
 			
-			describe('check for text file', function() {
-				beforeEach(done => {
+			o.spec('check for text file', () => {
+				o.beforeEach((done:any) => {
 					called = getCalled(done);
-					fsUtil.readTextFile(dir+'txtFile').then(called.resolved).catch(called.rejected);
+                    fsUtil.readTextFile(dir+'txtFile').then(spyRes).catch(spyRej);
 				});
 				
-				it('should exist', function(done) {
-					expect(called.resolved).toHaveBeenCalled();
-					expect(called.rejected).not.toHaveBeenCalled();
-					done();
+				o('should exist', (done:any) => {
+					o(spyRes.callCount).notEquals(0);     
+                    o(spyRej.callCount).equals(0);   
+                    done();
 				});
 				
-				it('should contain payload', function(done) {
-					expect(typeof called.getResult()).toBe('string');
-					expect(called.getResult()).toBe('test2');
+				o('should contain payload', (done:any) => {
+                    const result = called.getResult();
+					o(typeof result).equals('string');
+					o(result).equals('test2');
 					done();
 				});
 			});
 		});
 	});
 	
-	describe('writeJsonFile' , () => {
-		describe(dir+'jsnFile' , () => {
-			beforeEach(done => {
+	o.spec('writeJsonFile' , () => {
+		o.spec(dir+'jsnFile' , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.writeJsonFile(dir+'jsnFile', {"name":"test2"}).then(called.resolved).catch(called.rejected);
+				fsUtil.writeJsonFile(dir+'jsnFile', {"name":"test2"}).then(spyRes).catch(spyRej);
 			});
 			
-			it('should resolve', function(done) {
-				expect(called.resolved).toHaveBeenCalled();
-				expect(called.rejected).not.toHaveBeenCalled();
-				done();
+			o('should resolve', (done:any) => {
+				o(spyRes.callCount).notEquals(0);     
+                o(spyRej.callCount).equals(0);   
+            done();
 			});
 			
-			describe('check for json file', function() {
-				beforeEach(done => {
+			o.spec('check for json file', () => {
+				o.beforeEach((done:any) => {
 					called = getCalled(done);
-					fsUtil.readJsonFile(dir+'jsnFile').then(called.resolved).catch(called.rejected);
+                    fsUtil.readJsonFile(dir+'jsnFile').then(spyRes).catch(spyRej);
 				});
 				
-				it('should exist', function(done) {
-					expect(called.resolved).toHaveBeenCalled();
-					expect(called.rejected).not.toHaveBeenCalled();
-					done();
+				o('should exist', (done:any) => {
+					o(spyRes.callCount).notEquals(0);     
+                    o(spyRej.callCount).equals(0);   
+                    done();
 				});
 				
-				it('should contain payload', function(done) {
-					expect(typeof called.getResult()).toBe('object');
-					expect(called.getResult().name).toBe('test2');
+				o('should contain payload', (done:any) => {
+                    const result = called.getResult();
+					o(typeof result).equals('object');
+					o(result.name).equals('test2');
 					done();
 				});
 			});
 		});
 
-		describe(dir+'jsn2File' , () => {
-			beforeEach(done => {
+		o.spec(dir+'jsn2File' , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.writeJsonFile(dir+'jsn2File', 'test2').then(called.resolved).catch(called.rejected);
+				fsUtil.writeJsonFile(dir+'jsn2File', 'test2').then(spyRes).catch(spyRej);
 			});
 			
-			it('should resolve', function(done) {
-				expect(called.resolved).toHaveBeenCalled();
-				expect(called.rejected).not.toHaveBeenCalled();
-				done();
+			o('should resolve', (done:any) => {
+				o(spyRes.callCount).notEquals(0);     
+                o(spyRej.callCount).equals(0);   
+                done();
 			});
 			
-			describe('check for json file', function() {
-				beforeEach(done => {
+			o.spec('check for json file', () => {
+                o.beforeEach((done:any) => {
 					called = getCalled(done);
-					fsUtil.readJsonFile(dir+'jsn2File').then(called.resolved).catch(called.rejected);
+                    fsUtil.readJsonFile(dir+'jsn2File').then(spyRes).catch(spyRej);
 				});
 				
-				it('should exist', function(done) {
-					expect(called.resolved).toHaveBeenCalled();
-					expect(called.rejected).not.toHaveBeenCalled();
-					done();
+				o('should exist', (done:any) => {
+					o(spyRes.callCount).notEquals(0);     
+                    o(spyRej.callCount).equals(0);   
+                    done();
 				});
-				
-				it('should contain payload', function(done) {
-					expect(typeof called.getResult()).toBe('string');
-					expect(called.getResult()).toBe('test2');
+			
+				o('should contain payload', (done:any) => {
+                    const result = called.getResult();
+					o(typeof result).equals('string');
+					o(result).equals('test2');
 					done();
 				});
 			});
 		});
 	});
 
-    describe('delete' , () => {
-		describe(dir+'jsnFile' , () => {
-			beforeEach(done => {
+    o.spec('delete' , () => {
+		o.spec(dir+'jsnFile' , () => {
+			o.beforeEach((done:any) => {
 				called = getCalled(done);
-				fsUtil.writeJsonFile(dir+'jsnFile', {"name":"test2"}).then(called.resolved).catch(called.rejected);
+				fsUtil.writeJsonFile(dir+'jsnFile', {"name":"test2"}).then(spyRes).catch(spyRej);
 			});
 			
-			it('should have created jsnFile', function(done) {
-				expect(called.resolved).toHaveBeenCalled();
-				expect(called.rejected).not.toHaveBeenCalled();
-				done();
+			o('should have created jsnFile', (done:any) => {
+				o(spyRes.callCount).notEquals(0);     
+                o(spyRej.callCount).equals(0);   
+                done();
 			});
 			
-            describe('check for deletion', function() {
-                beforeEach(done => {
+            o.spec('check for deletion', () => {
+                o.beforeEach((done:any) => {
                     called = getCalled(done);
-                    fsUtil.remove(dir+'jsnFile')
-                        .then(called.resolved)
-                        .catch(called.rejected);
+                    fsUtil.remove(dir+'jsnFile').then(spyRes).catch(spyRej);
                 });
                 
-                it('should have deleted file', function(done) {
-                    expect(called.resolved).toHaveBeenCalled();
-                    expect(called.rejected).not.toHaveBeenCalled();
+                o('should have deleted file', (done:any) => {
+                    o(spyRes.callCount).notEquals(0);     
+                    o(spyRej.callCount).equals(0);   
                     fsUtil.isFile(dir+'jsnFile')
                     .then(exists => {
-                        expect(exists).toBe(false);
+                        o(exists).equals(false);
                         done();
                     }).catch(() => {
                         fail('error deleting file');

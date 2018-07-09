@@ -39,7 +39,7 @@ module.exports = (grunt, dir, dependencies, type) => {
     grunt.registerTask('ospec', () => { require('child_process').spawnSync('./node_modules/mithril/ospec/bin/ospec', {stdio: 'inherit'}); });
     if (type === 'node') { 
         grunt.loadNpmTasks('grunt-jasmine-node-coverage');
-        grunt.registerTask('test', ['clean:test', 'copy:test', 'build-specES5', 'jasmine_node' ]); }
+        grunt.registerTask('test', ['clean:test', 'copy:test', 'build-specES5', 'ospec'  /*'jasmine_node'*/ ]); }
     else { 
         grunt.registerTask('test', ['clean:test', 'copy:test', 'build-spec', 'ospec']); 
     }
@@ -52,7 +52,7 @@ module.exports = (grunt, dir, dependencies, type) => {
     grunt.registerTask('build-jsMin',   ['ts:srcMin']);
     grunt.registerTask('build-es5',     ['tslint:src', 'ts:srcES5']);
     grunt.registerTask('build-spec',    ['tslint:spec', 'ts:test']);    
-    grunt.registerTask('build-specES5', ['tslint:spec', 'ts:testES5']);    
+    grunt.registerTask('build-specES5', ['tslint:spec', 'ts:test']);    
 
     registerBuildTasks(type);
    
@@ -182,7 +182,7 @@ module.exports = (grunt, dir, dependencies, type) => {
             },
             srcES5 : {
                 options: {
-                    target: 'es5',                 // target javascript language. [es3 | es5 (grunt-ts default) | es6]
+                    target: 'es6 ',                 // target javascript language. [es3 | es5 (grunt-ts default) | es6]
                     module: 'CommonJS',            // target javascript module style. [amd (default) | commonjs]    
                 },
                 outDir:     "_dist/src",

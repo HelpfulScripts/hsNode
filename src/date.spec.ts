@@ -1,41 +1,42 @@
-import { date } from './';
+import { default as date }  from './date';
+import { o }                from 'hslayout';
 
 
-describe("date", function() {
-	it('should have date defined as a function', function() {
-		expect(date).toBeDefined();
-		expect(typeof date).toBe('function');
+o.spec("date", () => {
+	o('should have date defined as a function', () => {
+		o(date).notEquals(undefined);
+		o(typeof date).equals('function');
 	});
   
-	describe('formatting of date 7/4/2010', function() {
+	o.spec('formatting of date 7/4/2010', () => {
 		let d = new Date('7/4/2010');
 
-		it('should convert "%YYYY-%MMMM-%DD"', function() {
-			expect(date("%YYYY-%MMMM-%DD", d)).toBe("2010-July-04");
+		o('should convert "%YYYY-%MMMM-%DD"', () => {
+			o(date("%YYYY-%MMMM-%DD", d)).equals("2010-July-04");
 		});
 
-		it('should convert "%YY%MMM%D %YY"', function() {
-			expect(date("%YY%MMM%D %YY", d)).toBe("10Jul4 10");
+		o('should convert "%YY%MMM%D %YY"', () => {
+			o(date("%YY%MMM%D %YY", d)).equals("10Jul4 10");
 		});
 
-		it('should convert "%YY%MM%D %h:%m:%ss.%j"', function() {
-			expect(date("%YY%MM%D %h:%m:%ss.%j", d)).toBe("10074 0:0:00.0");
+		o('should convert "%YY%MM%D %h:%m:%ss.%j"', () => {
+			o(date("%YY%MM%D %h:%m:%ss.%j", d)).equals("10074 0:0:00.0");
 		});
 
-		it('should convert "%DDD, %YY%MM%DD %hh:%mm:%ss.%jj"', function() {
-			expect(date("%DDD, %YY%MM%DD %hh:%mm:%ss.%jj", d)).toBe("Sun, 100704 00:00:00.00");
+		o('should convert "%DDD, %YY%MM%DD %hh:%mm:%ss.%jj"', () => {
+			o(date("%DDD, %YY%MM%DD %hh:%mm:%ss.%jj", d)).equals("Sun, 100704 00:00:00.00");
 		});
 
-		it('should convert "%DDDD, %YY%MM%DD %hh:%mm:%ss.%jjj"', function() {
-			expect(date("%DDDD, %YY%MM%DD %hh:%mm:%ss.%jjj", d)).toBe("Sunday, 100704 00:00:00.000");
+		o('should convert "%DDDD, %YY%MM%DD %hh:%mm:%ss.%jjj"', () => {
+			o(date("%DDDD, %YY%MM%DD %hh:%mm:%ss.%jjj", d)).equals("Sunday, 100704 00:00:00.000");
 		});
 	});
 	
-	describe('formatting of current date', function() {
+	o.spec('formatting of current date', () => {
 		let now = new Date();
 		
-		it('should format ' + now.toDateString(), function() {
-			expect(date("%YYYY-%MM-%DD")).toBe(date("%YYYY-%MM-%DD", now));
+		o('should format ' + now.toDateString(), () => {
+			o(date("%YYYY-%MM-%DD")).equals(date("%YYYY-%MM-%DD", now));
 		});
 	});
 });

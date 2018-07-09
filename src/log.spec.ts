@@ -1,7 +1,8 @@
 import { fsUtil, log, date }   from './';
+import { o }    from 'hslayout';
 
-describe("log", () => {
-    describe("message", () => {
+o.spec("log", () => {
+    o.spec("message", () => {
         let gLog: any;
         let gMsg: string;
         
@@ -16,112 +17,110 @@ describe("log", () => {
             gMsg = undefined;
         }
 
-        beforeEach(function() {
+        o.beforeEach(() => {
             gLog = console.log;
             console.log = myLog;
             log.level(log.INFO);
             gMsg = undefined;
         });
         
-        afterEach(function() {
+        o.afterEach(() => {
             console.log = gLog;
         });
         
-        describe('reporting functions', function() {
-            it('should print info', function() {
+        o.spec('reporting functions', () => {
+            o('should print info', () => {
                 log.info("yes");
-                expect(log.level()).toBe(log.INFO);
-                expect(gMsg).toMatch(/INFO.*yes/);  
+                o(log.level()).equals(log.INFO);
+                o(gMsg.match(/INFO.*yes/)).notEquals(null);  
             });
             
-            it('should print warning', function() {
+            o('should print warning', () => {
                 log.warn("alert");
-                expect(log.level()).toBe(log.INFO);
-                expect(gMsg).toMatch(/WARN.*alert/);  
+                o(log.level()).equals(log.INFO);
+                o(gMsg.match(/WARN.*alert/)).notEquals(null);  
             });
             
-            it('should not print debug at INFO level', function() {
+            o('should not print debug at INFO level', () => {
                 setLevel(log.INFO);
                 log.debug('yes');
-                expect(gMsg).toBeUndefined();
+                o(gMsg).equals(undefined)();
             });
             
-            it('should set DEBUG level', function() {
-                expect(log.level()).toBe(log.INFO);
+            o('should set DEBUG level', () => {
+                o(log.level()).equals(log.INFO);
                 log.level(log.DEBUG);
-                expect(log.level()).toBe(log.DEBUG);
-                expect(gMsg).toMatch(/new log level 'DEBUG' \(was INFO\)/);
+                o(log.level()).equals(log.DEBUG);
+                o(gMsg.match(/new log level 'DEBUG' \(was INFO\)/)).notEquals(null);
             });
             
-            it('should print info at DEBUG level', function() {
+            o('should print info at DEBUG level', () => {
                 setLevel(log.DEBUG);
                 log.info('yes');
-                expect(log.level()).toBe(log.DEBUG);
-                expect(gMsg).toMatch(/INFO.*yes/);  
+                o(log.level()).equals(log.DEBUG);
+                o(gMsg.match(/INFO.*yes/)).notEquals(null);  
             });
             
-            it('should print debug at DEBUG level', function() {
+            o('should print debug at DEBUG level', () => {
                 log.level(log.DEBUG);
-                expect(log.level()).toBe(log.DEBUG);
-                expect(gMsg).toMatch(/new log level 'DEBUG' \(was INFO\)/);
+                o(log.level()).equals(log.DEBUG);
+                o(gMsg.match(/new log level 'DEBUG' \(was INFO\)/)).notEquals(null);
                 log.debug('yes');
-                expect(gMsg).toMatch(/DEBUG.*yes/);  
+                o(gMsg.match(/DEBUG.*yes/)).notEquals(null);  
             });
             
-            it('should print error for invalid level', function() {
+            o('should print error for invalid level', () => {
                 log.level(Symbol('BOGUS'));
-                expect(gMsg).toMatch(/ unkown level Symbol\(BOGUS\); log level remains Symbol\(INFO\)/);
-                expect(log.level()).toBe(log.INFO);
+                o(gMsg.match(/ unkown level Symbol\(BOGUS\); log level remains Symbol\(INFO\)/)).notEquals(null);
+                o(log.level()).equals(log.INFO);
             });
             
-            it('should print error', function() {
+            o('should print error', () => {
                 log.error('yes');
-                expect(gMsg).toMatch(/ERROR.*yes/);
+                o(gMsg.match(/ERROR.*yes/)).notEquals(null);
             });
         });
         
-        describe('formatting', function() {
-            it('should print prefix "test"', function() {
+        o.spec('formatting', () => {
+            o('should print prefix "test"', () => {
                 log.prefix('test');
                 log.info('yes');
-                expect(gMsg).toMatch(/test INFO.*yes/);
+                o(gMsg.match(/test INFO.*yes/)).notEquals(null);
             });
             
-            it('should print date', function() {
-                let date = new Date();
+            o('should print date', () => {
                 log.config({dateFormat:'%M/%DD/%YY'});
                 log.info('yes');
-                expect(gMsg).toMatch((date.getFullYear()%100) + ' test INFO' );
-                expect(gMsg).toMatch(/test INFO.*yes/);
+                o(gMsg.match(/\d+\/\d+\/\d+ test INFO.*yes/)).notEquals(null);
             });
             
-            it('should return dateFormat string', function() {
-                expect(log.dateFormat()).toBe('%M/%DD/%YY');
+            o('should return dateFormat string', () => {
+                o(log.dateFormat()).equals('%M/%DD/%YY');
             });
         });                    
 
-        describe('log file', function() {
-            it('should be created next to Gruntfile for default path', done => {
+        o.spec('log file', () => {
+            o('should be created next to Gruntfile for default path', (done:any) => {
                 log.logFile().then(file => {
-                    expect(file).toMatch(/log-%YYYY-%MM-%DD.txt/);
-                    expect(gMsg).toMatch(/test INFO.*now logging to file/);
+                    o(file.match(/log-%YYYY-%MM-%DD.txt/)).notEquals(null);
+                    o(gMsg.match(/test INFO.*now logging to file/)).notEquals(null);
                     if (file) { fsUtil.remove(date(file)).catch(console.log); }
                     done();
                 });
             });
             
-            it('should be stopped for empty path', done => {
+            o('should be stopped for empty path', (done:any) => {
                 log.logFile('').then(file => {
-                    expect(file).not.toBeDefined();
-                    expect(gMsg).toMatch(/test INFO.*disabling logfile/);
+                    o(file).equals(undefined);
+                    o(gMsg.match(/test INFO.*disabling logfile/)).notEquals(null);
                     done();
                 });
             });
             
-            it('should be stopped for missing paths', done => {
+            o('should be stopped for missing paths', (done:any) => {
                 log.logFile('/missing/log.txt').then(file => {
-                    expect(file).not.toBeDefined();
-                    expect(gMsg).toMatch(/test WARN.*path .missing doesn't exists; logfile disabled/);
+                    o(file).equals(undefined);
+                    o(gMsg.match(/test WARN.*path .missing doesn't exists; logfile disabled/)).notEquals(null);
                     done();
                 })
                 .catch(() => {});
