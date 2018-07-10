@@ -317,7 +317,7 @@ o.spec("hsFSutil", () => {
 				o(spyRes.callCount).notEquals(0);     
                 o(spyRej.callCount).equals(0);   
 				o(typeof result).equals('object');
-				o(result.name).equals('hsNode');
+				o(result.name).equals('hsnode');
 				done();
 			});
 		});
