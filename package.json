@@ -35,7 +35,7 @@
     "typescript": "^2.9.2",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.14.0",
-    "xlsx": "^0.13.2"
+    "xlsx": "^0.13.2",
     "hslayout": "^2.0.0",
     "hsdatab": "^2.0.0",
     "hsutil": "^2.0.0"
