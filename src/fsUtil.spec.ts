@@ -554,8 +554,8 @@ o.spec("hsFSutil", () => {
                     .then(exists => {
                         o(exists).equals(false);
                         done();
-                    }).catch(() => {
-                        fail('error deleting file');
+                    }).catch(() => { // deliberately fail test with comment
+                        o(dir+'jsnFile').equals('exists')('error deleting file');
                     });
                 });
 			});
