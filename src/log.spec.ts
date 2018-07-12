@@ -1,5 +1,7 @@
-import { fsUtil, log, date }   from './';
-import { o }    from 'hslayout';
+import { o }        from 'hslayout';
+import { date }     from 'hsutil';
+import { log }      from './';
+import { fsUtil }   from './';
 
 o.spec("log", () => {
     o.spec("message", () => {

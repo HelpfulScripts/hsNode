@@ -1,7 +1,5 @@
 /**
- * @ngdoc object
- * @name hsNode.log
- * @description Logging convenience functions.
+ * Logging convenience functions.
  * ## Usage
  * <pre>
  * import log from './log';
@@ -53,35 +51,20 @@
  */
 
 /** importing nodejs file system function; needed to create logfiles */
-import { date, hsNode, fsUtil } from "./";
+import { hsNode } from "./";
+import { fsUtil } from "./";
+import { date } from 'hsutil';
 
-/**
- * @ngdoc property
- * @propertyOf hsNode.log 
- * @name DEBUG
- * @description Debug reporting level with importance 0
- */
+/** Debug reporting level with importance 0 */
 const DEBUG         = Symbol('DEBUG');
-/**
- * @ngdoc property
- * @name INFO
- * @propertyOf hsNode.log 
- * @description Info reporting level with importance 1
- */
+
+/** Info reporting level with importance 1 */
 const INFO          = Symbol('INFO');
-/**
- * @ngdoc property
- * @name WARN
- * @propertyOf hsNode.log 
- * @description Info reporting level with importance 2
- */
+
+/** Info reporting level with importance 2 */
 const WARN          = Symbol('WARN');
-/**
- * @ngdoc property
- * @propertyOf hsNode.log 
- * @name ERROR
- * @description Warning reporting level with importance 3
- */
+
+/** Warning reporting level with importance 3 */
 const ERROR         = Symbol('ERROR');
 
 /**
@@ -113,16 +96,13 @@ function log() {
     let gColors = true;
 
 	/**
-	 * @ngdoc object
-	 * @name level
-	 * @methodOf hsNode.log 
-	 * @param {String=} newLevel the new reporting level to set. 
-	 * If omitted, the method returns the currently set reporting level. 
-	 * @description sets the reporting level according to `newLevel`. 
+     * sets the reporting level according to `newLevel`. 
 	 * Valid values are {@link hsNode.log.DEBUG DEBUG}, {@link hsNode.log.INFO INFO}, {@link hsNode.log.WARN WARN}, or {@link hsNode.log.ERROR ERROR}.
 	 * Subsequent reporting calls
 	 * will be filtered such that only calls with an importance at least the same as 
 	 * `newLevel` will be written to the log.
+	 * @param {String=} newLevel the new reporting level to set. 
+	 * If omitted, the method returns the currently set reporting level. 
 	 * @return {Symbol} the new reporting level (DEBUG, INFO, ERROR)
 	 */
 	function level(newLevel?:symbol):symbol {
@@ -139,57 +119,42 @@ function log() {
 	}
 
 	/**
-	 * @ngdoc object
-	 * @name debug
-	 * @methodOf hsNode.log 
-	 * @param {string} msg the message to report.
-	 * @description reports an debug message to the log. 
+     * reports an debug message to the log. 
 	 * The message will actually be reported to the log only if the current 
 	 * reporting level is DEBUG or lower.
+	 * @param {string} msg the message to report.
 	 */
 	function debug(msg:string) { out(DEBUG, msg); }
 
 	/**
-	 * @ngdoc object
-	 * @name info
-	 * @methodOf hsNode.log 
-	 * @param {string} msg the message to report.
-	 * @description reports an informational message to the log. 
+     * reports an informational message to the log. 
 	 * The message will actually be reported to the log only if the current 
 	 * reporting level is INFO or lower.
+	 * @param {string} msg the message to report.
 	 */
 	function info(msg:string)  { out(INFO, msg); }
 
 	/**
-	 * @ngdoc object
-	 * @name warn
-	 * @methodOf hsNode.log 
-	 * @param {string} msg the message to report.
-	 * @description reports an warning message to the log. 
+     * reports an warning message to the log. 
 	 * The message will actually be reported to the log only if the current 
 	 * reporting level is WARN or lower.
+	 * @param {string} msg the message to report.
 	 */
 	function warn(msg:string) { out(WARN, msg); }
 
 	/**
-	 * @ngdoc object
-	 * @name error
-	 * @methodOf hsNode.log 
-	 * @param {string} msg the message to report.
-	 * @description reports an error message to the log. 
+     * reports an error message to the log. 
 	 * The message will always be reported to the log.
+	 * @param {string} msg the message to report.
 	 */
 	function error(msg:string) { out(ERROR, msg); }
 
 	/**
-	 * @ngdoc function
-	 * @name dateFormat
-	 * @methodOf hsNode.log 
-	 * @param {String=} fmtStr the format string to use. 
-	 * @return {String} the currently set format string
-	 * @description sets the format string to use for logging. If no parameter is specified,
+     * sets the format string to use for logging. If no parameter is specified,
 	 * the function returns the currently set format string. The preset is '%YYYY%MM%DD %hh:%mm:%ss.%jjj'
      * For supported formats see {@link date date}.
+	 * @param {String=} fmtStr the format string to use. 
+	 * @return {String} the currently set format string
 	 */
 	function dateFormat(fmtStr?:string):string { 
 	    if (fmtStr) { gDateFormat = fmtStr; }
@@ -197,25 +162,19 @@ function log() {
 	}
 
 	/**
-	 * @ngdoc function
-	 * @name prefix
-	 * @methodOf hsNode.log 
-	 * @param {String=} prf the prefix to prepend. 
-	 * @description defines a prefix to be printed for each call to a log function. 
+     * defines a prefix to be printed for each call to a log function. 
 	 * The return object contains all functions defined for export. 
+	 * @param {String=} prf the prefix to prepend. 
 	 */
 	function prefix(prf=''):void {
         gPrefix = prf? prf + ' ' : '';
 	}
 
 	/**
-	 * @ngdoc function
-	 * @name logFile
-	 * @methodOf hsNode.log 
+     * sets a new logfile name template. Logfiles are created using this template 
+	 * at the time of each log entry call. If the file exists, the log entry will be appended.
 	 * @param {String} [fileNameTemplate='log-%YYYY-%MM-%DD.txt'] a template to use for log file names. 
 	 * To disable logging, use file=''.
-	 * @description sets a new logfile name template. Logfiles are created using this template 
-	 * at the time of each log entry call. If the file exists, the log entry will be appended.
 	 * @return {Promise} promise to return the current logfile name template
 	 */
 	function logFile(file='log-%YYYY-%MM-%DD.txt'):Promise<string> {
