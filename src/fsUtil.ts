@@ -84,7 +84,7 @@ function error(err:any):any {
  * @param thePath the path to check
  * @return promise to provide the real canonical system path.
  */
-function realPath(thePath:string):Promise<string> {
+export function realPath(thePath:string):Promise<string> {
 	return new Promise((resolve:(path:string)=>void, reject:(err:any)=>void) => {
 		fs.realpath(thePath, (err:any, resolvedPath:string) => err? reject(err) : resolve(resolvedPath) );
     })
@@ -96,7 +96,7 @@ function realPath(thePath:string):Promise<string> {
  * @param {string} thePath the path to check
  * @return {Promise} promise to provide `true` or `false`
  */
-function pathExists(thePath:string):Promise<boolean> {
+export function pathExists(thePath:string):Promise<boolean> {
 	return stat(thePath).then((stats:any) => stats.path).catch(() => false)
     .catch(error);
 };
@@ -106,7 +106,7 @@ function pathExists(thePath:string):Promise<boolean> {
  * @param {string} thePath the path to check
  * @return {Promise} promise to provide `true` or `false`
  */
-function isFile(thePath:string):Promise<boolean> {
+export function isFile(thePath:string):Promise<boolean> {
 	return stat(thePath).then((stats:any) => stats.isFile()? stats.path : false).catch(() => false)
     .catch(error);
 };
@@ -116,7 +116,7 @@ function isFile(thePath:string):Promise<boolean> {
  * @param {string} thePath the path to check
  * @return {Promise} promise to provide `true` or `false`
  */
-function isDirectory(thePath:string):Promise<boolean> {
+export function isDirectory(thePath:string):Promise<boolean> {
 	return stat(thePath).then((stats:any) => stats.isDirectory()? stats.path : false).catch(() => false)
     .catch(error);
 };
@@ -126,7 +126,7 @@ function isDirectory(thePath:string):Promise<boolean> {
  * @param {string} thePath the path to check
  * @return {Promise} promise to provide `true` or `false`
  */
-function isLink(thePath:string):Promise<boolean> {
+export function isLink(thePath:string):Promise<boolean> {
 	return lstat(thePath).then((stats:any) => stats.isSymbolicLink()? stats.path : false).catch(() => false)
     .catch(error);
 };
@@ -136,7 +136,7 @@ function isLink(thePath:string):Promise<boolean> {
  * @param {string} thePath the path to check
  * @return {Promise} promise to provide a list of directory entries.
  */
-function readDir(thePath:string):Promise<string[]> {
+export function readDir(thePath:string):Promise<string[]> {
 	return Promise.resolve(thePath)
 		.then(realPath)
 		.then(thePath => new Promise((resolve:(files:any)=>void, reject:(err:any)=>void) => {
@@ -158,7 +158,7 @@ function readDir(thePath:string):Promise<string[]> {
  * @param {boolean=} [isText=true] `true`|`false` if file should be read as `utf8`|binary 
  * @return {Promise} promise to provide file content.
  */
-function readFile(thePath:string, isText=true):Promise<any> {
+export function readFile(thePath:string, isText=true):Promise<any> {
 	return new Promise((resolve:(data:any)=>void, reject:(err:any)=>void) => {
 		let encoding = isText? 'utf8' : {};
 		fs.readFile(thePath, encoding, (err:any, data:any) => {
@@ -174,7 +174,7 @@ function readFile(thePath:string, isText=true):Promise<any> {
  * @param {string} thePath the path to read
  * @return {Promise} promise to provide file content.
  */
-function readTextFile(thePath:string):Promise<string> { 
+export function readTextFile(thePath:string):Promise<string> { 
 	return readFile(thePath, true)
     .catch(error);
 };
@@ -184,7 +184,7 @@ function readTextFile(thePath:string):Promise<string> {
  * @param {string} thePath the path to read
  * @return {Promise} promise to provide file content.
  */
-function readJsonFile(thePath:string):Promise<any> {
+export function readJsonFile(thePath:string):Promise<any> {
     return readFile(thePath, true)
 	.then((data:any) => (typeof data === 'string')? JSON.parse(data) : data)
     .catch(error);
@@ -197,7 +197,7 @@ function readJsonFile(thePath:string):Promise<any> {
  * @param {boolean} isText `true`|`false` if file should be read as `utf8`|binary 
  * @return {Promise} promise to provide nothing.
  */
-function writeFile(thePath:string, content:string, isText:boolean=true):Promise<void> {
+export function writeFile(thePath:string, content:string, isText:boolean=true):Promise<void> {
 	return new Promise((resolve, reject) => {
 		var encoding = isText? 'utf8' : undefined;
 	    fs.writeFile(thePath, content, encoding, (err:any) => err? reject(err) : resolve());
@@ -211,7 +211,7 @@ function writeFile(thePath:string, content:string, isText:boolean=true):Promise<
  * @param {object} content the content to write
  * @return {Promise} promise to provide nothing.
  */
-function writeStream(thePath:string, content:string):Promise<void> {
+export function writeStream(thePath:string, content:string):Promise<void> {
 	return new Promise((resolve, reject) => {
         let s = fs.createWriteStream(thePath, {flags:'w', mode:0o666});
         s.on('error', (src:any) => reject(src));
@@ -226,7 +226,7 @@ function writeStream(thePath:string, content:string):Promise<void> {
  * @param {string} thePath the path to write
  * @return {Promise} promise to provide nothing.
  */
-function writeTextFile(thePath:string, content:string):Promise<void> { 
+export function writeTextFile(thePath:string, content:string):Promise<void> { 
 	return writeFile(thePath, content, true)
     .catch(error);
 };
@@ -237,7 +237,7 @@ function writeTextFile(thePath:string, content:string):Promise<void> {
  * @param {object} obj the object to write
  * @return {Promise} promise to provide nothing.
  */
-function writeJsonFile(thePath:string, obj:any):Promise<void> {
+export function writeJsonFile(thePath:string, obj:any):Promise<void> {
     return Promise.resolve(obj)
 	.then(JSON.stringify)
 	.then(data => writeTextFile(thePath, data))
@@ -251,7 +251,7 @@ function writeJsonFile(thePath:string, obj:any):Promise<void> {
  * @param {boolean} isText `true`|`false` if file should be read as `utf8`|binary 
  * @return {Promise} promise to provide nothing.
  */
-function appendFile(thePath:string, content:string, isText:boolean=true):Promise<void> {
+export function appendFile(thePath:string, content:string, isText:boolean=true):Promise<void> {
 	return new Promise((resolve, reject) => {
 		var encoding = isText? 'utf8' : undefined;
 	    fs.appendFile(thePath, content, encoding, (err:any) => err? reject(err) : resolve());
@@ -264,27 +264,9 @@ function appendFile(thePath:string, content:string, isText:boolean=true):Promise
  * @param {string} thePath the path to write
  * @return {Promise} promise to provide nothing.
  */
-function remove(thePath:string):Promise<void> {
+export function remove(thePath:string):Promise<void> {
 	return new Promise((resolve:()=>void, reject:(err:any)=>void) => {
         fs.unlink(thePath, (e:any) => (e? reject(e) : resolve()));
 	})
     .catch(error);
 }
-
-export const fsUtil = { 
-    realPath:       realPath, 
-    pathExists:     pathExists, 
-    isFile:         isFile, 
-    isDirectory:    isDirectory, 
-    isLink:         isLink, 
-    readDir:        readDir, 
-    readFile:       readFile, 
-    readTextFile:   readTextFile, 
-    readJsonFile:   readJsonFile, 
-    writeFile:      writeFile, 
-    writeStream:    writeStream, 
-    writeTextFile:  writeTextFile, 
-    writeJsonFile:  writeJsonFile,
-    appendFile:     appendFile, 
-    remove:         remove 
-};

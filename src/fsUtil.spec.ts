@@ -1,4 +1,4 @@
-import { fsUtil } from './fsUtil';
+import * as fsUtil from './fsUtil';
 import { o }    from 'hslayout';
 
 

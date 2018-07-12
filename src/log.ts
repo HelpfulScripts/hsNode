@@ -52,7 +52,7 @@
 
 /** importing nodejs file system function; needed to create logfiles */
 import { inspect }  from 'util';
-import { fsUtil }   from "./";
+import * as fsUtil  from "./fsUtil";
 import { date }     from 'hsutil';
 
 
