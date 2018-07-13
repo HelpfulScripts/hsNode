@@ -39,5 +39,8 @@
     "hslayout": "^2.0.0",
     "hsdatab": "^2.0.0",
     "hsutil": "^2.0.0"
+  },
+  "dependencies": {
+    "xlsx": "^0.13.2"
   }
 }
