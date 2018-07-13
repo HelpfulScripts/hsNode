@@ -1,9 +1,14 @@
-export { log }   from "./log";
+export { log }      from "./log";
 
-import * as hsExcel         from "./excel";
-export { hsExcel };
+import * as excel   from "./excel";
+export { excel };
 
+import * as http    from "./httpUtil";
+export { http };
 
-export *    from "./fsUtil";
-export *    from "./cpUtil";
+import * as fs      from "./fsUtil";
+export { fs };
+
+import * as cp      from "./cpUtil";
+export { cp };
 
