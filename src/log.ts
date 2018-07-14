@@ -110,9 +110,9 @@ class Log {
      * Subsequent reporting calls
      * will be filtered such that only calls with an importance at least the same as 
      * `newLevel` will be written to the log.
-     * @param {String=} newLevel the new reporting level to set. 
+     * @param newLevel the new reporting level to set. 
      * If omitted, the method returns the currently set reporting level. 
-     * @return {Symbol} the new reporting level (DEBUG, INFO, ERROR)
+     * @return the new reporting level (DEBUG, INFO, ERROR)
      */
     level(newLevel?:symbol):symbol {
         if (newLevel) { 
@@ -131,7 +131,7 @@ class Log {
      * reports an debug message to the log. 
      * The message will actually be reported to the log only if the current 
      * reporting level is DEBUG or lower.
-     * @param {string} msg the message to report.
+     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
      */
     debug(msg:string) { this.out(DEBUG, msg); }
 
@@ -139,24 +139,24 @@ class Log {
      * reports an informational message to the log. 
      * The message will actually be reported to the log only if the current 
      * reporting level is INFO or lower.
-     * @param {string} msg the message to report.
+     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
      */
-    info(msg:string)  { this.out(INFO, msg); }
+    info(msg:any)  { this.out(INFO, msg); }
 
     /**
      * reports an warning message to the log. 
      * The message will actually be reported to the log only if the current 
      * reporting level is WARN or lower.
-     * @param {string} msg the message to report.
+     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
      */
-    warn(msg:string) { this.out(WARN, msg); }
+    warn(msg:any) { this.out(WARN, msg); }
 
     /**
      * reports an error message to the log. 
      * The message will always be reported to the log.
-     * @param {string} msg the message to report.
+     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
      */
-    error(msg:string) { this.out(ERROR, msg); }
+    error(msg:any) { this.out(ERROR, msg); }
 
     /**
      * sets the format string to use for logging. If no parameter is specified,
@@ -173,7 +173,7 @@ class Log {
     /**
      * defines a prefix to be printed for each call to a log function. 
      * The return object contains all functions defined for export. 
-     * @param {String=} prf the prefix to prepend. 
+     * @param prf the prefix to prepend. Defaults to '';
      */
     prefix(prf=''):void {
         this.gPrefix = prf? prf + ' ' : '';
@@ -182,9 +182,9 @@ class Log {
     /**
      * sets a new logfile name template. Logfiles are created using this template 
      * at the time of each log entry call. If the file exists, the log entry will be appended.
-     * @param {String} [fileNameTemplate='log-%YYYY-%MM-%DD.txt'] a template to use for log file names. 
-     * To disable logging, use file=''.
-     * @return {Promise} promise to return the current logfile name template
+     * @param file a template to use for log file names, defaults to [fileNameTemplate='log-%YYYY-%MM-%DD.txt']. 
+     * To disable logging, set file=''.
+     * @return promise to return the current logfile name template
      */
     logFile(file='log-%YYYY-%MM-%DD.txt'):Promise<string> {
         return Promise.resolve(file)
@@ -209,13 +209,19 @@ class Log {
             });
     }
 
-    out(sym:symbol, msg:any) {	
+    /**
+     * reports an error message to the log. 
+     * The message will be reported to the log if `lvl` meets or exceeds the current reporting level.
+     * @param lvl the reporting level of `msg`
+     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
+     */
+    out(lvl:symbol, msg:any) {	
         const color = { ERROR: '\x1b[31m\x1b[1m', WARN: '\x1b[33m', DEBUG: '\x1b[36m', INFO: '\x1b[32m' };
-        let desc = gLevels[sym];
+        let desc = gLevels[lvl];
         if (desc.importance >= gLevel.importance) {
             const dateStr = date(gDateFormat);
             let line = (typeof msg === 'string')? msg : inspect(msg, {depth:null, colors:gColors});
-            line = gColors? ((color[sym]||"") + dateStr + ' ' + this.gPrefix + desc.desc + '\x1b[0m ' + line) :
+            line = gColors? ((color[lvl]||"") + dateStr + ' ' + this.gPrefix + desc.desc + '\x1b[0m ' + line) :
                             (dateStr + ' ' + this.gPrefix + desc.desc + ' ' + line);
             console.log(line);
             if (msg.stack) { console.log(msg.stack); }
@@ -228,6 +234,14 @@ class Log {
         }
     }
 
+    /**
+     * configures the log facility.
+     * - cfg.colors: boolean, determines if output is colored
+     * - cfg.logfile: sets the naming template for the logfile. Set logFile=null to disable.
+     * - cfg.dateFormat: sets the format for the timestamp for each log entry
+     * - cfg.level: sets the reporting level (same as calling log.level())
+     * @param cfg 
+     */
     config(cfg:{colors?:boolean, logFile?:string, dateFormat?:string, level?:symbol }) {
         let colors = true;
         if (cfg.colors!==undefined)     { gColors = colors = cfg.colors; }     // true / false
