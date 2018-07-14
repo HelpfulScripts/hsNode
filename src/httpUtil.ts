@@ -32,18 +32,35 @@ export function request(options:any, postData?:any):Promise<any> {
     });
 }
 
+
+export interface IncomingMessage {
+    headers:        any;
+    httpVersion:    string;
+    method:         string;
+    rawHeaders:     string[];
+    rawTrailers:    string[];
+    statusCode:     number;
+    statusMessage:  string;
+    url:            string;
+}
+export interface HttpResponse {
+    response?:  IncomingMessage;
+    data?:      string;
+    error?:     string;
+}
+
 /**
  * sends a http get request and promises to return the result.
  * @param {object} options the options to pass along to the get request
  * @return {Promise} promise to provide the result of the request.
  */
-export function get(url:string):Promise<any> {
-    return new Promise((resolve:(out:string)=>void, reject:(e:string)=>void) => {
+export function get(url:string):Promise<HttpResponse|string> {
+    return new Promise((resolve:(out:HttpResponse)=>void, reject:(e:string)=>void) => {
         let data = ''; 
         const req = http.get(url, (res:any) => {
             res.setEncoding('utf8');
             res.on('data', (chunk:string) => { data += chunk; });
-            res.on('end', () => resolve(data));
+            res.on('end', () => resolve({data:data, response:res}));
         });
 
         req.on('error', (e:string) => reject(e));
