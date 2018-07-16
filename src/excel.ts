@@ -11,13 +11,13 @@
  /** */
 const XLSX	= require('xlsx');
 
-import { Log }      from './log';
+import { log }      from './log'; log.prefix('excel');
 import { DataRow}   from 'hsdatab';
 import { WorkBook,
          WorkSheet,
          CellObject
        }            from 'xlsx/types';
-const log = new Log('excel');
+
 
 /**
  * reads and returns a promise for an {@link #/hsLog/hsNode.excelFile excel file}.

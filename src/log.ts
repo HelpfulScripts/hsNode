@@ -2,7 +2,7 @@
  * Logging convenience functions.
  * ## Usage
  * <pre>
- * import log from './log';
+ * import Log from './log';
  * log.info('by the way:'); // -> 20160817 09:59:08.032 info by the way:
  * log.error('oh dear!');   // -> 20160817 09:59:08.045 error *** oh dear!
  * </pre>
@@ -97,14 +97,14 @@ let gLogFile: string;	// initially disabled
 let gColors = true;
 
 
-export class Log {
+class Log {
     private gPrefix = '';
     DEBUG   = DEBUG;
     INFO    = INFO;
     WARN    = WARN;
     ERROR   = ERROR;
 
-    constructor(prefix:string) {
+    constructor(prefix='') {
         this.prefix(prefix);
     }
 
@@ -267,4 +267,4 @@ export class Log {
     }
 }
     
-
+export const log = (function log() { return new Log(); })();

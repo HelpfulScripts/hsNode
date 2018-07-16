@@ -1,5 +1,4 @@
-import { Log }      from './';
-const log = new Log('log');
+import { log }      from './';  log.prefix('log');
 
 import { o }        from 'hslayout';
 import { date }     from 'hsutil';

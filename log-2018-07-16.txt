@@ -1,0 +1,1 @@
+[32m7/16/18 test INFO[0m disabling logfile

@@ -118,7 +118,7 @@ export function isDirectory(thePath:string):Promise<boolean> {
  * determines if `thePath` is a directory and promises to provide `true` or `false`.
  * @param thePath the path to check
  * @return promise to provide `true` or `false`
- */
+ */ 
 export function isLink(thePath:string):Promise<boolean> {
 	return lstat(thePath).then((stats:any) => stats.isSymbolicLink()).catch(() => false);
 }
