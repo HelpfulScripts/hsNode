@@ -80,18 +80,14 @@ o.spec("hsFSutil", () => {
 		});
 		
 		o.spec('Gruntfile.js' , () => {
-            let rp:string;
 			o.beforeEach((done:any) => {
-                fsUtil.realPath(dir+'/../../../Gruntfile.js')
-                .then((path:string) => {
-    				called = getCalled(done);
-                    rp = path;
-    				fsUtil.isFile(rp).then(spyRes).catch(spyRej);
-                });
+                called = getCalled(done);
+                fsUtil.isFile(dir+'../../../Gruntfile.js').then(spyRes).catch(spyRej);
 			});
 		
 			o('should be a file', (done:any) => {
-				o(spyRes.args.indexOf(rp)).notEquals(-1);
+				o(spyRes.args.indexOf(true)).notEquals(-1);
+				o(spyRes.callCount).equals(1);
 				o(spyRej.callCount).equals(0);
 				done();
 			});
@@ -104,7 +100,7 @@ o.spec("hsFSutil", () => {
 			});
 			
 			o('should be a file', (done:any) => {
-				o(spyRes.args.indexOf(process.cwd()+'/Gruntfile.js')).notEquals(-1);
+				o(spyRes.args.indexOf(true)).notEquals(-1);
 				o(spyRej.callCount).equals(0);
 				done();
 			});
