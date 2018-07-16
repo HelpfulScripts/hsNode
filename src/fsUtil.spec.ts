@@ -58,7 +58,7 @@ o.spec("hsFSutil", () => {
 			});
 			
 			o('should not exist', (done:any) => {
-				o(spyRes.args.indexOf(false)).notEquals(-1);
+				o(spyRes.args.indexOf(false)).equals(0);
 				o(spyRej.callCount).equals(0);
 				done();
 			});
@@ -73,7 +73,7 @@ o.spec("hsFSutil", () => {
 			});
 		
 			o('should not be a file', (done:any) => {
-				o(spyRes.args.indexOf(false)).notEquals(-1);
+				o(spyRes.args.indexOf(false)).equals(0);
 				o(spyRej.callCount).equals(0);
 				done();
 			});
@@ -86,7 +86,7 @@ o.spec("hsFSutil", () => {
 			});
 		
 			o('should be a file', (done:any) => {
-				o(spyRes.args.indexOf(true)).notEquals(-1);
+				o(spyRes.args.indexOf(true)).equals(0);
 				o(spyRes.callCount).equals(1);
 				o(spyRej.callCount).equals(0);
 				done();
@@ -100,7 +100,7 @@ o.spec("hsFSutil", () => {
 			});
 			
 			o('should be a file', (done:any) => {
-				o(spyRes.args.indexOf(true)).notEquals(-1);
+				o(spyRes.args.indexOf(true)).equals(0);
 				o(spyRej.callCount).equals(0);
 				done();
 			});
@@ -128,7 +128,7 @@ o.spec("hsFSutil", () => {
 			});
 		
 			o('should be a directory', (done:any) => {
-				o(spyRes.args.indexOf(process.cwd())).notEquals(-1);
+				o(spyRes.args.indexOf(true)).equals(0);
 				o(spyRej.callCount).equals(0);
 				done();
 			});
@@ -141,7 +141,7 @@ o.spec("hsFSutil", () => {
 			});
 			
 			o('should be a directory', (done:any) => {
-				o(spyRes.args.indexOf(process.cwd())).notEquals(-1);
+				o(spyRes.args.indexOf(true)).equals(0);
 				o(spyRej.callCount).equals(0);
 				done();
 			});
@@ -154,7 +154,7 @@ o.spec("hsFSutil", () => {
 			});
 			 
 			o('valid file should not be a directory an not be rejected', (done:any) => {
-				o(spyRes.args.indexOf(false)).notEquals(-1);
+				o(spyRes.args.indexOf(false)).equals(0);
 				o(spyRej.callCount).equals(0);
 				done();
 			});

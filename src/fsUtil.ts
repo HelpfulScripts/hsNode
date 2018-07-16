@@ -111,7 +111,7 @@ export function isFile(thePath:string):Promise<boolean> {
  * @return promise to provide `true` or `false`
  */
 export function isDirectory(thePath:string):Promise<boolean> {
-	return stat(thePath).then((stats:any) => stats.isDirectory()? stats.path : false).catch(() => false);;
+	return stat(thePath).then((stats:any) => stats.isDirectory()).catch(() => false);;
 }
 
 /**
@@ -120,7 +120,7 @@ export function isDirectory(thePath:string):Promise<boolean> {
  * @return promise to provide `true` or `false`
  */
 export function isLink(thePath:string):Promise<boolean> {
-	return lstat(thePath).then((stats:any) => stats.isSymbolicLink()? stats.path : false).catch(() => false);
+	return lstat(thePath).then((stats:any) => stats.isSymbolicLink()).catch(() => false);
 }
 
 /**
