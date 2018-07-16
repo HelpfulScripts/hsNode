@@ -97,12 +97,16 @@ let gLogFile: string;	// initially disabled
 let gColors = true;
 
 
-class Log {
+export class Log {
     private gPrefix = '';
     DEBUG   = DEBUG;
     INFO    = INFO;
     WARN    = WARN;
     ERROR   = ERROR;
+
+    constructor(prefix:string) {
+        this.prefix(prefix);
+    }
 
     /**
      * sets the reporting level according to `newLevel`. 
@@ -188,25 +192,29 @@ class Log {
      */
     logFile(file='log-%YYYY-%MM-%DD.txt'):Promise<string> {
         return Promise.resolve(file)
-            .then(file => {
-                if (file !== gLogFile) {
-                    gLogFile = (file==='')? undefined : file;
-                }
-                if (!gLogFile) { this.info("disabling logfile"); return gLogFile; }
-                if (gLogFile.indexOf('/')>=0) { 
-                    const dir = gLogFile.substring(0, gLogFile.lastIndexOf('/'));
-                    return fsUtil.pathExists(dir).then(exists => {
-                        if (!exists) { 
-                            gLogFile = undefined; 
-                            this.warn(`path ${dir} doesn't exists; logfile disabled`); 
-                        }
-                        else { this.info(gLogFile? "now logging to file " + date(gLogFile) : "disabling logfile"); }
-                        return gLogFile;
-                    });
-                }
-                this.info("now logging to file " + date(gLogFile));
-                return gLogFile;
-            });
+        .then((file:string) => {
+            if (file.indexOf('/')>=0) { 
+                const dir = file.substring(0, file.lastIndexOf('/')+1);
+                return fsUtil.pathExists(dir)
+                .then(exists => { 
+                    if (!exists) {
+                        this.warn(`path '${dir}' doesn't exists; logfile disabled`);
+                        return undefined;
+                    }
+                    return file;
+                })
+                .catch(() => { 
+                    this.error(`checking path ${dir}; logfile disabled`);
+                    return undefined; 
+                });
+            } else if (file === '') {
+                this.info("disabling logfile");
+                return undefined;
+            }
+            this.info("now logging to file " + date(file));
+            return file;
+        })
+        .then((file:string) => gLogFile = file);
     }
 
     /**
@@ -216,12 +224,12 @@ class Log {
      * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
      */
     out(lvl:symbol, msg:any) {	
-        const color = { ERROR: '\x1b[31m\x1b[1m', WARN: '\x1b[33m', DEBUG: '\x1b[36m', INFO: '\x1b[32m' };
+        const color = { [ERROR]: '\x1b[31m\x1b[1m', [WARN]: '\x1b[33m', [DEBUG]: '\x1b[36m', [INFO]: '\x1b[32m' };
         let desc = gLevels[lvl];
         if (desc.importance >= gLevel.importance) {
             const dateStr = date(gDateFormat);
-            let line = (typeof msg === 'string')? msg : inspect(msg, {depth:null, colors:gColors});
-            line = gColors? ((color[lvl]||"") + dateStr + ' ' + this.gPrefix + desc.desc + '\x1b[0m ' + line) :
+            let line = (typeof msg === 'string')? msg : this.inspect(msg, 0);
+            line = gColors? ((color[lvl]||'') + dateStr + ' ' + this.gPrefix + desc.desc + '\x1b[0m ' + line) :
                             (dateStr + ' ' + this.gPrefix + desc.desc + ' ' + line);
             console.log(line);
             if (msg.stack) { console.log(msg.stack); }
@@ -233,6 +241,14 @@ class Log {
             }
         }
     }
+
+    /**
+     * Simplifies node `util.inspect` call.
+     * Usage: `log.info('' + log.inspect(struct, 1))
+     * @param msg the object literal to inspect
+     * @param depth depth of recursion. Use `null` for infinite depth
+     */
+    inspect(msg:any, depth=1) { return inspect(msg, {depth:depth, colors:gColors}); }
 
     /**
      * configures the log facility.
@@ -251,6 +267,4 @@ class Log {
     }
 }
     
-export let log = new Log();
-
 

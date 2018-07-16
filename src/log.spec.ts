@@ -1,6 +1,8 @@
+import { Log }      from './';
+const log = new Log('log');
+
 import { o }        from 'hslayout';
 import { date }     from 'hsutil';
-import { log }      from './';
 import * as fsUtil  from './fsUtil';
 
 o.spec("log", () => {
@@ -104,25 +106,30 @@ o.spec("log", () => {
         o.spec('log file', () => {
             o('should be created next to Gruntfile for default path', (done:any) => {
                 log.logFile().then(file => {
-                    o(file.match(/log-%YYYY-%MM-%DD.txt/)).notEquals(null);
-                    o(gMsg.match(/test INFO.*now logging to file/)).notEquals(null);
-                    if (file) { fsUtil.remove(date(file)).catch(console.log); }
-                    done();
-                });
+                    o(file.match(/log-%YYYY-%MM-%DD.txt/)).notEquals(null)('file name match');
+                    o(gMsg.match(/test INFO.*now logging to file/g)).notEquals(null)('log content match');
+                    if (file) { 
+                        fsUtil.remove(date(file)).then(()=>done()).catch(console.log); 
+                    } else {
+                        done();
+                    }
+                })
+                .catch(console.log);
             });
             
             o('should be stopped for empty path', (done:any) => {
                 log.logFile('').then(file => {
-                    o(file).equals(undefined);
-                    o(gMsg.match(/test INFO.*disabling logfile/)).notEquals(null);
+                    o(file).equals(undefined)('file name match');
+                    o(gMsg.match(/test INFO.*disabling logfile/)).notEquals(null)('log content match');
                     done();
-                });
+                })
+                .catch(console.log);
             });
             
             o('should be stopped for missing paths', (done:any) => {
                 log.logFile('/missing/log.txt').then(file => {
                     o(file).equals(undefined);
-                    o(gMsg.match(/test WARN.*path .missing doesn't exists; logfile disabled/)).notEquals(null);
+                    o(gMsg.match(/test WARN.*path \'\/missing\/\' doesn't exists; logfile disabled/)).notEquals(null);
                     done();
                 })
                 .catch(() => {});
