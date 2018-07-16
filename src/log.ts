@@ -199,22 +199,22 @@ export class Log {
                 .then(exists => { 
                     if (!exists) {
                         this.warn(`path '${dir}' doesn't exists; logfile disabled`);
-                        return undefined;
+                        return gLogFile = undefined;
                     }
                     return file;
                 })
                 .catch(() => { 
                     this.error(`checking path ${dir}; logfile disabled`);
-                    return undefined; 
+                    return gLogFile = undefined; 
                 });
             } else if (file === '') {
                 this.info("disabling logfile");
-                return undefined;
+                return gLogFile = undefined;
             }
+            gLogFile = file;
             this.info("now logging to file " + date(file));
             return file;
-        })
-        .then((file:string) => gLogFile = file);
+        });
     }
 
     /**

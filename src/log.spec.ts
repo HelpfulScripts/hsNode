@@ -105,15 +105,22 @@ o.spec("log", () => {
 
         o.spec('log file', () => {
             o('should be created next to Gruntfile for default path', (done:any) => {
+                let _file:string;
                 log.logFile().then(file => {
+                    _file = date(file);
                     o(file.match(/log-%YYYY-%MM-%DD.txt/)).notEquals(null)('file name match');
                     o(gMsg.match(/test INFO.*now logging to file/g)).notEquals(null)('log content match');
-                    if (file) { 
-                        fsUtil.remove(date(file)).then(()=>done()).catch(console.log); 
-                    } else {
-                        done();
-                    }
                 })
+                .then(() => fsUtil.isFile(_file))
+                .then((b) => {
+                    o(b).equals(true)('after creating');
+                })
+                .then(() => fsUtil.remove(_file))
+                .then(() => fsUtil.isFile(_file))
+                .then((b) => {
+                    o(b).equals(false)('after removing');
+                })
+                .then(()=> done())
                 .catch(console.log);
             });
             
