@@ -1,4 +1,4 @@
-export { log }      from "./log";
+export { Log }      from "./log";
 
 import * as excel   from "./excel";
 export { excel };
