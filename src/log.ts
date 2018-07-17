@@ -3,13 +3,14 @@
  * ## Usage
  * <pre>
  * import Log from './log';
+ * const log = new Log();
  * log.info('by the way:'); // -> 20160817 09:59:08.032 info by the way:
  * log.error('oh dear!');   // -> 20160817 09:59:08.045 error *** oh dear!
  * </pre>
  * 
  * ### Using the format template:
  * <pre>
- * log.format('%MMM %DD %hh%mm%ss');
+ * log.entryFormat('%MMM %DD %hh%mm%ss');
  * log.info('by the way:');  // -> Aug 17 095908 info by the way:
  * log.error('oh dear!');    // -> Aug 17 095908 error *** oh dear!
  * </pre>
@@ -17,7 +18,7 @@
  * ### With module prefix:
  * <pre>
  * import log from './log';
- * log.prefix('Main');
+ * const log = new Log('Main');
  * log.format('%hh%mm%ss');
  * log.info('by the way:');  // -> 09:59:08.032 Main info by the way:
  * log.error('oh dear!');    // -> 09:59:08.045 Main error *** oh dear!
@@ -28,6 +29,7 @@
  * log.format('%MM%DD');
  * log.info('by the way:'); // -> 0817 info by the way:
  * log.logFile('l%YY%MM');  // -> 0817 info now logging to file l1608.txt
+ * log.logFile(null);       // -> 0817 disabling logfile
  * log.error('oh dear!');   // -> 0817 error *** oh dear!
  * </pre>
  * 
@@ -88,7 +90,8 @@ let gLevel:LevelDesc = gLevels[INFO];
 console.log('set log level to ' + gLevel.sym.toString());
 
 /** current date format string. See [date module]('_date_.html') */
-let gDateFormat   = '%YYYY%MM%DD %hh:%mm:%ss.%jjj';
+const defDateFormat = '%YYYY%MM%DD %hh:%mm:%ss.%jjj';
+let gDateFormat     = defDateFormat;
 
 /** name of the current log file, or undefined */
 let gLogFile: string;	// initially disabled
@@ -97,7 +100,7 @@ let gLogFile: string;	// initially disabled
 let gColors = true;
 
 
-class Log {
+export class Log {
     private gPrefix = '';
     DEBUG   = DEBUG;
     INFO    = INFO;
@@ -166,11 +169,14 @@ class Log {
      * sets the format string to use for logging. If no parameter is specified,
      * the function returns the currently set format string. The preset is '%YYYY%MM%DD %hh:%mm:%ss.%jjj'
      * For supported formats see {@link date date}.
-     * @param {String=} fmtStr the format string to use. 
-     * @return {String} the currently set format string
+     * @param fmtStr optional format string to use; 
+     * - `entryFormat(null)` sets the format to `defDateFormat` 
+     * - `entryFormat()` returns the current format without changing it.
+     * @return the currently set format string
      */
-    dateFormat(fmtStr?:string):string { 
-        if (fmtStr) { gDateFormat = fmtStr; }
+    entryFormat(fmtStr?:string):string { 
+        if (fmtStr === null) { gDateFormat = defDateFormat; }
+        else if (fmtStr)     { gDateFormat = fmtStr; }
         return gDateFormat;
     }
 
@@ -186,35 +192,42 @@ class Log {
     /**
      * sets a new logfile name template. Logfiles are created using this template 
      * at the time of each log entry call. If the file exists, the log entry will be appended.
-     * @param file a template to use for log file names, defaults to [fileNameTemplate='log-%YYYY-%MM-%DD.txt']. 
-     * To disable logging, set file=''.
+     * @param file a template to use for log file names. Options for calling:
+     * - `logFile()`: return current logfile template without changing the template
+     * - `logFile(null)`: diasble log file
+     * - `logFile('')`: set default log file template `log-%YYYY-%MM-%DD.txt`
+     * - `logFile('log%D/%M/%Y.log')`: set new log file template
      * @return promise to return the current logfile name template
      */
-    logFile(file='log-%YYYY-%MM-%DD.txt'):Promise<string> {
-        return Promise.resolve(file)
-        .then((file:string) => {
-            if (file.indexOf('/')>=0) { 
-                const dir = file.substring(0, file.lastIndexOf('/')+1);
-                return fsUtil.pathExists(dir)
+    logFile(file?:string):Promise<string> {
+        if (file === null) {                    // disable logging in file
+            this.info("disabling logfile");
+            gLogFile = undefined;
+        } else if (file === undefined) {        // fall through to return gLogFile promise
+            this.info(`current logfile: ${date(gLogFile)}`);
+        } else if (file.indexOf('/')>=0) { 
+            const dir = file.substring(0, file.lastIndexOf('/')+1);
+            return fsUtil.pathExists(dir)
                 .then(exists => { 
                     if (!exists) {
                         this.warn(`path '${dir}' doesn't exists; logfile disabled`);
-                        return gLogFile = undefined;
+                        return gLogFile = undefined; 
                     }
-                    return file;
+                    this.info("now logging to file " + date(file));
+                    return gLogFile = file;
                 })
                 .catch(() => { 
                     this.error(`checking path ${dir}; logfile disabled`);
                     return gLogFile = undefined; 
                 });
-            } else if (file === '') {
-                this.info("disabling logfile");
-                return gLogFile = undefined;
-            }
-            gLogFile = file;
+        } else if (file === '') {
+            gLogFile='log-%YYYY-%MM-%DD.txt';
             this.info("now logging to file " + date(file));
-            return file;
-        });
+        } else {
+            gLogFile=file;
+            this.info("now logging to file " + date(file));
+        }
+        return Promise.resolve(gLogFile);
     }
 
     /**
@@ -229,9 +242,9 @@ class Log {
         if (desc.importance >= gLevel.importance) {
             const dateStr = date(gDateFormat);
             let line = (typeof msg === 'string')? msg : this.inspect(msg, 0);
-            line = gColors? ((color[lvl]||'') + dateStr + ' ' + this.gPrefix + desc.desc + '\x1b[0m ' + line) :
-                            (dateStr + ' ' + this.gPrefix + desc.desc + ' ' + line);
-            console.log(line);
+            line = (dateStr + ' ' + this.gPrefix + desc.desc + ' ' + line);
+            const colorLine = ((color[lvl]||'') + dateStr + ' ' + this.gPrefix + desc.desc + '\x1b[0m ' + line);
+            console.log(gColors? colorLine : line);
             if (msg.stack) { console.log(msg.stack); }
             if (gLogFile) {
                 const filename = date(gLogFile);
@@ -254,17 +267,16 @@ class Log {
      * configures the log facility.
      * - cfg.colors: boolean, determines if output is colored
      * - cfg.logfile: sets the naming template for the logfile. Set logFile=null to disable.
-     * - cfg.dateFormat: sets the format for the timestamp for each log entry
+     * - cfg.entryFormat: sets the format for the timestamp for each log entry
      * - cfg.level: sets the reporting level (same as calling log.level())
      * @param cfg 
      */
-    config(cfg:{colors?:boolean, logFile?:string, dateFormat?:string, level?:symbol }) {
+    config(cfg:{colors?:boolean, logFile?:string, entryFormat?:string, level?:symbol }) {
         let colors = true;
-        if (cfg.colors!==undefined)     { gColors = colors = cfg.colors; }     // true / false
-        if (cfg.logFile!==undefined)    { this.logFile(cfg.logFile||undefined); }   // {logFile:null} => logFile(undefined)
-        if (cfg.dateFormat!==undefined) { this.dateFormat(cfg.dateFormat); }        // e.g. '%YYYY%MM%DD %hh:%mm:%ss.%jjj'
-        if (cfg.level!==undefined)      { this.level(cfg.level); }                  // e.g. INFO
+        if (cfg.colors!==undefined)      { gColors = colors = cfg.colors; }     // true / false
+        if (cfg.logFile!==undefined)     { this.logFile(cfg.logFile); }         // {logFile:null} => diable
+        if (cfg.entryFormat!==undefined) { this.entryFormat(cfg.entryFormat); } // e.g. '%YYYY%MM%DD %hh:%mm:%ss.%jjj'
+        if (cfg.level!==undefined)       { this.level(cfg.level); }             // e.g. INFO
     }
 }
     
-export const log = (function log() { return new Log(); })();

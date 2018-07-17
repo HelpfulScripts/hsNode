@@ -68,7 +68,7 @@ function lstat(thePath:string) {
 }
 
 function error(err:any):any {
-    const msg = `*** error in fsUtil: ${err}`;
+    const msg = `*** error in fsUtil: ${err}, stack:\n${err.stack}`;
     throw new Error(msg);
 }
 
@@ -254,11 +254,11 @@ export function appendFile(thePath:string, content:string, isText:boolean=true):
 /**
  * promises to delete a file or folder.
  * @param thePath the path to write
- * @return promise to provide nothing.
+ * @return promise to provide the name of the removed file.
  */
-export function remove(thePath:string):Promise<void> {
-	return new Promise((resolve:()=>void, reject:(err:any)=>void) => {
-        fs.unlink(thePath, (e:any) => (e? reject(e) : resolve()));
+export function remove(thePath:string):Promise<string> {
+	return new Promise((resolve:(path:string)=>void, reject:(err:any)=>void) => {
+        fs.unlink(thePath, (e:any) => (e? reject(e) : resolve(thePath)));
 	})
     .catch(error);
 }

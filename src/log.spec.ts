@@ -1,4 +1,4 @@
-import { log }      from './';  log.prefix('log');
+import { Log }      from './';  const log = new Log('log.spec');
 
 import { o }        from 'hslayout';
 import { date }     from 'hsutil';
@@ -86,59 +86,60 @@ o.spec("log", () => {
         
         o.spec('formatting', () => {
             o('should print prefix "test"', () => {
-                log.prefix('test');
+                const log = new Log('test');
                 log.info('yes');
                 o(gMsg.match(/test INFO.*yes/)).notEquals(null);
             });
             
             o('should print date', () => {
-                log.config({dateFormat:'%M/%DD/%YY'});
+                log.config({entryFormat:'%M/%DD/%YY'});
                 log.info('yes');
-                o(gMsg.match(/\d+\/\d+\/\d+ test INFO.*yes/)).notEquals(null);
+                o(gMsg.match(/\d+\/\d+\/\d+ log.spec INFO.*yes/)).notEquals(null);
             });
             
-            o('should return dateFormat string', () => {
-                o(log.dateFormat()).equals('%M/%DD/%YY');
+            o('should return entryFormat string', () => {
+                o(log.entryFormat()).equals('%M/%DD/%YY');
             });
+
+            o.after(() => log.entryFormat(null));   // reset the date format
         });                    
 
         o.spec('log file', () => {
             o('should be created next to Gruntfile for default path', (done:any) => {
-                let _file:string;
-                log.logFile().then(file => {
-                    _file = date(file);
+                log.logFile('').then(file => {
                     o(file.match(/log-%YYYY-%MM-%DD.txt/)).notEquals(null)('file name match');
-                    o(gMsg.match(/test INFO.*now logging to file/g)).notEquals(null)('log content match');
+                    o(gMsg.match(/log.spec INFO.*now logging to file/g)).notEquals(null)('log content match');
+                    fsUtil.realPath(date(file)).then((f) => {
+                        fsUtil.isFile(f).then((b) => {
+                            o(b).equals(true)(`log ${f} should have been created`);
+                            // disable log file and remove
+                            log.logFile(null).then(() => fsUtil.remove(f))
+                            .then(fsUtil.isFile).then((b) => {
+                                o(b).equals(false)(`log ${f} should have been removed`);
+                                done();
+                            });
+                        });
+                    });
                 })
-                .then(() => fsUtil.isFile(_file))
-                .then((b) => {
-                    o(b).equals(true)('after creating');
-                })
-                .then(() => fsUtil.remove(_file))
-                .then(() => fsUtil.isFile(_file))
-                .then((b) => {
-                    o(b).equals(false)('after removing');
-                })
-                .then(()=> done())
-                .catch(console.log);
+                .catch(gLog);
             });
             
-            o('should be stopped for empty path', (done:any) => {
-                log.logFile('').then(file => {
+            o('should be disabled', (done:any) => {
+                log.logFile(null).then(file => {
                     o(file).equals(undefined)('file name match');
-                    o(gMsg.match(/test INFO.*disabling logfile/)).notEquals(null)('log content match');
+                    o(gMsg.match(/log.spec INFO.*disabling logfile/)).notEquals(null)('log content match');
                     done();
                 })
-                .catch(console.log);
+                .catch(gLog);
             });
             
             o('should be stopped for missing paths', (done:any) => {
                 log.logFile('/missing/log.txt').then(file => {
                     o(file).equals(undefined);
-                    o(gMsg.match(/test WARN.*path \'\/missing\/\' doesn't exists; logfile disabled/)).notEquals(null);
+                    o(gMsg.match(/log.spec WARN.*path \'\/missing\/\' doesn't exists; logfile disabled/)).notEquals(null);
                     done();
                 })
-                .catch(() => {});
+                .catch(gLog);
             });
         });
     });

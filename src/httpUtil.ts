@@ -7,7 +7,7 @@
 const  http =  require('http');
 import { URL }        from 'url';
 import { createHash } from 'crypto';
-import { log }        from './log'; log.prefix('httpUtil');
+import { Log }        from './log'; const log = new Log('httpUtil');
 
 export interface IncomingMessage { 
     headers:        any;

@@ -11,7 +11,7 @@
  /** */
 const XLSX	= require('xlsx');
 
-import { log }      from './log'; log.prefix('excel');
+import { Log }      from './log'; const log = new Log('excel');
 import { DataRow}   from 'hsdatab';
 import { WorkBook,
          WorkSheet,
