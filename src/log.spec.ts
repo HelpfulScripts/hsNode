@@ -1,7 +1,7 @@
 import { Log }      from './';  const log = new Log('log.spec');
 
 import { o }        from 'hslayout';
-import { date }     from 'hsutil';
+//import { date }     from 'hsutil';
 import * as fsUtil  from './fsUtil';
 
 o.spec("log", () => {
@@ -107,18 +107,16 @@ o.spec("log", () => {
         o.spec('log file', () => {
             o('should be created next to Gruntfile for default path', (done:any) => {
                 log.logFile('').then(file => {
-                    o(file.match(/log-%YYYY-%MM-%DD.txt/)).notEquals(null)('file name match');
+                    o(file.match(/log-\d{4}-\d{2}-\d{2}.txt/)).notEquals(null)('file name match');
                     o(gMsg.match(/log.spec INFO.*now logging to file/g)).notEquals(null)('log content match');
-                    fsUtil.realPath(date(file)).then((f) => {
-                        fsUtil.isFile(f).then((b) => {
-                            o(b).equals(true)(`log ${f} should have been created`);
-                            // disable log file and remove
-                            log.logFile(null).then(() => fsUtil.remove(f))
-                            .then(fsUtil.isFile).then((b) => {
-                                o(b).equals(false)(`log ${f} should have been removed`);
-                                done();
-                            });
+                    fsUtil.isFile(file).then((b) => {
+                        o(b).equals(true)(`log ${file} should have been created`);
+                        log.logFile(null); // disable log file and remove
+                        fsUtil.remove(file)
+                        .then(fsUtil.isFile).then((b) => {
+                            o(b).equals(false)(`log ${file} should have been removed`);
                         });
+                        done();
                     });
                 })
                 .catch(gLog);
