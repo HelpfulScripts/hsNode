@@ -191,7 +191,7 @@ export function readJsonFile(thePath:string):Promise<any> {
  */
 export function writeFile(thePath:string, content:string, isText:boolean=true):Promise<void> {
 	return new Promise((resolve, reject) => {
-		var encoding = isText? 'utf8' : undefined;
+		var encoding:any = isText? 'utf8' : {encoding: null};
 	    fs.writeFile(thePath, content, encoding, (err:any) => err? reject(err) : resolve());
 	})
     .catch(error);
@@ -241,13 +241,14 @@ export function writeJsonFile(thePath:string, obj:any):Promise<void> {
  * @param thePath the path to write to
  * @param content the content to write
  * @param isText `true`|`false` if file should be read as `utf8`|binary 
- * @return promise to provide nothing.
+ * @return promise to provide the realPath of the file written to.
  */
-export function appendFile(thePath:string, content:string, isText:boolean=true):Promise<void> {
+export function appendFile(thePath:string, content:string, isText:boolean=true):Promise<string> {
 	return new Promise((resolve, reject) => {
-		var encoding = isText? 'utf8' : undefined;
-	    fs.appendFile(thePath, content, encoding, (err:any) => err? reject(err) : resolve());
-	})
+		var encoding:any = isText? 'utf8' : {encoding: null};
+        fs.appendFile(thePath, content, encoding, (err:any) => err? reject(err) : resolve(thePath));
+    })
+    .then(realPath)
     .catch(error);
 }
 
