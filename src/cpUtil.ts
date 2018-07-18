@@ -1,5 +1,5 @@
 const cp    = require('child_process');
-import { Log } from './'; const log = new Log('cpUtil');
+//import { Log } from './'; const log = new Log('cpUtil');
 
 /**
  * @ngdoc object
@@ -30,7 +30,7 @@ function exec(command:string, options?:any) {
     return new Promise((resolve:(result:{out:string, err:string})=>void, reject:(e:string)=>void) => {
         cp.exec(command, options, (error:string, stdout:string, stderr:string) => {
             if (error) {
-			    log.error('exec for ' + command + ': ' + error);
+//			    log.error('exec for ' + command + ': ' + error);
                 reject(error);
             } else {
                 resolve({out:stdout, err:stderr});
