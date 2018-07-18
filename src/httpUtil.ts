@@ -69,7 +69,7 @@ export class Digest {
 
     testDigestAuth(options:any, data:string, response:IncomingMessage): Promise<HttpResponse|string> {
         if (!response.headers['www-authenticate']) { return Promise.resolve({response:response, data:data}); } 
-        log.info(`received ${response.statusCode} www-authenticate request for ${options.host}`);
+        log.debug(`received ${response.statusCode} www-authenticate request for ${options.host}`);
 
         let challenge:any = parseDigestResponse(response.headers['www-authenticate']);
         let ha1 = createHash('md5');
