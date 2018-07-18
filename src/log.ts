@@ -244,18 +244,19 @@ export class Log {
      * @return promise to return the file written to, or undefined
      */
     out(lvl:symbol, msg:any): Promise<string> {	
-        const color = { [ERROR]: '\x1b[31m\x1b[1m', [WARN]: '\x1b[33m', [DEBUG]: '\x1b[36m', [INFO]: '\x1b[32m' };
+//        const color = { [ERROR]: '\x1b[31m\x1b[1m', [WARN]: '\x1b[33m', [DEBUG]: '\x1b[36m', [INFO]: '\x1b[32m' };
+        const color = { [ERROR]: '\x1b[31m', [WARN]: '\x1b[33m', [DEBUG]: '\x1b[36m', [INFO]: '\x1b[32m' };
         let desc = gLevels[lvl];
         if (desc.importance >= gLevel.importance) {
             const dateStr = date(gDateFormat);
             let line = (typeof msg === 'string')? msg : this.inspect(msg, 0);
-            line = (dateStr + ' ' + this.gPrefix + desc.desc + ' ' + line);
+            const logLine = (dateStr + ' ' + this.gPrefix + desc.desc + ' ' + line);
             const colorLine = ((color[lvl]||'') + dateStr + ' ' + this.gPrefix + desc.desc + '\x1b[0m ' + line);
-            console.log(gColors? colorLine : line);
+            console.log(gColors? colorLine : logLine);
             if (msg.stack) { console.log(msg.stack); }
             if (gLogFile) {
                 const filename = date(gLogFile);
-                return fsUtil.appendFile(filename, line+'\n')
+                return fsUtil.appendFile(filename, logLine+'\n')
                 .catch(e => { 
                     console.log(`error appending to file ${gLogFile}: ${e}`); 
                     throw new Error(e); 
