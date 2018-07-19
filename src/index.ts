@@ -1,8 +1,5 @@
 export { Log }      from "./log";
 
-import * as excel   from "./excel";
-export { excel };
-
 import * as http    from "./httpUtil";
 export { http };
 
