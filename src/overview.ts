@@ -10,8 +10,7 @@ Helpful Scripts functions that wrap some nodejs calls in Promise wrappers.
  * - &nbsp; {@link httpUtil http} web server functions
 
  * ## Index of other node support functions
- * - &nbsp; {@link log log} logging support
- * - &nbsp; {@link excel excel} reading and writing Excel files
+ * - &nbsp; {@link log log} logging support with per-module prefixes
 
 
 */
