@@ -161,16 +161,18 @@ function parseDigestResponse(digestHeader:string) {
  * @param postData optional data to post
  * @return promise to provide the result of the request.
  */
-function request(options:any, postData?:any):Promise<HttpResponse|string> {
+export function request(options:any, postData?:any):Promise<HttpResponse|string> {
     let auth = false;
     if (options.headers && options.headers.Authorization) { auth = true; }
     return new Promise((resolve:(out:HttpResponse)=>void, reject:(e:string)=>void) => {
         let data = ''; 
         log.debug(`sending request ${auth? 'with authorization ':''}for ${options.protocol}//${options.host}:${options.port}${options.path}`); 
         const req = http.request(options, (res:any) => {
-            res.setEncoding('utf8');
+            const encoding = (res.headers['content-type'] === 'text/html')?'utf8':'binary';
+            log.debug(`receiving...${res.headers['content-type']} => ${encoding}`);
+            res.setEncoding(encoding);
             res.on('data', (chunk:string) => { data += chunk; });
-            res.on('end', () => { resolve({data:data, response:res}); });
+            res.on('end', () => { log.debug(`received ${encoding}`); resolve({data:data, response:res}); });
         });
         req.on('error', (e:any) => reject(e));
 
@@ -189,20 +191,27 @@ function request(options:any, postData?:any):Promise<HttpResponse|string> {
  * @param url the url to pass along to the get request
  * @return promise to provide the result of the request.
  */
-export function get(url:string):Promise<HttpResponse|string> {
-    const Url:any = new URL(url);
-    const options = {
-        host:       Url.host,
-        hostname:   Url.hostname,
-        port:       Url.port,
-        method:     'GET',
-        path:       Url.pathname+Url.search,
-        protocol:   Url.protocol,
-        headers:    { 
-            'User-Agent': 'helpful scripts'
-        },
-        myDigest: (Url.username && Url.password)? new Digest(Url.username, Url.password) : undefined
-    };
+export function get(url:string|any):Promise<HttpResponse|string> {
+    let options;
+    if (typeof url === 'string') {
+        const Url:any = new URL(url);
+        options = {
+            host:       Url.host,
+            hostname:   Url.hostname,
+            port:       Url.port,
+            method:     'GET',
+            path:       Url.pathname+Url.search,
+            protocol:   Url.protocol,
+            headers:    { 
+                'User-Agent': 'helpful scripts'
+            },
+            myDigest: (Url.username && Url.password)? new Digest(Url.username, Url.password) : undefined
+        };
+    } else {
+        options = url;
+        options.myDigest = (url.username)? new Digest(url.username, url.password) : undefined;
+    }
+    if (!options.headers) { options.headers={'User-Agent': 'helpful scripts'}; }
     return request(options);
 }
 
