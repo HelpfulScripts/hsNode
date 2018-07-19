@@ -187,12 +187,12 @@ export function readJsonFile(thePath:string):Promise<any> {
  * @param thePath the path to write to
  * @param content the content to write
  * @param isText `true`|`false` if file should be read as `utf8`|binary 
- * @return promise to provide nothing.
+ * @return promise to provide the file name if successful.
  */
-export function writeFile(thePath:string, content:string, isText:boolean=true):Promise<void> {
+export function writeFile(thePath:string, content:string, isText:boolean=true):Promise<string> {
 	return new Promise((resolve, reject) => {
 		var encoding:any = isText? 'utf8' : {encoding: null};
-	    fs.writeFile(thePath, content, encoding, (err:any) => err? reject(err) : resolve());
+	    fs.writeFile(thePath, content, encoding, (err:any) => err? reject(err) : resolve(thePath));
 	})
     .catch(error);
 };
@@ -201,13 +201,13 @@ export function writeFile(thePath:string, content:string, isText:boolean=true):P
  * writes content to a file either as a stream and promises no return.
  * @param thePath the path to write to
  * @param content the content to write
- * @return promise to provide nothing.
+ * @return promise to provide the file name if successful.
  */
-export function writeStream(thePath:string, content:string):Promise<void> {
+export function writeStream(thePath:string, content:string):Promise<string> {
 	return new Promise((resolve, reject) => {
         let s = fs.createWriteStream(thePath, {flags:'w', mode:0o666});
         s.on('error', (src:any) => reject(src));
-        s.write(content, 'binary', () => resolve());
+        s.write(content, 'binary', () => resolve(thePath));
         s.end();
 	})
     .catch(error);
@@ -216,9 +216,9 @@ export function writeStream(thePath:string, content:string):Promise<void> {
 /**
  * writes a text file and promises no return.
  * @param thePath the path to write
- * @return promise to provide nothing.
+ * @return promise to provide the file name if successful.
  */
-export function writeTextFile(thePath:string, content:string):Promise<void> { 
+export function writeTextFile(thePath:string, content:string):Promise<string> { 
 	return writeFile(thePath, content, true)
     .catch(error);
 };
@@ -227,9 +227,9 @@ export function writeTextFile(thePath:string, content:string):Promise<void> {
  * writes a text file and promises no return.
  * @param thePath the path to write
  * @param obj the object to write
- * @return promise to provide nothing.
+ * @return promise to provide the file name if successful.
  */
-export function writeJsonFile(thePath:string, obj:any):Promise<void> {
+export function writeJsonFile(thePath:string, obj:any):Promise<string> {
     return Promise.resolve(obj)
 	.then(JSON.stringify)
 	.then(data => writeTextFile(thePath, data))
