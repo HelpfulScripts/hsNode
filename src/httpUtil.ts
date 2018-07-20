@@ -152,6 +152,17 @@ function parseDigestResponse(digestHeader:string) {
     return params;
 }
 
+function isBinary(contentType:string) {
+    const binary = {
+        'text/html':    false,
+        'text/plain':   false,
+        'image/jpeg':   true,
+        'image/png':    true
+    };
+    const result = binary[contentType];
+    return (result === undefined)? false : result;
+}
+
 //===============================================================================
 //  Low level Promise wrappers
  
@@ -168,7 +179,7 @@ export function request(options:any, postData?:any):Promise<HttpResponse|string>
         let data = ''; 
         log.debug(`sending request ${auth? 'with authorization ':''}for ${options.protocol}//${options.host}:${options.port}${options.path}`); 
         const req = http.request(options, (res:any) => {
-            const encoding = (res.headers['content-type'] === 'text/html')?'utf8':'binary';
+            const encoding = isBinary(res.headers['content-type'])? 'binary' : 'utf8';
             log.debug(`receiving...${res.headers['content-type']} => ${encoding}`);
             res.setEncoding(encoding);
             res.on('data', (chunk:string) => { data += chunk; });
