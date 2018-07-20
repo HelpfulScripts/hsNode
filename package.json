@@ -20,7 +20,7 @@
     "url": "https://github.com/HelpfulScripts/hsNode.git"
   },
   "scripts": {
-    "build": "grunt travis",
+    "build": "grunt build",
     "test": "grunt test"
   },
   "engines": {
