@@ -6,7 +6,7 @@ o.spec('cpUtil', () => {
 
     function call(cmd:string, done:any) {
         exec(cmd)
-        .then((result:{out:string, err:string}) => { cpOut = result.out; cpErr = result.err; done(); })
+        .then((result:{stdout:string, stderr:string}) => { cpOut = result.stdout; cpErr = result.stderr; done(); })
         .catch((e:string) => { cpE = e; done(); });
 }
 

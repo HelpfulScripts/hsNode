@@ -22,18 +22,18 @@ const cp    = require('child_process');
             .then((stdout, stderr) => {...})
             .catch(err => {...});
 </pre>
- * @param {string} command the shell command to execute
- * @param {object} options the options to pass along to the shell
- * @return {Promise} promise to provide the stdout and stderr streams form the child process.
+ * @param command the shell command to execute
+ * @param options the options to pass along to the shell
+ * @return promise to provide the stdout and stderr streams form the child process.
  */
 function exec(command:string, options?:any) {
-    return new Promise((resolve:(result:{out:string, err:string})=>void, reject:(e:string)=>void) => {
+    return new Promise((resolve:(result:{stdout:string, stderr:string})=>void, reject:(e:string)=>void) => {
         cp.exec(command, options, (error:string, stdout:string, stderr:string) => {
             if (error) {
 //			    log.error('exec for ' + command + ': ' + error);
                 reject(error);
             } else {
-                resolve({out:stdout, err:stderr});
+                resolve({stdout:stdout, stderr:stderr});
             }
         });
     });

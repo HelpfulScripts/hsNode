@@ -54,8 +54,9 @@
 
 /** importing nodejs file system function; needed to create logfiles */
 import { inspect }  from 'util';
-import * as fsUtil  from "./fsUtil";
+import * as fsUtil  from './fsUtil';
 import { date }     from 'hsutil';
+import * as path    from 'path';
 
 
 
@@ -212,7 +213,7 @@ export class Log {
         } else if (file === undefined) {        // leave gLogFile unchanged, return promise for logfile name
             return this.info(`current logfile: ${gLogFile? date(gLogFile) : gLogFile}`);
         } else if (file.indexOf('/')>=0) { 
-            const dir = file.substring(0, file.lastIndexOf('/')+1);
+            const dir = path.dirname(path.normalize(file));
             return fsUtil.pathExists(dir)
                 .then(exists => { 
                     if (!exists) {

@@ -134,7 +134,7 @@ o.spec("log", () => {
             o('should be stopped for missing paths', (done:any) => {
                 log.logFile('/missing/log.txt').then(file => {
                     o(file).equals(undefined);
-                    o(gMsg.match(/log.spec WARN.*path \'\/missing\/\' doesn't exists; logfile disabled/)).notEquals(null);
+                    o(gMsg.match(/log.spec WARN.*path \'\/missing\' doesn't exists; logfile disabled/)).notEquals(null);
                     done();
                 })
                 .catch(gLog);
