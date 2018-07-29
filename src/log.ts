@@ -208,10 +208,10 @@ export class Log {
         if (file === null) {                    // disable logging in file
             // set gLogFile = undefined before calling this.info to avoid error
             // in case outside function removed the logfile before 
+            this.info("disabling logfile");
             gLogFile = undefined; 
-            return this.info("disabling logfile");
         } else if (file === undefined) {        // leave gLogFile unchanged, return promise for logfile name
-            return this.info(`current logfile: ${gLogFile? date(gLogFile) : gLogFile}`);
+            // this.info(`current logfile: ${gLogFile? date(gLogFile) : 'disabled'}`);
         } else if (file.indexOf('/')>=0) { 
             const dir = path.dirname(path.normalize(file));
             return fsUtil.pathExists(dir)
@@ -220,8 +220,8 @@ export class Log {
                         this.warn(`path '${dir}' doesn't exists; logfile disabled`);
                         return gLogFile = undefined; 
                     }
-                    gLogFile = file;
-                    return this.info("now logging to file " + date(file));
+                    this.info("now logging to file " + date(file));
+                    return gLogFile = file;
                 })
                 .catch(() => { 
                     this.error(`checking path ${dir}; logfile disabled`);
@@ -229,12 +229,13 @@ export class Log {
                 });
         } else if (file === '') {
             file = 'log-%YYYY-%MM-%DD.txt';
+            this.info("now logging to file " + date(file));
             gLogFile=file;
-            return this.info("now logging to file " + date(file));
         } else {
+            this.info("now logging to file " + date(file));
             gLogFile=file;
-            return this.info("now logging to file " + date(file));
         }
+        return Promise.resolve(gLogFile?date(gLogFile):undefined);
     }
 
     /**
@@ -259,8 +260,9 @@ export class Log {
                 const filename = date(gLogFile);
                 return fsUtil.appendFile(filename, logLine+'\n')
                 .catch(e => { 
-                    console.log(`error appending to file ${gLogFile}: ${e}`); 
-                    throw new Error(e); 
+                    console.log(`error appending '${logLine}' to file ${gLogFile} | ${filename}: ${e}`); 
+                    // throw new Error(e); 
+                    return logLine;
                 });
             }
         }

@@ -93,7 +93,9 @@ export function realPath(thePath:string):Promise<string> {
  * @return promise to provide `true` or `false`
  */
 export function pathExists(thePath:string):Promise<boolean> {
-	return stat(thePath).then((stats:any) => stats.path).catch(() => false);
+	return new Promise((resolve) => {
+        stat(thePath).then((stats:any) => resolve(true)).catch(() => resolve(false));
+    });
 }
 
 /**
@@ -102,7 +104,9 @@ export function pathExists(thePath:string):Promise<boolean> {
  * @return promise to provide `true` or `false`
  */
 export function isFile(thePath:string):Promise<boolean> {
-	return stat(thePath).then((stats:any) => stats.isFile()).catch(() => false);
+	return new Promise((resolve) => {
+        stat(thePath).then((stats:any) => resolve(stats.isFile())).catch(() => resolve(false));
+    });
 }
 
 /**
@@ -111,7 +115,9 @@ export function isFile(thePath:string):Promise<boolean> {
  * @return promise to provide `true` or `false`
  */
 export function isDirectory(thePath:string):Promise<boolean> {
-	return stat(thePath).then((stats:any) => stats.isDirectory()).catch(() => false);;
+	return new Promise((resolve) => {
+        stat(thePath).then((stats:any) => resolve(stats.isDirectory())).catch(() => resolve(false));
+    });
 }
 
 /**
@@ -120,7 +126,9 @@ export function isDirectory(thePath:string):Promise<boolean> {
  * @return promise to provide `true` or `false`
  */ 
 export function isLink(thePath:string):Promise<boolean> {
-	return lstat(thePath).then((stats:any) => stats.isSymbolicLink()).catch(() => false);
+	return new Promise((resolve) => {
+        lstat(thePath).then((stats:any) => resolve(stats.isSymbolicLink())).catch(() => resolve(false));
+    });
 }
 
 /**

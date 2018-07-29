@@ -1,0 +1,172 @@
+import * as fsUtil from './fsUtil';
+
+const dir = __dirname+'/'; // + '/testTmp/';
+const TEST_DIR = dir+'example/';
+
+describe('hsFSutil', () => {
+    describe('pathExists', () => {
+        it(`should exist ${process.cwd()}` , () => 
+            expect(fsUtil.pathExists(process.cwd())).resolves.toBe(true)
+        );
+            
+        test('/does-not-exists/ should not exist', () => 
+            expect(fsUtil.pathExists('/does-not-exists/')).resolves.toBe(false)
+        );
+    });
+	
+	describe('isFile', () => {
+		it(`${dir} should be a file`, () => 
+			expect(fsUtil.isFile(dir)).resolves.toBe(false)    // dir is a directory
+		);
+		it(`'./Gruntfile.js' should be a file`, () => 
+			expect(fsUtil.isFile('./Gruntfile.js')).resolves.toBe(true)
+		);
+		it(`'./Gruntfile2.js' should be a file`, () => 
+			expect(fsUtil.isFile('./Gruntfile2.js')).resolves.toBe(false)
+		);		
+	});
+
+	describe('isDirectory' , () => {
+        it(`${process.cwd()} should be a directory`, () => 
+            expect(fsUtil.isDirectory(process.cwd())).resolves.toBe(true)		
+        );
+        it('./ should be a directory', () => 
+            expect(fsUtil.isDirectory('./')).resolves.toBe(true)			
+        );
+        it('./Gruntfile.js should not be a directory', () => 
+            expect(fsUtil.isDirectory('./Gruntfile.js')).resolves.toBe(false)			
+        );
+        it('./Gruntfile2.js should not be a directory', () => 
+            expect(fsUtil.isDirectory('./Gruntfile2.js')).resolves.toBe(false)			
+        );
+	});
+	
+	describe('isLink' , () => {
+        it(`${__dirname} should not be a link`, () => 
+            expect(fsUtil.isLink(__dirname)).resolves.toBe(false)			
+        );
+        it(`${dir+'../node_Modules'} should be a link`, () => 
+            expect(fsUtil.isLink(dir+'../node_Modules')).resolves.toBe(true)
+        );
+        it(`${__dirname+'/abc'} should resolve to false for invalid name`, () => 
+            fsUtil.isLink(__dirname+'/abc')
+            .then(result => expect(result).toBe(false))
+            .catch(err => expect(err.toString()).toBe('should not occur 2'))
+        );
+    });
+			
+	describe('readDir' , () => {
+        it('should return list of spec files', () => 
+            expect(fsUtil.readDir(__dirname+'/')).resolves.toContain('fsUtil.jest.ts')        
+        );
+        it('should reject', () => 
+            fsUtil.readDir(__dirname+'/abcde')
+                .catch(err => expect(err.toString()).toMatch(/ENOENT: no such file or directory/))
+        );
+    });
+			
+	describe('readFile' , () => {
+        const file1 = TEST_DIR+'test.xlsx';
+        const file2 = TEST_DIR+'test.xlsx2';
+        it(`should read binary file ${file1}`, () => 
+            fsUtil.readFile(file1, false)
+            .then(result => { 
+                expect(result).toBeDefined(); 
+                expect(result.toString().length).toBeGreaterThan(1000); 
+            })
+        );
+        it(`should reject ${file2}`, () => 
+            fsUtil.readFile(file2, false)
+            .catch(err   => expect(err.toString()).toMatch(/Error: ENOENT: no such file or directory/))
+        );
+    });
+			
+	describe('readTextFile' , () => {
+        it(`should read text file ${__dirname+'/fsUtil.ts'}`, () => 
+            fsUtil.readTextFile(__dirname+'/fsUtil.ts')
+                .then(result => expect(result.length).toBeGreaterThan(1000))
+        );
+    });		
+	
+	describe('readJsonFile' , () => {
+        const file = __dirname+'/../package.json';
+        it(`should read json file ${file}`, () =>
+            fsUtil.readJsonFile(file)
+            .then(result => expect(JSON.stringify(result)).toMatch(/helpfulscripts@gmail.com/))
+        );
+	});
+	
+	describe('writeFile' , () => {
+        const file = dir+'binFile';
+        afterAll(() => fsUtil.remove(file));
+
+        it(`should write bin file ${file}`, () => 
+            expect(fsUtil.writeFile(file, 'test2', false)).resolves.toBe(file) 
+        );	
+		it(`should have created ${file}`, () =>
+            expect(fsUtil.isFile(file)).resolves.toBe(true)   
+        );
+		it(`should now contain payload in ${file}`, () => 
+            expect(fsUtil.readFile(file, false)).resolves.toEqual(Buffer.from('test2'))
+        );
+		it(`should not contain 'test3' in ${file}`, () => 
+            expect(fsUtil.readFile(file, false)).resolves.not.toEqual(Buffer.from('test3'))
+        );
+	});
+	
+	
+	describe('appendFile' , () => {
+        const file = dir+'binFile';
+        afterAll(() => fsUtil.remove(file));
+
+        beforeAll(() => fsUtil.appendFile(file, 'test2', false)     
+            .then(() => fsUtil.appendFile(file, 'test3', false))
+        );
+        expect.assertions(1);
+
+        it('should add content at the end', () =>  
+            expect(fsUtil.readFile(file, false)).resolves.toEqual(Buffer.from('test2test3'))
+        );   
+	});
+	
+	describe('writeTextFile' , () => {
+        const file = dir+'txtFile';
+        afterAll(() => fsUtil.remove(file));
+        
+        beforeAll(() => fsUtil.writeTextFile(file, 'test2')     
+            .then(() => fsUtil.writeTextFile(file, 'test3'))
+        );
+
+        it('should add content at the end', () =>
+            expect(fsUtil.readTextFile(file)).resolves.toBe('test3')
+        );   
+	});
+	
+	describe('writeJsonFile' , () => {
+        const file = dir+'txtFile';
+        const content = {"name":"test2"};
+        afterAll(() => fsUtil.remove(file));
+        beforeAll(() => fsUtil.writeJsonFile(file, content));    
+
+        it(`should write to ${file}`, () =>
+            expect(fsUtil.readJsonFile(file)).resolves.toEqual(content)
+        );   
+    });
+
+    describe('remove' , () => {
+        const file = dir+'jsnFile';
+        beforeAll(() => fsUtil.writeJsonFile(file, {"name":"test2"}));
+			
+        it(`should have created jsnFile ${file}`, () =>
+            expect(fsUtil.isFile(file)).resolves.toBe(true)                
+        );
+
+        it(`should remove jsnFile ${file}`, () =>
+            expect(fsUtil.remove(file)).resolves.toBe(file)             
+        );			
+
+        it(`should no longer exist: ${file}`, () =>
+            expect(fsUtil.isFile(file)).resolves.toBe(false)            
+        );			
+    });
+});
