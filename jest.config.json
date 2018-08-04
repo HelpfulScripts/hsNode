@@ -16,6 +16,6 @@
         "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testURL": "http://localhost/",
-    "verbose": false,
+    "verbose": true,
     "bail": false
 }

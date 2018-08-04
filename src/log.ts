@@ -212,6 +212,7 @@ export class Log {
             gLogFile = undefined; 
         } else if (file === undefined) {        // leave gLogFile unchanged, return promise for logfile name
             // this.info(`current logfile: ${gLogFile? date(gLogFile) : 'disabled'}`);
+            return Promise.resolve(date(gLogFile));
         } else if (file.indexOf('/')>=0) { 
             const dir = path.dirname(path.normalize(file));
             return fsUtil.pathExists(dir)
@@ -229,13 +230,20 @@ export class Log {
                 });
         } else if (file === '') {
             file = 'log-%YYYY-%MM-%DD.txt';
-            this.info("now logging to file " + date(file));
             gLogFile=file;
         } else {
-            this.info("now logging to file " + date(file));
             gLogFile=file;
         }
-        return Promise.resolve(gLogFile?date(gLogFile):undefined);
+        return Promise.resolve()
+        .then(() =>{
+            if (gLogFile) {
+                this.info("now logging to file " + date(gLogFile));
+                return date(gLogFile);
+            } else {
+                this.info('logfile disbaled');
+                return undefined;
+            }
+        });
     }
 
     /**
@@ -261,7 +269,6 @@ export class Log {
                 return fsUtil.appendFile(filename, logLine+'\n')
                 .catch(e => { 
                     console.log(`error appending '${logLine}' to file ${gLogFile} | ${filename}: ${e}`); 
-                    // throw new Error(e); 
                     return logLine;
                 });
             }

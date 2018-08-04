@@ -6,7 +6,7 @@ describe('cpUtil', () => {
         it('should execute "pwd" in a shell without error', () => 
             exec('pwd').then((result:{stdout:string, stderr:string}) => {
                 expect(typeof result.stdout).toBe('string');
-                expect(result.stdout.trim()).toMatch(/\/hsNode$/); // macthes '/hsNode' at the end of a string
+                expect(result.stdout.trim()).toMatch(/\/ts6\/dev\//); // macthes '.../ts6/dev/...' at the end of a string
                 expect(result.stderr).toBe('');  
             })
         );

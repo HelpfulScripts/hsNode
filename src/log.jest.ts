@@ -27,13 +27,14 @@ describe('log', () => {
     
     afterEach(() => {
         console.log = gLog;
+        return log.logFile('');
     });
 
     afterAll(() =>
-        log.logFile('').then(file => {
-            if (file) { fsUtil.remove(file).catch(err=>{}); }
-            console.log(`removed logfile ${file}`);
-        })
+        log.logFile().then(file => 
+            fsUtil.isFile(file)
+            .then(exists => exists? fsUtil.remove(file) : undefined)
+        )
         .catch(err => console.log(`afterAll: ${err}`))
     );
     
@@ -129,18 +130,18 @@ describe('log', () => {
             .catch(gLog)
         );
         
-        it('should be disabled', () =>
-            log.logFile(null).then(file => {
-                expect(file).toBe(undefined);
-                return expect(gMsg).toMatch(/log.spec INFO.*disabling logfile/);
-            })
-        );
-        
         it('should be stopped for missing paths', () =>
             log.logFile('/missing/log.txt').then(file => 
                 expect(file).toBe(undefined)
 //                expect(gMsg.match(/log.spec WARN.*path \'\/missing\' doesn't exists; logfile disabled/)).not.toBe(null);
             )
+        );
+        
+        it('should be disabled', () =>
+            log.logFile(null).then(()=>log.info('unlogged entry')).then(file => {
+                expect(file).toBe(undefined);
+                return expect(gMsg).toMatch(/log.spec INFO.*unlogged entry/);
+            })
         );
     });
 });
