@@ -18,15 +18,19 @@ describe('log', () => {
         gMsg = undefined;
     }
 
-    beforeEach(() => {
+    beforeAll(() => {
         gLog = console.log;
         console.log = myLog;
+        return Promise.resolve();
+    });
+
+    beforeEach(() => {
         log.level(log.INFO);
         gMsg = undefined;
+        return Promise.resolve();
     });
     
     afterEach(() => {
-        console.log = gLog;
         return log.logFile('');
     });
 
@@ -36,6 +40,7 @@ describe('log', () => {
             .then(exists => exists? fsUtil.remove(file) : undefined)
         )
         .catch(err => console.log(`afterAll: ${err}`))
+        .then(() => console.log = gLog)
     );
     
     describe('reporting functions', () => {

@@ -29,12 +29,7 @@ const cp    = require('child_process');
 function exec(command:string, options?:any) {
     return new Promise((resolve:(result:{stdout:string, stderr:string})=>void, reject:(e:string)=>void) => {
         cp.exec(command, options, (error:string, stdout:string, stderr:string) => {
-            if (error) {
-//			    log.error('exec for ' + command + ': ' + error);
-                reject(error);
-            } else {
-                resolve({stdout:stdout, stderr:stderr});
-            }
+            error? reject(error) : resolve({stdout:stdout, stderr:stderr});
         });
     });
 }

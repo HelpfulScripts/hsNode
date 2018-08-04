@@ -88,7 +88,6 @@ const gLevels = {
 
 /** current reporting level, same across all modules */
 let gLevel:LevelDesc = gLevels[INFO]; 
-console.log('set log level to ' + gLevel.sym.toString());
 
 /** current date format string. See [date module]('_date_.html') */
 const defDateFormat = '%YYYY%MM%DD %hh:%mm:%ss.%jjj';
@@ -142,7 +141,7 @@ export class Log {
      * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
      * @return promise to return the file written to, or undefined
      */
-    debug(msg:string):Promise<string> { return this.out(DEBUG, msg); }
+    debug(msg:string, log=true):Promise<string> { return this.out(DEBUG, msg, log); }
 
     /**
      * reports an informational message to the log. 
@@ -151,7 +150,7 @@ export class Log {
      * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
      * @return promise to return the file written to, or undefined
      */
-    info(msg:any):Promise<string> { return this.out(INFO, msg); }
+    info(msg:any, log=true):Promise<string> { return this.out(INFO, msg, log); }
 
     /**
      * reports an warning message to the log. 
@@ -160,7 +159,7 @@ export class Log {
      * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
      * @return promise to return the file written to, or undefined
      */
-    warn(msg:any):Promise<string> { return this.out(WARN, msg); }
+    warn(msg:any, log=true):Promise<string> { return this.out(WARN, msg, log); }
 
     /**
      * reports an error message to the log. 
@@ -168,7 +167,7 @@ export class Log {
      * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
      * @return promise to return the file written to, or undefined
      */
-    error(msg:any):Promise<string> { return this.out(ERROR, msg); }
+    error(msg:any, log=true):Promise<string> { return this.out(ERROR, msg, log); }
 
     /**
      * sets the format string to use for logging. If no parameter is specified,
@@ -206,44 +205,31 @@ export class Log {
      */
     logFile(file?:string):Promise<string> {
         if (file === null) {                    // disable logging in file
-            // set gLogFile = undefined before calling this.info to avoid error
-            // in case outside function removed the logfile before 
-            this.info("disabling logfile");
             gLogFile = undefined; 
+            return this.info("disabling logfile");
         } else if (file === undefined) {        // leave gLogFile unchanged, return promise for logfile name
-            // this.info(`current logfile: ${gLogFile? date(gLogFile) : 'disabled'}`);
             return Promise.resolve(date(gLogFile));
         } else if (file.indexOf('/')>=0) { 
             const dir = path.dirname(path.normalize(file));
             return fsUtil.pathExists(dir)
                 .then(exists => { 
                     if (!exists) {
-                        this.warn(`path '${dir}' doesn't exists; logfile disabled`);
-                        return gLogFile = undefined; 
+                        gLogFile = undefined;
+                        return this.warn(`path '${dir}' doesn't exists; logfile disabled`);
                     }
-                    this.info("now logging to file " + date(file));
-                    return gLogFile = file;
+                    gLogFile = file;
+                    return this.info("now logging to file " + date(file));
                 })
                 .catch(() => { 
-                    this.error(`checking path ${dir}; logfile disabled`);
-                    return gLogFile = undefined; 
+                    gLogFile = undefined; 
+                    return this.error(`checking path ${dir}; logfile disabled`);
                 });
         } else if (file === '') {
             file = 'log-%YYYY-%MM-%DD.txt';
-            gLogFile=file;
         } else {
-            gLogFile=file;
         }
-        return Promise.resolve()
-        .then(() =>{
-            if (gLogFile) {
-                this.info("now logging to file " + date(gLogFile));
-                return date(gLogFile);
-            } else {
-                this.info('logfile disbaled');
-                return undefined;
-            }
-        });
+        gLogFile=file;
+        return this.info(gLogFile? `now logging to file ${date(gLogFile)}` : 'logfile disbaled');
     }
 
     /**
@@ -253,7 +239,7 @@ export class Log {
      * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
      * @return promise to return the file written to, or undefined
      */
-    out(lvl:symbol, msg:any): Promise<string> {	
+    out(lvl:symbol, msg:any, log=true): Promise<string> {	
 //        const color = { [ERROR]: '\x1b[31m\x1b[1m', [WARN]: '\x1b[33m', [DEBUG]: '\x1b[36m', [INFO]: '\x1b[32m' };
         const color = { [ERROR]: '\x1b[31m', [WARN]: '\x1b[33m', [DEBUG]: '\x1b[36m', [INFO]: '\x1b[32m' };
         let desc = gLevels[lvl];
@@ -264,7 +250,7 @@ export class Log {
             const colorLine = ((color[lvl]||'') + dateStr + ' ' + this.gPrefix + desc.desc + '\x1b[0m ' + line);
             console.log(gColors? colorLine : logLine);
             if (msg.stack) { console.log(msg.stack); }
-            if (gLogFile) {
+            if (gLogFile && log) {
                 const filename = date(gLogFile);
                 return fsUtil.appendFile(filename, logLine+'\n')
                 .catch(e => { 

@@ -10,7 +10,7 @@
       "suppressImplicitAnyIndexErrors": true
     },
     "compileOnSave": true,
-    "include": ["../../dev/**/src/**/*.ts"],  
+    "include": ["./src/**/*.ts"],  
     "exclude": ["**/node_modules", "src/**/*.spec.ts", "src/**/*.jest.ts", "src/example/*.ts"]
 }
   

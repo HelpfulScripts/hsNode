@@ -18,5 +18,8 @@ describe('cpUtil', () => {
                 expect(err.toString().trim()).toMatch(/abcd: command not found/);
             })
         );
+        it('should o x', () => {
+            expect(exec).toBeDefined();
+        });
     });
 });
