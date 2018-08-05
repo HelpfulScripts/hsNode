@@ -1,0 +1,31 @@
+export interface Stats {
+    path: string;
+    device: any;
+    iNode: number;
+    type: number;
+    numLinks: number;
+    userID: string;
+    groupID: string;
+    deviceID: string;
+    totalSize: number;
+    blockSize: number;
+    numBlocks: number;
+    accessTime: any;
+    modifyTime: any;
+    statusChangeTime: any;
+}
+export declare function realPath(thePath: string): Promise<string>;
+export declare function pathExists(thePath: string): Promise<boolean>;
+export declare function isFile(thePath: string): Promise<boolean>;
+export declare function isDirectory(thePath: string): Promise<boolean>;
+export declare function isLink(thePath: string): Promise<boolean>;
+export declare function readDir(thePath: string): Promise<string[]>;
+export declare function readFile(thePath: string, isText?: boolean): Promise<any>;
+export declare function readTextFile(thePath: string): Promise<string>;
+export declare function readJsonFile(thePath: string): Promise<any>;
+export declare function writeFile(thePath: string, content: string, isText?: boolean): Promise<string>;
+export declare function writeStream(thePath: string, content: string): Promise<string>;
+export declare function writeTextFile(thePath: string, content: string): Promise<string>;
+export declare function writeJsonFile(thePath: string, obj: any): Promise<string>;
+export declare function appendFile(thePath: string, content: string, isText?: boolean): Promise<string>;
+export declare function remove(thePath: string): Promise<string>;

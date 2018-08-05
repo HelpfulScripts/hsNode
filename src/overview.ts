@@ -2,7 +2,9 @@
 # hsNode
 
 Helpful Scripts functions that wrap some nodejs calls in Promise wrappers.
-[Github page](https://github.com/HelpfulScripts/hsNode)
+[`[Github page]`](https://github.com/HelpfulScripts/hsNode)
+[`[Coverage Info]`](./data/src/hsNode/coverage/)
+___
 
  * ## Index of nodejs wrappers
  * - &nbsp; {@link cpUtil child_processs} child process execution
