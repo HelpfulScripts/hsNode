@@ -1,4 +1,4 @@
-import { Log }      from './';  const log = new Log('log.spec');
+import { Log }      from './';  const log = new Log('log.jest');
 
 // import { date }     from 'hsutil';
 import * as fsUtil  from './fsUtil';
@@ -26,6 +26,7 @@ describe('log', () => {
 
     beforeEach(() => {
         log.level(log.INFO);
+        log.prefix('log.jest');
         gMsg = undefined;
         return Promise.resolve();
     });
@@ -69,7 +70,7 @@ describe('log', () => {
             expect(log.level()).toBe(log.INFO);
             log.level(log.DEBUG);
             expect(log.level()).toBe(log.DEBUG);
-            return expect(gMsg).toMatch(/new log level 'DEBUG' \(was INFO\)/);
+            return expect(gMsg).toMatch(/new .*? log level DEBUG \(was INFO\)/);
         });
         
         it('should print info at DEBUG level', () => {
@@ -82,7 +83,7 @@ describe('log', () => {
         it('should print debug at DEBUG level', () => {
             log.level(log.DEBUG);
             expect(log.level()).toBe(log.DEBUG);
-            expect(gMsg.match(/new log level 'DEBUG' \(was INFO\)/)).not.toBe(null);
+            expect(gMsg.match(/new .*? log level DEBUG \(was INFO\)/)).not.toBe(null);
             log.debug('yes');
             return expect(gMsg).toMatch(/DEBUG.*yes/);  
         });
@@ -98,12 +99,43 @@ describe('log', () => {
             return expect(gMsg).toMatch(/ERROR.*yes/);
         });
     });
+
+    describe('global levels', () => {
+        beforeEach(() =>{
+            log.level(log.WARN, true);  // set global level
+            log.level(null);            // unset local level
+        });
+        it('should set a global level', ()=>{
+            expect(log.level()).toBe(log.WARN);
+            return expect(gMsg).toMatch(/new global log level WARN \(was INFO\)/);  
+        });
+        it('should print WARN', ()=>{
+            gMsg = undefined;
+            log.warn('yes');
+            return expect(gMsg).toMatch(/WARN.*yes/);  
+        });
+        it('should not print INFO', ()=>{
+            gMsg = undefined;
+            log.info('yes');
+            return expect(gMsg).toEqual(undefined);  
+        });
+        test('local should override global', ()=>{
+            log.level(log.INFO);            // unset local level
+            gMsg = undefined;
+            log.info('yes');
+            return expect(gMsg).toMatch(/INFO.*yes/);  
+        });
+    });
     
     describe('formatting', () => {
         afterEach(() => log.entryFormat(null));   // reset the date format
 
+        it(`should return prefix 'log.jest'`, ()=>
+            expect(log.prefix()).toEqual('log.jest')
+        );
+
         it('should print prefix "test"', () => {
-            const log = new Log('test');
+            log.prefix('test');
             log.info('yes');
             return expect(gMsg).toMatch(/test INFO.*yes/);
         });
@@ -111,7 +143,7 @@ describe('log', () => {
         it('should print date', () => {
             log.config({entryFormat:'%M/%DD/%YY'});
             log.info('yes');
-            return expect(gMsg).toMatch(/\d+\/\d+\/\d+ log.spec INFO.*yes/);
+            return expect(gMsg).toMatch(/\d+\/\d+\/\d+ log.jest INFO.*yes/);
         });
         
         it('should return entryFormat string', () => 
@@ -145,7 +177,7 @@ describe('log', () => {
         it('should be disabled', () =>
             log.logFile(null).then(()=>log.info('unlogged entry')).then(file => {
                 expect(file).toBe(undefined);
-                return expect(gMsg).toMatch(/log.spec INFO.*unlogged entry/);
+                return expect(gMsg).toMatch(/log.jest INFO.*unlogged entry/);
             })
         );
     });

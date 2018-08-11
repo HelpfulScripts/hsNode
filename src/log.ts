@@ -33,23 +33,29 @@
  * log.error('oh dear!');   // -> 0817 error *** oh dear!
  * </pre>
  * 
+ * ### Setting the Log level
+ * ```
+ * log.level(log.WARN);
+ * log.info('this will not be reported');
+ * ``` 
+ * 
  * ## Reporting Levels:
- * - [DEBUG](#debug)
- * - [INFO](#info)
- * - [WARN](#warn)
- * - [ERROR](#error)
+ * - &nbsp; {@link log.DEBUG log.DEBUG}
+ * - &nbsp; {@link log.INFO  log.INFO}
+ * - &nbsp; {@link log.WARN  log.WARN}
+ * - &nbsp; {@link log.ERROR log.ERROR}
  * 
  * ## Reporting methods
- * - &nbsp;{@link hsNode.log#methods_debug debug()}
- * - &nbsp;{@link hsNode.log#methods_info info()}
- * - &nbsp;{@link hsNode.log#methods_warn warn()}
- * - &nbsp;{@link hsNode.log#methods_error error()}
+ * - &nbsp; {@link log.Log.debug log.debug()}
+ * - &nbsp; {@link log.Log.info  log.info()}
+ * - &nbsp; {@link log.Log.warn  log.warn()}
+ * - &nbsp; {@link log.Log.error log.error()}
  * 
  * ## Configurations:
- * - &nbsp;{@link hsNode.log#methods_level level()}
- * - &nbsp;{@link hsNode.log#methods_format format()}
- * - &nbsp;{@link hsNode.log#methods_prefix prefix()}
- * - &nbsp;{@link hsNode.log#methods_logFile logFile()}
+ * - &nbsp; {@link log.Log.level   log.level()}
+ * - &nbsp; {@link log.Log.format  log.format()}
+ * - &nbsp; {@link log.Log.prefix  log.prefix()}
+ * - &nbsp; {@link log.Log.logFile log.logFile()}
  */
 
 /** importing nodejs file system function; needed to create logfiles */
@@ -87,7 +93,7 @@ const gLevels = {
 };
 
 /** current reporting level, same across all modules */
-let gLevel:LevelDesc = gLevels[INFO]; 
+let gGlobalLevel:LevelDesc = gLevels[INFO]; 
 
 /** current date format string. See [date module]('_date_.html') */
 const defDateFormat = '%YYYY%MM%DD %hh:%mm:%ss.%jjj';
@@ -99,8 +105,18 @@ let gLogFile: string;	// initially disabled
 /** boolean determining if log will be printed in color */
 let gColors = true;
 
+/** shell color escape codes */
+const color = {
+    red:    '\x1b[31m',
+    yellow: '\x1b[33m',
+    blue:   '\x1b[36m',
+    green:  '\x1b[32m',
+    bold:   '\x1b[1m',
+    clear:  '\x1b[0m'
+};
 
 export class Log {
+    private gLevel:LevelDesc;
     private gPrefix = '';
     DEBUG   = DEBUG;
     INFO    = INFO;
@@ -113,25 +129,36 @@ export class Log {
 
     /**
      * sets the reporting level according to `newLevel`. 
-     * Valid values are {@link hsNode.log.DEBUG DEBUG}, {@link hsNode.log.INFO INFO}, {@link hsNode.log.WARN WARN}, or {@link hsNode.log.ERROR ERROR}.
-     * Subsequent reporting calls
-     * will be filtered such that only calls with an importance at least the same as 
-     * `newLevel` will be written to the log.
-     * @param newLevel the new reporting level to set. 
+     * Valid values are {@link hsNode.log.DEBUG DEBUG}, {@link hsNode.log.INFO INFO}, 
+     * {@link hsNode.log.WARN WARN}, {@link hsNode.log.ERROR ERROR}, or `null`.
+     * Subsequent reporting calls will be filtered such that only calls with an importance 
+     * at least the same as `newLevel` will be written to the log.
+     * 
+     * By default, `newLevel` sets the reporting level for the module only, and takes precedence over
+     * any global level setting. Providing `null` as level value passes precedence back to the global setting.\
+     * THis allows for simple per-module settings, for example in debugging scenarios.
+     * @param newLevelSym the new reporting level to set. 
      * If omitted, the method returns the currently set reporting level. 
+     * If set to `null`, the module's local reporting level defaults to the global reporting level; `setGlobalLevel` is ignored.
+     * @param setGlobalLevel if true, sets the global reporting level for all modules. 
      * @return the new reporting level (DEBUG, INFO, ERROR)
      */
-    level(newLevel?:symbol):symbol {
-        if (newLevel) { 
-            if (gLevels[newLevel]) { 
-                let oldLevel = gLevel;
-                gLevel = gLevels[newLevel];
-                let msg = 'new log level \'' + gLevel.desc.toUpperCase() + '\' (was ' + oldLevel.desc.toUpperCase() + ')';
-                this.out((gLevel.sym === oldLevel.sym)?DEBUG : INFO, msg);
-            }
-            else { this.out(ERROR, "unkown level " + newLevel.toString() + '; log level remains ' + gLevel.sym.toString()); }
+    level(newLevelSym?:symbol, setGlobalLevel=false):symbol {
+        let newLevel = gLevels[newLevelSym] || gGlobalLevel;    // new level is newLevelSym unless undefined
+        let oldLevel = this.gLevel || gGlobalLevel;             // old level is this.level unless undefined
+        if (newLevelSym === undefined) {                        // do nothing, return current level
+            newLevel = oldLevel;
+        } else if (newLevelSym === null) {
+            this.gLevel = undefined;                            // deactivate local level
+        } else if (gLevels[newLevelSym]) { 
+            if (setGlobalLevel) { gGlobalLevel = newLevel; }    // set new global level
+                           else { this.gLevel = newLevel; }     // set new local level
+            const msg = `new ${setGlobalLevel? 'global' : this.gPrefix} log level ${newLevel.desc.toUpperCase()} (was ${oldLevel.desc.toUpperCase()})`;
+            this.out((newLevel.sym === oldLevel.sym)?DEBUG : INFO, msg);
+        } else { 
+            this.out(ERROR, `unkown level ${newLevelSym.toString()}; log level remains ${oldLevel.sym.toString()}`);
         }
-        return gLevel.sym;
+        return newLevel.sym;
     }
 
     /**
@@ -188,9 +215,11 @@ export class Log {
      * defines a prefix to be printed for each call to a log function. 
      * The return object contains all functions defined for export. 
      * @param prf the prefix to prepend. Defaults to '';
+     * @return 
      */
-    prefix(prf=''):void {
-        this.gPrefix = prf? prf + ' ' : '';
+    prefix(prf?:string):string {
+        if (prf) { this.gPrefix = prf; }
+        return this.gPrefix;
     }
 
     /**
@@ -240,14 +269,14 @@ export class Log {
      * @return promise to return the file written to, or undefined
      */
     out(lvl:symbol, msg:any, log=true): Promise<string> {	
-//        const color = { [ERROR]: '\x1b[31m\x1b[1m', [WARN]: '\x1b[33m', [DEBUG]: '\x1b[36m', [INFO]: '\x1b[32m' };
-        const color = { [ERROR]: '\x1b[31m', [WARN]: '\x1b[33m', [DEBUG]: '\x1b[36m', [INFO]: '\x1b[32m' };
+        const colors = { [ERROR]: color.red+color.bold, [WARN]: color.yellow, [DEBUG]: color.blue, [INFO]: color.green };
         let desc = gLevels[lvl];
-        if (desc.importance >= gLevel.importance) {
+        const filterLevel = this.gLevel || gGlobalLevel;
+        if (desc.importance >= filterLevel.importance) {
             const dateStr = date(gDateFormat);
             let line = (typeof msg === 'string')? msg : this.inspect(msg, 0);
             const logLine = (dateStr + ' ' + this.gPrefix + desc.desc + ' ' + line);
-            const colorLine = ((color[lvl]||'') + dateStr + ' ' + this.gPrefix + desc.desc + '\x1b[0m ' + line);
+            const colorLine = `${colors[lvl]||''} ${dateStr} ${this.gPrefix} ${desc.desc} ${color.clear} ${line}`;
             console.log(gColors? colorLine : logLine);
             if (msg.stack) { console.log(msg.stack); }
             if (gLogFile && log) {
@@ -264,7 +293,7 @@ export class Log {
 
     /**
      * Simplifies node `util.inspect` call.
-     * Usage: `log.info('' + log.inspect(struct, 1))
+     * Usage: `log.info(log.inspect(struct, 1))`
      * @param msg the object literal to inspect
      * @param depth depth of recursion. Use `null` for infinite depth
      */
