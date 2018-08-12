@@ -1,6 +1,6 @@
 {
   "name": "hsnode",
-  "version": "2.2.9",
+  "version": "2.3.0",
   "main": "./index.js",
   "types": "./index.d.ts",
   "keywords": [
