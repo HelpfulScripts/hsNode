@@ -9,6 +9,8 @@ import { URL }        from 'url';
 import { createHash } from 'crypto';
 import { Log }        from './log'; const log = new Log('httpUtil');
 
+// log.level(log.DEBUG);
+
 export interface IncomingMessage { 
     headers:        any;
     httpVersion:    string;
@@ -67,9 +69,14 @@ export class Digest {
         return {cnonce: cnonce, nc: nc};
     }
 
+    /**
+     * 
+     * @param options 
+     * @param data 
+     * @param response 
+     */
     testDigestAuth(options:any, data:string, response:IncomingMessage): Promise<HttpResponse|string> {
-        if (!response.headers['www-authenticate']) { return Promise.resolve({response:response, data:data}); } 
-        log.debug(`received ${response.statusCode} www-authenticate request for ${options.host}`);
+        log.info(`received www-authenticate request for ${options.host}`);
 
         let challenge:any = parseDigestResponse(response.headers['www-authenticate']);
         let ha1 = createHash('md5');
@@ -103,7 +110,7 @@ export class Digest {
         }
     
         options.headers.Authorization = compileParams(authParams);
-        return request(options);
+        return requestOptions(options);
     }
 }
 
@@ -163,18 +170,50 @@ function isBinary(contentType:string) {
     return (result === undefined)? false : result;
 }
 
+function getAttributes(tag:string, result:any) {
+    let fields = tag.split(/(?=([^"]*"[^"]*")*[^"]*$)\s+/g);
+    tag = fields[0].trim();
+    result[tag] = {};
+    if (fields.length>0) {
+        for (let i=1; i<fields.length; i++) {
+            let attrs = fields[i].split('=');
+            result[tag].attrs = result[tag].attrs || {};
+            result[tag].attrs[attrs[0].trim()] = attrs[1].split('"')[1].trim();
+        }
+    }
+    return tag;
+}
+
+
 //===============================================================================
 //  Low level Promise wrappers
  
+
 /**
- * sends a http request and promises to return the result.
- * @param options the options to pass along to the request
- * @param postData optional data to post
+ * sends a http get request and promises to return the result.
+ * @param url the URL to pass along to the GET or POST request
+ * @param user an optional user {@link Digest Digest}
+ * @param postData optional data to post. If provided, a POST request will be sent instead of the default GET 
  * @return promise to provide the result of the request.
  */
-export function request(options:any, postData?:any):Promise<HttpResponse|string> {
-    let auth = false;
-    if (options.headers && options.headers.Authorization) { auth = true; }
+export function request(url:URL, user?:Digest, referer?:string, postData?:any):Promise<HttpResponse|string> {
+    let options = {
+        method:     postData? 'POST': 'GET',
+        protocol:   url.protocol,
+        host:       url.host,
+        hostname:   url.hostname,
+        port:       url.port,
+        pathname:   url.pathname,
+        path:       url.pathname + (url.search || ''),
+        headers:    <any>{ 'User-Agent': 'helpful scripts' },
+    };
+    if (referer) { options.headers.referer = referer; }
+    return requestOptions(options, user, postData);
+}
+
+function requestOptions(options:any, user?:Digest, postData?:any):Promise<HttpResponse|string> {
+    let auth = (options.headers && options.headers.Authorization);
+    log.debug(`requesting ${log.inspect(options, 4)}`);
     return new Promise((resolve:(out:HttpResponse)=>void, reject:(e:string)=>void) => {
         let data = ''; 
         log.debug(`sending request ${auth? 'with authorization ':''}for ${options.protocol}//${options.host}:${options.port}${options.path}`); 
@@ -191,56 +230,22 @@ export function request(options:any, postData?:any):Promise<HttpResponse|string>
         if (postData !== undefined) { req.write(postData); }
         req.end();
     })
-    .then((res:HttpResponse) => 
-        options.myDigest? options.myDigest.testDigestAuth(options, res.data, res.response) : res)
-    ;
+    .then((res:HttpResponse) => {
+        if (user && res.response.headers['www-authenticate']) { 
+            return user.testDigestAuth(options, res.data, res.response);
+        } else {
+            return res; 
+        } 
+    });
 }
+
 
 
 /**
- * sends a http get request and promises to return the result.
- * @param url the url to pass along to the get request
- * @return promise to provide the result of the request.
+ * Decodes an xm or html string into a JSON representation
+ * @param xml 
  */
-export function get(url:string|any):Promise<HttpResponse|string> {
-    let options;
-    if (typeof url === 'string') {
-        const Url:any = new URL(url);
-        options = {
-            host:       Url.host,
-            hostname:   Url.hostname,
-            port:       Url.port,
-            method:     'GET',
-            path:       Url.pathname+Url.search,
-            protocol:   Url.protocol,
-            headers:    { 
-                'User-Agent': 'helpful scripts'
-            },
-            myDigest: (Url.username && Url.password)? new Digest(Url.username, Url.password) : undefined
-        };
-    } else {
-        options = url;
-        options.myDigest = (url.username)? new Digest(url.username, url.password) : undefined;
-    }
-    if (!options.headers) { options.headers={'User-Agent': 'helpful scripts'}; }
-    return request(options);
-}
-
-function getAttributes(tag:string, result:any) {
-    let fields = tag.split(/(?=([^"]*"[^"]*")*[^"]*$)\s+/g);
-    tag = fields[0].trim();
-    result[tag] = {};
-    if (fields.length>0) {
-        for (let i=1; i<fields.length; i++) {
-            let attrs = fields[i].split('=');
-            result[tag].attrs = result[tag].attrs || {};
-            result[tag].attrs[attrs[0].trim()] = attrs[1].split('"')[1].trim();
-        }
-    }
-    return tag;
-}
-
-export function decodeXmlResult(xml:string):any {
+export function xml2json(xml:string):any {
     let result:any;
     while(xml.length>0) {
         let tag:any = xml.match(/<.*?>/);
@@ -252,7 +257,7 @@ export function decodeXmlResult(xml:string):any {
             let end  = xml.indexOf(`</${tag}>`);
             if (end > 0) {
                 let content = xml.substring(start+tag.length+2, end).trim();   // remove opening and closing tag
-                result[tag] = this.decodeXmlResult(content);
+                result[tag] = this.xml2json(content);
                 xml = xml.substring(end+tag.length+3).trim(); 
             } else {    // no closing tag
                 //result[tag] = {};

@@ -1,3 +1,5 @@
+/// <reference types="node" />
+import { URL } from 'url';
 export interface IncomingMessage {
     headers: any;
     httpVersion: string;
@@ -29,6 +31,5 @@ export declare class Digest {
     };
     testDigestAuth(options: any, data: string, response: IncomingMessage): Promise<HttpResponse | string>;
 }
-export declare function request(options: any, postData?: any): Promise<HttpResponse | string>;
-export declare function get(url: string | any): Promise<HttpResponse | string>;
-export declare function decodeXmlResult(xml: string): any;
+export declare function request(url: URL, user?: Digest, referer?: string, postData?: any): Promise<HttpResponse | string>;
+export declare function xml2json(xml: string): any;
