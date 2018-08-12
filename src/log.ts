@@ -278,7 +278,7 @@ export class Log {
             const logLine = (dateStr + ' ' + this.gPrefix + desc.desc + ' ' + line);
             const colorLine = `${colors[lvl]||''} ${dateStr} ${this.gPrefix} ${desc.desc} ${color.clear} ${line}`;
             console.log(gColors? colorLine : logLine);
-            if (msg.stack) { console.log(msg.stack); }
+            if (msg && msg.stack) { console.log(msg.stack); }
             if (gLogFile && log) {
                 const filename = date(gLogFile);
                 return fsUtil.appendFile(filename, logLine+'\n')

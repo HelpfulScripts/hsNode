@@ -159,7 +159,7 @@ describe('log', () => {
         it('should be created next to Gruntfile for default path', () =>
             log.logFile('').then(file => {
                 expect(file).toMatch(/log-\d{4}-\d{2}-\d{2}.txt/);
-                expect(gMsg).toMatch(/log.spec INFO.*now logging to file/g);
+                expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g);
             })
             .then(() => log.info('test'))
             .then(fsUtil.isFile)
@@ -170,7 +170,6 @@ describe('log', () => {
         it('should be stopped for missing paths', () =>
             log.logFile('/missing/log.txt').then(file => 
                 expect(file).toBe(undefined)
-//                expect(gMsg.match(/log.spec WARN.*path \'\/missing\' doesn't exists; logfile disabled/)).not.toBe(null);
             )
         );
         
