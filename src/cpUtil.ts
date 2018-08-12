@@ -5,7 +5,7 @@ const cp    = require('child_process');
  * @ngdoc object
  * @name hsNode.cpUtil
  * @description Convenience functions for child process access, wrapped in Promises.
- * - {@link hsNode.cpUtil#methods_exec exec}
+ * - &nbsp; {@link hsNode.cpUtil#methods_exec exec}
  */
 
 //===============================================================================
