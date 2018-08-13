@@ -1,6 +1,6 @@
 const fs 	= require('fs');
 import * as path from 'path';
-
+import { promiseChain } from 'hsutil';
 
 /**
  * Convenience functions for file system access, wrapped in Promises.
@@ -132,6 +132,46 @@ export function isLink(thePath:string):Promise<boolean> {
 }
 
 /**
+ * creates any missing directories in `thePath` and promises to return the path name.
+ * Characters after the last `/` in `thePath` will be interpreted as a filename, hence no directory willbe created form them.
+ * Terminate `thePath` with a final `/` to indicate that all parts should be created.
+ * FInally, for precaution `mkdirs` only creates directories within the current working directory.
+ * @param thePath the path to check
+ * @return promise to provide the path name
+ */ 
+export function mkdirs(thePath:string):Promise<string> {
+    // returns a function that checks `dir` and, if it doesn't exist, creates it
+    function checkDir(dir: string) {
+        return ():Promise<boolean> => isDirectory(dir)
+            .then((exists) => exists? true :
+                new Promise((resolve:(dir:boolean)=>void, reject) => {
+                    fs.mkdir(dir, (err:any) => err? reject(err) : resolve(true));
+                })
+            );
+    }
+    
+    const p = path.normalize(path.resolve(process.cwd(),thePath));
+    const i = p.indexOf(process.cwd());
+    if (i===0) { // --> thePath is local to current working directory
+        const r = path.dirname(p.substr(process.cwd().length+1));
+        let dirs = r.split('/');
+        // create complete successive subdirs from the split
+        dirs = dirs.map((dir, i) => './'+dirs.slice(0,i+1).join('/'));
+        // serialize the directory checks 
+        return promiseChain(dirs.map(dir => checkDir(dir)))
+            .then((results:boolean[]) => {
+                results.map((r, i) => {
+                    if (r) { return true; }
+                    throw `mkdir failed for ${dirs[i]}`;
+                });
+                return dirs[dirs.length-1];
+            });
+    } else {
+        return Promise.reject(`target '${p}' not inside working directory '${process.cwd()}'`);
+    }
+}
+
+/**
  * lists all files in a directory and promises to provide the list.
  * @param thePath the path to check
  * @return promise to provide a list of directory entries.
@@ -191,7 +231,7 @@ export function readJsonFile(thePath:string):Promise<any> {
 }
 
 /**
- * writes a file either as binary or text and promises no return.
+ * writes a file either as binary or text and promises to return the file name.
  * @param thePath the path to write to
  * @param content the content to write
  * @param isText `true`|`false` if file should be read as `utf8`|binary 
@@ -199,14 +239,17 @@ export function readJsonFile(thePath:string):Promise<any> {
  */
 export function writeFile(thePath:string, content:string, isText:boolean=true):Promise<string> {
 	return new Promise((resolve, reject) => {
-		var encoding:any = isText? 'utf8' : {encoding: null};
-	    fs.writeFile(thePath, content, encoding, (err:any) => err? reject(err) : resolve(thePath));
+        var encoding:any = isText? 'utf8' : {encoding: null};
+        mkdirs(thePath)
+        .then(() => fs.writeFile(thePath, content, encoding, (err:any) => 
+            err? reject(err) : resolve(thePath))
+        );
 	})
     .catch(error);
 };
 
 /**
- * writes content to a file either as a stream and promises no return.
+ * writes content to a file as a stream and promises to return the file name.
  * @param thePath the path to write to
  * @param content the content to write
  * @return promise to provide the file name if successful.
@@ -222,7 +265,7 @@ export function writeStream(thePath:string, content:string):Promise<string> {
 }
 
 /**
- * writes a text file and promises no return.
+ * writes a text file and promises to return the file name.
  * @param thePath the path to write
  * @return promise to provide the file name if successful.
  */
@@ -232,7 +275,7 @@ export function writeTextFile(thePath:string, content:string):Promise<string> {
 };
 
 /**
- * writes a text file and promises no return.
+ * writes a text file and promises to return the file name.
  * @param thePath the path to write
  * @param obj the object to write
  * @return promise to provide the file name if successful.
@@ -245,7 +288,7 @@ export function writeJsonFile(thePath:string, obj:any):Promise<string> {
 }
 
 /**
- * appends to a file either as binary or text and promises no return.
+ * appends to a file either as binary or text and promises to return the file name.
  * @param thePath the path to write to
  * @param content the content to write
  * @param isText `true`|`false` if file should be read as `utf8`|binary 
@@ -261,13 +304,16 @@ export function appendFile(thePath:string, content:string, isText:boolean=true):
 }
 
 /**
- * promises to delete a file or folder.
+ * promises to delete a file or folder and return the file or folder name.
  * @param thePath the path to write
  * @return promise to provide the name of the removed file.
  */
 export function remove(thePath:string):Promise<string> {
 	return new Promise((resolve:(path:string)=>void, reject:(err:any)=>void) => {
-        fs.unlink(thePath, (e:any) => (e? reject(e) : resolve(thePath)));
+        isDirectory(thePath).then((dir:boolean) => {
+            dir? fs.rmdir(thePath, (e:any) => (e? reject(e) : resolve(thePath)))
+               : fs.unlink(thePath, (e:any) => (e? reject(e) : resolve(thePath)));
+        });
 	})
     .catch(error);
 }

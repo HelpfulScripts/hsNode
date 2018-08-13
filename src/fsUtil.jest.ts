@@ -41,7 +41,7 @@ describe('hsFSutil', () => {
         );
 	});
 	
-	describe('isLink' , () => {
+	describe('isLink', () => {
         it(`${__dirname} should not be a link`, () => 
             expect(fsUtil.isLink(__dirname)).resolves.toBe(false)			
         );
@@ -53,6 +53,32 @@ describe('hsFSutil', () => {
             .then(result => expect(result).toBe(false))
             .catch(err => expect(err.toString()).toBe('should not occur 2'))
         );
+    });
+
+    describe('mkdirs', () => {
+        it('should create subdirectory', ()=> {
+            expect.assertions(3);
+            return fsUtil.mkdirs('../hsNode/__jest_test/a/b/c')
+            .then((path) => Promise.all([
+                expect(path).toEqual('./__jest_test/a/b'),
+                expect(fsUtil.isDirectory('./__jest_test/a/b')).resolves.toBe(true),
+                expect(fsUtil.isDirectory('../hsNode/__jest_test/a/b/')).resolves.toBe(true)
+            ]));
+        });
+        it('should not create subdirectory', ()=> 
+            expect(fsUtil.mkdirs('/__jest_test/a/b/c')).rejects.toMatch(/target '\/__jest_test\/a\/b\/c' not inside working directory/)
+        );
+        it('should pass without creating subdirectory', ()=> 
+            expect(fsUtil.mkdirs('./bin/')).resolves.toMatch(/.\/./)
+        );
+        it('should cleanup test directories', () => {
+            expect.assertions(4);
+            return Promise.resolve()
+                .then(() => expect(fsUtil.remove('./__jest_test/a/b/')).resolves.toEqual('./__jest_test/a/b/'))
+                .then(() => expect(fsUtil.remove('./__jest_test/a/')).resolves.toEqual('./__jest_test/a/'))
+                .then(() => expect(fsUtil.remove('./__jest_test/')).resolves.toEqual('./__jest_test/'))
+                .then(() => expect(fsUtil.isDirectory('./__jest_test/')).resolves.toBe(false));
+        });
     });
 			
 	describe('readDir' , () => {
@@ -144,13 +170,20 @@ describe('hsFSutil', () => {
 	
 	describe('writeJsonFile' , () => {
         const file = dir+'txtFile';
-        const content = {"name":"test2"};
+        const content = {name: 'test2'};
         afterAll(() => fsUtil.remove(file));
         beforeAll(() => fsUtil.writeJsonFile(file, content));    
 
-        it(`should write to ${file}`, () =>
-            expect(fsUtil.readJsonFile(file)).resolves.toEqual(content)
-        );   
+        it(`should write to ${file}`, () => {
+            expect.assertions(1);
+            return expect(fsUtil.isFile(file)).resolves.toEqual(true);
+        });   
+        test(`file should contain field 'name'`, () => {
+            expect.assertions(1);
+            return fsUtil.readJsonFile(file).then((r)=> 
+                expect(r.name).toEqual('test2')
+            );
+        });   
     });
 
     describe('remove' , () => {

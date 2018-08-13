@@ -19,6 +19,7 @@ export declare function pathExists(thePath: string): Promise<boolean>;
 export declare function isFile(thePath: string): Promise<boolean>;
 export declare function isDirectory(thePath: string): Promise<boolean>;
 export declare function isLink(thePath: string): Promise<boolean>;
+export declare function mkdirs(thePath: string): Promise<string>;
 export declare function readDir(thePath: string): Promise<string[]>;
 export declare function readFile(thePath: string, isText?: boolean): Promise<any>;
 export declare function readTextFile(thePath: string): Promise<string>;
