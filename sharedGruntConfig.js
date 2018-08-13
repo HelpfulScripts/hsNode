@@ -10,11 +10,11 @@ function hsCamelCase(name) {
     return name;
 }
 
-module.exports = (grunt, dir, dependencies, type) => {
+module.exports = (grunt, dir, dependencies, type, lib) => {
     const devPath = dir.slice(0, dir.indexOf('/dev/')+5);
     const pkg = grunt.file.readJSON(dir+'/package.json');
     const slash = pkg.name.lastIndexOf('/');
-    const lib = hsCamelCase(slash<0? pkg.name : pkg.name.slice(slash+1));
+    lib = lib || hsCamelCase(slash<0? pkg.name : pkg.name.slice(slash+1));
     const libPath = lib.toLowerCase();
     console.log(`${devPath} > ${lib}: ${type}`);    
 
@@ -37,7 +37,7 @@ module.exports = (grunt, dir, dependencies, type) => {
     
     //------ Add Test Tasks
     grunt.registerTask('ospec', () => { require('child_process').spawnSync('./node_modules/.bin/ospec', {stdio: 'inherit'}); });
-    grunt.registerTask('jest',  () => { require('child_process').spawnSync('./node_modules/.bin/jest',  ['-c=jest.config.json'], {stdio: 'inherit'}); });
+    grunt.registerTask('jest',  () => { require('child_process').spawnSync('./node_modules/.bin/jest',  ['-c=jest.config.json', '-i'], {stdio: 'inherit'}); });
     grunt.registerTask('test', ['clean:cov', 'jest', 'copy:coverage', 'cleanupCoverage']); 
     
     //------ Add Build Tasks
@@ -92,7 +92,7 @@ module.exports = (grunt, dir, dependencies, type) => {
                 }
             ]},
             htmlGH: { files: [
-                { expand:true, cwd: devPath+'/staging/',    // index.html and indexGH.html
+                { expand:true, cwd: devPath+'/staging/',    // index.html
                     src:['index.html'], dest:'docs' 
                 }
             ]},
@@ -364,12 +364,13 @@ module.exports = (grunt, dir, dependencies, type) => {
 
         this.files.map(f => {
             let content = ''+fs.readFileSync(f.src[0]);
-            console.log(`${lib}: ${f.src[0]}`);
+            // console.log(`${lib}: ${f.src[0]}`);
             content = replaceFooter(content);
             content = addLibName(content);
             fs.writeFileSync(f.src[0], content);
         });
-    }
+        console.log(`cleaned ${this.files.length} files`);
+        }
 
     function writeIndexJson() {
         grunt.file.write('docs/data/index.json', `{"docs": ["${lib}.json"], "title": "HS Libraries"}`);
