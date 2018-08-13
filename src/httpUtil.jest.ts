@@ -56,7 +56,7 @@ describe('httpUtil', ()=>{
         let req;
         return req = httpUtil.request(Url, user)
             .then((r:httpUtil.HttpResponse) => {
-                console.log(r.response.request.headers);
+//                console.log(r.response.request.headers);
                 return Promise.all([
                     expect(r.response.status).toEqual(200), 
                     expect(r.response.request.headers.Authorization).toMatch(/Digest realm=.+IPCamera Login.+username.+admin.+uri.+myDigest.+qop=auth.+nonce.+cc6e4ead42917cb50548b4f94b4752fd.+algorithm.+MD5.+nc=00000001/)  

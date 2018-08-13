@@ -16,8 +16,8 @@ function __setPayLoads(payloads) {
 }
 
 function request(options, callBack) {
-console.log(`http-mock: request`);
-console.log(options);
+// console.log(`http-mock: request`);
+// console.log(options);
     let enc = 'utf8';
     const eventCallbacks = {};
     const file = options.pathname;
@@ -40,8 +40,8 @@ console.log(options);
         status: pl? pl.code : undefined
     };
     if (resultProcessor.status > 400) { 
-console.log(`http-mock: 400`);
-console.log(options.headers);        
+// console.log(`http-mock: 400`);
+// console.log(options.headers);        
         if (options.headers.Authorization) {
             resultProcessor.Authorization = options.headers.Authorization;
             resultProcessor.status = 200;
