@@ -2,7 +2,7 @@
 
 import { URL }          from 'url';
 import * as httpUtil    from "./httpUtil";
-import { Log }          from 'hsnode'; const log = new Log('utilJest');
+import { Log }          from './log'; const log = new Log('utilJest');
 
 jest.mock('http');
 require('http').__setPayLoads([
