@@ -633,7 +633,7 @@
 					"sources": [
 						{
 							"fileName": "fsUtil.ts",
-							"line": 297,
+							"line": 291,
 							"character": 26
 						}
 					]
@@ -1052,7 +1052,7 @@
 					"sources": [
 						{
 							"fileName": "fsUtil.ts",
-							"line": 179,
+							"line": 173,
 							"character": 23
 						}
 					]
@@ -1122,7 +1122,7 @@
 					"sources": [
 						{
 							"fileName": "fsUtil.ts",
-							"line": 201,
+							"line": 195,
 							"character": 24
 						}
 					]
@@ -1177,7 +1177,7 @@
 					"sources": [
 						{
 							"fileName": "fsUtil.ts",
-							"line": 227,
+							"line": 221,
 							"character": 28
 						}
 					]
@@ -1232,7 +1232,7 @@
 					"sources": [
 						{
 							"fileName": "fsUtil.ts",
-							"line": 217,
+							"line": 211,
 							"character": 28
 						}
 					]
@@ -1342,7 +1342,7 @@
 					"sources": [
 						{
 							"fileName": "fsUtil.ts",
-							"line": 311,
+							"line": 305,
 							"character": 22
 						}
 					]
@@ -1473,7 +1473,7 @@
 					"sources": [
 						{
 							"fileName": "fsUtil.ts",
-							"line": 240,
+							"line": 234,
 							"character": 25
 						}
 					]
@@ -1542,7 +1542,7 @@
 					"sources": [
 						{
 							"fileName": "fsUtil.ts",
-							"line": 283,
+							"line": 277,
 							"character": 29
 						}
 					]
@@ -1611,7 +1611,7 @@
 					"sources": [
 						{
 							"fileName": "fsUtil.ts",
-							"line": 257,
+							"line": 251,
 							"character": 27
 						}
 					]
@@ -1677,7 +1677,7 @@
 					"sources": [
 						{
 							"fileName": "fsUtil.ts",
-							"line": 272,
+							"line": 266,
 							"character": 29
 						}
 					]
@@ -3228,8 +3228,8 @@
 			},
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
 			"comment": {
-				"shortText": "Logging convenience functions.\n## Usage\n<pre>\nimport Log from './log';\nconst log = new Log();\nlog.info('by the way:'); // -> 20160817 09:59:08.032 info by the way:\nlog.error('oh dear!');   // -> 20160817 09:59:08.045 error *** oh dear!\n</pre>",
-				"text": "### Using the format template:\n<pre>\nlog.entryFormat('%MMM %DD %hh%mm%ss');\nlog.info('by the way:');  // -> Aug 17 095908 info by the way:\nlog.error('oh dear!');    // -> Aug 17 095908 error *** oh dear!\n</pre>\n\n### With module prefix:\n<pre>\nimport log from './log';\nconst log = new Log('Main');\nlog.format('%hh%mm%ss');\nlog.info('by the way:');  // -> 09:59:08.032 Main info by the way:\nlog.error('oh dear!');    // -> 09:59:08.045 Main error *** oh dear!\n</pre>\n\n### Using a log file\n<pre>\nlog.format('%MM%DD');\nlog.info('by the way:'); // -> 0817 info by the way:\nlog.logFile('l%YY%MM');  // -> 0817 info now logging to file l1608.txt\nlog.logFile(null);       // -> 0817 disabling logfile\nlog.error('oh dear!');   // -> 0817 error *** oh dear!\n</pre>\n\n### Setting the Log level\n```\nlog.level(log.WARN);\nlog.info('this will not be reported');\n```\n\n## Reporting Levels:\n- &nbsp; {@link log.DEBUG log.DEBUG}\n- &nbsp; {@link log.INFO  log.INFO}\n- &nbsp; {@link log.WARN  log.WARN}\n- &nbsp; {@link log.ERROR log.ERROR}\n\n## Reporting methods\n- &nbsp; {@link log.Log.debug log.debug()}\n- &nbsp; {@link log.Log.info  log.info()}\n- &nbsp; {@link log.Log.warn  log.warn()}\n- &nbsp; {@link log.Log.error log.error()}\n\n## Configurations:\n- &nbsp; {@link log.Log.level   log.level()}\n- &nbsp; {@link log.Log.format  log.format()}\n- &nbsp; {@link log.Log.prefix  log.prefix()}\n- &nbsp; {@link log.Log.logFile log.logFile()}\n"
+				"shortText": "Logging convenience functions.\n## Usage\n<pre>\nimport { Log } from 'hsnode'; const log = new Log();\nlog.info('by the way:'); // -> 20160817 09:59:08.032 info by the way:\nlog.error('oh dear!');   // -> 20160817 09:59:08.045 error *** oh dear!\n</pre>",
+				"text": "### Using the `entryFormat` template:\n<pre>\nlog.entryFormat('%MMM %DD %hh%mm%ss');\nlog.info('by the way:');  // -> Aug 17 095908 info by the way:\nlog.error('oh dear!');    // -> Aug 17 095908 error *** oh dear!\n</pre>\n\n### With module prefix:\n<pre>\nimport { Log } from 'hsnode'; const log = new Log('Main');\nlog.entryFormat('%hh%mm%ss');\nlog.info('by the way:');  // -> 09:59:08.032 Main info by the way:\nlog.error('oh dear!');    // -> 09:59:08.045 Main error *** oh dear!\n</pre>\n\n### Using a log file\n<pre>\nlog.entryFormat('%MM%DD');\nlog.info('by the way:'); // -> 0817 info by the way:\nlog.logFile('l%YY%MM');  // -> 0817 info now logging to file l1608.txt\nlog.logFile(null);       // -> 0817 disabling logfile\nlog.error('oh dear!');   // -> 0817 error *** oh dear!\n</pre>\n\n### Setting the Log level locally for the module\n```\nlog.level(log.WARN);\nlog.info('this will not be reported');\n```\n\n### Setting the Log level globally\n```\nlog.level(log.WARN, true);\nlog.info('this will not be reported');\n```\n\n## Reporting Levels:\n- &nbsp; {@link log.DEBUG log.DEBUG}\n- &nbsp; {@link log.INFO  log.INFO}\n- &nbsp; {@link log.WARN  log.WARN}\n- &nbsp; {@link log.ERROR log.ERROR}\n\n## Reporting methods\n- &nbsp; {@link log.Log.debug log.debug()}\n- &nbsp; {@link log.Log.info  log.info()}\n- &nbsp; {@link log.Log.warn  log.warn()}\n- &nbsp; {@link log.Log.error log.error()}\n\n## Configurations:\n- &nbsp; {@link log.Log.level   log.level()}\n- &nbsp; {@link log.Log.format  log.format()}\n- &nbsp; {@link log.Log.prefix  log.prefix()}\n- &nbsp; {@link log.Log.logFile log.logFile()}\n"
 			},
 			"children": [
 				{
@@ -3280,7 +3280,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 124,
+									"line": 128,
 									"character": 20
 								}
 							]
@@ -3296,7 +3296,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 121,
+									"line": 125,
 									"character": 9
 								}
 							],
@@ -3317,7 +3317,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 124,
+									"line": 128,
 									"character": 9
 								}
 							],
@@ -3338,7 +3338,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 122,
+									"line": 126,
 									"character": 8
 								}
 							],
@@ -3359,7 +3359,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 123,
+									"line": 127,
 									"character": 8
 								}
 							],
@@ -3381,7 +3381,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 119,
+									"line": 123,
 									"character": 18
 								}
 							],
@@ -3403,7 +3403,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 120,
+									"line": 124,
 									"character": 19
 								}
 							],
@@ -3461,7 +3461,7 @@
 															"sources": [
 																{
 																	"fileName": "log.ts",
-																	"line": 310,
+																	"line": 314,
 																	"character": 22
 																}
 															],
@@ -3481,7 +3481,7 @@
 															"sources": [
 																{
 																	"fileName": "log.ts",
-																	"line": 310,
+																	"line": 314,
 																	"character": 61
 																}
 															],
@@ -3501,7 +3501,7 @@
 															"sources": [
 																{
 																	"fileName": "log.ts",
-																	"line": 310,
+																	"line": 314,
 																	"character": 76
 																}
 															],
@@ -3521,7 +3521,7 @@
 															"sources": [
 																{
 																	"fileName": "log.ts",
-																	"line": 310,
+																	"line": 314,
 																	"character": 40
 																}
 															],
@@ -3546,7 +3546,7 @@
 													"sources": [
 														{
 															"fileName": "log.ts",
-															"line": 310,
+															"line": 314,
 															"character": 15
 														}
 													]
@@ -3563,7 +3563,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 310,
+									"line": 314,
 									"character": 10
 								}
 							]
@@ -3630,7 +3630,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 171,
+									"line": 175,
 									"character": 9
 								}
 							]
@@ -3681,7 +3681,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 208,
+									"line": 212,
 									"character": 15
 								}
 							]
@@ -3748,7 +3748,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 197,
+									"line": 201,
 									"character": 9
 								}
 							]
@@ -3815,7 +3815,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 180,
+									"line": 184,
 									"character": 8
 								}
 							]
@@ -3878,7 +3878,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 300,
+									"line": 304,
 									"character": 11
 								}
 							]
@@ -3945,7 +3945,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 146,
+									"line": 150,
 									"character": 9
 								}
 							]
@@ -4002,7 +4002,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 235,
+									"line": 239,
 									"character": 11
 								}
 							]
@@ -4083,7 +4083,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 271,
+									"line": 275,
 									"character": 7
 								}
 							]
@@ -4134,7 +4134,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 220,
+									"line": 224,
 									"character": 10
 								}
 							]
@@ -4201,7 +4201,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 189,
+									"line": 193,
 									"character": 8
 								}
 							]
@@ -4248,7 +4248,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 118,
+							"line": 122,
 							"character": 16
 						}
 					]
@@ -4272,7 +4272,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 72,
+									"line": 76,
 									"character": 57
 								}
 							],
@@ -4290,7 +4290,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 72,
+									"line": 76,
 									"character": 32
 								}
 							],
@@ -4308,7 +4308,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 72,
+									"line": 76,
 									"character": 44
 								}
 							],
@@ -4332,7 +4332,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 72,
+							"line": 76,
 							"character": 19
 						}
 					]
@@ -4351,7 +4351,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 75,
+							"line": 79,
 							"character": 11
 						}
 					],
@@ -4375,7 +4375,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 84,
+							"line": 88,
 							"character": 11
 						}
 					],
@@ -4399,7 +4399,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 78,
+							"line": 82,
 							"character": 10
 						}
 					],
@@ -4423,7 +4423,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 81,
+							"line": 85,
 							"character": 10
 						}
 					],
@@ -4447,7 +4447,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 99,
+							"line": 103,
 							"character": 19
 						}
 					],
@@ -4471,7 +4471,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 106,
+							"line": 110,
 							"character": 11
 						}
 					],
@@ -4492,7 +4492,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 100,
+							"line": 104,
 							"character": 15
 						}
 					],
@@ -4516,7 +4516,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 96,
+							"line": 100,
 							"character": 16
 						}
 					],
@@ -4541,7 +4541,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 103,
+							"line": 107,
 							"character": 12
 						}
 					],
@@ -4571,7 +4571,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 112,
+									"line": 116,
 									"character": 8
 								}
 							],
@@ -4590,7 +4590,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 114,
+									"line": 118,
 									"character": 8
 								}
 							],
@@ -4609,7 +4609,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 115,
+									"line": 119,
 									"character": 9
 								}
 							],
@@ -4628,7 +4628,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 113,
+									"line": 117,
 									"character": 9
 								}
 							],
@@ -4647,7 +4647,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 110,
+									"line": 114,
 									"character": 7
 								}
 							],
@@ -4666,7 +4666,7 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 111,
+									"line": 115,
 									"character": 10
 								}
 							],
@@ -4694,7 +4694,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 109,
+							"line": 113,
 							"character": 11
 						}
 					],
@@ -4731,22 +4731,22 @@
 									"sources": [
 										{
 											"fileName": "log.ts",
-											"line": 89,
+											"line": 93,
 											"character": 48
 										},
 										{
 											"fileName": "log.ts",
-											"line": 90,
+											"line": 94,
 											"character": 48
 										},
 										{
 											"fileName": "log.ts",
-											"line": 91,
+											"line": 95,
 											"character": 48
 										},
 										{
 											"fileName": "log.ts",
-											"line": 92,
+											"line": 96,
 											"character": 48
 										}
 									],
@@ -4765,22 +4765,22 @@
 									"sources": [
 										{
 											"fileName": "log.ts",
-											"line": 89,
+											"line": 93,
 											"character": 27
 										},
 										{
 											"fileName": "log.ts",
-											"line": 90,
+											"line": 94,
 											"character": 27
 										},
 										{
 											"fileName": "log.ts",
-											"line": 91,
+											"line": 95,
 											"character": 27
 										},
 										{
 											"fileName": "log.ts",
-											"line": 92,
+											"line": 96,
 											"character": 27
 										}
 									],
@@ -4799,22 +4799,22 @@
 									"sources": [
 										{
 											"fileName": "log.ts",
-											"line": 89,
+											"line": 93,
 											"character": 35
 										},
 										{
 											"fileName": "log.ts",
-											"line": 90,
+											"line": 94,
 											"character": 35
 										},
 										{
 											"fileName": "log.ts",
-											"line": 91,
+											"line": 95,
 											"character": 35
 										},
 										{
 											"fileName": "log.ts",
-											"line": 92,
+											"line": 96,
 											"character": 35
 										}
 									],
@@ -4839,22 +4839,22 @@
 							"sources": [
 								{
 									"fileName": "log.ts",
-									"line": 89,
+									"line": 93,
 									"character": 11
 								},
 								{
 									"fileName": "log.ts",
-									"line": 90,
+									"line": 94,
 									"character": 10
 								},
 								{
 									"fileName": "log.ts",
-									"line": 91,
+									"line": 95,
 									"character": 10
 								},
 								{
 									"fileName": "log.ts",
-									"line": 92,
+									"line": 96,
 									"character": 11
 								}
 							],
@@ -4876,7 +4876,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 88,
+							"line": 92,
 							"character": 13
 						}
 					],

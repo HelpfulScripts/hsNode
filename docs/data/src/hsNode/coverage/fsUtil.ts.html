@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">91.23% </span>
+        <span class="strong">91.15% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>104/114</span>
+        <span class='fraction'>103/113</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">71.79% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>28/39</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">94.03% </span>
+        <span class="strong">93.94% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>63/67</span>
+        <span class='fraction'>62/66</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.48% </span>
+        <span class="strong">93.41% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>86/92</span>
+        <span class='fraction'>85/91</span>
       </div>
     </div>
     <p class="quiet">
@@ -359,13 +359,7 @@
 <a name='L311'></a><a href='#L311'>311</a>
 <a name='L312'></a><a href='#L312'>312</a>
 <a name='L313'></a><a href='#L313'>313</a>
-<a name='L314'></a><a href='#L314'>314</a>
-<a name='L315'></a><a href='#L315'>315</a>
-<a name='L316'></a><a href='#L316'>316</a>
-<a name='L317'></a><a href='#L317'>317</a>
-<a name='L318'></a><a href='#L318'>318</a>
-<a name='L319'></a><a href='#L319'>319</a>
-<a name='L320'></a><a href='#L320'>320</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<a name='L314'></a><a href='#L314'>314</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -507,26 +501,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -825,33 +813,27 @@ export function isLink(thePath:string):Promise&lt;boolean&gt; {
  * @param thePath the path to check
  * @return promise to provide the path name
  */ 
-export function mkdirs(thePath:string):Promise&lt;string&gt; {
-    // returns a function that checks `dir` and, if it doesn't exist, creates it
-    function checkDir(dir: string) {
-        return ():Promise&lt;boolean&gt; =&gt; isDirectory(dir)
-            .then((exists) =&gt; exists? true :
-                new Promise((resolve:(dir:boolean)=&gt;void, reject) =&gt; {
-                    fs.mkdir(dir, (err:any) =&gt; err? <span class="branch-0 cbranch-no" title="branch not covered" >reject(err) </span>: resolve(true));
-                })
-            );
-    }
-    
+export function mkdirs(thePath:string):Promise&lt;string&gt; {    
     const p = path.normalize(path.resolve(process.cwd(),thePath));
-    const i = p.indexOf(process.cwd());
-    if (i===0) { // --&gt; thePath is local to current working directory
+    if (p.indexOf(process.cwd())===0) { // --&gt; thePath is local to current working directory
         const r = path.dirname(p.substr(process.cwd().length+1));
         let dirs = r.split('/');
         // create complete successive subdirs from the split
         dirs = dirs.map((dir, i) =&gt; './'+dirs.slice(0,i+1).join('/'));
-        // serialize the directory checks 
-        return promiseChain(dirs.map(dir =&gt; checkDir(dir)))
-            .then((results:boolean[]) =&gt; {
-                results.map((r, i) =&gt; {
-                    <span class="missing-if-branch" title="else path not taken" >E</span>if (r) { return true; }
-<span class="cstat-no" title="statement not covered" >                    throw `mkdir failed for ${dirs[i]}`;</span>
-                });
-                return dirs[dirs.length-1];
+        // setup the execution calls for each dir:
+        const tasks = dirs.map(dir =&gt; () =&gt; isDirectory(dir)
+            .then((exists) =&gt; exists? true : new Promise((resolve:(dir:boolean)=&gt;void, reject) =&gt; {
+                fs.mkdir(dir, (err:any) =&gt; err? <span class="branch-0 cbranch-no" title="branch not covered" >reject(err) </span>: resolve(true));
+            }))
+        );
+        // serialize the directory creation: 
+        return promiseChain(tasks).then((res:boolean[]) =&gt; {
+            res.map((r, i) =&gt; {
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (r) { return true; }
+<span class="cstat-no" title="statement not covered" >                throw `mkdir failed for ${dirs[i]}`;</span>
             });
+            return dirs[dirs.length-1];
+        });
     } else {
         return Promise.reject(`target '${p}' not inside working directory '${process.cwd()}'`);
     }
