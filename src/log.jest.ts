@@ -1,4 +1,4 @@
-import { Log }      from './';  const log = new Log('log.jest');
+import { Log }      from './log';  const log = new Log('log.jest');
 
 // import { date }     from 'hsutil';
 import * as fsUtil  from './fsUtil';
