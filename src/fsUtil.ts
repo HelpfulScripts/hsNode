@@ -139,33 +139,27 @@ export function isLink(thePath:string):Promise<boolean> {
  * @param thePath the path to check
  * @return promise to provide the path name
  */ 
-export function mkdirs(thePath:string):Promise<string> {
-    // returns a function that checks `dir` and, if it doesn't exist, creates it
-    function checkDir(dir: string) {
-        return ():Promise<boolean> => isDirectory(dir)
-            .then((exists) => exists? true :
-                new Promise((resolve:(dir:boolean)=>void, reject) => {
-                    fs.mkdir(dir, (err:any) => err? reject(err) : resolve(true));
-                })
-            );
-    }
-    
+export function mkdirs(thePath:string):Promise<string> {    
     const p = path.normalize(path.resolve(process.cwd(),thePath));
-    const i = p.indexOf(process.cwd());
-    if (i===0) { // --> thePath is local to current working directory
+    if (p.indexOf(process.cwd())===0) { // --> thePath is local to current working directory
         const r = path.dirname(p.substr(process.cwd().length+1));
         let dirs = r.split('/');
         // create complete successive subdirs from the split
         dirs = dirs.map((dir, i) => './'+dirs.slice(0,i+1).join('/'));
-        // serialize the directory checks 
-        return promiseChain(dirs.map(dir => checkDir(dir)))
-            .then((results:boolean[]) => {
-                results.map((r, i) => {
-                    if (r) { return true; }
-                    throw `mkdir failed for ${dirs[i]}`;
-                });
-                return dirs[dirs.length-1];
+        // setup the execution calls for each dir:
+        const tasks = dirs.map(dir => () => isDirectory(dir)
+            .then((exists) => exists? true : new Promise((resolve:(dir:boolean)=>void, reject) => {
+                fs.mkdir(dir, (err:any) => err? reject(err) : resolve(true));
+            }))
+        );
+        // serialize the directory creation: 
+        return promiseChain(tasks).then((res:boolean[]) => {
+            res.map((r, i) => {
+                if (r) { return true; }
+                throw `mkdir failed for ${dirs[i]}`;
             });
+            return dirs[dirs.length-1];
+        });
     } else {
         return Promise.reject(`target '${p}' not inside working directory '${process.cwd()}'`);
     }
