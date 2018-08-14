@@ -2,13 +2,12 @@
  * Logging convenience functions.
  * ## Usage
  * <pre>
- * import Log from './log';
- * const log = new Log();
+ * import { Log } from 'hsnode'; const log = new Log();
  * log.info('by the way:'); // -> 20160817 09:59:08.032 info by the way:
  * log.error('oh dear!');   // -> 20160817 09:59:08.045 error *** oh dear!
  * </pre>
  * 
- * ### Using the format template:
+ * ### Using the `entryFormat` template:
  * <pre>
  * log.entryFormat('%MMM %DD %hh%mm%ss');
  * log.info('by the way:');  // -> Aug 17 095908 info by the way:
@@ -17,25 +16,30 @@
  * 
  * ### With module prefix:
  * <pre>
- * import log from './log';
- * const log = new Log('Main');
- * log.format('%hh%mm%ss');
+ * import { Log } from 'hsnode'; const log = new Log('Main');
+ * log.entryFormat('%hh%mm%ss');
  * log.info('by the way:');  // -> 09:59:08.032 Main info by the way:
  * log.error('oh dear!');    // -> 09:59:08.045 Main error *** oh dear!
  * </pre>
  * 
  * ### Using a log file
  * <pre>
- * log.format('%MM%DD');
+ * log.entryFormat('%MM%DD');
  * log.info('by the way:'); // -> 0817 info by the way:
  * log.logFile('l%YY%MM');  // -> 0817 info now logging to file l1608.txt
  * log.logFile(null);       // -> 0817 disabling logfile
  * log.error('oh dear!');   // -> 0817 error *** oh dear!
  * </pre>
  * 
- * ### Setting the Log level
+ * ### Setting the Log level locally for the module
  * ```
  * log.level(log.WARN);
+ * log.info('this will not be reported');
+ * ``` 
+ * 
+ * ### Setting the Log level globally
+ * ```
+ * log.level(log.WARN, true);
  * log.info('this will not be reported');
  * ``` 
  * 
