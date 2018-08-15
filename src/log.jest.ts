@@ -1,4 +1,4 @@
-import { Log }      from './log';  const log = new Log('log.jest');
+import { Log }      from './log';  const log = Log('log.jest');
 
 // import { date }     from 'hsutil';
 import * as fsUtil  from './fsUtil';
@@ -36,11 +36,11 @@ describe('log', () => {
     });
 
     afterAll(() =>
-        log.logFile().then(file => 
+        log.logFile().then((file:string) => 
             fsUtil.isFile(file)
             .then(exists => exists? fsUtil.remove(file) : undefined)
         )
-        .catch(err => console.log(`afterAll: ${err}`))
+        .catch((err:any) => console.log(`afterAll: ${err}`))
         .then(() => console.log = gLog)
     );
     
@@ -128,7 +128,7 @@ describe('log', () => {
     });
     
     describe('formatting', () => {
-        afterEach(() => log.entryFormat(null));   // reset the date format
+        afterEach(() => log.format(null));   // reset the date format
 
         it(`should return prefix 'log.jest'`, ()=>
             expect(log.prefix()).toEqual('log.jest')
@@ -141,40 +141,40 @@ describe('log', () => {
         });
         
         it('should print date', () => {
-            log.config({entryFormat:'%M/%DD/%YY'});
+            log.config({format:'%M/%DD/%YY'});
             log.info('yes');
             return expect(gMsg).toMatch(/\d+\/\d+\/\d+ log.jest INFO.*yes/);
         });
         
-        it('should return entryFormat string', () => 
-            expect(log.entryFormat()).toBe('%YYYY%MM%DD %hh:%mm:%ss.%jjj')
+        it('should return format string', () => 
+            expect(log.format()).toBe('%YYYY%MM%DD %hh:%mm:%ss.%jjj')
         );
 
-        it('should return entryFormat string', () => 
-            expect(log.entryFormat('%M/%DD/%YY')).toBe('%M/%DD/%YY')
+        it('should return format string', () => 
+            expect(log.format('%M/%DD/%YY')).toBe('%M/%DD/%YY')
         );
     });                    
 
     describe('log file', () => {
         it('should be created next to Gruntfile for default path', () =>
-            log.logFile('').then(file => {
+            log.logFile('').then((file:string) => {
                 expect(file).toMatch(/log-\d{4}-\d{2}-\d{2}.txt/);
                 expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g);
             })
             .then(() => log.info('test'))
             .then(fsUtil.isFile)
-            .then((b) => expect(b).toBe(true))
+            .then((b:boolean) => expect(b).toBe(true))
             .catch(gLog)
         );
         
         it('should be stopped for missing paths', () =>
-            log.logFile('/missing/log.txt').then(file => 
+            log.logFile('/missing/log.txt').then((file:string) => 
                 expect(file).toBe(undefined)
             )
         );
         
         it('should be disabled', () =>
-            log.logFile(null).then(()=>log.info('unlogged entry')).then(file => {
+            log.logFile(null).then(()=>log.info('unlogged entry')).then((file:string) => {
                 expect(file).toBe(undefined);
                 return expect(gMsg).toMatch(/log.jest INFO.*unlogged entry/);
             })

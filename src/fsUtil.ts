@@ -1,5 +1,5 @@
-const fs 	= require('fs');
-import * as path from 'path';
+const fs = require('fs');
+import * as path        from 'path';
 import { promiseChain } from 'hsutil';
 
 /**

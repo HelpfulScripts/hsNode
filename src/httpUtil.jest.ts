@@ -2,7 +2,7 @@
 
 import { URL }          from 'url';
 import * as httpUtil    from "./httpUtil";
-import { Log }          from './log'; const log = new Log('utilJest');
+import { Log }          from './log'; const log = Log('utilJest');
 
 jest.mock('http');
 require('http').__setPayLoads([
@@ -28,7 +28,7 @@ describe('httpUtil', ()=>{
                     expect(r.body.html.body.h1).toEqual('The Content')
                 ];
             })
-            .catch(log.error.bind(log));
+            .catch(log.error);
     });
 
     it('should pass a referer', ()=>{
