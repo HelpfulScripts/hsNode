@@ -1,7 +1,7 @@
-import { Log }      from './log';  const log = Log('log.jest');
 
 // import { date }     from 'hsutil';
 import * as fsUtil  from './fsUtil';
+import { Log }      from './log';  const log = Log('log.jest');
 
 describe('log', () => {
     let gLog: any;
