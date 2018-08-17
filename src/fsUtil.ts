@@ -4,19 +4,21 @@ import { promiseChain } from 'hsutil';
 
 /**
  * Convenience functions for file system access, wrapped in Promises.
- * - &nbsp;{@link hsNode.fsUtil#methods_realPath realPath}
- * - &nbsp;{@link hsNode.fsUtil#methods_pathExists pathExists}
- * - &nbsp;{@link hsNode.fsUtil#methods_isfile isFile}
- * - &nbsp;{@link hsNode.fsUtil#methods_isdirectory isDirectory}
- * - &nbsp;{@link hsNode.fsUtil#methods_readDir readDir}
- * - &nbsp;{@link hsNode.fsUtil#methods_readFile readFile}
- * - &nbsp;{@link hsNode.fsUtil#methods_readTextFile readTextFile}
- * - &nbsp;{@link hsNode.fsUtil#methods_readJsonFile readJsonFile}
- * - &nbsp;{@link hsNode.fsUtil#methods_writeFile writeFile}
- * - &nbsp;{@link hsNode.fsUtil#methods_writeTextFile writeTextFile}
- * - &nbsp;{@link hsNode.fsUtil#methods_writeJsonFile writeJsonFile}
- * - &nbsp;{@link hsNode.fsUtil#methods_appendFile appendFile}
- * - &nbsp;{@link hsNode.fsUtil#methods_remove remove}
+ * - &nbsp;{@link hsNode.fsUtil.realPath realPath}
+ * - &nbsp;{@link hsNode.fsUtil.pathExists pathExists}
+ * - &nbsp;{@link hsNode.fsUtil.isFile isFile}
+ * - &nbsp;{@link hsNode.fsUtil.isDirectory isDirectory}
+ * - &nbsp;{@link hsNode.fsUtil.isLink isLink}
+ * - &nbsp;{@link hsNode.fsUtil.mkdirs mkdirs}
+ * - &nbsp;{@link hsNode.fsUtil.readDir readDir}
+ * - &nbsp;{@link hsNode.fsUtil.readFile readFile}
+ * - &nbsp;{@link hsNode.fsUtil.readTextFile readTextFile}
+ * - &nbsp;{@link hsNode.fsUtil.readJsonFile readJsonFile}
+ * - &nbsp;{@link hsNode.fsUtil.writeFile writeFile}
+ * - &nbsp;{@link hsNode.fsUtil.writeTextFile writeTextFile}
+ * - &nbsp;{@link hsNode.fsUtil.writeJsonFile writeJsonFile}
+ * - &nbsp;{@link hsNode.fsUtil.appendFile appendFile}
+ * - &nbsp;{@link hsNode.fsUtil.remove remove}
  */
 
  export interface Stats {

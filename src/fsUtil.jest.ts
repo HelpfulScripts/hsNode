@@ -1,6 +1,7 @@
 import * as fsUtil from './fsUtil';
+import * as cpUtil from './cpUtil';
 
-const dir = __dirname+'/'; // + '/testTmp/';
+const dir = __dirname+'/'; 
 const TEST_DIR = dir+'example/';
 
 describe('hsFSutil', () => {
@@ -42,11 +43,23 @@ describe('hsFSutil', () => {
 	});
 	
 	describe('isLink', () => {
+        beforeAll(() => 
+            fsUtil.isLink(`./_testLnk`)
+            .then(islink => islink? undefined : cpUtil.exec(`ln -s ./Gruntfile.js ./_testLnk`))
+            .catch(console.log)
+        );
+        afterAll(() =>      // cleanup link
+            fsUtil.remove(`./_testLnk`)
+            .catch(console.log)
+        );
         it(`${__dirname} should not be a link`, () => 
             expect(fsUtil.isLink(__dirname)).resolves.toBe(false)			
         );
-        it(`${dir+'../node_Modules'} should be a link`, () => 
-            expect(fsUtil.isLink(dir+'../node_Modules')).resolves.toBe(true)
+        it(`${dir+'../_testLnk'} should be a link`, () => 
+            expect(fsUtil.isLink(dir+'../_testLnk')).resolves.toBe(true)
+        );
+        it(`${'./_testLnk'} should be a link`, () => 
+            expect(fsUtil.isLink('./_testLnk')).resolves.toBe(true)
         );
         it(`${__dirname+'/abc'} should resolve to false for invalid name`, () => 
             fsUtil.isLink(__dirname+'/abc')
