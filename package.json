@@ -10,6 +10,7 @@
     "log"
   ],
   "description": "Helpful Scripts promise wrappers for node functions",
+  "license": "MIT",
   "homepage": "https://helpfulscripts.github.io/hsNode/indexGH.html#!/api/hsNode/0",
   "author": {
     "name": "masterscripter",
@@ -28,7 +29,7 @@
   },
   "plugins": [],
   "devDependencies": {
-    "@types/node": "^7.0.66",
+    "@types/node": "^8.0.0",
     "grunt": "^1.0.3",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-concat": "^1.0.1",
@@ -49,11 +50,10 @@
     "typescript": "^2.9.2",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.14.0",
-    "hslayout": "^2.0.0",
-    "hsdatab": "^2.0.0"
+    "hslayout": "*",
+    "hsdatab": "*"
   },
   "dependencies": {
-    "node": "*",
-    "hsutil": "^2.0.0"
+    "hsutil": "*"
   }
 }
