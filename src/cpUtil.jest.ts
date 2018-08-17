@@ -15,7 +15,7 @@ describe('cpUtil', () => {
     describe('invalid command', () => {
         it('should execute "abcd" in a shell *with* error', () => 
             exec('abcd').catch((err) => {
-                expect(err.toString().trim()).toMatch(/abcd: .*? not found/);
+                expect(err.toString().trim()).toMatch(/abcd:.*?not found/);
             })
         );
         it('should o x', () => {
