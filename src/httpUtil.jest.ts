@@ -2,7 +2,7 @@
 
 import { URL }          from 'url';
 import * as httpUtil    from "./httpUtil";
-import { Log }          from './log'; const log = Log('httpUtil.jest');
+import { newLog }      from './log'; const log = newLog('httpUtil.jest');
 
 jest.mock('http');
 require('http').__setPayLoads([

@@ -13,7 +13,7 @@
  * ### Using a local log object 
  * Settings in `log` remain local to the module 
  * <pre>
- * import { Log } from 'hsnode'; const log = Log('myModule')
+ * import { newLog } from 'hsnode'; const log = newLog('myModule')
  * log.info('by the way:'); // -> 20160817 09:59:08.032 myModule info by the way:
  * log.error('oh dear!');   // -> 20160817 09:59:08.045 myModule error *** oh dear!
  * </pre>
@@ -77,10 +77,10 @@
  * - &nbsp; {@link log.error log.error()}
  * 
  * ## Configurations:
- * - &nbsp; {@link log.Log.level   log.level()}
- * - &nbsp; {@link log.Log.format  log.format()}
- * - &nbsp; {@link log.Log.prefix  log.prefix()}
- * - &nbsp; {@link log.Log.logFile log.logFile()}
+ * - &nbsp; {@link log.newLog.level   log.level()}
+ * - &nbsp; {@link log.newLog.format  log.format()}
+ * - &nbsp; {@link log.newLog.prefix  log.prefix()}
+ * - &nbsp; {@link log.newLog.logFile log.logFile()}
  */
 
 /** importing nodejs file system function; needed to create logfiles */
@@ -137,32 +137,12 @@ const color = {
     clear:  '\x1b[0m'
 };
 
-/** the global log object */
-export const log:any = create('');
 
-/** returns a local log object */
-export const Log:any = (prefix:string) => create(prefix);
-
-
-
-
-// interface LogType {
-//     level(newLevelSym?:symbol, setGlobalLevel?:boolean):symbol;
-//     debug(msg:string, log?:boolean):Promise<string>;
-//     info(msg:string, log?:boolean):Promise<string>;
-//     warn(msg:string, log?:boolean):Promise<string>;
-//     error(msg:string, log?:boolean):Promise<string>;
-//     format(fmtStr?:string):string;
-//     prefix(prf?:string):string;
-//     logFile(file?:string):Promise<string>;
-//     out(lvl:symbol, msg:any, log?:boolean): Promise<string>;	
-//     config(cfg:{colors?:boolean, logFile?:string, format?:string, level?:symbol }):void;
-// }
-
-function create(_prefix:string) {
-    // const me = prefix(prefix);
-    let gLevel:LevelDesc;
-    let gPrefix = _prefix;
+export interface LogType {
+    DEBUG:  symbol;
+    INFO:   symbol;
+    WARN:   symbol;
+    ERROR:  symbol;
 
     /**
      * sets the reporting level according to `newLevel`. 
@@ -180,6 +160,119 @@ function create(_prefix:string) {
      * @param setGlobalLevel if true, sets the global reporting level for all modules. 
      * @return the new reporting level (DEBUG, INFO, ERROR)
      */
+    level(newLevelSym?:symbol, setGlobalLevel?:boolean):symbol;
+
+    /**
+     * reports an debug message to the log. 
+     * The message will actually be reported to the log only if the current 
+     * reporting level is DEBUG or lower.
+     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
+     * @param logToFile optional flag to enable/suppress logging to file. Defaults to `true`
+     * @return promise to return the file written to, or undefined
+     */
+    debug(msg:string, log?:boolean):Promise<string>;
+
+    /**
+     * reports an informational message to the log. 
+     * The message will actually be reported to the log only if the current 
+     * reporting level is INFO or lower.
+     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
+     * @param logToFile optional flag to enable/suppress logging to file. Defaults to `true`
+     * @return promise to return the file written to, or undefined
+     */
+    info(msg:string, log?:boolean):Promise<string>;
+
+    /**
+     * reports an warning message to the log. 
+     * The message will actually be reported to the log only if the current 
+     * reporting level is WARN or lower.
+     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
+     * @param logToFile optional flag to enable/suppress logging to file. Defaults to `true`
+     * @return promise to return the file written to, or undefined
+     */
+    warn(msg:string, log?:boolean):Promise<string>;
+
+    /**
+     * reports an error message to the log. 
+     * The message will always be reported to the log.
+     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
+     * @param logToFile optional flag to enable/suppress logging to file. Defaults to `true`
+     * @return promise to return the file written to, or undefined
+     */
+    error(msg:string, log?:boolean):Promise<string>;
+
+    /**
+     * reports an error message to the log. 
+     * The message will be reported to the log if `lvl` meets or exceeds the current reporting level.
+     * @param lvl the reporting level of `msg`
+     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
+     * @param logToFile optional flag to enable/suppress logging to file. Defaults to `true`
+     * @return promise to return the file written to, or undefined
+     */
+    out(lvl:symbol, msg:any, log?:boolean): Promise<string>;	
+
+    /**
+     * sets the format string to use for logging. If no parameter is specified,
+     * the function returns the currently set format string. The preset is '%YYYY%MM%DD %hh:%mm:%ss.%jjj'
+     * For supported formats see {@link date date}.
+     * @param fmtStr optional format string to use; 
+     * - `format(null)` sets the format to `defDateFormat` 
+     * - `format()` returns the current format without changing it.
+     * @return the currently set format string
+     */
+    format(fmtStr?:string):string;
+
+    /**
+     * defines a prefix to be printed for each call to a log function. 
+     * @param prf the prefix to prepend. Defaults to '';
+     * @return the new prefix
+     */
+    prefix(prf?:string):string;
+
+    /**
+     * sets a new logfile name template. Logfiles are created using this template 
+     * at the time of each log entry call. If the file exists, the log entry will be appended.
+     * This is a global setting that affects reporting in all modules.
+     * @param file a template to use for log file names. Options for calling:
+     * - `logFile()`: return current logfile template without changing the template
+     * - `logFile(null)`: disable log file
+     * - `logFile('')`: set default log file template `log-%YYYY-%MM-%DD.txt`
+     * - `logFile('log%D/%M/%Y.log')`: set new log file template
+     * @return promise to return the current logfile, or `undefined` if loggimng is disabled.
+     */
+    logFile(file?:string):Promise<string>;
+
+    /**
+     * configures the log facility.
+     * - cfg.colors: boolean, determines if output is colored
+     * - cfg.logfile: sets the naming template for the logfile. Set logFile=null to disable.
+     * - cfg.format: sets the format for the timestamp for each log entry
+     * - cfg.level: sets the reporting level (same as calling log.level())
+     * @param cfg 
+     */
+    config(cfg:{colors?:boolean, logFile?:string, format?:string, level?:symbol }):void;
+
+    /**
+     * Simplifies node `util.inspect` call.
+     * Usage: `log.info(log.inspect(struct, 1))`
+     * @param msg the object literal to inspect
+     * @param depth depth of recursion, defaults to 1. Use `null` for infinite depth
+     */
+    inspect(msg:any, depth?:number):string;
+}
+
+
+/** the global log object */
+export const log:LogType = create('');
+
+/** returns a local log object */
+export const newLog = (prefix:string) => create(prefix);
+
+
+function create(_prefix:string):LogType {
+    let gLevel:LevelDesc;
+    let gPrefix = _prefix;
+
     function level(newLevelSym?:symbol, setGlobalLevel=false):symbol {
         let newLevel = gLevels[newLevelSym] || gGlobalLevel;    // new level is newLevelSym unless undefined
         let oldLevel = gLevel || gGlobalLevel;               // old level is level unless undefined
@@ -198,81 +291,22 @@ function create(_prefix:string) {
         return newLevel.sym;
     }
 
-    /**
-     * reports an debug message to the log. 
-     * The message will actually be reported to the log only if the current 
-     * reporting level is DEBUG or lower.
-     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
-     * @param logToFile optional flag to enable/suppress logging to file. Defaults to `true`
-     * @return promise to return the file written to, or undefined
-     */
     function debug(msg:string, logToFile=true):Promise<string> { return out(DEBUG, msg, logToFile); }
-
-    /**
-     * reports an informational message to the log. 
-     * The message will actually be reported to the log only if the current 
-     * reporting level is INFO or lower.
-     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
-     * @param logToFile optional flag to enable/suppress logging to file. Defaults to `true`
-     * @return promise to return the file written to, or undefined
-     */
     function info(msg:any, logToFile=true):Promise<string> { return out(INFO, msg, logToFile); }
-
-    /**
-     * reports an warning message to the log. 
-     * The message will actually be reported to the log only if the current 
-     * reporting level is WARN or lower.
-     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
-     * @param logToFile optional flag to enable/suppress logging to file. Defaults to `true`
-     * @return promise to return the file written to, or undefined
-     */
     function warn(msg:any, logToFile=true):Promise<string> { return out(WARN, msg, logToFile); }
-
-    /**
-     * reports an error message to the log. 
-     * The message will always be reported to the log.
-     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
-     * @param logToFile optional flag to enable/suppress logging to file. Defaults to `true`
-     * @return promise to return the file written to, or undefined
-     */
     function error(msg:any, logToFile=true):Promise<string> { return out(ERROR, msg, logToFile); }
 
-    /**
-     * sets the format string to use for logging. If no parameter is specified,
-     * the function returns the currently set format string. The preset is '%YYYY%MM%DD %hh:%mm:%ss.%jjj'
-     * For supported formats see {@link date date}.
-     * @param fmtStr optional format string to use; 
-     * - `format(null)` sets the format to `defDateFormat` 
-     * - `format()` returns the current format without changing it.
-     * @return the currently set format string
-     */
     function format(fmtStr?:string):string { 
         if (fmtStr === null) { gDateFormat = defDateFormat; }
         else if (fmtStr)     { gDateFormat = fmtStr; }
         return gDateFormat;
     }
 
-    /**
-     * defines a prefix to be printed for each call to a log function. 
-     * The return object contains all functions defined for export. 
-     * @param prf the prefix to prepend. Defaults to '';
-     * @return 
-     */
     function prefix(prf?:string):string {
         if (prf) { gPrefix = prf; }
         return gPrefix;
     }
 
-    /**
-     * sets a new logfile name template. Logfiles are created using this template 
-     * at the time of each log entry call. If the file exists, the log entry will be appended.
-     * @param file a template to use for log file names. Options for calling:
-     * - `logFile()`: return current logfile template without changing the template
-     * - `logFile(null)`: disable log file
-     * - `logFile('')`: set default log file template `log-%YYYY-%MM-%DD.txt`
-     * - `logFile('log%D/%M/%Y.log')`: set new log file template
-     * @return promise to return the current logfile, or `undefined`
-     */
     function logFile(file?:string):Promise<string> {
         if (file === null) {                    // disable logging in file
             gLogFile = undefined; 
@@ -302,21 +336,13 @@ function create(_prefix:string) {
         return info(gLogFile? `now logging to file ${date(gLogFile)}` : 'logfile disbaled');
     }
 
-    /**
-     * reports an error message to the log. 
-     * The message will be reported to the log if `lvl` meets or exceeds the current reporting level.
-     * @param lvl the reporting level of `msg`
-     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
-     * @param logToFile optional flag to enable/suppress logging to file. Defaults to `true`
-     * @return promise to return the file written to, or undefined
-     */
     function out(lvl:symbol, msg:any, logToFile=true): Promise<string> {	
         const colors = { [ERROR]: color.red+color.bold, [WARN]: color.yellow+color.bold, [DEBUG]: color.blue, [INFO]: color.green };
         let desc = gLevels[lvl];
         const filterLevel = gLevel || gGlobalLevel;
         if (desc.importance >= filterLevel.importance) {
             const dateStr = date(gDateFormat);
-            let line = (typeof msg === 'string')? msg : Log.inspect(msg, 0);
+            let line = (typeof msg === 'string')? msg : inspect(msg, 0);
             const logLine = (dateStr + ' ' + gPrefix + desc.desc + ' ' + line);
             const colorLine = `${colors[lvl]||''} ${dateStr} ${gPrefix} ${desc.desc} ${color.clear} ${line}`;
             console.log(gColors? colorLine : logLine);
@@ -333,14 +359,6 @@ function create(_prefix:string) {
         return Promise.resolve(undefined);
     }
 
-    /**
-     * configures the log facility.
-     * - cfg.colors: boolean, determines if output is colored
-     * - cfg.logfile: sets the naming template for the logfile. Set logFile=null to disable.
-     * - cfg.format: sets the format for the timestamp for each log entry
-     * - cfg.level: sets the reporting level (same as calling log.level())
-     * @param cfg 
-     */
     function config(cfg:{colors?:boolean, logFile?:string, format?:string, level?:symbol }) {
         let colors = true;
         if (cfg.colors!==undefined) { gColors = colors = cfg.colors; }  // true / false

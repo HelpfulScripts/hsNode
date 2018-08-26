@@ -1,5 +1,4 @@
 const cp    = require('child_process');
-//import { log } from './'; log('cpUtil');
 
 /**
  * @ngdoc object

@@ -1,4 +1,4 @@
-export { log, Log } from "./log";
+export { log, newLog, LogType } from "./log";
 
 import * as http    from "./httpUtil";
 export { http };
