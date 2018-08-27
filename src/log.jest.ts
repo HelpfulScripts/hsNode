@@ -1,7 +1,6 @@
 
-// import { date }     from 'hsutil';
-import * as fsUtil  from './fsUtil';
-import { newLog }      from './log';  const log = newLog('log.jest');
+import * as fsUtil      from './fsUtil';
+import { log as gLog }  from './log';  const log = gLog('log.jest');
 
 describe('log', () => {
     let gLog: any;
@@ -156,19 +155,25 @@ describe('log', () => {
     });                    
 
     describe('log file', () => {
-        it('should be created next to Gruntfile for default path', () =>
-            log.logFile('').then((file:string) => {
-                expect(file).toMatch(/log-\d{4}-\d{2}-\d{2}.txt/);
-                expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g);
+        it('should be created next to Gruntfile for default path', () => {
+            expect.assertions(4);
+            return log.logFile('')
+            .then((file:string) => {
+                // gLog(`...setting log file ${file}`);
+                return Promise.all([
+                    expect(file).toBeDefined(),
+                    expect(file).toMatch(/log-\d{4}-\d{2}-\d{2}.txt/),
+                    expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g)
+                ]);
             })
             .then(() => log.info('test'))
             .then(fsUtil.isFile)
             .then((b:boolean) => expect(b).toBe(true))
-            .catch(gLog)
-        );
+            .catch(gLog);
+        });
         
         it('should be stopped for missing paths', () =>
-            log.logFile('/missing/log.txt').then((file:string) => 
+            log.logFile('/missing/log.txt').then((file:any) => 
                 expect(file).toBe(undefined)
             )
         );

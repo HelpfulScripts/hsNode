@@ -7,7 +7,7 @@
 const  http =  require('http');
 import { URL }        from 'url';
 import { createHash } from 'crypto';
-import { newLog }      from './log'; const log = newLog('httpUtil');
+import { log as gLog }      from './log'; const log = gLog('httpUtil');
 
 // log.level(log.DEBUG);
 
