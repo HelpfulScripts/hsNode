@@ -3228,7 +3228,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
 			"children": [
 				{
-					"id": 93,
+					"id": 100,
 					"name": "log",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3239,7 +3239,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 405,
+							"line": 36,
 							"character": 16
 						}
 					],
@@ -3250,21 +3250,21 @@
 					"defaultValue": " util.log('', node_logToFile, node_pathExists)"
 				},
 				{
-					"id": 97,
+					"id": 96,
 					"name": "node_logToFile",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 98,
+							"id": 97,
 							"name": "node_logToFile",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 99,
+									"id": 98,
 									"name": "filename",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3275,7 +3275,7 @@
 									}
 								},
 								{
-									"id": 100,
+									"id": 99,
 									"name": "msg",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3301,27 +3301,27 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 436,
+							"line": 28,
 							"character": 23
 						}
 					]
 				},
 				{
-					"id": 94,
+					"id": 93,
 					"name": "node_pathExists",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 95,
+							"id": 94,
 							"name": "node_pathExists",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 96,
+									"id": 95,
 									"name": "file",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3347,7 +3347,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 431,
+							"line": 23,
 							"character": 24
 						}
 					]
@@ -3358,15 +3358,15 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						93
+						100
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						97,
-						94
+						96,
+						93
 					]
 				}
 			],
