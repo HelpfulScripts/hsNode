@@ -151,26 +151,21 @@ export function mkdirs(thePath:string):Promise<string> {
         dirs = dirs.map((dir, i) => './'+dirs.slice(0,i+1).join('/'));
         // setup the execution calls for each dir:
         const tasks = dirs.map(dir => () => isDirectory(dir)
-            .then((exists) => {
+            .then((exists) => new Promise((resolve:(dir:boolean)=>void, reject) => {
                 if (exists) { 
                     log.debug(`dir exists: '${dir}'`);
-                    return true; 
+                    resolve(true);
                 } else { 
                     log.debug(`creating dir: '${dir}'`);
-                    return new Promise((resolve:(dir:boolean)=>void, reject) => {
-                        fs.mkdir(dir, (err:any) => err? reject(err) : resolve(true));
-                    })
-                    .catch(err => {
-                        return log.error(`mkdirs '${thePath}': ${err}`);
-                    });
+                    fs.mkdir(dir, (err:any) => err? reject(err) : resolve(true));
                 }
-            })
+            }))
         );
         // serialize the directory creation: 
         return promiseChain(tasks).then((res:boolean[]) => {
             res.map((r, i) => {
                 if (r) { return true; }
-                throw `mkdir failed for ${dirs[i]}`;
+                throw `mkdir failed for ${dirs[i]}: ${r}`;
             });
             return dirs[dirs.length-1];
         });
@@ -251,7 +246,7 @@ export function writeFile(thePath:string, content:string, isText:boolean=true):P
         mkdirs(thePath)
         .then(() => fs.writeFile(thePath, content, encoding, (err:any) => 
             err? reject(err) : resolve(thePath))
-        );
+        ).catch(err => log.error(`mkdirs failed in writeFile for '${thePath}': ${err}`));
 	})
     .catch(error);
 };
