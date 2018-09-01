@@ -1,4 +1,3 @@
-export { log }      from "./log";
 
 import * as http    from "./httpUtil";
 export { http };
@@ -9,3 +8,4 @@ export { fs };
 import * as cp      from "./cpUtil";
 export { cp };
 
+export { log }      from "./log";

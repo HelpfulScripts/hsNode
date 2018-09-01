@@ -15,22 +15,23 @@
  * 
  */
 
-import * as util    from 'hsutil';
-import * as fsUtil  from './fsUtil';
-import * as path    from 'path';
+export { LogType }              from 'hsutil';
+import { log as uLog, LogType } from 'hsutil';  export const log:LogType = uLog('', node_logToFile, node_pathExists);
+import { dirname, normalize}    from 'path';
+import { pathExists }           from './fsUtil';
+import { appendFile }           from './fsUtil';
+
 
 
 function node_pathExists(file:string):Promise<boolean> {
-    const dir = path.dirname(path.normalize(file));
-    return fsUtil.pathExists(dir);
+    const dir = dirname(normalize(file));
+    return pathExists(dir);
 }
 
 function node_logToFile(filename:string, msg:string):Promise<string> {
-    return fsUtil.appendFile(filename, msg+'\n')
+    return appendFile(filename, msg+'\n')
     .catch(e => { 
         console.log(`error appending '${msg}' to file ${log.logFile()} | ${filename}: ${e}`); 
         return msg;
     });
 }
-
-export const log = util.log('', node_logToFile, node_pathExists);
