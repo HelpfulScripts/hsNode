@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">91.15% </span>
+        <span class="strong">90.83% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>103/113</span>
+        <span class='fraction'>109/120</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">71.79% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>28/39</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.94% </span>
+        <span class="strong">92.54% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>62/66</span>
+        <span class='fraction'>62/67</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.41% </span>
+        <span class="strong">92.78% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>85/91</span>
+        <span class='fraction'>90/97</span>
       </div>
     </div>
     <p class="quiet">
@@ -361,7 +361,20 @@
 <a name='L313'></a><a href='#L313'>313</a>
 <a name='L314'></a><a href='#L314'>314</a>
 <a name='L315'></a><a href='#L315'>315</a>
-<a name='L316'></a><a href='#L316'>316</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<a name='L316'></a><a href='#L316'>316</a>
+<a name='L317'></a><a href='#L317'>317</a>
+<a name='L318'></a><a href='#L318'>318</a>
+<a name='L319'></a><a href='#L319'>319</a>
+<a name='L320'></a><a href='#L320'>320</a>
+<a name='L321'></a><a href='#L321'>321</a>
+<a name='L322'></a><a href='#L322'>322</a>
+<a name='L323'></a><a href='#L323'>323</a>
+<a name='L324'></a><a href='#L324'>324</a>
+<a name='L325'></a><a href='#L325'>325</a>
+<a name='L326'></a><a href='#L326'>326</a>
+<a name='L327'></a><a href='#L327'>327</a>
+<a name='L328'></a><a href='#L328'>328</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -513,8 +526,19 @@
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -679,6 +703,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const fs = require('fs');
 import * as path        from 'path';
 import { promiseChain } from 'hsutil';
+import { log as gLog}   from 'hsutil';  const log = gLog('fsUtil'); // avoid circular reference to ./log
 &nbsp;
 /**
  * Convenience functions for file system access, wrapped in Promises.
@@ -828,9 +853,20 @@ export function mkdirs(thePath:string):Promise&lt;string&gt; {
         dirs = dirs.map((dir, i) =&gt; './'+dirs.slice(0,i+1).join('/'));
         // setup the execution calls for each dir:
         const tasks = dirs.map(dir =&gt; () =&gt; isDirectory(dir)
-            .then((exists) =&gt; exists? true : new Promise((resolve:(dir:boolean)=&gt;void, reject) =&gt; {
-                fs.mkdir(dir, (err:any) =&gt; err? <span class="branch-0 cbranch-no" title="branch not covered" >reject(err) </span>: resolve(true));
-            }))
+            .then((exists) =&gt; {
+                if (exists) { 
+                    log.debug(`dir exists: '${dir}'`);
+                    return true; 
+                } else { 
+                    log.debug(`creating dir: '${dir}'`);
+                    return new Promise((resolve:(dir:boolean)=&gt;void, reject) =&gt; {
+                        fs.mkdir(dir, (err:any) =&gt; err? <span class="branch-0 cbranch-no" title="branch not covered" >reject(err) </span>: resolve(true));
+                    })
+                    .catch(<span class="fstat-no" title="function not covered" >err</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >                        return log.error(`mkdirs '${thePath}': ${err}`);</span>
+                    });
+                }
+            })
         );
         // serialize the directory creation: 
         return promiseChain(tasks).then((res:boolean[]) =&gt; {

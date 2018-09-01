@@ -1,6 +1,7 @@
 const fs = require('fs');
 import * as path        from 'path';
 import { promiseChain } from 'hsutil';
+import { log as gLog}   from 'hsutil';  const log = gLog('fsUtil'); // avoid circular reference to ./log
 
 /**
  * Convenience functions for file system access, wrapped in Promises.
@@ -150,9 +151,20 @@ export function mkdirs(thePath:string):Promise<string> {
         dirs = dirs.map((dir, i) => './'+dirs.slice(0,i+1).join('/'));
         // setup the execution calls for each dir:
         const tasks = dirs.map(dir => () => isDirectory(dir)
-            .then((exists) => exists? true : new Promise((resolve:(dir:boolean)=>void, reject) => {
-                fs.mkdir(dir, (err:any) => err? reject(err) : resolve(true));
-            }))
+            .then((exists) => {
+                if (exists) { 
+                    log.debug(`dir exists: '${dir}'`);
+                    return true; 
+                } else { 
+                    log.debug(`creating dir: '${dir}'`);
+                    return new Promise((resolve:(dir:boolean)=>void, reject) => {
+                        fs.mkdir(dir, (err:any) => err? reject(err) : resolve(true));
+                    })
+                    .catch(err => {
+                        return log.error(`mkdirs '${thePath}': ${err}`);
+                    });
+                }
+            })
         );
         // serialize the directory creation: 
         return promiseChain(tasks).then((res:boolean[]) => {

@@ -5,9 +5,9 @@
 
 /** */
 const  http =  require('http');
-import { URL }        from 'url';
-import { createHash } from 'crypto';
-import { log as gLog }      from './log'; const log = gLog('httpUtil');
+import { URL }          from 'url';
+import { createHash }   from 'crypto';
+import { log as gLog }  from 'hsutil';   const log = gLog('httpUtil');
 
 // log.level(log.DEBUG);
 

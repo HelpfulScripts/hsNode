@@ -1,8 +1,12 @@
 // const  http =  require('http'); 
 
 import { URL }          from 'url';
+import { log as gLog }  from './log';  console.log(gLog); const log = gLog('httpUtil.jest');
 import * as httpUtil    from "./httpUtil";
-import { log as gLog }  from './log'; const log = gLog('httpUtil.jest');
+
+console.log('node:httpUtil.jest');
+console.log(log);
+
 
 jest.mock('http');
 require('http').__setPayLoads([
