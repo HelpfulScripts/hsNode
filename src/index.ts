@@ -5,7 +5,6 @@ export { http };
 import * as fs      from "./fsUtil";
 export { fs };
 
-import * as cp      from "./cpUtil";
-export { cp };
+export { exec }     from "./cpUtil";
 
 export { log }      from "./log";
