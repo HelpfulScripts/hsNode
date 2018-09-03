@@ -157,7 +157,15 @@ export function mkdirs(thePath:string):Promise<string> {
                     resolve(true);
                 } else { 
                     log.debug(`creating dir: '${dir}'`);
-                    fs.mkdir(dir, (err:any) => err? reject(err) : resolve(true));
+                    fs.mkdir(dir, (err:any) => {
+                        if(!err) { resolve(true); }
+                        else if (err.toString().match(/Error: EEXIST: file already exists/)) {
+                            log.debug(`mkdirs: directory already exists: ${dir}`);
+                            resolve(true);
+                        } else {
+                            reject(err);
+                        }
+                    });
                 }
             }))
         );
