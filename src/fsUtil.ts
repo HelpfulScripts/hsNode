@@ -145,7 +145,7 @@ export function isLink(thePath:string):Promise<boolean> {
 export function mkdirs(thePath:string):Promise<string> {    
     const p = path.normalize(path.resolve(process.cwd(),thePath));
     if (p.indexOf(process.cwd())===0) { // --> thePath is local to current working directory
-        const r = path.dirname(p.substr(process.cwd().length+1));
+        const r = p.substr(process.cwd().length+1);
         let dirs = r.split('/');
         // create complete successive subdirs from the split
         dirs = dirs.map((dir, i) => './'+dirs.slice(0,i+1).join('/'));
@@ -251,7 +251,7 @@ export function readJsonFile(thePath:string):Promise<any> {
 export function writeFile(thePath:string, content:string, isText:boolean=true):Promise<string> {
 	return new Promise((resolve, reject) => {
         var encoding:any = isText? 'utf8' : {encoding: null};
-        mkdirs(thePath)
+        mkdirs(path.dirname(thePath))
         .then(() => fs.writeFile(thePath, content, encoding, (err:any) => 
             err? reject(err) : resolve(thePath))
         ).catch(err => log.error(`mkdirs failed in writeFile for '${thePath}': ${err}`));

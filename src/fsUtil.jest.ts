@@ -1,5 +1,6 @@
 import * as fsUtil from './fsUtil';
 import * as cpUtil from './cpUtil';
+// import { log }     from './log';
 
 const dir = __dirname+'/'; 
 const TEST_DIR = dir+'example/';
@@ -73,9 +74,9 @@ describe('hsFSutil', () => {
             expect.assertions(3);
             return fsUtil.mkdirs('../hsNode/__jest_test/a/b/c')
             .then((path) => Promise.all([
-                expect(path).toEqual('./__jest_test/a/b'),
-                expect(fsUtil.isDirectory('./__jest_test/a/b')).resolves.toBe(true),
-                expect(fsUtil.isDirectory('../hsNode/__jest_test/a/b/')).resolves.toBe(true)
+                expect(path).toEqual('./__jest_test/a/b/c'),
+                expect(fsUtil.isDirectory('./__jest_test/a/b/c')).resolves.toBe(true),
+                expect(fsUtil.isDirectory('../hsNode/__jest_test/a/b/c/')).resolves.toBe(true)
             ]));
         });
         it('should not create subdirectory', ()=> 
@@ -84,9 +85,19 @@ describe('hsFSutil', () => {
         it('should pass without creating subdirectory', ()=> 
             expect(fsUtil.mkdirs('./bin/')).resolves.toMatch(/.\/./)
         );
+        it('should catch duplicate mkdir', async () => {
+            // await log.level(log.DEBUG,true);
+            return expect(Promise.all([
+                fsUtil.mkdirs('../hsNode/__jest_test/abc/'),
+                fsUtil.mkdirs('../hsNode/__jest_test/abc/'),
+                fsUtil.mkdirs('../hsNode/__jest_test/abc/'),
+            ])).resolves.toEqual(["./__jest_test/abc", "./__jest_test/abc", "./__jest_test/abc"]);
+        });
         it('should cleanup test directories', () => {
-            expect.assertions(4);
+            expect.assertions(6);
             return Promise.resolve()
+                .then(() => expect(fsUtil.remove('./__jest_test/abc')).resolves.toEqual('./__jest_test/abc'))
+                .then(() => expect(fsUtil.remove('./__jest_test/a/b/c')).resolves.toEqual('./__jest_test/a/b/c'))
                 .then(() => expect(fsUtil.remove('./__jest_test/a/b/')).resolves.toEqual('./__jest_test/a/b/'))
                 .then(() => expect(fsUtil.remove('./__jest_test/a/')).resolves.toEqual('./__jest_test/a/'))
                 .then(() => expect(fsUtil.remove('./__jest_test/')).resolves.toEqual('./__jest_test/'))
