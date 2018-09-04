@@ -12,4 +12,4 @@ Helpful Scripts functions that wrap some nodejs calls in Promise wrappers.
 Install `hsNode` from `npm` the standard way:
 > `npm i hsnode`
 
-See [docs](https://helpfulscripts.github.io/hsNode/indexGH.html#!/api/hsNode/0) for details
+See [docs](https://helpfulscripts.github.io/hsNode/#!/api/hsNode/0) for details
