@@ -169,14 +169,17 @@ describe('hsFSutil', () => {
         const file = dir+'binFile';
         afterAll(() => fsUtil.remove(file));
 
-        beforeAll(() => fsUtil.appendFile(file, 'test2', false)     
-            .then(() => fsUtil.appendFile(file, 'test3', false))
-        );
-        expect.assertions(1);
+        it('should add content at the end', async () => {
+            expect.assertions(1);
+            await fsUtil.appendFile(file, 'test2', false);
+            await fsUtil.appendFile(file, 'test3', false);
+            return expect(fsUtil.readFile(file, false)).resolves.toEqual(Buffer.from('test2test3'));
+        });   
 
-        it('should add content at the end', () =>  
-            expect(fsUtil.readFile(file, false)).resolves.toEqual(Buffer.from('test2test3'))
-        );   
+        it('should reject', async () => {
+            expect.assertions(1);
+            return expect(fsUtil.appendFile('/abc/d', 'test2', false)).rejects.toBeDefined();
+        });   
 	});
 	
 	describe('writeTextFile' , () => {
