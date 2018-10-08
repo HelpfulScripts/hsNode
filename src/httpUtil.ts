@@ -174,13 +174,15 @@ function getAttributes(tag:string, result:any) {
     let fields = tag.split(/(?=([^"]*"[^"]*")*[^"]*$)\s+/g);
     tag = fields[0].trim();
     result[tag] = {};
-    if (fields.length>0) {
-        for (let i=1; i<fields.length; i++) {
-            let attrs = fields[i].split('=');
+    fields.map(f => {
+        if (f) {
+            let attrs = f.split('=');
             result[tag].attrs = result[tag].attrs || {};
-            result[tag].attrs[attrs[0].trim()] = attrs[1].split('"')[1].trim();
+            if (attrs.length>1) {
+                result[tag].attrs[attrs[0].trim()] = attrs[1].replace(/\"/g, '').trim();
+            }
         }
-    }
+    });
     return tag;
 }
 
@@ -256,7 +258,8 @@ export function xml2json(xml:string):any {
             let start = xml.indexOf(`<${tag}`);
             let end  = xml.indexOf(`</${tag}>`);
             if (end > 0) {
-                let content = xml.substring(start+tag.length+2, end).trim();   // remove opening and closing tag
+                const close = xml.indexOf('>', start);
+                let content = xml.substring(close+1, end).trim();   // remove opening and closing tag
                 result[tag] = this.xml2json(content);
                 xml = xml.substring(end+tag.length+3).trim(); 
             } else {    // no closing tag

@@ -4,35 +4,29 @@ import { URL }          from 'url';
 import { log as gLog }  from './log';  console.log(gLog); const log = gLog('httpUtil.jest');
 import * as httpUtil    from "./httpUtil";
 
-console.log('node:httpUtil.jest');
-console.log(log);
-
 
 jest.mock('http');
 require('http').__setPayLoads([
-    { path: '/myPath?query=value', code:200, content: '<html><body><h1>The Content</h1></body></html>' },
+    { path: '/myPath?query=value', code:200, content: '<html><body id="theBody"><h1 id=main>The Content</h1>the Body<p></body></html>' },
     { path: '/myAuth', code:403, content: '<html><body><h1>403 - Forbidden</h1></body></html>' },
     { path: '/myDigest', code:401, content: '<html><body><h1>Show me the goods</h1></body></html>' },
 ]);
 
 describe('httpUtil', ()=>{
 
-    test(`myPath?query=value should have h1`, () => {
-        const Url = new URL('http://my.space.com/myPath?query=value');
-        expect.assertions(5);
-        let req;
-        return req = httpUtil.request(Url)   
-            .then((r:httpUtil.HttpResponse) => {
-                r.body = httpUtil.xml2json(r.data);
-                return Promise.all[
-                    expect(r.response.headers['content-type']).toMatch(/text\//),
-                    expect(r.body).toHaveProperty('html'),
-                    expect(r.body.html).toHaveProperty('body'),
-                    expect(r.body.html.body).toHaveProperty('h1'),
-                    expect(r.body.html.body.h1).toEqual('The Content')
-                ];
-            })
-            .catch(log.error);
+    test(`myPath?query=value should have h1`, async () => {
+        try {
+            const Url = new URL('http://my.space.com/myPath?query=value');
+            expect.assertions(5);
+            const r = <httpUtil.HttpResponse>await httpUtil.request(Url).catch();
+            const json = httpUtil.xml2json(r.data);
+            await expect(r.response.headers['content-type']).toMatch(/text\//);
+            await expect(json).toHaveProperty('html');
+            await expect(json.html).toHaveProperty('body');
+            await expect(json.html.body).toHaveProperty('h1');
+            await expect(json.html.body.h1).toEqual('The Content');
+            }
+        catch(e) { log.error(e); }
     });
 
     it('should pass a referer', ()=>{
