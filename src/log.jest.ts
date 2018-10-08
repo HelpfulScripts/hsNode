@@ -1,6 +1,6 @@
 
 import * as fsUtil      from './fsUtil';
-import { log as gLog }  from './log';  const log = gLog('log.jest');
+import { log as _log }  from './log';  const log = _log('log.jest');
 
 describe('log', () => {
     let gLog: any;
@@ -44,6 +44,13 @@ describe('log', () => {
     );
     
     describe('reporting functions', () => {
+        it('should print default info', () =>
+            _log.info("global").then(() => { 
+                expect(_log.level()).toBe(_log.INFO);
+                expect(gMsg).toMatch(/INFO.*global/); 
+            }) 
+        );
+        
         it('should print info', () =>
             log.info("yes").then(() => { 
                 expect(log.level()).toBe(log.INFO);

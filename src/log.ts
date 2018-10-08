@@ -16,12 +16,12 @@
  */
 
 export { LogType }              from 'hsutil';
-import { log as uLog, LogType } from 'hsutil';  export const log:LogType = uLog('', node_logToFile, node_pathExists);
+import { log as uLog, LogType } from 'hsutil';
 import { dirname, normalize}    from 'path';
 import { pathExists }           from './fsUtil';
 import { appendFile }           from './fsUtil';
 
-
+export const log:LogType = uLog('', node_logToFile, node_pathExists);
 
 function node_pathExists(file:string):Promise<boolean> {
     const dir = dirname(normalize(file));
@@ -29,9 +29,9 @@ function node_pathExists(file:string):Promise<boolean> {
 }
 
 function node_logToFile(filename:string, msg:string):Promise<string> {
-    return appendFile(filename, msg+'\n')
-    .catch(e => { 
-        console.log(`error appending '${msg}' to file ${log.logFile()} | ${filename}: ${e}`); 
-        return msg;
-    });
+    return appendFile(filename, msg+'\n');
+    // .catch(e => { 
+    //     console.log(`error appending '${msg}' to file ${log.logFile()} | ${filename}: ${e}`); 
+    //     return msg;
+    // });
 }
