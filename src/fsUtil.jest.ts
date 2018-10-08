@@ -136,6 +136,10 @@ describe('hsFSutil', () => {
             fsUtil.readTextFile(__dirname+'/fsUtil.ts')
                 .then(result => expect(result.length).toBeGreaterThan(1000))
         );
+        it(`should read file as text ${__dirname+'/fsUtil.ts'}`, () => 
+            fsUtil.readFile(__dirname+'/fsUtil.ts')
+                .then(result => expect(result.length).toBeGreaterThan(1000))
+        );
     });		
 	
 	describe('readJsonFile' , () => {
@@ -161,6 +165,12 @@ describe('hsFSutil', () => {
         );
 		it(`should not contain 'test3' in ${file}`, () => 
             expect(fsUtil.readFile(file, false)).resolves.not.toEqual(Buffer.from('test3'))
+        );
+        it(`should write text file ${file}`, () => 
+            expect(fsUtil.writeFile(file, 'test4')).resolves.toBe(file) 
+        );	
+		it(`should now contain payload in ${file}`, () => 
+            expect(fsUtil.readFile(file)).resolves.toEqual('test4')
         );
 	});
 	
@@ -209,6 +219,24 @@ describe('hsFSutil', () => {
             expect.assertions(1);
             return fsUtil.readJsonFile(file).then((r)=> 
                 expect(r.name).toEqual('test2')
+            );
+        });   
+    });
+
+	describe('writeStream' , () => {
+        const file = dir+'stream';
+        const content = 'test2';
+        afterAll(() => fsUtil.remove(file));
+        beforeAll(() => fsUtil.writeStream(file, content));    
+
+        it(`should write to ${file}`, () => {
+            expect.assertions(1);
+            return expect(fsUtil.isFile(file)).resolves.toEqual(true);
+        });   
+        test(`file should contain content`, () => {
+            expect.assertions(1);
+            return fsUtil.readFile(file,false).then((r)=> 
+                expect(r).toEqual(Buffer.from('test2'))
             );
         });   
     });
