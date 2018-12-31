@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">95.2% </span>
+        <span class="strong">92.8% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>119/125</span>
+        <span class='fraction'>116/125</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">80.49% </span>
+        <span class="strong">75.61% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>33/41</span>
+        <span class='fraction'>31/41</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">97.01% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>65/67</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">97.06% </span>
+        <span class="strong">94.12% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>99/102</span>
+        <span class='fraction'>96/102</span>
       </div>
     </div>
   </div>
@@ -420,12 +420,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">50x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">37x</span>
-<span class="cline-any cline-yes">37x</span>
-<span class="cline-any cline-yes">37x</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-yes">39x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">37x</span>
-<span class="cline-any cline-yes">37x</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-yes">39x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -446,8 +446,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">17x</span>
-<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -528,15 +528,15 @@
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">17x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -863,10 +863,10 @@ export function mkdirs(thePath:string):Promise&lt;string&gt; {
                 } else { 
                     log.debug(`creating dir: '${dir}'`);
                     fs.mkdir(dir, (err:any) =&gt; {
-                        if(!err) { resolve(true); }
-                        else <span class="missing-if-branch" title="else path not taken" >E</span>if (err.toString().match(/Error: EEXIST: file already exists/)) {
-                            log.debug(`mkdirs: directory already exists: ${dir}`);
-                            resolve(true);
+                        <span class="missing-if-branch" title="else path not taken" >E</span>if(!err) { resolve(true); }
+                        else <span class="cstat-no" title="statement not covered" >if (err.toString().match(/Error: EEXIST: file already exists/)) {</span>
+<span class="cstat-no" title="statement not covered" >                            log.debug(`mkdirs: directory already exists: ${dir}`);</span>
+<span class="cstat-no" title="statement not covered" >                            resolve(true);</span>
                         } else {
 <span class="cstat-no" title="statement not covered" >                            reject(err);</span>
                         }
