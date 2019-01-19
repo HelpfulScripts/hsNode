@@ -5,6 +5,7 @@ hsNode
 [![Coverage Status](https://coveralls.io/repos/github/HelpfulScripts/hsNode/badge.svg?branch=master)](https://coveralls.io/github/HelpfulScripts/hsNode?branch=master)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.svg)](https://gruntjs.com/) 
 [![NPM License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://www.npmjs.com/package/hsnode)
+[![Known Vulnerabilities](https://snyk.io/test/github/HelpfulScripts/hsNode/badge.svg?targetFile=package.json)](https://snyk.io/test/github/HelpfulScripts/hsNode?targetFile=package.json)
 
 Helpful Scripts functions that wrap some nodejs calls in Promise wrappers.
 
