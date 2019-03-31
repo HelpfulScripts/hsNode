@@ -1,10 +1,11 @@
 /**
- * Convenience functions for http access, wrapped in Promises.
+ * Convenience functions for http and https access, wrapped in Promises.
  * - {@link hsNode.httpUtil#methods_request request}
  */
 
 /** */
 const  http =  require('http');
+const  https =  require('https');
 import { URL }          from 'url';
 import { createHash }   from 'crypto';
 import { log as gLog }  from 'hsutil';   const log = gLog('httpUtil');
@@ -192,7 +193,7 @@ function getAttributes(tag:string, result:any) {
  
 
 /**
- * sends a http get request and promises to return the result.
+ * sends a http or https get request and promises to return the result.
  * @param url the URL to pass along to the GET or POST request
  * @param user an optional user {@link Digest Digest}
  * @param postData optional data to post. If provided, a POST request will be sent instead of the default GET 
@@ -214,12 +215,16 @@ export function request(url:URL, user?:Digest, referer?:string, postData?:any):P
 }
 
 function requestOptions(options:any, user?:Digest, postData?:any):Promise<HttpResponse|string> {
+    const prot:any = {
+        'http:': http,
+        'https:': https
+    };
     let auth = (options.headers && options.headers.Authorization);
     log.debug(`requesting ${log.inspect(options, 4)}`);
     return new Promise((resolve:(out:HttpResponse)=>void, reject:(e:string)=>void) => {
         let data = ''; 
         log.debug(`sending request ${auth? 'with authorization ':''}for ${options.protocol}//${options.host}:${options.port}${options.path}`); 
-        const req = http.request(options, (res:any) => {
+        const req = prot[options.protocol].request(options, (res:any) => {
             const encoding = isBinary(res.headers['content-type'])? 'binary' : 'utf8';
             log.debug(`receiving...${res.headers['content-type']} => ${encoding}`);
             res.setEncoding(encoding);

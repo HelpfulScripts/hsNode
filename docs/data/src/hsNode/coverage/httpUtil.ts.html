@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">98.26% </span>
+        <span class="strong">98.29% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>113/115</span>
+        <span class='fraction'>115/117</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">81.25% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>106/106</span>
+        <span class='fraction'>108/108</span>
       </div>
     </div>
   </div>
@@ -317,12 +317,19 @@
 272
 273
 274
-275</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+275
+276
+277
+278
+279
+280
+281</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -532,6 +539,11 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -598,6 +610,7 @@
 &nbsp;
 /** */
 const  http =  require('http');
+const  https =  require('https');
 import { URL }          from 'url';
 import { createHash }   from 'crypto';
 import { log as gLog }  from 'hsutil';   const log = gLog('httpUtil');
@@ -806,13 +819,18 @@ export function request(url:URL, user?:Digest, referer?:string, postData?:any):P
     return requestOptions(options, user, postData);
 }
 &nbsp;
+const prot:any = {
+    'http:': http,
+    'https:': https
+};
+&nbsp;
 function requestOptions(options:any, user?:Digest, postData?:any):Promise&lt;HttpResponse|string&gt; {
     let auth = (options.headers &amp;&amp; options.headers.Authorization);
     log.debug(`requesting ${log.inspect(options, 4)}`);
     return new Promise((resolve:(out:HttpResponse)=&gt;void, reject:(e:string)=&gt;void) =&gt; {
         let data = ''; 
         log.debug(`sending request ${auth? 'with authorization ':''}for ${options.protocol}//${options.host}:${options.port}${options.path}`); 
-        const req = http.request(options, (res:any) =&gt; {
+        const req = prot[options.protocol].request(options, (res:any) =&gt; {
             const encoding = isBinary(res.headers['content-type'])? <span class="branch-0 cbranch-no" title="branch not covered" >'binary' </span>: 'utf8';
             log.debug(`receiving...${res.headers['content-type']} =&gt; ${encoding}`);
             res.setEncoding(encoding);
