@@ -2597,7 +2597,7 @@
 			},
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/httpUtil.ts",
 			"comment": {
-				"shortText": "Convenience functions for http access, wrapped in Promises.\n- {@link hsNode.httpUtil#methods_request request}"
+				"shortText": "Convenience functions for http and https access, wrapped in Promises.\n- {@link hsNode.httpUtil#methods_request request}"
 			},
 			"children": [
 				{
@@ -4634,7 +4634,7 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "sends a http get request and promises to return the result.",
+								"shortText": "sends a http or https get request and promises to return the result.",
 								"returns": "promise to provide the result of the request.\n"
 							},
 							"parameters": [
@@ -4730,21 +4730,21 @@
 					]
 				},
 				{
-					"id": 280,
+					"id": 277,
 					"name": "requestOptions",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 281,
+							"id": 278,
 							"name": "requestOptions",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 282,
+									"id": 279,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4755,7 +4755,7 @@
 									}
 								},
 								{
-									"id": 283,
+									"id": 280,
 									"name": "user",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4769,7 +4769,7 @@
 									}
 								},
 								{
-									"id": 284,
+									"id": 281,
 									"name": "postData",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4807,13 +4807,13 @@
 					"sources": [
 						{
 							"fileName": "httpUtil.ts",
-							"line": 222,
+							"line": 217,
 							"character": 23
 						}
 					]
 				},
 				{
-					"id": 285,
+					"id": 282,
 					"name": "xml2json",
 					"kind": 64,
 					"kindString": "Function",
@@ -4822,7 +4822,7 @@
 					},
 					"signatures": [
 						{
-							"id": 286,
+							"id": 283,
 							"name": "xml2json",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4832,7 +4832,7 @@
 							},
 							"parameters": [
 								{
-									"id": 287,
+									"id": 284,
 									"name": "xml",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4855,80 +4855,10 @@
 					"sources": [
 						{
 							"fileName": "httpUtil.ts",
-							"line": 256,
+							"line": 255,
 							"character": 24
 						}
 					]
-				},
-				{
-					"id": 277,
-					"name": "prot",
-					"kind": 2097152,
-					"kindString": "Object literal",
-					"flags": {
-						"isConst": true
-					},
-					"children": [
-						{
-							"id": 278,
-							"name": "http:",
-							"kind": 32,
-							"kindString": "Variable",
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "httpUtil.ts",
-									"line": 218,
-									"character": 11
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "any"
-							},
-							"defaultValue": " http"
-						},
-						{
-							"id": 279,
-							"name": "https:",
-							"kind": 32,
-							"kindString": "Variable",
-							"flags": {},
-							"sources": [
-								{
-									"fileName": "httpUtil.ts",
-									"line": 219,
-									"character": 12
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "any"
-							},
-							"defaultValue": " https"
-						}
-					],
-					"groups": [
-						{
-							"title": "Variables",
-							"kind": 32,
-							"children": [
-								278,
-								279
-							]
-						}
-					],
-					"sources": [
-						{
-							"fileName": "httpUtil.ts",
-							"line": 217,
-							"character": 10
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "object"
-					}
 				}
 			],
 			"groups": [
@@ -4967,15 +4897,8 @@
 						260,
 						257,
 						271,
-						280,
-						285
-					]
-				},
-				{
-					"title": "Object literals",
-					"kind": 2097152,
-					"children": [
-						277
+						277,
+						282
 					]
 				}
 			],
@@ -4988,7 +4911,7 @@
 			]
 		},
 		{
-			"id": 297,
+			"id": 294,
 			"name": "\"index\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -5005,7 +4928,7 @@
 			]
 		},
 		{
-			"id": 288,
+			"id": 285,
 			"name": "\"log\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -5015,7 +4938,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
 			"children": [
 				{
-					"id": 289,
+					"id": 286,
 					"name": "log",
 					"kind": 32,
 					"kindString": "Variable",
@@ -5037,21 +4960,21 @@
 					"defaultValue": " uLog('', node_logToFile, node_pathExists)"
 				},
 				{
-					"id": 293,
+					"id": 290,
 					"name": "node_logToFile",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 294,
+							"id": 291,
 							"name": "node_logToFile",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 295,
+									"id": 292,
 									"name": "filename",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5062,7 +4985,7 @@
 									}
 								},
 								{
-									"id": 296,
+									"id": 293,
 									"name": "msg",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5094,21 +5017,21 @@
 					]
 				},
 				{
-					"id": 290,
+					"id": 287,
 					"name": "node_pathExists",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 291,
+							"id": 288,
 							"name": "node_pathExists",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 292,
+									"id": 289,
 									"name": "file",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5145,15 +5068,15 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						289
+						286
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						293,
-						290
+						290,
+						287
 					]
 				}
 			],
@@ -5166,7 +5089,7 @@
 			]
 		},
 		{
-			"id": 298,
+			"id": 295,
 			"name": "\"overview\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -5195,9 +5118,9 @@
 				1,
 				10,
 				147,
-				297,
-				288,
-				298
+				294,
+				285,
+				295
 			]
 		}
 	]
