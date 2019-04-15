@@ -23,13 +23,13 @@
                 <h1>src/httpUtil.ts</h1>
                 <div class='listing'><code><p id=1 class="line"><span>&nbsp;&nbsp;&nbsp;1</span><comment>/**</comment></p>
 <p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span><comment>&nbsp;*&nbsp;Convenience&nbsp;functions&nbsp;for&nbsp;http&nbsp;and&nbsp;https&nbsp;access,&nbsp;wrapped&nbsp;in&nbsp;Promises.</comment></p>
-<p id=3 class="line"><span>&nbsp;&nbsp;&nbsp;3</span><comment>&nbsp;*&nbsp;-&nbsp;{@link&nbsp;hsNode.httpUtil#methods_request&nbsp;request}</comment></p>
+<p id=3 class="line"><span>&nbsp;&nbsp;&nbsp;3</span><comment>&nbsp;*&nbsp;-&nbsp;&nbsp;&nbsp;{@link&nbsp;hsNode.httpUtil#methods_request&nbsp;request}</comment></p>
 <p id=4 class="line"><span>&nbsp;&nbsp;&nbsp;4</span><comment>&nbsp;*/</comment></p>
 <p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span></p>
 <p id=6 class="line"><span>&nbsp;&nbsp;&nbsp;6</span><comment>/**&nbsp;*/</comment></p>
-<p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span>const&nbsp;&nbsp;http&nbsp;=&nbsp;&nbsp;require(<quote>'http'</quote>);</p>
-<p id=8 class="line"><span>&nbsp;&nbsp;&nbsp;8</span>const&nbsp;&nbsp;https&nbsp;=&nbsp;&nbsp;require(<quote>'https'</quote>);</p>
-<p id=9 class="line"><span>&nbsp;&nbsp;&nbsp;9</span>import&nbsp;{&nbsp;URL&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'url'</quote>;</p>
+<p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span><comment>//&nbsp;const&nbsp;&nbsp;http&nbsp;=&nbsp;&nbsp;require(<quote>'http'</quote>);</comment></p>
+<p id=8 class="line"><span>&nbsp;&nbsp;&nbsp;8</span><comment></comment><comment>//&nbsp;const&nbsp;&nbsp;https&nbsp;=&nbsp;&nbsp;require(<quote>'https'</quote>);</comment></p>
+<p id=9 class="line"><span>&nbsp;&nbsp;&nbsp;9</span><comment></comment>import&nbsp;{&nbsp;URL&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'url'</quote>;</p>
 <p id=10 class="line"><span>&nbsp;&nbsp;10</span>import&nbsp;{&nbsp;createHash&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'crypto'</quote>;</p>
 <p id=11 class="line"><span>&nbsp;&nbsp;11</span>import&nbsp;{&nbsp;log&nbsp;as&nbsp;gLog&nbsp;}&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;&nbsp;&nbsp;const&nbsp;log&nbsp;=&nbsp;gLog(<quote>'httpUtil'</quote>);</p>
 <p id=12 class="line"><span>&nbsp;&nbsp;12</span></p>
@@ -239,8 +239,8 @@
 <p id=216 class="line"><span>&nbsp;216</span></p>
 <p id=217 class="line"><span>&nbsp;217</span>function&nbsp;requestOptions(options:any,&nbsp;user?:Digest,&nbsp;postData?:any):Promise<HttpResponse|string>&nbsp;{</p>
 <p id=218 class="line"><span>&nbsp;218</span>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;prot:any&nbsp;=&nbsp;{</p>
-<p id=219 class="line"><span>&nbsp;219</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<quote>'http:'</quote>:&nbsp;http,</p>
-<p id=220 class="line"><span>&nbsp;220</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<quote>'https:'</quote>:&nbsp;https</p>
+<p id=219 class="line"><span>&nbsp;219</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<quote>'http:'</quote>:&nbsp;require(<quote>'http'</quote>),</p>
+<p id=220 class="line"><span>&nbsp;220</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<quote>'https:'</quote>:&nbsp;require(<quote>'https'</quote>)</p>
 <p id=221 class="line"><span>&nbsp;221</span>&nbsp;&nbsp;&nbsp;&nbsp;};</p>
 <p id=222 class="line"><span>&nbsp;222</span>&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;auth&nbsp;=&nbsp;(options.headers&nbsp;&&&nbsp;options.headers.Authorization);</p>
 <p id=223 class="line"><span>&nbsp;223</span>&nbsp;&nbsp;&nbsp;&nbsp;log.debug(`requesting&nbsp;${log.inspect(options,&nbsp;4)}`);</p>

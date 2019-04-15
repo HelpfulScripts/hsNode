@@ -356,8 +356,6 @@ FNDA:5,(anonymous_19)
 FNDA:0,(anonymous_20)
 FNDA:5,(anonymous_21)
 FNDA:4,xml2json
-DA:7,1
-DA:8,1
 DA:10,1
 DA:11,1
 DA:35,1
@@ -464,8 +462,8 @@ DA:272,1
 DA:275,1
 DA:276,1
 DA:279,4
-LF:108
-LH:108
+LF:106
+LH:106
 BRDA:51,0,0,0
 BRDA:51,0,1,1
 BRDA:64,1,0,1

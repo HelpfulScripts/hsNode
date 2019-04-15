@@ -1,11 +1,11 @@
 /**
  * Convenience functions for http and https access, wrapped in Promises.
- * - {@link hsNode.httpUtil#methods_request request}
+ * - &nbsp; {@link hsNode.httpUtil#methods_request request}
  */
 
 /** */
-const  http =  require('http');
-const  https =  require('https');
+// const  http =  require('http');
+// const  https =  require('https');
 import { URL }          from 'url';
 import { createHash }   from 'crypto';
 import { log as gLog }  from 'hsutil';   const log = gLog('httpUtil');
@@ -216,8 +216,8 @@ export function request(url:URL, user?:Digest, referer?:string, postData?:any):P
 
 function requestOptions(options:any, user?:Digest, postData?:any):Promise<HttpResponse|string> {
     const prot:any = {
-        'http:': http,
-        'https:': https
+        'http:': require('http'),
+        'https:': require('https')
     };
     let auth = (options.headers && options.headers.Authorization);
     log.debug(`requesting ${log.inspect(options, 4)}`);
