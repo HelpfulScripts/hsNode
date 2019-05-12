@@ -78,7 +78,9 @@
 33
 34
 35
-36</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+36
+37
+38</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,7 +115,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">const cp    = require('child_process');
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const cp    = require('child_process');
 &nbsp;
 /**
  * @ngdoc object
@@ -138,7 +142,7 @@
 &lt;/pre&gt;
  * @param command the shell command to execute
  * @param options the options to pass along to the shell
- * @return promise to provide the stdout and stderr streams form the child process.
+ * @return promise to provide the stdout and stderr streams from the child process.
  */
 function exec(command:string, options?:any) {
     return new Promise((resolve:(result:{stdout:string, stderr:string})=&gt;void, reject:(e:string)=&gt;void) =&gt; {
@@ -148,7 +152,9 @@ function exec(command:string, options?:any) {
     });
 }
 &nbsp;
-export { exec };</pre></td></tr>
+export const child_process = { 
+    exec: exec
+};</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->

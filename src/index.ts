@@ -1,10 +1,14 @@
 
+import * as fs              from "./fsUtil";
+import { child_process }    from "./cpUtil";
+
+export const node = { 
+    fs: fs,
+    child_process: child_process
+};
+
+export { log }      from "./log";
+
 import * as http    from "./httpUtil";
 export { http };
 
-import * as fs      from "./fsUtil";
-export { fs };
-
-export { exec }     from "./cpUtil";
-
-export { log }      from "./log";

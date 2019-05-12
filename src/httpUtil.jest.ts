@@ -4,13 +4,22 @@ import { URL }          from 'url';
 import { log as gLog }  from './log';  console.log(gLog); const log = gLog('httpUtil.jest');
 import * as httpUtil    from "./httpUtil";
 
-
 jest.mock('http');
-require('http').__setPayLoads([
+const http = require('http');
+
+const payloads = [
     { path: '/myPath?query=value', code:200, content: '<html><body id="theBody"><h1 id=main>The Content</h1>the Body<p></body></html>' },
     { path: '/myAuth', code:403, content: '<html><body><h1>403 - Forbidden</h1></body></html>' },
     { path: '/myDigest', code:401, content: '<html><body><h1>Show me the goods</h1></body></html>' },
-]);
+];
+
+http.__setPayLoads(payloads);
+
+// http.request.mockImplementation((u:URL) => {
+//     const load:any = payloads.filter(p => u.pathname === p.path);
+//     return Promise.resolve(load.content);
+// });
+
 
 describe('httpUtil', ()=>{
 
@@ -60,5 +69,24 @@ describe('httpUtil', ()=>{
                     expect(r.response.request.headers.Authorization).toMatch(/Digest realm=.+IPCamera Login.+username.+admin.+uri.+myDigest.+qop=auth.+nonce.+cc6e4ead42917cb50548b4f94b4752fd.+algorithm.+MD5.+nc=00000001/)  
         ]);
             });
+    });
+
+    describe('caching', () => {
+        it('should get online', async () => {
+            expect.assertions(2);
+            const calls = http.request.mock.calls.length;
+            const cachedGet = new httpUtil.CachedHTTPGet('./bin/cache/');
+            const pageText = await cachedGet.get('http://my.space.com/myPath?query=value', '');
+            await expect(pageText.length).toBe(78);
+            expect(http.request.mock.calls.length).toBe(calls+1);
+        });
+        it('should get cached', async () => {
+            expect.assertions(2);
+            const calls = http.request.mock.calls.length;
+            const cachedGet = new httpUtil.CachedHTTPGet('./bin/cache/');
+            const pageText = await cachedGet.get('http://my.space.com/myPath?query=value', '');
+            await expect(pageText.length).toBe(78);
+            expect(http.request.mock.calls.length).toBe(calls); // same as before
+        }); 
     });
 });

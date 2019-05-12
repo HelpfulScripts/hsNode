@@ -67,6 +67,6 @@ function request(options, callBack) {
 }
 
 http.__setPayLoads = __setPayLoads;
-http.request = request;
+http.request = jest.fn((options, callBack) => request(options, callBack));
 
 module.exports = http;

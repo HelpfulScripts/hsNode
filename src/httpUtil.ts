@@ -1,6 +1,8 @@
 /**
+ * # Utility functions for HTTP and HTTPS calls
  * Convenience functions for http and https access, wrapped in Promises.
- * - &nbsp; {@link hsNode.httpUtil#methods_request request}
+ * - &nbsp; {@link hsNode.httpUtil.request request}: sends a http or https GET or POST request
+ * - &nbsp; {@link}
  */
 
 /** */
@@ -8,10 +10,126 @@
 // const  https =  require('https');
 import { URL }          from 'url';
 import { createHash }   from 'crypto';
-import { log as gLog }  from 'hsutil';   const log = gLog('httpUtil');
+import { log as gLog }  from './log';   const log = gLog('httpUtil');
+import * as fs              from "./fsUtil";
 
 // log.level(log.DEBUG);
 
+
+/**
+ * Decodes an xm or html string into a JSON representation
+ * @param xml 
+ */
+export function xml2json(xml:string):any {
+    let result:any;
+    while(xml.length>0) {
+        let tag:any = xml.match(/<.*?>/);
+        if (tag && tag.length > 0) {
+            tag = tag[0].substring(1, tag[0].length-1);     // strip '<' and '>'
+            result = result || {};
+            tag = getAttributes(tag, result);
+            let start = xml.indexOf(`<${tag}`);
+            let end  = xml.indexOf(`</${tag}>`);
+            if (end > 0) {
+                const close = xml.indexOf('>', start);
+                let content = xml.substring(close+1, end).trim();   // remove opening and closing tag
+                result[tag] = this.xml2json(content);
+                xml = xml.substring(end+tag.length+3).trim(); 
+            } else {    // no closing tag
+                //result[tag] = {};
+                xml = xml.substring(xml.indexOf('>')+1).trim(); // remove tag
+            }
+        } else { // literal
+            result = xml.slice(0);
+            xml = '';
+        }
+    }
+    return result;
+}
+
+
+/**
+ * sends a http or https GET or POST request and promises to return the result.
+ * @param url the URL to pass along to the GET or POST request
+ * @param user an optional user {@link Digest Digest}
+ * @param postData optional data to post. If provided, a POST request will be sent instead of the default GET 
+ * @return promise to provide the result of the request.
+ */
+export function request(url:URL, user?:Digest, referer?:string, postData?:any):Promise<HttpResponse|string> {
+    let options = {
+        method:     postData? 'POST': 'GET',
+        protocol:   url.protocol,
+        host:       url.host,
+        hostname:   url.hostname,
+        port:       url.port,
+        pathname:   url.pathname,
+        path:       url.pathname + (url.search || ''),
+        headers:    <any>{ 'User-Agent': 'helpful scripts' },
+    };
+    if (referer) { options.headers.referer = referer; }
+    return requestOptions(options, user, postData);
+}
+
+
+/**
+ * Establishes a caching of retrieved sites. The class uses a cache location provided
+ * during construction. Each `get` call will return a cache for the site, if available.
+ * Otherwise, a call to the site is initiated and the result is cached at the specified location.
+ * Any returned error codes, such as 404 messages, are treated as valid responses and cached 
+ * to be returned future in future calls.
+ * 
+ * ### Usage
+ * ```
+ * const cachedGet = new CachedHTTPGet('./data/cache/');
+ * const pageText = await cachedGet.get(url, '');
+ * ```
+ */
+export class CachedHTTPGet {
+    /**
+     * Construct a cached get at a specified location int he file system.
+     * @param cacheLocation the location for the cache
+     * @param user an optional {@link Digest `Digest`} authentication information
+     */
+    constructor(public cacheLocation: string, public user?:Digest) {
+    }
+
+    //--------- private methods -------
+    private async getOnline(url:URL, fname:string) {
+        const resp:any = await request(url, this.user);
+        log.info(`requested ${url}`);
+        await fs.writeTextFile(fname, resp.data);
+        return resp.data;
+    }
+    
+    private async getOffline(fname:string) {
+        log.info(`cached '${fname}'`);
+        return await fs.readTextFile(fname);
+    }
+
+    //--------- public methods -------
+
+    /**
+     * 
+     * @param base string: the base URL to get 
+     * @param query optional string: the query part of the request: `?cmd=who&param=1` 
+     * defaults to `''`
+     * @param useCached optional boolean: if `false`, a call to `get` will ignore 
+     * any cached version of the response
+     */
+    public async get(base:string, query='', useCached=true) {
+        const url = new URL(base + query);
+        const fname = `${this.cacheLocation}${url.host}/${query===''?'_':''}`;
+        const exists = await fs.isFile(fname);
+        return (exists && useCached)? 
+            await this.getOffline(fname) : await this.getOnline(url, fname);
+    }
+}
+
+
+
+/**
+ * Describes an incoming message; used in `Digest.testDigestAuth`
+ */
 export interface IncomingMessage { 
     headers:        any;
     httpVersion:    string;
@@ -26,12 +144,20 @@ export interface IncomingMessage {
     caseless:       any;
     _headers:       any;
 }
+
+/**
+ * general HTTP response structure
+ */
 export interface HttpResponse {
     response:  any;
     data:      string;
     body?:     any;
 }
 
+
+/**
+ * Implements a Digest authentication, used in {@link request `request`} call.
+ */
 export class Digest {
     nc = 0;
     username:string;
@@ -115,6 +241,8 @@ export class Digest {
     }
 }
 
+//----------- Local functions ------------------------------
+
 function omitNull(data:any) {
     // _.omit(data, (elt) => {
     //   console.log('elt ' + elt + ' et condition : ' + elt === null);
@@ -187,33 +315,6 @@ function getAttributes(tag:string, result:any) {
     return tag;
 }
 
-
-//===============================================================================
-//  Low level Promise wrappers
- 
-
-/**
- * sends a http or https get request and promises to return the result.
- * @param url the URL to pass along to the GET or POST request
- * @param user an optional user {@link Digest Digest}
- * @param postData optional data to post. If provided, a POST request will be sent instead of the default GET 
- * @return promise to provide the result of the request.
- */
-export function request(url:URL, user?:Digest, referer?:string, postData?:any):Promise<HttpResponse|string> {
-    let options = {
-        method:     postData? 'POST': 'GET',
-        protocol:   url.protocol,
-        host:       url.host,
-        hostname:   url.hostname,
-        port:       url.port,
-        pathname:   url.pathname,
-        path:       url.pathname + (url.search || ''),
-        headers:    <any>{ 'User-Agent': 'helpful scripts' },
-    };
-    if (referer) { options.headers.referer = referer; }
-    return requestOptions(options, user, postData);
-}
-
 function requestOptions(options:any, user?:Digest, postData?:any):Promise<HttpResponse|string> {
     const prot:any = {
         'http:': require('http'),
@@ -244,37 +345,4 @@ function requestOptions(options:any, user?:Digest, postData?:any):Promise<HttpRe
             return res; 
         } 
     });
-}
-
-
-
-/**
- * Decodes an xm or html string into a JSON representation
- * @param xml 
- */
-export function xml2json(xml:string):any {
-    let result:any;
-    while(xml.length>0) {
-        let tag:any = xml.match(/<.*?>/);
-        if (tag && tag.length > 0) {
-            tag = tag[0].substring(1, tag[0].length-1);     // strip '<' and '>'
-            result = result || {};
-            tag = getAttributes(tag, result);
-            let start = xml.indexOf(`<${tag}`);
-            let end  = xml.indexOf(`</${tag}>`);
-            if (end > 0) {
-                const close = xml.indexOf('>', start);
-                let content = xml.substring(close+1, end).trim();   // remove opening and closing tag
-                result[tag] = this.xml2json(content);
-                xml = xml.substring(end+tag.length+3).trim(); 
-            } else {    // no closing tag
-                //result[tag] = {};
-                xml = xml.substring(xml.indexOf('>')+1).trim(); // remove tag
-            }
-        } else { // literal
-            result = xml.slice(0);
-            xml = '';
-        }
-    }
-    return result;
 }

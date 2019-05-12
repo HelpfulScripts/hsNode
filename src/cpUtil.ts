@@ -23,7 +23,7 @@ const cp    = require('child_process');
 </pre>
  * @param command the shell command to execute
  * @param options the options to pass along to the shell
- * @return promise to provide the stdout and stderr streams form the child process.
+ * @return promise to provide the stdout and stderr streams from the child process.
  */
 function exec(command:string, options?:any) {
     return new Promise((resolve:(result:{stdout:string, stderr:string})=>void, reject:(e:string)=>void) => {
@@ -33,4 +33,6 @@ function exec(command:string, options?:any) {
     });
 }
 
-export { exec };
+export const child_process = { 
+    exec: exec
+};
