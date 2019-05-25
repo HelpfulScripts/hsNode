@@ -2631,7 +2631,7 @@
 			"children": [
 				{
 					"id": 158,
-					"name": "CachedHTTPGet",
+					"name": "CachedHTTPRequest",
 					"kind": 128,
 					"kindString": "Class",
 					"flags": {
@@ -2639,7 +2639,7 @@
 					},
 					"comment": {
 						"shortText": "Establishes a caching of retrieved sites. The class uses a cache location provided\nduring construction. Each `get` call will return a cache for the site, if available.\nOtherwise, a call to the site is initiated and the result is cached at the specified location.\nAny returned error codes, such as 404 messages, are treated as valid responses and cached\nto be returned future in future calls.",
-						"text": "### Usage\n```\nconst cachedGet = new CachedHTTPGet('./data/cache/');\nconst pageText = await cachedGet.get(url, '');\n```\n"
+						"text": "### Usage\n```\nconst cachedGet = new CachedHTTPRequest('./data/cache/');\nconst pageText = await cachedGet.request(url, '');\n```\n"
 					},
 					"children": [
 						{
@@ -2656,7 +2656,7 @@
 							"signatures": [
 								{
 									"id": 162,
-									"name": "new CachedHTTPGet",
+									"name": "new CachedHTTPRequest",
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
@@ -2698,7 +2698,7 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "CachedHTTPGet",
+										"name": "CachedHTTPRequest",
 										"id": 158
 									}
 								}
@@ -2707,7 +2707,7 @@
 								{
 									"fileName": "httpUtil.ts",
 									"line": 87,
-									"character": 28
+									"character": 32
 								}
 							]
 						},
@@ -2971,7 +2971,7 @@
 						{
 							"fileName": "httpUtil.ts",
 							"line": 87,
-							"character": 26
+							"character": 30
 						}
 					]
 				},

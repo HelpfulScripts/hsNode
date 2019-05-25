@@ -103,11 +103,11 @@
 <p id=80 class="line"><span>&nbsp;&nbsp;80</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=81 class="line"><span>&nbsp;&nbsp;81</span><comment>&nbsp;*&nbsp;###&nbsp;Usage</comment></p>
 <p id=82 class="line"><span>&nbsp;&nbsp;82</span><comment>&nbsp;*&nbsp;```</comment></p>
-<p id=83 class="line"><span>&nbsp;&nbsp;83</span><comment>&nbsp;*&nbsp;const&nbsp;cachedGet&nbsp;=&nbsp;new&nbsp;CachedHTTPGet(<quote>'./data/cache/'</quote>);</comment></p>
-<p id=84 class="line"><span>&nbsp;&nbsp;84</span><comment>&nbsp;*&nbsp;const&nbsp;pageText&nbsp;=&nbsp;await&nbsp;cachedGet.get(url,&nbsp;<quote>''</quote>);</comment></p>
+<p id=83 class="line"><span>&nbsp;&nbsp;83</span><comment>&nbsp;*&nbsp;const&nbsp;cachedGet&nbsp;=&nbsp;new&nbsp;CachedHTTPRequest(<quote>'./data/cache/'</quote>);</comment></p>
+<p id=84 class="line"><span>&nbsp;&nbsp;84</span><comment>&nbsp;*&nbsp;const&nbsp;pageText&nbsp;=&nbsp;await&nbsp;cachedGet.request(url,&nbsp;<quote>''</quote>);</comment></p>
 <p id=85 class="line"><span>&nbsp;&nbsp;85</span><comment>&nbsp;*&nbsp;```</comment></p>
 <p id=86 class="line"><span>&nbsp;&nbsp;86</span><comment>&nbsp;*/</comment></p>
-<p id=87 class="line"><span>&nbsp;&nbsp;87</span>export&nbsp;class&nbsp;CachedHTTPGet&nbsp;{</p>
+<p id=87 class="line"><span>&nbsp;&nbsp;87</span>export&nbsp;class&nbsp;CachedHTTPRequest&nbsp;{</p>
 <p id=88 class="line"><span>&nbsp;&nbsp;88</span>&nbsp;&nbsp;&nbsp;&nbsp;<comment>/**</comment></p>
 <p id=89 class="line"><span>&nbsp;&nbsp;89</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Construct&nbsp;a&nbsp;cached&nbsp;get&nbsp;at&nbsp;a&nbsp;specified&nbsp;location&nbsp;int&nbsp;he&nbsp;file&nbsp;system.</comment></p>
 <p id=90 class="line"><span>&nbsp;&nbsp;90</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;cacheLocation&nbsp;the&nbsp;location&nbsp;for&nbsp;the&nbsp;cache</comment></p>

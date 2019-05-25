@@ -75,7 +75,7 @@ describe('httpUtil', ()=>{
         it('should request online', async () => {
             expect.assertions(2);
             const calls = http.request.mock.calls.length;
-            const cachedGet = new httpUtil.CachedHTTPGet('./bin/cache/');
+            const cachedGet = new httpUtil.CachedHTTPRequest('./bin/cache/');
             const pageText = await cachedGet.request(new URL('http://my.space.com/myPath?query=value'));
             await expect(pageText.length).toBe(78);
             expect(http.request.mock.calls.length).toBe(calls+1);
@@ -83,7 +83,7 @@ describe('httpUtil', ()=>{
         it('should request cached', async () => {
             expect.assertions(2);
             const calls = http.request.mock.calls.length;
-            const cachedGet = new httpUtil.CachedHTTPGet('./bin/cache/');
+            const cachedGet = new httpUtil.CachedHTTPRequest('./bin/cache/');
             const pageText = await cachedGet.request(new URL('http://my.space.com/myPath?query=value'));
             await expect(pageText.length).toBe(78);
             expect(http.request.mock.calls.length).toBe(calls); // same as before
