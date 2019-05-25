@@ -32,8 +32,9 @@ log.info('running');
 ### http functions: 
 ```
 import { http } from 'hsnode';
-const log = gLog('vba');
-log.info('running');
+const cache = new CachedHTTPRequest('./cacheDir/');
+const url = new URL('http://mysite.com/');
+cache.request(url);
 */
 
 /** */

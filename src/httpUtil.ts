@@ -3,6 +3,14 @@
  * Convenience functions for http and https access, wrapped in Promises.
  * - &nbsp; {@link httpUtil.request request}: sends a http or https GET or POST request
  * - &nbsp; {@link httpUtil.CachedHTTPGet CachedHTTPGet}: used for cached requests
+ * 
+ * ### Usage:
+ * ```
+ * import { http } from 'hsnode';
+ * const cache = new CachedHTTPRequest('./cacheDir/');
+ * const url = new URL('http://mysite.com/');
+ * cache.request(url);
+ * ```
  */
 
 /** */

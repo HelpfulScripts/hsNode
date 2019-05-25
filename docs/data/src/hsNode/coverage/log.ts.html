@@ -80,7 +80,15 @@
 35
 36
 37
-38</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+38
+39
+40
+41
+42</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,15 +132,19 @@
  * by adding a log file hook.
  * 
  * ### Using a log file
- * &lt;pre&gt;
+ * ```
+ * import { log as gLog } from 'hsnode';
+ * const log = gLog('mymodule');  // optional, to use a module specific log; otherwise uses the global instance
  * log.format('%MM%DD');
  * log.info('by the way:'); // -&gt; 0817 info by the way:
  * log.logFile('l%YY%MM');  // -&gt; 0817 info now logging to file l1608.txt
  * log.logFile(null);       // -&gt; 0817 disabling logfile
  * log.error('oh dear!');   // -&gt; 0817 error *** oh dear!
- * &lt;/pre&gt;
+ * ```
  * 
  */
+&nbsp;
+ /** */
 &nbsp;
 export { LogType }              from 'hsutil';
 import { log as uLog, LogType } from 'hsutil';

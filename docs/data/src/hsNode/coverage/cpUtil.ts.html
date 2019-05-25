@@ -73,7 +73,14 @@
 28
 29
 30
-31</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+31
+32
+33
+34
+35
+36
+37
+38</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -83,6 +90,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -103,16 +117,23 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const cp = require('child_process');
-&nbsp;
-/**
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * Convenience functions for child process access, wrapped in Promises.
- * - &amp;nbsp; {@link exec exec}
+ * 
+ * ### Usage:
+ * ```
+ * import { node } from 'hsnode';
+ * node.child_process.exec('ls')
+ *     .then((stdout, stderr) =&gt; {...})
+ *     .catch(err =&gt; {...});
+ * ```
  */
 &nbsp;
  /**
   * 
   */
+&nbsp;
+const cp = require('child_process');
 &nbsp;
 export const child_process = { 
     /**

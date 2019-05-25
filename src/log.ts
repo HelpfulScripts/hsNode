@@ -5,15 +5,19 @@
  * by adding a log file hook.
  * 
  * ### Using a log file
- * <pre>
+ * ```
+ * import { log as gLog } from 'hsnode';
+ * const log = gLog('mymodule');  // optional, to use a module specific log; otherwise uses the global instance
  * log.format('%MM%DD');
  * log.info('by the way:'); // -> 0817 info by the way:
  * log.logFile('l%YY%MM');  // -> 0817 info now logging to file l1608.txt
  * log.logFile(null);       // -> 0817 disabling logfile
  * log.error('oh dear!');   // -> 0817 error *** oh dear!
- * </pre>
+ * ```
  * 
  */
+
+ /** */
 
 export { LogType }              from 'hsutil';
 import { log as uLog, LogType } from 'hsutil';

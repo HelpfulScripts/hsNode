@@ -1,13 +1,20 @@
-const cp = require('child_process');
-
 /**
  * Convenience functions for child process access, wrapped in Promises.
- * - &nbsp; {@link exec exec}
+ * 
+ * ### Usage:
+ * ```
+ * import { node } from 'hsnode';
+ * node.child_process.exec('ls')
+ *     .then((stdout, stderr) => {...})
+ *     .catch(err => {...});
+ * ```
  */
 
  /**
   * 
   */
+
+const cp = require('child_process');
 
 export const child_process = { 
     /**

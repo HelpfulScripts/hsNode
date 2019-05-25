@@ -1,4 +1,20 @@
-const fs = require('fs');
+/**
+ * Convenience functions for node file system functions, wrapped in Promises.
+ * 
+ * ### Usage:
+ * ```
+ * import { node } from 'hsnode';
+ * const files = node.fs.readDir('./');
+ *     .then((stdout, stderr) => {...})
+ *     .catch(err => {...});
+ * ```
+ */
+
+ /**
+  * 
+  */
+
+  const fs = require('fs');
 import * as path        from 'path';
 import { promiseChain } from 'hsutil';
 import { log as gLog}   from 'hsutil';  const log = gLog('fsUtil'); // avoid circular reference to ./log

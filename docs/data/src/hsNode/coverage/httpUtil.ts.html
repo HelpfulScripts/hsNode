@@ -388,7 +388,23 @@
 343
 344
 345
-346</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+346
+347
+348
+349
+350
+351
+352
+353
+354</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -738,6 +754,14 @@
  * Convenience functions for http and https access, wrapped in Promises.
  * - &amp;nbsp; {@link httpUtil.request request}: sends a http or https GET or POST request
  * - &amp;nbsp; {@link httpUtil.CachedHTTPGet CachedHTTPGet}: used for cached requests
+ * 
+ * ### Usage:
+ * ```
+ * import { http } from 'hsnode';
+ * const cache = new CachedHTTPRequest('./cacheDir/');
+ * const url = new URL('http://mysite.com/');
+ * cache.request(url);
+ * ```
  */
 &nbsp;
 /** */
