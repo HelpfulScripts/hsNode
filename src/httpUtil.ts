@@ -1,8 +1,8 @@
 /**
  * # Utility functions for HTTP and HTTPS calls
  * Convenience functions for http and https access, wrapped in Promises.
- * - &nbsp; {@link hsNode.httpUtil.request request}: sends a http or https GET or POST request
- * - &nbsp; {@link}
+ * - &nbsp; {@link httpUtil.request request}: sends a http or https GET or POST request
+ * - &nbsp; {@link httpUtil.CachedHTTPGet CachedHTTPGet}: used for cached requests
  */
 
 /** */
@@ -94,15 +94,15 @@ export class CachedHTTPGet {
     }
 
     //--------- private methods -------
-    private async getOnline(url:URL, fname:string) {
+    private async requestOnline(url:URL, fname:string) {
         const resp:any = await request(url, this.user);
         log.info(`requested ${url}`);
         await fs.writeTextFile(fname, resp.data);
         return resp.data;
     }
     
-    private async getOffline(fname:string) {
-        log.info(`cached '${fname}'`);
+    private async requestOffline(fname:string) {
+        log.info(`get cached '${fname}'`);
         return await fs.readTextFile(fname);
     }
 
@@ -110,18 +110,15 @@ export class CachedHTTPGet {
 
     /**
      * 
-     * @param base string: the base URL to get 
-     * @param query optional string: the query part of the request: `?cmd=who&param=1` 
-     * defaults to `''`
-     * @param useCached optional boolean: if `false`, a call to `get` will ignore 
+     * @param url the URL to request, supports GET and POST
+     * @param useCached optional boolean: if `false`, a call to `request` will ignore 
      * any cached version of the response
      */
-    public async get(base:string, query='', useCached=true) {
-        const url = new URL(base + query);
-        const fname = `${this.cacheLocation}${url.host}/${query===''?'_':''}`;
+    public async request(url:URL, useCached=true) {
+        const fname = `${this.cacheLocation}${url.host}/${url.pathname}${url.search}`;
         const exists = await fs.isFile(fname);
         return (exists && useCached)? 
-            await this.getOffline(fname) : await this.getOnline(url, fname);
+            await this.requestOffline(fname) : await this.requestOnline(url, fname);
     }
 }
 

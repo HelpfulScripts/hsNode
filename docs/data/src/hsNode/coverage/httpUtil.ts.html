@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">98.46% </span>
+        <span class="strong">98.44% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>128/130</span>
+        <span class='fraction'>126/128</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">80.36% </span>
+        <span class="strong">83.02% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>45/56</span>
+        <span class='fraction'>44/53</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">96.3% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>120/120</span>
+        <span class='fraction'>118/118</span>
       </div>
     </div>
   </div>
@@ -388,10 +388,7 @@
 343
 344
 345
-346
-347
-348
-349</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+346</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -401,7 +398,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -508,9 +505,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -742,8 +736,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * # Utility functions for HTTP and HTTPS calls
  * Convenience functions for http and https access, wrapped in Promises.
- * - &amp;nbsp; {@link hsNode.httpUtil.request request}: sends a http or https GET or POST request
- * - &amp;nbsp; {@link}
+ * - &amp;nbsp; {@link httpUtil.request request}: sends a http or https GET or POST request
+ * - &amp;nbsp; {@link httpUtil.CachedHTTPGet CachedHTTPGet}: used for cached requests
  */
 &nbsp;
 /** */
@@ -835,15 +829,15 @@ export class CachedHTTPGet {
     }
 &nbsp;
     //--------- private methods -------
-    private async getOnline(url:URL, fname:string) {
+    private async requestOnline(url:URL, fname:string) {
         const resp:any = await request(url, this.user);
         log.info(`requested ${url}`);
         await fs.writeTextFile(fname, resp.data);
         return resp.data;
     }
     
-    private async getOffline(fname:string) {
-        log.info(`cached '${fname}'`);
+    private async requestOffline(fname:string) {
+        log.info(`get cached '${fname}'`);
         return await fs.readTextFile(fname);
     }
 &nbsp;
@@ -851,18 +845,15 @@ export class CachedHTTPGet {
 &nbsp;
     /**
      * 
-     * @param base string: the base URL to get 
-     * @param query optional string: the query part of the request: `?cmd=who&amp;param=1` 
-     * defaults to `''`
-     * @param useCached optional boolean: if `false`, a call to `get` will ignore 
+     * @param url the URL to request, supports GET and POST
+     * @param useCached optional boolean: if `false`, a call to `request` will ignore 
      * any cached version of the response
      */
-    public async get(base:string, query=<span class="branch-0 cbranch-no" title="branch not covered" >'',</span> useCached=true) {
-        const url = new URL(base + query);
-        const fname = `${this.cacheLocation}${url.host}/${query===''?'_':<span class="branch-1 cbranch-no" title="branch not covered" >''}</span>`;
+    public async request(url:URL, useCached=true) {
+        const fname = `${this.cacheLocation}${url.host}/${url.pathname}${url.search}`;
         const exists = await fs.isFile(fname);
         return (exists &amp;&amp; useCached)? 
-            await this.getOffline(fname) : await this.getOnline(url, fname);
+            await this.requestOffline(fname) : await this.requestOnline(url, fname);
     }
 }
 &nbsp;
