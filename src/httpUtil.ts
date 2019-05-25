@@ -80,11 +80,11 @@ export function request(url:URL, user?:Digest, referer?:string, postData?:any):P
  * 
  * ### Usage
  * ```
- * const cachedGet = new CachedHTTPGet('./data/cache/');
- * const pageText = await cachedGet.get(url, '');
+ * const cachedGet = new CachedHTTPRequest('./data/cache/');
+ * const pageText = await cachedGet.request(url, '');
  * ```
  */
-export class CachedHTTPGet {
+export class CachedHTTPRequest {
     /**
      * Construct a cached get at a specified location int he file system.
      * @param cacheLocation the location for the cache
