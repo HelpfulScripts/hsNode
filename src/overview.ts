@@ -15,26 +15,26 @@ ___
 - &nbsp; {@link log log} logging support with per-module prefixes
 
 ## Accessing the library functions:
-### Node.js wrappers: 
+```
+import * as hsNode from 'hsnode';
+const log = hsNode.log('myModule');
+const fs = hsNode.fs;
+const exec = hsNode.chid_process.exec;
+```
+or access submodules individually:
 ```
 import { node } from 'hsnode';
-const files = node.fs.readDir('./');
-node.child_process.exec('ls')
-    .then((stdout, stderr) => {...})
-    .catch(err => {...});
-```
-### log functions: 
-```
+const fs = node.fs
+
 import { log as gLog } from 'hsnode';
-const log = gLog('vba');
+const log = gLog('myModule');
 log.info('running');
-```
-### http functions: 
-```
+
 import { http } from 'hsnode';
 const cache = new CachedHTTPRequest('./cacheDir/');
 const url = new URL('http://mysite.com/');
 cache.request(url);
+```
 */
 
 /** */
