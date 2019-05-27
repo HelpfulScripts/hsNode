@@ -80,11 +80,7 @@
 35
 36
 37
-38
-39
-40
-41
-42</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+38</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -121,10 +117,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">44x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * Logging convenience functions.
  * ## Usage
@@ -154,17 +146,13 @@ import { appendFile }           from './fsUtil';
 &nbsp;
 export const log:LogType = uLog('', node_logToFile, node_pathExists);
 &nbsp;
-function node_pathExists(file:string):Promise&lt;boolean&gt; {
+async function node_pathExists(file:string):Promise&lt;boolean&gt; {
     const dir = dirname(normalize(file));
-    return pathExists(dir);
+    return await pathExists(dir);
 }
 &nbsp;
-function node_logToFile(filename:string, msg:string):Promise&lt;string&gt; {
-    return appendFile(filename, msg+'\n');
-    // .catch(e =&gt; { 
-    //     console.log(`error appending '${msg}' to file ${log.logFile()} | ${filename}: ${e}`); 
-    //     return msg;
-    // });
+async function node_logToFile(filename:string, msg:string):Promise&lt;string&gt; {
+    return await appendFile(filename, msg+'\n');
 }
 &nbsp;</pre></td></tr>
 </table></pre>

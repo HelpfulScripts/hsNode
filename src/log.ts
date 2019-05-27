@@ -27,15 +27,11 @@ import { appendFile }           from './fsUtil';
 
 export const log:LogType = uLog('', node_logToFile, node_pathExists);
 
-function node_pathExists(file:string):Promise<boolean> {
+async function node_pathExists(file:string):Promise<boolean> {
     const dir = dirname(normalize(file));
-    return pathExists(dir);
+    return await pathExists(dir);
 }
 
-function node_logToFile(filename:string, msg:string):Promise<string> {
-    return appendFile(filename, msg+'\n');
-    // .catch(e => { 
-    //     console.log(`error appending '${msg}' to file ${log.logFile()} | ${filename}: ${e}`); 
-    //     return msg;
-    // });
+async function node_logToFile(filename:string, msg:string):Promise<string> {
+    return await appendFile(filename, msg+'\n');
 }
