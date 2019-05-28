@@ -14,7 +14,7 @@
   * 
   */
 
-  const fs = require('fs');
+const fs = require('fs');
 import * as path        from 'path';
 import { promiseChain } from 'hsutil';
 import { log as gLog}   from 'hsutil';  const log = gLog('fsUtil'); // avoid circular reference to ./log
