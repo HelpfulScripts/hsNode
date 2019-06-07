@@ -26,6 +26,7 @@ import { pathExists }           from './fsUtil';
 import { appendFile }           from './fsUtil';
 
 export const log:LogType = uLog('', node_logToFile, node_pathExists);
+log.config({colors:true});
 
 async function node_pathExists(file:string):Promise<boolean> {
     const dir = dirname(normalize(file));

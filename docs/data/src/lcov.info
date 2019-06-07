@@ -557,8 +557,8 @@ BRH:0
 end_of_record
 TN:
 SF:/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts
-FN:30,node_pathExists
-FN:35,node_logToFile
+FN:31,node_pathExists
+FN:36,node_logToFile
 FNF:2
 FNH:2
 FNDA:1,node_pathExists
@@ -568,11 +568,12 @@ DA:24,4
 DA:25,4
 DA:26,4
 DA:28,4
-DA:31,1
+DA:29,4
 DA:32,1
-DA:36,44
-LF:8
-LH:8
+DA:33,1
+DA:37,44
+LF:9
+LH:9
 BRF:0
 BRH:0
 end_of_record

@@ -5603,7 +5603,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 35,
+							"line": 36,
 							"character": 29
 						}
 					]
@@ -5649,7 +5649,7 @@
 					"sources": [
 						{
 							"fileName": "log.ts",
-							"line": 30,
+							"line": 31,
 							"character": 30
 						}
 					]
