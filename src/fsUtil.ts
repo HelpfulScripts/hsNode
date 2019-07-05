@@ -14,10 +14,10 @@
   * 
   */
 
-const fs = require('fs');
+import * as fs from 'fs';
 import * as path        from 'path';
 import { promiseChain } from 'hsutil';
-import { log as gLog}   from 'hsutil';  const log = gLog('fsUtil'); // avoid circular reference to ./log
+import { log as _log}   from 'hsnode';  const log = _log('fsUtil');
 
 /**
  * Convenience functions for file system access, wrapped in Promises.
@@ -38,52 +38,54 @@ import { log as gLog}   from 'hsutil';  const log = gLog('fsUtil'); // avoid cir
  * - &nbsp;{@link hsNode.fsUtil.remove remove}
  */
 
- export interface Stats {
-    path:       string;     // path to the file
-    device:     any;        // ID of device containing file
-    iNode:      number;     // Inode number 
-    type:       number;     // File type and mode 
-    numLinks:   number;     // Number of hard links 
-    userID:     string;     // User ID of owner 
-    groupID:    string;     // Group ID of owner 
-    deviceID:   string;     // Device ID (if special file) 
-    totalSize:  number;     // Total size, in bytes 
-    blockSize:  number;     // Block size for filesystem I/O 
-    numBlocks:  number;     // Number of 512B blocks allocated 
-    accessTime:       any;  // Time of last access
-    modifyTime:       any;  // Time of last modification
-    statusChangeTime: any;  // Time of last status change     
- }
+//  export interface Stats {
+//     path:       string;     // path to the file
+//     device:     any;        // ID of device containing file
+//     iNode:      number;     // Inode number 
+//     type:       number;     // File type and mode 
+//     numLinks:   number;     // Number of hard links 
+//     userID:     string;     // User ID of owner 
+//     groupID:    string;     // Group ID of owner 
+//     deviceID:   string;     // Device ID (if special file) 
+//     totalSize:  number;     // Total size, in bytes 
+//     blockSize:  number;     // Block size for filesystem I/O 
+//     numBlocks:  number;     // Number of 512B blocks allocated 
+//     accessTime:       any;  // Time of last access
+//     modifyTime:       any;  // Time of last modification
+//     statusChangeTime: any;  // Time of last status change     
+//  }
 
 //===============================================================================
 //  Low level Promise wrappers
 
-function stat(thePath:string):Promise<Stats> {
-	return Promise.resolve(thePath)
-        .then(realPath)
-		.then(thePath => new Promise((resolve:(value:Stats)=>void, reject) => {
-			fs.stat(thePath, (err:any, stats:Stats) => {
-				if(err) { reject(err); } // reject is hard to test: realpath throws an error before stat can.
-				else { 
-					stats.path = thePath;
-					resolve(stats); 
-				}
-			});
-		}));
+/**
+ * returns a promise for the stats of the file addressed by `thePath`.
+ * If `thePath` addresses a symbolic link, the stats of the linked file are returned.
+ * @param thePath 
+ */
+async function stat(thePath:string):Promise<fs.Stats> {
+    const p = await realPath(thePath);
+    return await new Promise((resolve, reject) => {
+        fs.stat(p, (err:any, stats:fs.Stats) => {
+            if(err) { 
+                log.error(`error getting stats for ${thePath}: ${err}`);
+                reject(err); 
+            } // reject is hard to test: realpath throws an error before stat can.
+            else { resolve(stats); }
+        });
+    });
 }
 
-function lstat(thePath:string) {
-	return Promise.resolve(thePath)
-		.then(path.normalize)
-		.then(thePath => new Promise((resolve, reject) => {
-			fs.lstat(thePath, (err:any, stats:any) => {
-				if(err) { reject(err); }
-				else    { 
-					stats.path = thePath;
-					resolve(stats); 
-				}
-			});
-		}));
+/**
+ * returns a promise for the stats of the file addressed by `thePath`.
+ * If `thePath` addresses a symbolic link, the stats of the link are returned.
+ * @param thePath 
+ */
+async function lstat(thePath:string):Promise<fs.Stats> {
+    const p = path.normalize(thePath);
+	return new Promise((resolve, reject) => 
+        fs.lstat(p, (err:any, stats:any) => err? reject(err) : resolve(stats))
+	);
 }
 
 function error(err:any):any {
@@ -111,10 +113,13 @@ export function realPath(thePath:string):Promise<string> {
  * @param thePath the path to check
  * @return promise to provide `true` or `false`
  */
-export function pathExists(thePath:string):Promise<boolean> {
-	return new Promise((resolve) => {
-        stat(thePath).then((stats:any) => resolve(true)).catch(() => resolve(false));
-    });
+export async function pathExists(thePath:string):Promise<boolean> {
+    try { 
+        await stat(thePath);
+        return true;
+    } catch(e) {
+        return false;
+    }
 }
 
 /**
@@ -122,10 +127,12 @@ export function pathExists(thePath:string):Promise<boolean> {
  * @param thePath the path to check
  * @return promise to provide `true` or `false`
  */
-export function isFile(thePath:string):Promise<boolean> {
-	return new Promise((resolve) => {
-        stat(thePath).then((stats:any) => resolve(stats.isFile())).catch(() => resolve(false));
-    });
+export async function isFile(thePath:string):Promise<boolean> {
+    try { 
+        return (await stat(thePath)).isFile();
+    } catch(e) {
+        return false;
+    }
 }
 
 /**
@@ -133,10 +140,12 @@ export function isFile(thePath:string):Promise<boolean> {
  * @param thePath the path to check
  * @return promise to provide `true` or `false`
  */
-export function isDirectory(thePath:string):Promise<boolean> {
-	return new Promise((resolve) => {
-        stat(thePath).then((stats:any) => resolve(stats.isDirectory())).catch(() => resolve(false));
-    });
+export async function isDirectory(thePath:string):Promise<boolean> {
+    try { 
+        return (await stat(thePath)).isDirectory();
+    } catch(e) {
+        return false;
+    }
 }
 
 /**
@@ -144,10 +153,12 @@ export function isDirectory(thePath:string):Promise<boolean> {
  * @param thePath the path to check
  * @return promise to provide `true` or `false`
  */ 
-export function isLink(thePath:string):Promise<boolean> {
-	return new Promise((resolve) => {
-        lstat(thePath).then((stats:any) => resolve(stats.isSymbolicLink())).catch(() => resolve(false));
-    });
+export async function isLink(thePath:string):Promise<boolean> {
+    try { 
+        return (await lstat(thePath)).isSymbolicLink();
+    } catch(e) {
+        return false;
+    }
 }
 
 /**
@@ -203,19 +214,18 @@ export function mkdirs(thePath:string):Promise<string> {
  * @param thePath the path to check
  * @return promise to provide a list of directory entries.
  */
-export function readDir(thePath:string):Promise<string[]> {
-	return Promise.resolve(thePath)
-		.then(realPath)
-		.then(thePath => new Promise((resolve:(files:any)=>void, reject:(err:any)=>void) => {
-			fs.readdir(thePath, (err:any, files:any) =>  {
-				if(err) { reject(err); }
-				else { 
-					files.path = thePath;
-					resolve(files); 
-				}
-			});
-		}))
-        .catch(error);
+export async function readDir(thePath:string):Promise<string[]> {
+    const p = await realPath(thePath);
+    return await new Promise((resolve:(files:any)=>void, reject:(err:any)=>void) => {
+        fs.readdir(p, (err:any, files:any) =>  {
+            if(err) { reject(err); }
+            else { 
+                files.path = p;
+                resolve(files); 
+            }
+        });
+    })
+    .catch(error);
 }
 
 
@@ -228,10 +238,8 @@ export function readDir(thePath:string):Promise<string[]> {
 export function readFile(thePath:string, isText=true):Promise<any> {
 	return new Promise((resolve:(data:any)=>void, reject:(err:any)=>void) => {
 		let encoding = isText? 'utf8' : {};
-		fs.readFile(thePath, encoding, (err:any, data:any) => {
-            if (err) { reject(err); }
-            else { resolve(data); }
-		});
+		fs.readFile(thePath, encoding, (err:any, data:any) => 
+            err? reject(err) : resolve(data));
 	})
     .catch(error);
 }
@@ -241,9 +249,9 @@ export function readFile(thePath:string, isText=true):Promise<any> {
  * @param thePath the path to read
  * @return promise to provide file content.
  */
-export function readTextFile(thePath:string):Promise<string> { 
-	return readFile(thePath, true)
-    .catch(error);
+export async function readTextFile(thePath:string):Promise<string> { 
+	try { return await readFile(thePath, true); }
+    catch(err) { error(err); }
 }
 
 /**
@@ -251,10 +259,12 @@ export function readTextFile(thePath:string):Promise<string> {
  * @param thePath the path to read
  * @return promise to provide file content.
  */
-export function readJsonFile(thePath:string):Promise<any> {
-    return readFile(thePath, true)
-	.then((data:any) => (typeof data === 'string')? JSON.parse(data) : data)
-    .catch(error);
+export async function readJsonFile(thePath:string):Promise<any> {
+    try {
+        const data = await readFile(thePath, true);
+        return (typeof data === 'string')? JSON.parse(data) : data;
+    }
+    catch(err) { error(err); }
 }
 
 /**
@@ -264,16 +274,14 @@ export function readJsonFile(thePath:string):Promise<any> {
  * @param isText `true`|`false` if file should be read as `utf8`|binary 
  * @return promise to provide the file name if successful.
  */
-export function writeFile(thePath:string, content:string, isText:boolean=true):Promise<string> {
-	return new Promise((resolve, reject) => {
-        var encoding:any = isText? 'utf8' : {encoding: null};
-        mkdirs(path.dirname(thePath))
-        .then(() => fs.writeFile(thePath, content, encoding, (err:any) => 
-            err? reject(err) : resolve(thePath))
-        ).catch(err => log.error(`mkdirs failed in writeFile for '${thePath}': ${err}`));
-	})
-    .catch(error);
-};
+export async function writeFile(thePath:string, content:string, isText:boolean=true):Promise<string> {
+    var encoding:any = isText? 'utf8' : {encoding: null};
+    await mkdirs(path.dirname(thePath));
+    return await new Promise((resolve, reject) => {
+        fs.writeFile(thePath, content, encoding, (err:any) =>
+            err? reject(`mkdirs failed in writeFile for '${thePath}': ${err}`) : resolve(thePath));
+    }); 
+}
 
 /**
  * writes content to a file as a stream and promises to return the file name.
@@ -281,14 +289,13 @@ export function writeFile(thePath:string, content:string, isText:boolean=true):P
  * @param content the content to write
  * @return promise to provide the file name if successful.
  */
-export function writeStream(thePath:string, content:string):Promise<string> {
-	return new Promise((resolve, reject) => {
-        let s = fs.createWriteStream(thePath, {flags:'w', mode:0o666});
-        s.on('error', (src:any) => reject(src));
+export async function writeStream(thePath:string, content:string):Promise<string> {
+    return await new Promise((resolve, reject) => {
+        const s = fs.createWriteStream(thePath, {flags:'w', mode:0o666});
+        s.on('error', (src:any) => reject(`writeStream error '${src}' for path '${thePath}'`));
         s.write(content, 'binary', () => resolve(thePath));
         s.end();
-	})
-    .catch(error);
+    });
 }
 
 /**
@@ -296,10 +303,10 @@ export function writeStream(thePath:string, content:string):Promise<string> {
  * @param thePath the path to write
  * @return promise to provide the file name if successful.
  */
-export function writeTextFile(thePath:string, content:string):Promise<string> { 
-	return writeFile(thePath, content, true)
+export async function writeTextFile(thePath:string, content:string):Promise<string> { 
+	return await writeFile(thePath, content, true)
     .catch(error);
-};
+}
 
 /**
  * writes a text file and promises to return the file name.
@@ -307,10 +314,10 @@ export function writeTextFile(thePath:string, content:string):Promise<string> {
  * @param obj the object to write
  * @return promise to provide the file name if successful.
  */
-export function writeJsonFile(thePath:string, obj:any):Promise<string> {
-    return Promise.resolve(obj)
+export async function writeJsonFile(thePath:string, obj:any):Promise<string> {
+    return await Promise.resolve(obj)
 	.then(JSON.stringify)
-	.then(data => writeTextFile(thePath, data))
+	.then(async data => await writeTextFile(thePath, data))
     .catch(error);
 }
 
@@ -321,8 +328,8 @@ export function writeJsonFile(thePath:string, obj:any):Promise<string> {
  * @param isText `true`|`false` if file should be read as `utf8`|binary 
  * @return promise to provide the realPath of the file written to.
  */
-export function appendFile(thePath:string, content:string, isText:boolean=true):Promise<string> {
-	return new Promise((resolve, reject) => {
+export async function appendFile(thePath:string, content:string, isText:boolean=true):Promise<string> {
+	return await new Promise((resolve, reject) => {
 		var encoding:any = isText? 'utf8' : {encoding: null};
         fs.appendFile(thePath, content, encoding, (err:any) => err? reject(err) : resolve(thePath));
     })
@@ -335,12 +342,10 @@ export function appendFile(thePath:string, content:string, isText:boolean=true):
  * @param thePath the path to write
  * @return promise to provide the name of the removed file.
  */
-export function remove(thePath:string):Promise<string> {
-	return new Promise((resolve:(path:string)=>void, reject:(err:any)=>void) => {
-        isDirectory(thePath).then((dir:boolean) => {
-            dir? fs.rmdir(thePath, (e:any) => (e? reject(e) : resolve(thePath)))
-               : fs.unlink(thePath, (e:any) => (e? reject(e) : resolve(thePath)));
-        });
-	})
-    .catch(error);
+export async function remove(thePath:string):Promise<string> {
+    const dir:boolean = await isDirectory(thePath);
+	return await new Promise((resolve, reject) => {
+        dir? fs.rmdir(thePath, (e:any) => (e? reject(e) : resolve(thePath)))
+           : fs.unlink(thePath, (e:any) => (e? reject(e) : resolve(thePath)));
+	});
 }

@@ -14,7 +14,7 @@
   * 
   */
 
-const cp = require('child_process');
+import * as cp  from 'child_process';
 
 export const child_process = { 
     /**
@@ -31,7 +31,7 @@ export const child_process = {
     */
     exec: (command:string, options?:any):Promise<{stdout:any, stderr:any}> => 
         new Promise((resolve:(result:{stdout:string, stderr:string})=>void, reject:(e:string)=>void) =>
-            cp.exec(command, options, (error:string, stdout:string, stderr:string) => {
+            cp.exec(command, options, (error:any, stdout:string, stderr:string) => {
                 error? reject(error) : resolve({stdout:stdout, stderr:stderr});
             })
         )

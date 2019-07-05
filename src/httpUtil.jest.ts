@@ -1,7 +1,7 @@
 // const  http =  require('http'); 
 
 import { URL }          from 'url';
-import { log as gLog }  from './log';  console.log(gLog); const log = gLog('httpUtil.jest');
+import { log as gLog }  from './log';  const log = gLog('httpUtil.jest');
 import * as httpUtil    from "./httpUtil";
 
 jest.mock('http');
