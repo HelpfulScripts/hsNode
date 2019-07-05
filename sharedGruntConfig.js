@@ -11,13 +11,14 @@ function hsCamelCase(name) {
 }
 
 const webpackExternals = {
-    d3: 'd3',
-    d3Axis: 'd3-axis',
-    fs: 'fs',                       // node.fs
-    path: 'path',                   // node.path
-    url: 'url',                     // node.url
-    crypto: 'crypto',               // node.crypto
-    child_process: 'child_process'  // node.child_process
+    d3:             'd3',
+    d3Axis:         'd3-axis',
+    fs:             'fs',           // node.fs
+    path:           'path',         // node.path
+    url:            'url',          // node.url
+    http:           'http',         // node.http
+    crypto:         'crypto',       // node.crypto
+    child_process:  'child_process' // node.child_process
 };
 
 module.exports = (grunt, dir, dependencies, type, lib) => {
@@ -58,7 +59,7 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
     grunt.registerTask('build-js',      ['tslint:src', 'ts:src']);
     // grunt.registerTask('build-spec',    ['tslint:spec', 'ts:test']);    
     grunt.registerTask('build-base',    ['clean:dist', 'build-html', 'build-css', 'copy:bin', 'copy:example']);
-    grunt.registerTask('buildMin',      ['build-base', 'build-js', 'webpack:appProd', 'doc', 'test', 'coveralls']);
+    grunt.registerTask('buildMin',      ['build-base', 'build-js', 'webpack:appDev', 'webpack:appProd', 'doc', 'test', 'coveralls']);
     grunt.registerTask('buildDev',      ['build-base', 'build-js', 'webpack:appDev']);
 
     //------ Entry-point MultiTasks
@@ -129,8 +130,6 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
                     src:['**/*'], dest:`node_modules/${libPath}/` },
                 { expand:true, cwd: './',                  // copy css and map
                     src:['*.css*'], dest:`node_modules/${libPath}/` },
-                // { expand:true, cwd: 'docs/data',            // copy source htmls to hsDocs
-                //     src:['**/*', '!index.json'], dest:`${devPath}/hsApps/hsDocs/docs/data` }
             ]},
             app2NPM: { files: [ 
                 { expand:true, cwd: 'bin',                  // copy everything from bin

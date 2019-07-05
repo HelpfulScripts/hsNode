@@ -17,7 +17,6 @@
 import * as fs from 'fs';
 import * as path        from 'path';
 import { promiseChain } from 'hsutil';
-import { log as _log}   from 'hsnode';  const log = _log('fsUtil');
 
 /**
  * Convenience functions for file system access, wrapped in Promises.
@@ -68,7 +67,7 @@ async function stat(thePath:string):Promise<fs.Stats> {
     return await new Promise((resolve, reject) => {
         fs.stat(p, (err:any, stats:fs.Stats) => {
             if(err) { 
-                log.error(`error getting stats for ${thePath}: ${err}`);
+                console.log(`error getting stats for ${thePath}: ${err}`);
                 reject(err); 
             } // reject is hard to test: realpath throws an error before stat can.
             else { resolve(stats); }
@@ -180,14 +179,11 @@ export function mkdirs(thePath:string):Promise<string> {
         const tasks = dirs.map(dir => () => isDirectory(dir)
             .then((exists) => new Promise((resolve:(dir:boolean)=>void, reject) => {
                 if (exists) { 
-                    log.debug(`dir exists: '${dir}'`);
                     resolve(true);
                 } else { 
-                    log.debug(`creating dir: '${dir}'`);
                     fs.mkdir(dir, (err:any) => {
                         if(!err) { resolve(true); }
                         else if (err.toString().match(/Error: EEXIST: file already exists/)) {
-                            log.debug(`mkdirs: directory already exists: ${dir}`);
                             resolve(true);
                         } else {
                             reject(err);

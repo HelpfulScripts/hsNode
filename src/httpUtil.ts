@@ -14,15 +14,13 @@
  */
 
 /** */
-// const  http =  require('http');
-// const  https =  require('https');
+
 import { URL }          from 'url';
 import { createHash }   from 'crypto';
 import { log as gLog }  from './log';   const log = gLog('httpUtil');
-import * as fs              from "./fsUtil";
+import * as fs          from "./fsUtil";
 
 // log.level(log.DEBUG);
-
 
 /**
  * Decodes an xm or html string into a JSON representation

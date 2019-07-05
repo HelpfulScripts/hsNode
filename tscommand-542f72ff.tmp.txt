@@ -1,0 +1,1 @@
+src/cpUtil.ts src/fsUtil.ts src/httpUtil.ts src/index.ts src/log.ts src/overview.ts --declaration --removeComments --noImplicitAny --suppressImplicitAnyIndexErrors --inlineSourceMap --moduleResolution node --rootDir ./src --target ES6 --module commonjs --outDir bin
