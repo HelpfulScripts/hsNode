@@ -1495,9 +1495,9 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isConstructorProperty": true,
+								"isPublic": true,
 								"isExported": true,
-								"isPublic": true
+								"isConstructorProperty": true
 							},
 							"comment": {
 								"shortText": "the location for the cache"
@@ -1520,10 +1520,10 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isConstructorProperty": true,
-								"isExported": true,
 								"isPublic": true,
-								"isOptional": true
+								"isExported": true,
+								"isOptional": true,
+								"isConstructorProperty": true
 							},
 							"comment": {
 								"shortText": "an optional {@link Digest `Digest`} authentication information\n"
@@ -1547,8 +1547,8 @@
 							"kind": 2048,
 							"kindString": "Method",
 							"flags": {
-								"isExported": true,
-								"isPublic": true
+								"isPublic": true,
+								"isExported": true
 							},
 							"signatures": [
 								{

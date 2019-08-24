@@ -5,6 +5,9 @@ jobs:
   include:
     - stage: build
       script: grunt travis
+cache:
+  directories:
+    - "node_modules"
 notifications:
   email:
     recipients: 
