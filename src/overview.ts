@@ -2,7 +2,7 @@
 # hsNode
 
 Helpful Scripts functions that wrap some nodejs calls in Promise wrappers.
-[`[Coverage Info]`](./data/src/hsNode/coverage/)
+<a href="./data/src/hsNode/coverage/" target="_blank">[Coverage Info]</a>
 
 [![npm version](https://badge.fury.io/js/hsnode.svg)](https://badge.fury.io/js/hsnode)
 [![GitHub](https://img.shields.io/badge/GitHub-hsNode-blue.svg)](https://github.com/helpfulscripts/hsnode)
