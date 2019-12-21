@@ -12,7 +12,7 @@ describe('log', () => {
     }
     
     // avoid logging of level change
-    function setLevel(level:symbol) {
+    function setLevel(level:string) {
         log.level(level);
         gMsg = undefined;
     }
@@ -26,6 +26,7 @@ describe('log', () => {
     beforeEach(() => {
         log.level(log.INFO);
         log.prefix('log.jest');
+        log.logFile('');    // set default 
         gMsg = undefined;
         return Promise.resolve();
     });
@@ -95,9 +96,9 @@ describe('log', () => {
         });
         
         it('should print error for invalid level', () => {
-            log.level(Symbol('BOGUS'));
+            log.level('BOGUS');
             expect(log.level()).toBe(log.INFO);
-            return expect(gMsg).toMatch(/ unkown level Symbol\(BOGUS\); log level remains Symbol\(INFO\)/);
+            return expect(gMsg).toMatch(/ unkown level BOGUS; log level remains INFO/);
         });
         
         it('should print error', () => {
@@ -166,14 +167,17 @@ describe('log', () => {
             expect.assertions(4);
             return log.logFile('')
             .then((file:string) => {
-                // gLog(`...setting log file ${file}`);
+                gLog(`...setting log file ${file}`);
                 return Promise.all([
-                    expect(file).toBeDefined(),
-                    expect(file).toMatch(/log-\d{4}-\d{2}-\d{2}.txt/),
-                    expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g)
+                    expect(file).toBeDefined(),  
+                    expect(file).toMatch(/log-%YYYY-%MM-%DD.txt/),
                 ]);
+            })            
+            .then(() => {
+                gLog(`...msg match '${gMsg}'`);
+                return expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g);
             })
-            .then(() => log.info('test'))
+            .then(() => log.logFile())
             .then(fsUtil.isFile)
             .then((b:boolean) => expect(b).toBe(true))
             .catch(gLog);
@@ -186,10 +190,15 @@ describe('log', () => {
         );
         
         it('should be disabled', () =>
-            log.logFile(null).then(()=>log.info('unlogged entry')).then((file:string) => {
-                expect(file).toBe(undefined);
-                return expect(gMsg).toMatch(/log.jest INFO.*unlogged entry/);
-            })
+            log.logFile(null)
+                .then((file:string)=> {
+                    expect(file).toBe(undefined);
+                    expect(gMsg).toMatch(/disabling logfile/);
+                    return log.info('unlogged entry');
+                })
+                .then(() => {
+                    return expect(gMsg).toMatch(/log.jest INFO.*unlogged entry/);
+                })
         );
     });
 });
