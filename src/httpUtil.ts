@@ -17,7 +17,7 @@
 
 import { URL }          from 'url';
 import { createHash }   from 'crypto';
-import { log as gLog }  from './log';   const log = gLog('httpUtil');
+import { Log }          from './log';   const log = new Log('httpUtil');
 import * as fs          from "./fsUtil";
 
 // log.level(log.DEBUG);

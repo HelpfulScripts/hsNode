@@ -7,7 +7,7 @@ export const node = {
     child_process: child_process
 };
 
-export { log }      from "./log";
+export { Log }      from "./log";
 
 import * as http    from "./httpUtil";
 export { http };

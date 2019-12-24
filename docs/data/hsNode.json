@@ -1394,7 +1394,7 @@
 			]
 		},
 		{
-			"id": 236,
+			"id": 166,
 			"name": "\"httpUtil\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -1408,7 +1408,7 @@
 			},
 			"children": [
 				{
-					"id": 237,
+					"id": 167,
 					"name": "CachedHTTPRequest",
 					"kind": 128,
 					"kindString": "Class",
@@ -1421,7 +1421,7 @@
 					},
 					"children": [
 						{
-							"id": 238,
+							"id": 168,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
@@ -1433,7 +1433,7 @@
 							},
 							"signatures": [
 								{
-									"id": 241,
+									"id": 171,
 									"name": "new CachedHTTPRequest",
 									"kind": 16384,
 									"kindString": "Constructor signature",
@@ -1443,7 +1443,7 @@
 									},
 									"parameters": [
 										{
-											"id": 242,
+											"id": 172,
 											"name": "cacheLocation",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1457,7 +1457,7 @@
 											}
 										},
 										{
-											"id": 243,
+											"id": 173,
 											"name": "user",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1470,14 +1470,14 @@
 											"type": {
 												"type": "reference",
 												"name": "Digest",
-												"id": 279
+												"id": 209
 											}
 										}
 									],
 									"type": {
 										"type": "reference",
 										"name": "CachedHTTPRequest",
-										"id": 237
+										"id": 167
 									}
 								}
 							],
@@ -1490,7 +1490,7 @@
 							]
 						},
 						{
-							"id": 239,
+							"id": 169,
 							"name": "cacheLocation",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1515,7 +1515,7 @@
 							}
 						},
 						{
-							"id": 240,
+							"id": 170,
 							"name": "user",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1538,11 +1538,11 @@
 							"type": {
 								"type": "reference",
 								"name": "Digest",
-								"id": 279
+								"id": 209
 							}
 						},
 						{
-							"id": 251,
+							"id": 181,
 							"name": "request",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1552,7 +1552,7 @@
 							},
 							"signatures": [
 								{
-									"id": 252,
+									"id": 182,
 									"name": "request",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1560,7 +1560,7 @@
 									"comment": {},
 									"parameters": [
 										{
-											"id": 253,
+											"id": 183,
 											"name": "url",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1574,7 +1574,7 @@
 											}
 										},
 										{
-											"id": 254,
+											"id": 184,
 											"name": "useCached",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1610,7 +1610,7 @@
 							]
 						},
 						{
-							"id": 248,
+							"id": 178,
 							"name": "requestOffline",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1620,14 +1620,14 @@
 							},
 							"signatures": [
 								{
-									"id": 249,
+									"id": 179,
 									"name": "requestOffline",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 250,
+											"id": 180,
 											"name": "fname",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1659,7 +1659,7 @@
 							]
 						},
 						{
-							"id": 244,
+							"id": 174,
 							"name": "requestOnline",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1669,14 +1669,14 @@
 							},
 							"signatures": [
 								{
-									"id": 245,
+									"id": 175,
 									"name": "requestOnline",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 246,
+											"id": 176,
 											"name": "url",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1687,7 +1687,7 @@
 											}
 										},
 										{
-											"id": 247,
+											"id": 177,
 											"name": "fname",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1724,24 +1724,24 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								238
+								168
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								239,
-								240
+								169,
+								170
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								251,
-								248,
-								244
+								181,
+								178,
+								174
 							]
 						}
 					],
@@ -1754,7 +1754,7 @@
 					]
 				},
 				{
-					"id": 279,
+					"id": 209,
 					"name": "Digest",
 					"kind": 128,
 					"kindString": "Class",
@@ -1766,7 +1766,7 @@
 					},
 					"children": [
 						{
-							"id": 283,
+							"id": 213,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
@@ -1775,14 +1775,14 @@
 							},
 							"signatures": [
 								{
-									"id": 284,
+									"id": 214,
 									"name": "new Digest",
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 285,
+											"id": 215,
 											"name": "username",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1793,7 +1793,7 @@
 											}
 										},
 										{
-											"id": 286,
+											"id": 216,
 											"name": "password",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1807,7 +1807,7 @@
 									"type": {
 										"type": "reference",
 										"name": "Digest",
-										"id": 279
+										"id": 209
 									}
 								}
 							],
@@ -1820,7 +1820,7 @@
 							]
 						},
 						{
-							"id": 280,
+							"id": 210,
 							"name": "nc",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1841,7 +1841,7 @@
 							"defaultValue": "0"
 						},
 						{
-							"id": 282,
+							"id": 212,
 							"name": "password",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1861,7 +1861,7 @@
 							}
 						},
 						{
-							"id": 281,
+							"id": 211,
 							"name": "username",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1881,7 +1881,7 @@
 							}
 						},
 						{
-							"id": 289,
+							"id": 219,
 							"name": "generateCNONCE",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1890,7 +1890,7 @@
 							},
 							"signatures": [
 								{
-									"id": 290,
+									"id": 220,
 									"name": "generateCNONCE",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1900,7 +1900,7 @@
 									},
 									"parameters": [
 										{
-											"id": 291,
+											"id": 221,
 											"name": "qop",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1917,14 +1917,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 292,
+											"id": 222,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 293,
+													"id": 223,
 													"name": "cnonce",
 													"kind": 32,
 													"kindString": "Variable",
@@ -1943,7 +1943,7 @@
 													"defaultValue": " cnonce"
 												},
 												{
-													"id": 294,
+													"id": 224,
 													"name": "nc",
 													"kind": 32,
 													"kindString": "Variable",
@@ -1967,8 +1967,8 @@
 													"title": "Variables",
 													"kind": 32,
 													"children": [
-														293,
-														294
+														223,
+														224
 													]
 												}
 											]
@@ -1985,7 +1985,7 @@
 							]
 						},
 						{
-							"id": 295,
+							"id": 225,
 							"name": "testDigestAuth",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1994,7 +1994,7 @@
 							},
 							"signatures": [
 								{
-									"id": 296,
+									"id": 226,
 									"name": "testDigestAuth",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2002,7 +2002,7 @@
 									"comment": {},
 									"parameters": [
 										{
-											"id": 297,
+											"id": 227,
 											"name": "options",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2014,7 +2014,7 @@
 											}
 										},
 										{
-											"id": 298,
+											"id": 228,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2026,7 +2026,7 @@
 											}
 										},
 										{
-											"id": 299,
+											"id": 229,
 											"name": "response",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2037,7 +2037,7 @@
 											"type": {
 												"type": "reference",
 												"name": "IncomingMessage",
-												"id": 255
+												"id": 185
 											}
 										}
 									],
@@ -2051,7 +2051,7 @@
 													{
 														"type": "reference",
 														"name": "HttpResponse",
-														"id": 275
+														"id": 205
 													},
 													{
 														"type": "intrinsic",
@@ -2072,7 +2072,7 @@
 							]
 						},
 						{
-							"id": 287,
+							"id": 217,
 							"name": "updateNC",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2081,7 +2081,7 @@
 							},
 							"signatures": [
 								{
-									"id": 288,
+									"id": 218,
 									"name": "updateNC",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2109,25 +2109,25 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								283
+								213
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								280,
-								282,
-								281
+								210,
+								212,
+								211
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								289,
-								295,
-								287
+								219,
+								225,
+								217
 							]
 						}
 					],
@@ -2140,7 +2140,7 @@
 					]
 				},
 				{
-					"id": 275,
+					"id": 205,
 					"name": "HttpResponse",
 					"kind": 256,
 					"kindString": "Interface",
@@ -2152,7 +2152,7 @@
 					},
 					"children": [
 						{
-							"id": 278,
+							"id": 208,
 							"name": "body",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2173,7 +2173,7 @@
 							}
 						},
 						{
-							"id": 277,
+							"id": 207,
 							"name": "data",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2193,7 +2193,7 @@
 							}
 						},
 						{
-							"id": 276,
+							"id": 206,
 							"name": "response",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2218,9 +2218,9 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								278,
-								277,
-								276
+								208,
+								207,
+								206
 							]
 						}
 					],
@@ -2233,7 +2233,7 @@
 					]
 				},
 				{
-					"id": 255,
+					"id": 185,
 					"name": "IncomingMessage",
 					"kind": 256,
 					"kindString": "Interface",
@@ -2245,7 +2245,7 @@
 					},
 					"children": [
 						{
-							"id": 274,
+							"id": 204,
 							"name": "_headers",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2265,7 +2265,7 @@
 							}
 						},
 						{
-							"id": 273,
+							"id": 203,
 							"name": "caseless",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2285,7 +2285,7 @@
 							}
 						},
 						{
-							"id": 256,
+							"id": 186,
 							"name": "headers",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2305,7 +2305,7 @@
 							}
 						},
 						{
-							"id": 257,
+							"id": 187,
 							"name": "httpVersion",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2325,7 +2325,7 @@
 							}
 						},
 						{
-							"id": 258,
+							"id": 188,
 							"name": "method",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2345,7 +2345,7 @@
 							}
 						},
 						{
-							"id": 268,
+							"id": 198,
 							"name": "on",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2362,21 +2362,21 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 269,
+									"id": 199,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"signatures": [
 										{
-											"id": 270,
+											"id": 200,
 											"name": "__call",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 271,
+													"id": 201,
 													"name": "event",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -2387,7 +2387,7 @@
 													}
 												},
 												{
-													"id": 272,
+													"id": 202,
 													"name": "callback",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -2415,7 +2415,7 @@
 							}
 						},
 						{
-							"id": 259,
+							"id": 189,
 							"name": "rawHeaders",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2438,7 +2438,7 @@
 							}
 						},
 						{
-							"id": 260,
+							"id": 190,
 							"name": "rawTrailers",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2461,7 +2461,7 @@
 							}
 						},
 						{
-							"id": 264,
+							"id": 194,
 							"name": "setEncoding",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2478,21 +2478,21 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 265,
+									"id": 195,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"signatures": [
 										{
-											"id": 266,
+											"id": 196,
 											"name": "__call",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 267,
+													"id": 197,
 													"name": "enc",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -2520,7 +2520,7 @@
 							}
 						},
 						{
-							"id": 261,
+							"id": 191,
 							"name": "statusCode",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2540,7 +2540,7 @@
 							}
 						},
 						{
-							"id": 262,
+							"id": 192,
 							"name": "statusMessage",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2560,7 +2560,7 @@
 							}
 						},
 						{
-							"id": 263,
+							"id": 193,
 							"name": "url",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2585,18 +2585,18 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								274,
-								273,
-								256,
-								257,
-								258,
-								268,
-								259,
-								260,
-								264,
-								261,
-								262,
-								263
+								204,
+								203,
+								186,
+								187,
+								188,
+								198,
+								189,
+								190,
+								194,
+								191,
+								192,
+								193
 							]
 						}
 					],
@@ -2609,7 +2609,7 @@
 					]
 				},
 				{
-					"id": 300,
+					"id": 230,
 					"name": "log",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2625,20 +2625,20 @@
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogServerFn",
-						"id": 163
+						"name": "Log",
+						"id": 77
 					},
-					"defaultValue": " gLog('httpUtil')"
+					"defaultValue": " new Log('httpUtil')"
 				},
 				{
-					"id": 314,
+					"id": 244,
 					"name": "compileParams",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 315,
+							"id": 245,
 							"name": "compileParams",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2648,7 +2648,7 @@
 							},
 							"parameters": [
 								{
-									"id": 316,
+									"id": 246,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2677,21 +2677,21 @@
 					]
 				},
 				{
-					"id": 327,
+					"id": 257,
 					"name": "getAttributes",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 328,
+							"id": 258,
 							"name": "getAttributes",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 329,
+									"id": 259,
 									"name": "tag",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2702,7 +2702,7 @@
 									}
 								},
 								{
-									"id": 330,
+									"id": 260,
 									"name": "result",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2728,21 +2728,21 @@
 					]
 				},
 				{
-					"id": 324,
+					"id": 254,
 					"name": "isBinary",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 325,
+							"id": 255,
 							"name": "isBinary",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 326,
+									"id": 256,
 									"name": "contentType",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2768,21 +2768,21 @@
 					]
 				},
 				{
-					"id": 310,
+					"id": 240,
 					"name": "omitNull",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 311,
+							"id": 241,
 							"name": "omitNull",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 312,
+									"id": 242,
 									"name": "data",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2796,7 +2796,7 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 313,
+									"id": 243,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
@@ -2814,21 +2814,21 @@
 					]
 				},
 				{
-					"id": 320,
+					"id": 250,
 					"name": "parseDigestResponse",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 321,
+							"id": 251,
 							"name": "parseDigestResponse",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 322,
+									"id": 252,
 									"name": "digestHeader",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2842,7 +2842,7 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 323,
+									"id": 253,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
@@ -2860,14 +2860,14 @@
 					]
 				},
 				{
-					"id": 317,
+					"id": 247,
 					"name": "putDoubleQuotes",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 318,
+							"id": 248,
 							"name": "putDoubleQuotes",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2877,7 +2877,7 @@
 							},
 							"parameters": [
 								{
-									"id": 319,
+									"id": 249,
 									"name": "entry",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2906,7 +2906,7 @@
 					]
 				},
 				{
-					"id": 304,
+					"id": 234,
 					"name": "request",
 					"kind": 64,
 					"kindString": "Function",
@@ -2915,7 +2915,7 @@
 					},
 					"signatures": [
 						{
-							"id": 305,
+							"id": 235,
 							"name": "request",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2926,7 +2926,7 @@
 							},
 							"parameters": [
 								{
-									"id": 306,
+									"id": 236,
 									"name": "url",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2940,7 +2940,7 @@
 									}
 								},
 								{
-									"id": 307,
+									"id": 237,
 									"name": "user",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2953,11 +2953,11 @@
 									"type": {
 										"type": "reference",
 										"name": "Digest",
-										"id": 279
+										"id": 209
 									}
 								},
 								{
-									"id": 308,
+									"id": 238,
 									"name": "referer",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2970,7 +2970,7 @@
 									}
 								},
 								{
-									"id": 309,
+									"id": 239,
 									"name": "postData",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2996,7 +2996,7 @@
 											{
 												"type": "reference",
 												"name": "HttpResponse",
-												"id": 275
+												"id": 205
 											},
 											{
 												"type": "intrinsic",
@@ -3017,21 +3017,21 @@
 					]
 				},
 				{
-					"id": 331,
+					"id": 261,
 					"name": "requestOptions",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 332,
+							"id": 262,
 							"name": "requestOptions",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 333,
+									"id": 263,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3042,7 +3042,7 @@
 									}
 								},
 								{
-									"id": 334,
+									"id": 264,
 									"name": "user",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3052,11 +3052,11 @@
 									"type": {
 										"type": "reference",
 										"name": "Digest",
-										"id": 279
+										"id": 209
 									}
 								},
 								{
-									"id": 335,
+									"id": 265,
 									"name": "postData",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3079,7 +3079,7 @@
 											{
 												"type": "reference",
 												"name": "HttpResponse",
-												"id": 275
+												"id": 205
 											},
 											{
 												"type": "intrinsic",
@@ -3100,7 +3100,7 @@
 					]
 				},
 				{
-					"id": 301,
+					"id": 231,
 					"name": "xml2json",
 					"kind": 64,
 					"kindString": "Function",
@@ -3109,7 +3109,7 @@
 					},
 					"signatures": [
 						{
-							"id": 302,
+							"id": 232,
 							"name": "xml2json",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3119,7 +3119,7 @@
 							},
 							"parameters": [
 								{
-									"id": 303,
+									"id": 233,
 									"name": "xml",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3153,38 +3153,38 @@
 					"title": "Classes",
 					"kind": 128,
 					"children": [
-						237,
-						279
+						167,
+						209
 					]
 				},
 				{
 					"title": "Interfaces",
 					"kind": 256,
 					"children": [
-						275,
-						255
+						205,
+						185
 					]
 				},
 				{
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						300
+						230
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						314,
-						327,
-						324,
-						310,
-						320,
-						317,
-						304,
-						331,
-						301
+						244,
+						257,
+						254,
+						240,
+						250,
+						247,
+						234,
+						261,
+						231
 					]
 				}
 			],
@@ -3197,7 +3197,7 @@
 			]
 		},
 		{
-			"id": 336,
+			"id": 266,
 			"name": "\"index\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -3207,7 +3207,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/index.ts",
 			"children": [
 				{
-					"id": 337,
+					"id": 267,
 					"name": "node",
 					"kind": 2097152,
 					"kindString": "Object literal",
@@ -3217,7 +3217,7 @@
 					},
 					"children": [
 						{
-							"id": 339,
+							"id": 269,
 							"name": "child_process",
 							"kind": 32,
 							"kindString": "Variable",
@@ -3234,14 +3234,14 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 340,
+									"id": 270,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"children": [
 										{
-											"id": 341,
+											"id": 271,
 											"name": "exec",
 											"kind": 64,
 											"kindString": "Function",
@@ -3252,7 +3252,7 @@
 											},
 											"signatures": [
 												{
-													"id": 342,
+													"id": 272,
 													"name": "exec",
 													"kind": 4096,
 													"kindString": "Call signature",
@@ -3263,7 +3263,7 @@
 													},
 													"parameters": [
 														{
-															"id": 343,
+															"id": 273,
 															"name": "command",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -3277,7 +3277,7 @@
 															}
 														},
 														{
-															"id": 344,
+															"id": 274,
 															"name": "options",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -3300,14 +3300,14 @@
 															{
 																"type": "reflection",
 																"declaration": {
-																	"id": 345,
+																	"id": 275,
 																	"name": "__type",
 																	"kind": 65536,
 																	"kindString": "Type literal",
 																	"flags": {},
 																	"children": [
 																		{
-																			"id": 347,
+																			"id": 277,
 																			"name": "stderr",
 																			"kind": 32,
 																			"kindString": "Variable",
@@ -3325,7 +3325,7 @@
 																			}
 																		},
 																		{
-																			"id": 346,
+																			"id": 276,
 																			"name": "stdout",
 																			"kind": 32,
 																			"kindString": "Variable",
@@ -3348,8 +3348,8 @@
 																			"title": "Variables",
 																			"kind": 32,
 																			"children": [
-																				347,
-																				346
+																				277,
+																				276
 																			]
 																		}
 																	],
@@ -3380,7 +3380,7 @@
 											"title": "Functions",
 											"kind": 64,
 											"children": [
-												341
+												271
 											]
 										}
 									]
@@ -3389,7 +3389,7 @@
 							"defaultValue": " child_process"
 						},
 						{
-							"id": 338,
+							"id": 268,
 							"name": "fs",
 							"kind": 32,
 							"kindString": "Variable",
@@ -3416,8 +3416,8 @@
 							"title": "Variables",
 							"kind": 32,
 							"children": [
-								339,
-								338
+								269,
+								268
 							]
 						}
 					],
@@ -3439,7 +3439,7 @@
 					"title": "Object literals",
 					"kind": 2097152,
 					"children": [
-						337
+						267
 					]
 				}
 			],
@@ -3463,27 +3463,31 @@
 			"children": [
 				{
 					"id": 77,
-					"name": "LogServer",
+					"name": "Log",
 					"kind": 128,
 					"kindString": "Class",
-					"flags": {},
+					"flags": {
+						"isExported": true
+					},
 					"children": [
 						{
-							"id": 130,
+							"id": 125,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"signatures": [
 								{
-									"id": 131,
-									"name": "new LogServer",
+									"id": 126,
+									"name": "new Log",
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 132,
+											"id": 127,
 											"name": "_prefix",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3496,7 +3500,7 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "LogServer",
+										"name": "Log",
 										"id": 77
 									},
 									"inheritedFrom": {
@@ -3508,8 +3512,8 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 43,
-									"character": 25
+									"line": 23,
+									"character": 35
 								}
 							],
 							"inheritedFrom": {
@@ -3518,12 +3522,13 @@
 							}
 						},
 						{
-							"id": 78,
+							"id": 79,
 							"name": "LogFile",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isProtected": true
+								"isProtected": true,
+								"isExported": true
 							},
 							"comment": {
 								"shortText": "name of the current log file, or undefined"
@@ -3531,7 +3536,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 28,
+									"line": 26,
 									"character": 21
 								}
 							],
@@ -3541,12 +3546,13 @@
 							}
 						},
 						{
-							"id": 79,
+							"id": 80,
 							"name": "inspectColors",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isProtected": true
+								"isProtected": true,
+								"isExported": true
 							},
 							"comment": {
 								"shortText": "temporary color setting, defined in call to `inspect()` and used in `getPrePostfix`"
@@ -3554,7 +3560,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 31,
+									"line": 29,
 									"character": 27
 								}
 							],
@@ -3567,16 +3573,19 @@
 							}
 						},
 						{
-							"id": 128,
+							"id": 123,
 							"name": "reportLevel",
 							"kind": 1024,
 							"kindString": "Property",
-							"flags": {},
+							"flags": {
+								"isProtected": true,
+								"isExported": true
+							},
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 42,
-									"character": 15
+									"line": 22,
+									"character": 25
 								}
 							],
 							"type": {
@@ -3589,16 +3598,19 @@
 							}
 						},
 						{
-							"id": 129,
+							"id": 124,
 							"name": "reportPrefix",
 							"kind": 1024,
 							"kindString": "Property",
-							"flags": {},
+							"flags": {
+								"isProtected": true,
+								"isExported": true
+							},
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 43,
-									"character": 16
+									"line": 23,
+									"character": 26
 								}
 							],
 							"type": {
@@ -3611,17 +3623,18 @@
 							}
 						},
 						{
-							"id": 115,
+							"id": 110,
 							"name": "DEBUG",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isStatic": true
+								"isStatic": true,
+								"isExported": true
 							},
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 30,
+									"line": 9,
 									"character": 16
 								}
 							],
@@ -3635,17 +3648,18 @@
 							}
 						},
 						{
-							"id": 118,
+							"id": 113,
 							"name": "ERROR",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isStatic": true
+								"isStatic": true,
+								"isExported": true
 							},
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 33,
+									"line": 12,
 									"character": 16
 								}
 							],
@@ -3659,17 +3673,18 @@
 							}
 						},
 						{
-							"id": 116,
+							"id": 111,
 							"name": "INFO",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isStatic": true
+								"isStatic": true,
+								"isExported": true
 							},
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 31,
+									"line": 10,
 									"character": 15
 								}
 							],
@@ -3683,17 +3698,18 @@
 							}
 						},
 						{
-							"id": 117,
+							"id": 112,
 							"name": "WARN",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isStatic": true
+								"isStatic": true,
+								"isExported": true
 							},
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 32,
+									"line": 11,
 									"character": 15
 								}
 							],
@@ -3707,18 +3723,20 @@
 							}
 						},
 						{
-							"id": 114,
+							"id": 109,
 							"name": "dateFormat",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isStatic": true
+								"isProtected": true,
+								"isStatic": true,
+								"isExported": true
 							},
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 29,
-									"character": 21
+									"line": 8,
+									"character": 31
 								}
 							],
 							"type": {
@@ -3731,18 +3749,20 @@
 							}
 						},
 						{
-							"id": 113,
+							"id": 108,
 							"name": "defDateFormat",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isStatic": true
+								"isProtected": true,
+								"isStatic": true,
+								"isExported": true
 							},
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 28,
-									"character": 24
+									"line": 7,
+									"character": 34
 								}
 							],
 							"type": {
@@ -3755,18 +3775,20 @@
 							}
 						},
 						{
-							"id": 127,
+							"id": 122,
 							"name": "globalLevel",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isStatic": true
+								"isProtected": true,
+								"isStatic": true,
+								"isExported": true
 							},
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 41,
-									"character": 22
+									"line": 21,
+									"character": 32
 								}
 							],
 							"type": {
@@ -3779,38 +3801,40 @@
 							}
 						},
 						{
-							"id": 119,
+							"id": 114,
 							"name": "levels",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isStatic": true
+								"isProtected": true,
+								"isStatic": true,
+								"isExported": true
 							},
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 34,
-									"character": 17
+									"line": 13,
+									"character": 27
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 120,
+									"id": 115,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"indexSignature": [
 										{
-											"id": 121,
+											"id": 116,
 											"name": "__index",
 											"kind": 8192,
 											"kindString": "Index signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 122,
+													"id": 117,
 													"name": "x",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -3824,14 +3848,14 @@
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 123,
+													"id": 118,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"children": [
 														{
-															"id": 126,
+															"id": 121,
 															"name": "desc",
 															"kind": 32,
 															"kindString": "Variable",
@@ -3839,7 +3863,7 @@
 															"sources": [
 																{
 																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-																	"line": 38,
+																	"line": 17,
 																	"character": 16
 																}
 															],
@@ -3849,7 +3873,7 @@
 															}
 														},
 														{
-															"id": 124,
+															"id": 119,
 															"name": "importance",
 															"kind": 32,
 															"kindString": "Variable",
@@ -3857,7 +3881,7 @@
 															"sources": [
 																{
 																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-																	"line": 36,
+																	"line": 15,
 																	"character": 22
 																}
 															],
@@ -3867,7 +3891,7 @@
 															}
 														},
 														{
-															"id": 125,
+															"id": 120,
 															"name": "sym",
 															"kind": 32,
 															"kindString": "Variable",
@@ -3875,7 +3899,7 @@
 															"sources": [
 																{
 																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-																	"line": 37,
+																	"line": 16,
 																	"character": 15
 																}
 															],
@@ -3890,16 +3914,16 @@
 															"title": "Variables",
 															"kind": 32,
 															"children": [
-																126,
-																124,
-																125
+																121,
+																119,
+																120
 															]
 														}
 													],
 													"sources": [
 														{
 															"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-															"line": 35,
+															"line": 14,
 															"character": 20
 														}
 													]
@@ -3910,8 +3934,8 @@
 									"sources": [
 										{
 											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-											"line": 34,
-											"character": 18
+											"line": 13,
+											"character": 28
 										}
 									]
 								}
@@ -3922,66 +3946,44 @@
 							}
 						},
 						{
-							"id": 110,
-							"name": "addPoperties",
-							"kind": 2048,
-							"kindString": "Method",
+							"id": 78,
+							"name": "log",
+							"kind": 1024,
+							"kindString": "Property",
 							"flags": {
-								"isProtected": true
+								"isPublic": true,
+								"isStatic": true,
+								"isExported": true
 							},
-							"signatures": [
-								{
-									"id": 111,
-									"name": "addPoperties",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {},
-									"parameters": [
-										{
-											"id": 112,
-											"name": "logFn",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {},
-											"type": {
-												"type": "reference",
-												"name": "LogServerFn",
-												"id": 163
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "LogServerFn",
-										"id": 163
-									},
-									"overwrites": {
-										"type": "reference",
-										"name": "Log.addPoperties"
-									}
-								}
-							],
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 144,
-									"character": 26
+									"line": 23,
+									"character": 21
 								}
 							],
+							"type": {
+								"type": "reference",
+								"name": "Log",
+								"id": 77
+							},
+							"defaultValue": " new Log('')",
 							"overwrites": {
 								"type": "reference",
-								"name": "Log.addPoperties"
+								"name": "Log.log"
 							}
 						},
 						{
-							"id": 80,
+							"id": 81,
 							"name": "config",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"signatures": [
 								{
-									"id": 81,
+									"id": 82,
 									"name": "config",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3991,7 +3993,7 @@
 									},
 									"parameters": [
 										{
-											"id": 82,
+											"id": 83,
 											"name": "cfg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4002,14 +4004,14 @@
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 83,
+													"id": 84,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"children": [
 														{
-															"id": 84,
+															"id": 85,
 															"name": "colors",
 															"kind": 32,
 															"kindString": "Variable",
@@ -4019,7 +4021,7 @@
 															"sources": [
 																{
 																	"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-																	"line": 41,
+																	"line": 39,
 																	"character": 22
 																}
 															],
@@ -4029,7 +4031,7 @@
 															}
 														},
 														{
-															"id": 85,
+															"id": 86,
 															"name": "format",
 															"kind": 32,
 															"kindString": "Variable",
@@ -4039,7 +4041,7 @@
 															"sources": [
 																{
 																	"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-																	"line": 41,
+																	"line": 39,
 																	"character": 39
 																}
 															],
@@ -4049,7 +4051,7 @@
 															}
 														},
 														{
-															"id": 86,
+															"id": 87,
 															"name": "level",
 															"kind": 32,
 															"kindString": "Variable",
@@ -4059,7 +4061,7 @@
 															"sources": [
 																{
 																	"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-																	"line": 41,
+																	"line": 39,
 																	"character": 54
 																}
 															],
@@ -4074,16 +4076,16 @@
 															"title": "Variables",
 															"kind": 32,
 															"children": [
-																84,
 																85,
-																86
+																86,
+																87
 															]
 														}
 													],
 													"sources": [
 														{
 															"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-															"line": 41,
+															"line": 39,
 															"character": 15
 														}
 													]
@@ -4104,7 +4106,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 41,
+									"line": 39,
 									"character": 10
 								}
 							],
@@ -4114,21 +4116,23 @@
 							}
 						},
 						{
-							"id": 137,
+							"id": 132,
 							"name": "debug",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"signatures": [
 								{
-									"id": 138,
+									"id": 133,
 									"name": "debug",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 139,
+											"id": 134,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4139,7 +4143,7 @@
 											}
 										},
 										{
-											"id": 140,
+											"id": 135,
 											"name": "log2File",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4171,7 +4175,7 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 46,
+									"line": 26,
 									"character": 9
 								}
 							],
@@ -4181,21 +4185,23 @@
 							}
 						},
 						{
-							"id": 149,
+							"id": 144,
 							"name": "error",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"signatures": [
 								{
-									"id": 150,
+									"id": 145,
 									"name": "error",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 151,
+											"id": 146,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4206,7 +4212,7 @@
 											}
 										},
 										{
-											"id": 152,
+											"id": 147,
 											"name": "log2File",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4238,7 +4244,7 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 49,
+									"line": 29,
 									"character": 9
 								}
 							],
@@ -4248,21 +4254,23 @@
 							}
 						},
 						{
-							"id": 157,
+							"id": 152,
 							"name": "format",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"signatures": [
 								{
-									"id": 158,
+									"id": 153,
 									"name": "format",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 159,
+											"id": 154,
 											"name": "fmtStr",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4288,7 +4296,7 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 52,
+									"line": 32,
 									"character": 10
 								}
 							],
@@ -4298,23 +4306,24 @@
 							}
 						},
 						{
-							"id": 102,
+							"id": 103,
 							"name": "getPrePostfix",
 							"kind": 2048,
 							"kindString": "Method",
 							"flags": {
-								"isProtected": true
+								"isProtected": true,
+								"isExported": true
 							},
 							"signatures": [
 								{
-									"id": 103,
+									"id": 104,
 									"name": "getPrePostfix",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 104,
+											"id": 105,
 											"name": "indent",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4325,7 +4334,7 @@
 											}
 										},
 										{
-											"id": 105,
+											"id": 106,
 											"name": "level",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4336,7 +4345,7 @@
 											}
 										},
 										{
-											"id": 106,
+											"id": 107,
 											"name": "currIndent",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4369,7 +4378,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 127,
+									"line": 125,
 									"character": 27
 								}
 							],
@@ -4379,21 +4388,23 @@
 							}
 						},
 						{
-							"id": 141,
+							"id": 136,
 							"name": "info",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"signatures": [
 								{
-									"id": 142,
+									"id": 137,
 									"name": "info",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 143,
+											"id": 138,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4404,7 +4415,7 @@
 											}
 										},
 										{
-											"id": 144,
+											"id": 139,
 											"name": "log2File",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4436,7 +4447,7 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 47,
+									"line": 27,
 									"character": 8
 								}
 							],
@@ -4446,14 +4457,16 @@
 							}
 						},
 						{
-							"id": 96,
+							"id": 97,
 							"name": "inspect",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"signatures": [
 								{
-									"id": 97,
+									"id": 98,
 									"name": "inspect",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -4464,7 +4477,7 @@
 									},
 									"parameters": [
 										{
-											"id": 98,
+											"id": 99,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4475,7 +4488,7 @@
 											}
 										},
 										{
-											"id": 99,
+											"id": 100,
 											"name": "depth",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4490,7 +4503,7 @@
 											"defaultValue": "3"
 										},
 										{
-											"id": 100,
+											"id": 101,
 											"name": "indent",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4505,7 +4518,7 @@
 											"defaultValue": "\"   \""
 										},
 										{
-											"id": 101,
+											"id": 102,
 											"name": "colors",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4537,7 +4550,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 121,
+									"line": 119,
 									"character": 11
 								}
 							],
@@ -4547,21 +4560,23 @@
 							}
 						},
 						{
-							"id": 133,
+							"id": 128,
 							"name": "level",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"signatures": [
 								{
-									"id": 134,
+									"id": 129,
 									"name": "level",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 135,
+											"id": 130,
 											"name": "newLevelSym",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4574,7 +4589,7 @@
 											}
 										},
 										{
-											"id": 136,
+											"id": 131,
 											"name": "setGlobalLevel",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4600,7 +4615,7 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 45,
+									"line": 25,
 									"character": 9
 								}
 							],
@@ -4610,14 +4625,16 @@
 							}
 						},
 						{
-							"id": 93,
+							"id": 94,
 							"name": "logFile",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"signatures": [
 								{
-									"id": 94,
+									"id": 95,
 									"name": "logFile",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -4628,7 +4645,7 @@
 									},
 									"parameters": [
 										{
-											"id": 95,
+											"id": 96,
 											"name": "file",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4659,22 +4676,23 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 74,
+									"line": 72,
 									"character": 17
 								}
 							]
 						},
 						{
-							"id": 87,
+							"id": 88,
 							"name": "makeMessage",
 							"kind": 2048,
 							"kindString": "Method",
 							"flags": {
-								"isProtected": true
+								"isProtected": true,
+								"isExported": true
 							},
 							"signatures": [
 								{
-									"id": 88,
+									"id": 89,
 									"name": "makeMessage",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -4684,7 +4702,7 @@
 									},
 									"parameters": [
 										{
-											"id": 89,
+											"id": 90,
 											"name": "line",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4695,7 +4713,7 @@
 											}
 										},
 										{
-											"id": 90,
+											"id": 91,
 											"name": "lvl",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4706,7 +4724,7 @@
 											}
 										},
 										{
-											"id": 91,
+											"id": 92,
 											"name": "dateStr",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4717,7 +4735,7 @@
 											}
 										},
 										{
-											"id": 92,
+											"id": 93,
 											"name": "desc",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4741,7 +4759,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 52,
+									"line": 50,
 									"character": 25
 								}
 							],
@@ -4751,21 +4769,23 @@
 							}
 						},
 						{
-							"id": 153,
+							"id": 148,
 							"name": "out",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"signatures": [
 								{
-									"id": 154,
+									"id": 149,
 									"name": "out",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 155,
+											"id": 150,
 											"name": "lvl",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4776,7 +4796,7 @@
 											}
 										},
 										{
-											"id": 156,
+											"id": 151,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4806,7 +4826,7 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 50,
+									"line": 30,
 									"character": 7
 								}
 							],
@@ -4816,21 +4836,23 @@
 							}
 						},
 						{
-							"id": 160,
+							"id": 155,
 							"name": "prefix",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"signatures": [
 								{
-									"id": 161,
+									"id": 156,
 									"name": "prefix",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 162,
+											"id": 157,
 											"name": "prf",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4856,7 +4878,7 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 53,
+									"line": 33,
 									"character": 10
 								}
 							],
@@ -4866,21 +4888,23 @@
 							}
 						},
 						{
-							"id": 145,
+							"id": 140,
 							"name": "warn",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"signatures": [
 								{
-									"id": 146,
+									"id": 141,
 									"name": "warn",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 147,
+											"id": 142,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4891,7 +4915,7 @@
 											}
 										},
 										{
-											"id": 148,
+											"id": 143,
 											"name": "log2File",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4923,68 +4947,13 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 48,
+									"line": 28,
 									"character": 8
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
 								"name": "Log.warn"
-							}
-						},
-						{
-							"id": 107,
-							"name": "makeLogFn",
-							"kind": 2048,
-							"kindString": "Method",
-							"flags": {
-								"isPublic": true,
-								"isStatic": true
-							},
-							"signatures": [
-								{
-									"id": 108,
-									"name": "makeLogFn",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {},
-									"comment": {
-										"shortText": "factory method to create instances of callable `LogServer`"
-									},
-									"parameters": [
-										{
-											"id": 109,
-											"name": "prefix",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "string"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "LogServerFn",
-										"id": 163
-									},
-									"overwrites": {
-										"type": "reference",
-										"name": "Log.makeLogFn"
-									}
-								}
-							],
-							"sources": [
-								{
-									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 138,
-									"character": 27
-								}
-							],
-							"overwrites": {
-								"type": "reference",
-								"name": "Log.makeLogFn"
 							}
 						}
 					],
@@ -4993,54 +4962,53 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								130
+								125
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								78,
 								79,
-								128,
-								129,
-								115,
-								118,
-								116,
-								117,
-								114,
+								80,
+								123,
+								124,
+								110,
 								113,
-								127,
-								119
+								111,
+								112,
+								109,
+								108,
+								122,
+								114,
+								78
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								110,
-								80,
-								137,
-								149,
-								157,
-								102,
-								141,
-								96,
-								133,
-								93,
-								87,
-								153,
-								160,
-								145,
-								107
+								81,
+								132,
+								144,
+								152,
+								103,
+								136,
+								97,
+								128,
+								94,
+								88,
+								148,
+								155,
+								140
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-							"line": 26,
-							"character": 15
+							"line": 22,
+							"character": 16
 						}
 					],
 					"extendedTypes": [
@@ -5051,1111 +5019,7 @@
 					]
 				},
 				{
-					"id": 163,
-					"name": "LogServerFn",
-					"kind": 256,
-					"kindString": "Interface",
-					"flags": {
-						"isExported": true
-					},
-					"signatures": [
-						{
-							"id": 164,
-							"name": "__call",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {},
-							"parameters": [
-								{
-									"id": 165,
-									"name": "_prefix",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"type": {
-										"type": "intrinsic",
-										"name": "string"
-									}
-								}
-							],
-							"type": {
-								"type": "reference",
-								"name": "LogServerFn",
-								"id": 163
-							}
-						},
-						{
-							"id": 169,
-							"name": "__call",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {},
-							"parameters": [
-								{
-									"id": 170,
-									"name": "_prefix",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"type": {
-										"type": "intrinsic",
-										"name": "string"
-									}
-								}
-							],
-							"type": {
-								"type": "reference",
-								"name": "LogFn"
-							}
-						}
-					],
-					"children": [
-						{
-							"id": 171,
-							"name": "DEBUG",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 3,
-									"character": 9
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "string"
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.DEBUG"
-							}
-						},
-						{
-							"id": 174,
-							"name": "ERROR",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 6,
-									"character": 9
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "string"
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.ERROR"
-							}
-						},
-						{
-							"id": 172,
-							"name": "INFO",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 4,
-									"character": 8
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "string"
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.INFO"
-							}
-						},
-						{
-							"id": 173,
-							"name": "WARN",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 5,
-									"character": 8
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "string"
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.WARN"
-							}
-						},
-						{
-							"id": 213,
-							"name": "config",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 15,
-									"character": 10
-								}
-							],
-							"type": {
-								"type": "reflection",
-								"declaration": {
-									"id": 214,
-									"name": "__type",
-									"kind": 65536,
-									"kindString": "Type literal",
-									"flags": {},
-									"signatures": [
-										{
-											"id": 215,
-											"name": "__call",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 216,
-													"name": "cfg",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "reflection",
-														"declaration": {
-															"id": 217,
-															"name": "__type",
-															"kind": 65536,
-															"kindString": "Type literal",
-															"flags": {},
-															"children": [
-																{
-																	"id": 218,
-																	"name": "colors",
-																	"kind": 32,
-																	"kindString": "Variable",
-																	"flags": {
-																		"isOptional": true
-																	},
-																	"sources": [
-																		{
-																			"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-																			"line": 16,
-																			"character": 14
-																		}
-																	],
-																	"type": {
-																		"type": "intrinsic",
-																		"name": "boolean"
-																	}
-																},
-																{
-																	"id": 219,
-																	"name": "format",
-																	"kind": 32,
-																	"kindString": "Variable",
-																	"flags": {
-																		"isOptional": true
-																	},
-																	"sources": [
-																		{
-																			"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-																			"line": 17,
-																			"character": 14
-																		}
-																	],
-																	"type": {
-																		"type": "intrinsic",
-																		"name": "string"
-																	}
-																},
-																{
-																	"id": 220,
-																	"name": "level",
-																	"kind": 32,
-																	"kindString": "Variable",
-																	"flags": {
-																		"isOptional": true
-																	},
-																	"sources": [
-																		{
-																			"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-																			"line": 18,
-																			"character": 13
-																		}
-																	],
-																	"type": {
-																		"type": "intrinsic",
-																		"name": "string"
-																	}
-																}
-															],
-															"groups": [
-																{
-																	"title": "Variables",
-																	"kind": 32,
-																	"children": [
-																		218,
-																		219,
-																		220
-																	]
-																}
-															],
-															"sources": [
-																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-																	"line": 15,
-																	"character": 17
-																}
-															]
-														}
-													}
-												}
-											],
-											"type": {
-												"type": "intrinsic",
-												"name": "void"
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-											"line": 15,
-											"character": 11
-										}
-									]
-								}
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.config"
-							}
-						},
-						{
-							"id": 180,
-							"name": "debug",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 8,
-									"character": 9
-								}
-							],
-							"type": {
-								"type": "reflection",
-								"declaration": {
-									"id": 181,
-									"name": "__type",
-									"kind": 65536,
-									"kindString": "Type literal",
-									"flags": {},
-									"signatures": [
-										{
-											"id": 182,
-											"name": "__call",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 183,
-													"name": "msg",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "intrinsic",
-														"name": "any"
-													}
-												},
-												{
-													"id": 184,
-													"name": "log2File",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "intrinsic",
-														"name": "boolean"
-													}
-												}
-											],
-											"type": {
-												"type": "reference",
-												"name": "Promise",
-												"typeArguments": [
-													{
-														"type": "intrinsic",
-														"name": "string"
-													}
-												]
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-											"line": 8,
-											"character": 10
-										}
-									]
-								}
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.debug"
-							}
-						},
-						{
-							"id": 195,
-							"name": "error",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 11,
-									"character": 9
-								}
-							],
-							"type": {
-								"type": "reflection",
-								"declaration": {
-									"id": 196,
-									"name": "__type",
-									"kind": 65536,
-									"kindString": "Type literal",
-									"flags": {},
-									"signatures": [
-										{
-											"id": 197,
-											"name": "__call",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 198,
-													"name": "msg",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "intrinsic",
-														"name": "any"
-													}
-												},
-												{
-													"id": 199,
-													"name": "log2File",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "intrinsic",
-														"name": "boolean"
-													}
-												}
-											],
-											"type": {
-												"type": "reference",
-												"name": "Promise",
-												"typeArguments": [
-													{
-														"type": "intrinsic",
-														"name": "string"
-													}
-												]
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-											"line": 11,
-											"character": 10
-										}
-									]
-								}
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.error"
-							}
-						},
-						{
-							"id": 200,
-							"name": "format",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 12,
-									"character": 10
-								}
-							],
-							"type": {
-								"type": "reflection",
-								"declaration": {
-									"id": 201,
-									"name": "__type",
-									"kind": 65536,
-									"kindString": "Type literal",
-									"flags": {},
-									"signatures": [
-										{
-											"id": 202,
-											"name": "__call",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 203,
-													"name": "fmtStr",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "intrinsic",
-														"name": "string"
-													}
-												}
-											],
-											"type": {
-												"type": "intrinsic",
-												"name": "string"
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-											"line": 12,
-											"character": 11
-										}
-									]
-								}
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.format"
-							}
-						},
-						{
-							"id": 185,
-							"name": "info",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 9,
-									"character": 8
-								}
-							],
-							"type": {
-								"type": "reflection",
-								"declaration": {
-									"id": 186,
-									"name": "__type",
-									"kind": 65536,
-									"kindString": "Type literal",
-									"flags": {},
-									"signatures": [
-										{
-											"id": 187,
-											"name": "__call",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 188,
-													"name": "msg",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "intrinsic",
-														"name": "any"
-													}
-												},
-												{
-													"id": 189,
-													"name": "log2File",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "intrinsic",
-														"name": "boolean"
-													}
-												}
-											],
-											"type": {
-												"type": "reference",
-												"name": "Promise",
-												"typeArguments": [
-													{
-														"type": "intrinsic",
-														"name": "string"
-													}
-												]
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-											"line": 9,
-											"character": 9
-										}
-									]
-								}
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.info"
-							}
-						},
-						{
-							"id": 221,
-							"name": "inspect",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 20,
-									"character": 11
-								}
-							],
-							"type": {
-								"type": "reflection",
-								"declaration": {
-									"id": 222,
-									"name": "__type",
-									"kind": 65536,
-									"kindString": "Type literal",
-									"flags": {},
-									"signatures": [
-										{
-											"id": 223,
-											"name": "__call",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 224,
-													"name": "msg",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "intrinsic",
-														"name": "any"
-													}
-												},
-												{
-													"id": 225,
-													"name": "depth",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "intrinsic",
-														"name": "number"
-													}
-												},
-												{
-													"id": 226,
-													"name": "indent",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "intrinsic",
-														"name": "string"
-													}
-												}
-											],
-											"type": {
-												"type": "intrinsic",
-												"name": "string"
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-											"line": 20,
-											"character": 12
-										}
-									]
-								}
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.inspect"
-							}
-						},
-						{
-							"id": 175,
-							"name": "level",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 7,
-									"character": 9
-								}
-							],
-							"type": {
-								"type": "reflection",
-								"declaration": {
-									"id": 176,
-									"name": "__type",
-									"kind": 65536,
-									"kindString": "Type literal",
-									"flags": {},
-									"signatures": [
-										{
-											"id": 177,
-											"name": "__call",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 178,
-													"name": "newLevelSym",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "intrinsic",
-														"name": "string"
-													}
-												},
-												{
-													"id": 179,
-													"name": "setGlobalLevel",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "intrinsic",
-														"name": "boolean"
-													}
-												}
-											],
-											"type": {
-												"type": "intrinsic",
-												"name": "string"
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-											"line": 7,
-											"character": 10
-										}
-									]
-								}
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.level"
-							}
-						},
-						{
-							"id": 208,
-							"name": "out",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 14,
-									"character": 7
-								}
-							],
-							"type": {
-								"type": "reflection",
-								"declaration": {
-									"id": 209,
-									"name": "__type",
-									"kind": 65536,
-									"kindString": "Type literal",
-									"flags": {},
-									"signatures": [
-										{
-											"id": 210,
-											"name": "__call",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 211,
-													"name": "lvl",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "intrinsic",
-														"name": "string"
-													}
-												},
-												{
-													"id": 212,
-													"name": "msg",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "intrinsic",
-														"name": "any"
-													}
-												}
-											],
-											"type": {
-												"type": "reference",
-												"name": "Promise",
-												"typeArguments": [
-													{
-														"type": "intrinsic",
-														"name": "string"
-													}
-												]
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-											"line": 14,
-											"character": 8
-										}
-									]
-								}
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.out"
-							}
-						},
-						{
-							"id": 204,
-							"name": "prefix",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 13,
-									"character": 10
-								}
-							],
-							"type": {
-								"type": "reflection",
-								"declaration": {
-									"id": 205,
-									"name": "__type",
-									"kind": 65536,
-									"kindString": "Type literal",
-									"flags": {},
-									"signatures": [
-										{
-											"id": 206,
-											"name": "__call",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 207,
-													"name": "prf",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "intrinsic",
-														"name": "string"
-													}
-												}
-											],
-											"type": {
-												"type": "intrinsic",
-												"name": "string"
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-											"line": 13,
-											"character": 11
-										}
-									]
-								}
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.prefix"
-							}
-						},
-						{
-							"id": 190,
-							"name": "warn",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 10,
-									"character": 8
-								}
-							],
-							"type": {
-								"type": "reflection",
-								"declaration": {
-									"id": 191,
-									"name": "__type",
-									"kind": 65536,
-									"kindString": "Type literal",
-									"flags": {},
-									"signatures": [
-										{
-											"id": 192,
-											"name": "__call",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 193,
-													"name": "msg",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "intrinsic",
-														"name": "any"
-													}
-												},
-												{
-													"id": 194,
-													"name": "log2File",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "intrinsic",
-														"name": "boolean"
-													}
-												}
-											],
-											"type": {
-												"type": "reference",
-												"name": "Promise",
-												"typeArguments": [
-													{
-														"type": "intrinsic",
-														"name": "string"
-													}
-												]
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-											"line": 10,
-											"character": 9
-										}
-									]
-								}
-							},
-							"inheritedFrom": {
-								"type": "reference",
-								"name": "LogFn.warn"
-							}
-						},
-						{
-							"id": 166,
-							"name": "logFile",
-							"kind": 2048,
-							"kindString": "Method",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 167,
-									"name": "logFile",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {},
-									"parameters": [
-										{
-											"id": 168,
-											"name": "file",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isOptional": true
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "string"
-											}
-										}
-									],
-									"type": {
-										"type": "reference",
-										"name": "Promise",
-										"typeArguments": [
-											{
-												"type": "intrinsic",
-												"name": "string"
-											}
-										]
-									}
-								}
-							],
-							"sources": [
-								{
-									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 153,
-									"character": 11
-								}
-							]
-						}
-					],
-					"groups": [
-						{
-							"title": "Properties",
-							"kind": 1024,
-							"children": [
-								171,
-								174,
-								172,
-								173,
-								213,
-								180,
-								195,
-								200,
-								185,
-								221,
-								175,
-								208,
-								204,
-								190
-							]
-						},
-						{
-							"title": "Methods",
-							"kind": 2048,
-							"children": [
-								166
-							]
-						}
-					],
-					"sources": [
-						{
-							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-							"line": 151,
-							"character": 28
-						}
-					],
-					"extendedTypes": [
-						{
-							"type": "reference",
-							"name": "LogFn"
-						}
-					]
-				},
-				{
-					"id": 234,
+					"id": 165,
 					"name": "gColors",
 					"kind": 32,
 					"kindString": "Variable",
@@ -6168,7 +5032,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-							"line": 23,
+							"line": 19,
 							"character": 11
 						}
 					],
@@ -6179,30 +5043,7 @@
 					"defaultValue": "true"
 				},
 				{
-					"id": 235,
-					"name": "log",
-					"kind": 32,
-					"kindString": "Variable",
-					"flags": {
-						"isExported": true,
-						"isConst": true
-					},
-					"sources": [
-						{
-							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-							"line": 157,
-							"character": 16
-						}
-					],
-					"type": {
-						"type": "reference",
-						"name": "LogServerFn",
-						"id": 163
-					},
-					"defaultValue": " LogServer.makeLogFn('')"
-				},
-				{
-					"id": 227,
+					"id": 158,
 					"name": "color",
 					"kind": 2097152,
 					"kindString": "Object literal",
@@ -6214,7 +5055,7 @@
 					},
 					"children": [
 						{
-							"id": 230,
+							"id": 161,
 							"name": "blue",
 							"kind": 32,
 							"kindString": "Variable",
@@ -6222,7 +5063,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 16,
+									"line": 12,
 									"character": 8
 								}
 							],
@@ -6233,7 +5074,7 @@
 							"defaultValue": "\"\u001b[36m\""
 						},
 						{
-							"id": 232,
+							"id": 163,
 							"name": "bold",
 							"kind": 32,
 							"kindString": "Variable",
@@ -6241,7 +5082,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 18,
+									"line": 14,
 									"character": 8
 								}
 							],
@@ -6252,7 +5093,7 @@
 							"defaultValue": "\"\u001b[1m\""
 						},
 						{
-							"id": 233,
+							"id": 164,
 							"name": "clear",
 							"kind": 32,
 							"kindString": "Variable",
@@ -6260,7 +5101,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 19,
+									"line": 15,
 									"character": 9
 								}
 							],
@@ -6271,7 +5112,7 @@
 							"defaultValue": "\"\u001b[0m\""
 						},
 						{
-							"id": 231,
+							"id": 162,
 							"name": "green",
 							"kind": 32,
 							"kindString": "Variable",
@@ -6279,7 +5120,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 17,
+									"line": 13,
 									"character": 9
 								}
 							],
@@ -6290,7 +5131,7 @@
 							"defaultValue": "\"\u001b[32m\""
 						},
 						{
-							"id": 228,
+							"id": 159,
 							"name": "red",
 							"kind": 32,
 							"kindString": "Variable",
@@ -6298,7 +5139,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 14,
+									"line": 10,
 									"character": 7
 								}
 							],
@@ -6309,7 +5150,7 @@
 							"defaultValue": "\"\u001b[31m\""
 						},
 						{
-							"id": 229,
+							"id": 160,
 							"name": "yellow",
 							"kind": 32,
 							"kindString": "Variable",
@@ -6317,7 +5158,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 15,
+									"line": 11,
 									"character": 10
 								}
 							],
@@ -6333,19 +5174,19 @@
 							"title": "Variables",
 							"kind": 32,
 							"children": [
-								230,
-								232,
-								233,
-								231,
-								228,
-								229
+								161,
+								163,
+								164,
+								162,
+								159,
+								160
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-							"line": 13,
+							"line": 9,
 							"character": 11
 						}
 					],
@@ -6364,25 +5205,17 @@
 					]
 				},
 				{
-					"title": "Interfaces",
-					"kind": 256,
-					"children": [
-						163
-					]
-				},
-				{
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						234,
-						235
+						165
 					]
 				},
 				{
 					"title": "Object literals",
 					"kind": 2097152,
 					"children": [
-						227
+						158
 					]
 				}
 			],
@@ -6395,7 +5228,7 @@
 			]
 		},
 		{
-			"id": 348,
+			"id": 278,
 			"name": "\"overview\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -6423,10 +5256,10 @@
 			"children": [
 				1,
 				10,
-				236,
-				336,
+				166,
+				266,
 				76,
-				348
+				278
 			]
 		}
 	]

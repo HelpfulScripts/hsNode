@@ -1,12 +1,8 @@
-import { Log }          from 'hsutil';
-import { LogFn }        from 'hsutil';
-import { date }         from 'hsutil';
-import { pathExists }   from './fsUtil';
-import { appendFile }   from './fsUtil';
+import { Log as LogUtil }   from 'hsutil';
+import { date }             from 'hsutil';
+import { pathExists }       from './fsUtil';
+import { appendFile }       from './fsUtil';
 
-
-// const pathExists = (file:string):Promise<boolean> => Promise.resolve(false);
-// const appendFile = (file:string, content:string) => Promise.resolve('');
 
 
 /** shell color escape codes */
@@ -23,7 +19,9 @@ const color = {
 let gColors = true;
 
 
-class LogServer extends Log {
+export class Log extends LogUtil {
+    public static log = new Log('');
+
     /** name of the current log file, or undefined */
     protected LogFile: string;	// initially disabled
 
@@ -135,23 +133,16 @@ class LogServer extends Log {
 }
 
     /** factory method to create instances of callable `LogServer` */
-    public static makeLogFn(prefix:string):LogServerFn { 
-        const instance = new LogServer(prefix);
-        const newLog = <LogServerFn><unknown>((prefix:string) => LogServer.makeLogFn(prefix));
-        return instance.addPoperties(newLog);
-    }
+    // public static makeLogFn(prefix:string):LogServerFn { 
+    //     const instance = new LogServer(prefix);
+    //     const newLog = <LogServerFn><unknown>((prefix:string) => LogServer.makeLogFn(prefix));
+    //     return instance.addPoperties(newLog);
+    // }
 
-    protected addPoperties(logFn:LogServerFn):LogServerFn {
-        const newLogFn:any = super.addPoperties(logFn);
-        newLogFn.logFile  = this.logFile.bind(this);
-        return newLogFn;
-    }
+    // protected addPoperties(logFn:LogServerFn):LogServerFn {
+    //     const newLogFn:any = super.addPoperties(logFn);
+    //     newLogFn.logFile  = this.logFile.bind(this);
+    //     return newLogFn;
+    // }
 }
 
-export interface LogServerFn extends LogFn {
-    (_prefix:string): LogServerFn;
-    logFile(file?:string):Promise<string>;
-}
-
-
-export const log = LogServer.makeLogFn('');

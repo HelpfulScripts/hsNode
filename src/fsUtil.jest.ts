@@ -1,5 +1,4 @@
 import { node } from './';
-// import { log }     from './log';
 
 const fsUtil = node.fs;
 const cpUtil = node.child_process;
