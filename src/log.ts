@@ -20,7 +20,7 @@ const color = {
 };
 
 /** boolean determining if log will be printed in color */
-let gColors = false;
+let gColors = true;
 
 
 class LogServer extends Log {
@@ -29,6 +29,19 @@ class LogServer extends Log {
 
     /** temporary color setting, defined in call to `inspect()` and used in `getPrePostfix` */
     protected inspectColors: string[];
+
+    /**
+     * configures the log facility.
+     * - cfg.colors: boolean, determines if output is colored
+     * - cfg.logfile: sets the naming template for the logfile. Set logFile=null to disable.
+     * - cfg.format: sets the format for the timestamp for each log entry
+     * - cfg.level: sets the reporting level (same as calling log.level())
+     * @param cfg 
+     */
+    config(cfg:{colors?:boolean, format?:string, level?:string }) {
+        super.config(cfg);
+        if (cfg.colors!==undefined) { gColors = cfg.colors; }   // true / false
+    }
 
     /** 
      * Creates the core format of the reported message. This method is 
@@ -89,19 +102,6 @@ class LogServer extends Log {
         }
         await this.info(this.LogFile? `now logging to file ${date(this.LogFile)}` : 'logfile disbaled');
         return this.LogFile;
-    }
-
-    /**
-     * configures the log facility.
-     * - cfg.colors: boolean, determines if output is colored
-     * - cfg.logfile: sets the naming template for the logfile. Set logFile=null to disable.
-     * - cfg.format: sets the format for the timestamp for each log entry
-     * - cfg.level: sets the reporting level (same as calling log.level())
-     * @param cfg 
-     */
-    config(cfg:{colors?:boolean, format?:string, level?:string }) {
-        super.config(cfg);
-        if (cfg.colors!==undefined) { gColors = cfg.colors; }   // true / false
     }
 
     /**

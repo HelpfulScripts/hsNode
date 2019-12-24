@@ -161,6 +161,16 @@ describe('log', () => {
             expect(log.format('%M/%DD/%YY')).toBe('%M/%DD/%YY')
         );
     });                    
+    
+    describe('color', () => {
+        beforeEach(() => {
+            log.config({colors: true});
+            return log.info('colors');
+        });
+        afterEach(() => log.config({colors: false}));   // reset the date format
+
+        it('should print prefix "test"', () => expect(gMsg).toMatch(/colors/));
+    });                    
 
     describe('log file', () => {
         it('should be created next to Gruntfile for default path', () => {
