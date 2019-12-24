@@ -271,7 +271,7 @@ export async function readJsonFile(thePath:string):Promise<any> {
  * @return promise to provide the file name if successful.
  */
 export async function writeFile(thePath:string, content:string, isText:boolean=true):Promise<string> {
-    var encoding:any = isText? 'utf8' : {encoding: null};
+    var encoding:any = isText? 'utf8' : 'binary';
     await mkdirs(path.dirname(thePath));
     return await new Promise((resolve, reject) => {
         fs.writeFile(thePath, content, encoding, (err:any) =>

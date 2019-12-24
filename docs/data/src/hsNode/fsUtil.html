@@ -294,7 +294,7 @@
 <p id=271 class="line"><span>&nbsp;271</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;file&nbsp;name&nbsp;if&nbsp;successful.</comment></p>
 <p id=272 class="line"><span>&nbsp;272</span><comment>&nbsp;*/</comment></p>
 <p id=273 class="line"><span>&nbsp;273</span>export&nbsp;async&nbsp;function&nbsp;writeFile(thePath:string,&nbsp;content:string,&nbsp;isText:boolean=true):Promise<string>&nbsp;{</p>
-<p id=274 class="line"><span>&nbsp;274</span>&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;encoding:any&nbsp;=&nbsp;isText?&nbsp;<quote>'utf8'</quote>&nbsp;:&nbsp;{encoding:&nbsp;null};</p>
+<p id=274 class="line"><span>&nbsp;274</span>&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;encoding:any&nbsp;=&nbsp;isText?&nbsp;<quote>'utf8'</quote>&nbsp;:&nbsp;<quote>'binary'</quote>;</p>
 <p id=275 class="line"><span>&nbsp;275</span>&nbsp;&nbsp;&nbsp;&nbsp;await&nbsp;mkdirs(path.dirname(thePath));</p>
 <p id=276 class="line"><span>&nbsp;276</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;await&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=>&nbsp;{</p>
 <p id=277 class="line"><span>&nbsp;277</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fs.writeFile(thePath,&nbsp;content,&nbsp;encoding,&nbsp;(err:any)&nbsp;=></p>

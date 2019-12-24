@@ -496,8 +496,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">123x</span>
-<span class="cline-any cline-yes">123x</span>
+<span class="cline-any cline-yes">126x</span>
+<span class="cline-any cline-yes">126x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -720,9 +720,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">67x</span>
-<span class="cline-any cline-yes">67x</span>
-<span class="cline-any cline-yes">67x</span>
+<span class="cline-any cline-yes">70x</span>
+<span class="cline-any cline-yes">70x</span>
+<span class="cline-any cline-yes">70x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1013,7 +1013,7 @@ export async function readJsonFile(thePath:string):Promise&lt;any&gt; {
  * @return promise to provide the file name if successful.
  */
 export async function writeFile(thePath:string, content:string, isText:boolean=true):Promise&lt;string&gt; {
-    var encoding:any = isText? 'utf8' : {encoding: null};
+    var encoding:any = isText? 'utf8' : 'binary';
     await mkdirs(path.dirname(thePath));
     return await new Promise((resolve, reject) =&gt; {
         fs.writeFile(thePath, content, encoding, (err:any) =&gt;
