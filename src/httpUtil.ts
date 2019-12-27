@@ -17,7 +17,7 @@
 
 import { URL }          from 'url';
 import { createHash }   from 'crypto';
-import { Log }          from './log';   const log = new Log('httpUtil');
+import { Log }          from './index';   const log = new Log('httpUtil');
 import * as fs          from "./fsUtil";
 
 // log.level(log.DEBUG);
@@ -61,7 +61,8 @@ export function xml2json(xml:string):any {
  * @param postData optional data to post. If provided, a POST request will be sent instead of the default GET 
  * @return promise to provide the result of the request.
  */
-export function request(url:URL, user?:Digest, referer?:string, postData?:any):Promise<HttpResponse|string> {
+export function request(url:URL|string, user?:Digest, referer?:string, postData?:any):Promise<HttpResponse> {
+    if (typeof url === 'string') { url = new URL(url); }
     let options = {
         method:     postData? 'POST': 'GET',
         protocol:   url.protocol,
@@ -205,8 +206,8 @@ export class Digest {
      * @param data 
      * @param response 
      */
-    testDigestAuth(options:any, data:string, response:IncomingMessage): Promise<HttpResponse|string> {
-        log.info(`received www-authenticate request for ${options.host}`);
+    testDigestAuth(options:any, data:string, response:IncomingMessage): Promise<HttpResponse> {
+        log.debug(`received www-authenticate request for ${options.host}`);
 
         let challenge:any = parseDigestResponse(response.headers['www-authenticate']);
         let ha1 = createHash('md5');
@@ -318,14 +319,14 @@ function getAttributes(tag:string, result:any) {
     return tag;
 }
 
-function requestOptions(options:any, user?:Digest, postData?:any):Promise<HttpResponse|string> {
+function requestOptions(options:any, user?:Digest, postData?:any):Promise<HttpResponse> {
     const prot:any = {
         'http:': require('http'),
         'https:': require('https')
     };
     let auth = (options.headers && options.headers.Authorization);
     log.debug(`requesting ${log.inspect(options, 4)}`);
-    return new Promise((resolve:(out:HttpResponse)=>void, reject:(e:string)=>void) => {
+    return new Promise((resolve:(out:HttpResponse)=>void, reject:(e:HttpResponse)=>void) => {
         let data = ''; 
         log.debug(`sending request ${auth? 'with authorization ':''}for ${options.protocol}//${options.host}:${options.port}${options.path}`); 
         const req = prot[options.protocol].request(options, (res:any) => {
@@ -335,7 +336,7 @@ function requestOptions(options:any, user?:Digest, postData?:any):Promise<HttpRe
             res.on('data', (chunk:string) => { data += chunk; });
             res.on('end', () => { log.debug(`received ${encoding}`); resolve({data:data, response:res}); });
         });
-        req.on('error', (e:any) => reject(e));
+        req.on('error', (e:any) => reject({data:'', response:e}));
 
         // write data to request body
         if (postData !== undefined) { req.write(postData); }

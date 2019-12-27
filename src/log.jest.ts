@@ -1,6 +1,6 @@
 
 import * as fsUtil      from './fsUtil';
-import { Log }          from './log';  const log = new Log('log.jest');
+import { Log }          from './index';  const log = new Log('log.jest');
 
 describe('log', () => {
     let gLog: any;
@@ -35,14 +35,16 @@ describe('log', () => {
         return log.logFile('');
     });
 
-    afterAll(() =>
-        log.logFile().then((file:string) => 
-            fsUtil.isFile(file)
-            .then(exists => exists? fsUtil.remove(file) : undefined)
-        )
-        .catch((err:any) => console.log(`afterAll: ${err}`))
-        .then(() => console.log = gLog)
-    );
+    afterAll(async () => { try {
+        const file = await log.logFile();
+        const exists = await fsUtil.isFile(file);
+        if (exists) {
+            await fsUtil.remove(file); 
+        }} catch(err) {
+            console.log(`afterAll: ${err}`);
+        }
+        console.log = gLog;
+    });
     
     describe('reporting functions', () => {
         it('should print default info', () =>
@@ -172,25 +174,41 @@ describe('log', () => {
         it('should print prefix "test"', () => expect(gMsg).toMatch(/colors/));
     });                    
 
-    describe('log file', () => {
-        it('should be created next to Gruntfile for default path', () => {
-            expect.assertions(4);
-            return log.logFile('')
-            .then((file:string) => {
+    describe('log file', () => { 
+        it('should be created next to Gruntfile for default path', async () => {
+            try {
+                expect.assertions(4);
+                const file = await log.logFile('');
                 gLog(`...setting log file ${file}`);
-                return Promise.all([
-                    expect(file).toBeDefined(),  
-                    expect(file).toMatch(/log-%YYYY-%MM-%DD.txt/),
-                ]);
-            })            
-            .then(() => {
+                expect(file).toBeDefined();
+                expect(file).toMatch(/log-%YYYY-%MM-%DD.txt/);
                 gLog(`...msg match '${gMsg}'`);
-                return expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g);
-            })
-            .then(() => log.logFile())
-            .then(fsUtil.isFile)
-            .then((b:boolean) => expect(b).toBe(true))
-            .catch(gLog);
+                expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g);
+                const file2 = await log.logFile();
+                const b = await fsUtil.isFile(file2);
+                expect(b).toBe(true);
+                await fsUtil.remove(file2); 
+            } catch(e) {
+                gLog(e);
+            }
+        });
+        
+        it('should be created with format template', async () => {
+            try {
+                expect.assertions(4);
+                const file = await log.logFile('%YY%M%Dlog.log');
+                gLog(`...setting log file template ${file}`);
+                expect(file).toBeDefined();
+                expect(file).toMatch(/%YY%M%Dlog.log/);
+                gLog(`...msg match '${gMsg}'`);
+                expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g);
+                const file2 = await log.logFile();
+                const b = await fsUtil.isFile(file2);
+                expect(b).toBe(true);
+                await fsUtil.remove(file2); 
+            } catch(e) {
+                gLog(e);
+            }
         });
         
         it('should be stopped for missing paths', () =>

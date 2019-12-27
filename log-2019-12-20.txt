@@ -1,9 +1,0 @@
-20191220 22:20:40.253  INFO now logging to file log-2019-12-20.txt
-20191220 22:20:40.256  INFO now logging to file log-2019-12-20.txt
-20191220 22:20:40.495  INFO now logging to file log-2019-12-20.txt
-20191220 22:20:40.542  INFO received www-authenticate request for my.space.com
-20191220 22:20:40.498  INFO now logging to file log-2019-12-20.txt
-20191220 22:20:40.549  INFO requested http://my.space.com/myPath?query=value
-20191220 22:20:40.557  INFO get cached './bin/cache/my.space.com//myPath?query=value'
-20191220 22:20:40.634  INFO now logging to file log-2019-12-20.txt
-20191220 22:20:40.636  INFO now logging to file log-2019-12-20.txt

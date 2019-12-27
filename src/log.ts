@@ -2,6 +2,7 @@ import { Log as LogUtil }   from 'hsutil';
 import { date }             from 'hsutil';
 import { pathExists }       from './fsUtil';
 import { appendFile }       from './fsUtil';
+import  path                from 'path';
 
 
 
@@ -19,14 +20,16 @@ const color = {
 let gColors = true;
 
 
-export class Log extends LogUtil {
-    public static log = new Log('');
+export class LogServer extends LogUtil {
+    public static log = new LogServer('');
 
     /** name of the current log file, or undefined */
     protected LogFile: string;	// initially disabled
 
     /** temporary color setting, defined in call to `inspect()` and used in `getPrePostfix` */
     protected inspectColors: string[];
+
+    constructor(prefix:string) { super(prefix); }
 
     /**
      * configures the log facility.
@@ -48,7 +51,7 @@ export class Log extends LogUtil {
      * - logging messages to a file.
      */
     protected makeMessage(line:string, lvl:string, dateStr:string, desc:string):string {
-        const colors = { [Log.ERROR]: color.red+color.bold, [Log.WARN]: color.yellow+color.bold, [Log.DEBUG]: color.blue, [Log.INFO]: color.green };
+        const colors = { [LogServer.ERROR]: color.red+color.bold, [LogServer.WARN]: color.yellow+color.bold, [LogServer.DEBUG]: color.blue, [LogServer.INFO]: color.green };
         const logLine = super.makeMessage(line, lvl, dateStr, desc);
         if (this.LogFile) {
             appendFile(date(this.LogFile), logLine+'\n');
@@ -77,7 +80,8 @@ export class Log extends LogUtil {
         } else if (file === undefined) {        // leave this.LogFile unchanged, return promise for logfile name
             return date(this.LogFile);
         } else if (file.indexOf('/')>=0) { 
-            await pathExists(file)
+            const parts = path.parse(file);
+            await pathExists(parts.dir)
                 .then(async (exists:boolean) => { 
                     if (!exists) {
                         this.LogFile = undefined;
