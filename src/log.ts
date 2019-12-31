@@ -1,3 +1,8 @@
+/**
+ * ## log module
+ */
+
+/** */
 import { Log as LogUtil }   from 'hsutil';
 import { date }             from 'hsutil';
 import { pathExists }       from './fsUtil';
