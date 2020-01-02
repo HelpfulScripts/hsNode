@@ -44,7 +44,7 @@ export class LogServer extends LogUtil {
      * - cfg.level: sets the reporting level (same as calling log.level())
      * @param cfg 
      */
-    config(cfg:{colors?:boolean, format?:string, level?:string }) {
+    public config(cfg:{colors?:boolean, format?:string, level?:string }) {
         super.config(cfg);
         if (cfg.colors!==undefined) { gColors = cfg.colors; }   // true / false
     }
@@ -77,7 +77,7 @@ export class LogServer extends LogUtil {
      * @param file a template to use for log file names. Options for calling:
      * @return promise to return the current logfile name, or `undefined` if loggimng is disabled.
      */
-    async logFile(file?:string):Promise<string> {
+    public async logFile(file?:string):Promise<string> {
         if (file === null) {                    // disable logging in file
             this.LogFile = undefined; 
             await this.info("disabling logfile");
@@ -125,7 +125,7 @@ export class LogServer extends LogUtil {
      * (' ') with `&nbsp;`. The color applied to each keyword cycles through the array with each increasing level, 
      * and restarts at index 0 when the level exceeds the length of the array.
      */
-    inspect(msg:any, depth=3, indent='   ', colors?:string[]):string {
+    public inspect(msg:any, depth=3, indent='   ', colors?:string[]):string {
         this.inspectColors = colors;
         if (colors) { indent = indent.replace(/ /g, '&nbsp;'); }
         return super.inspect(msg, depth, indent);
@@ -139,19 +139,6 @@ export class LogServer extends LogUtil {
             postfix = `${postfix}</span></b>`;
         }
         return [prefix, postfix];
-}
-
-    /** factory method to create instances of callable `LogServer` */
-    // public static makeLogFn(prefix:string):LogServerFn { 
-    //     const instance = new LogServer(prefix);
-    //     const newLog = <LogServerFn><unknown>((prefix:string) => LogServer.makeLogFn(prefix));
-    //     return instance.addPoperties(newLog);
-    // }
-
-    // protected addPoperties(logFn:LogServerFn):LogServerFn {
-    //     const newLogFn:any = super.addPoperties(logFn);
-    //     newLogFn.logFile  = this.logFile.bind(this);
-    //     return newLogFn;
-    // }
+    }
 }
 
