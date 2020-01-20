@@ -297,7 +297,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 327,
+							"line": 343,
 							"character": 32
 						}
 					]
@@ -610,7 +610,7 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
 							"line": 171,
-							"character": 22
+							"character": 28
 						}
 					]
 				},
@@ -722,7 +722,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 213,
+							"line": 229,
 							"character": 29
 						}
 					]
@@ -792,7 +792,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 234,
+							"line": 250,
 							"character": 24
 						}
 					]
@@ -847,7 +847,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 258,
+							"line": 274,
 							"character": 34
 						}
 					]
@@ -902,7 +902,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 248,
+							"line": 264,
 							"character": 34
 						}
 					]
@@ -1012,7 +1012,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 341,
+							"line": 357,
 							"character": 28
 						}
 					]
@@ -1148,7 +1148,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 273,
+							"line": 289,
 							"character": 31
 						}
 					]
@@ -1217,7 +1217,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 313,
+							"line": 329,
 							"character": 35
 						}
 					]
@@ -1286,7 +1286,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 288,
+							"line": 304,
 							"character": 33
 						}
 					]
@@ -1352,7 +1352,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 302,
+							"line": 318,
 							"character": 35
 						}
 					]
@@ -3497,7 +3497,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 47,
+									"line": 35,
 									"character": 38
 								}
 							],
@@ -3521,7 +3521,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 44,
+									"line": 32,
 									"character": 21
 								}
 							],
@@ -3545,7 +3545,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 47,
+									"line": 35,
 									"character": 27
 								}
 							],
@@ -3943,7 +3943,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 41,
+									"line": 29,
 									"character": 21
 								}
 							],
@@ -4007,7 +4007,7 @@
 															"sources": [
 																{
 																	"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-																	"line": 59,
+																	"line": 47,
 																	"character": 29
 																}
 															],
@@ -4027,7 +4027,7 @@
 															"sources": [
 																{
 																	"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-																	"line": 59,
+																	"line": 47,
 																	"character": 46
 																}
 															],
@@ -4047,7 +4047,7 @@
 															"sources": [
 																{
 																	"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-																	"line": 59,
+																	"line": 47,
 																	"character": 61
 																}
 															],
@@ -4071,7 +4071,7 @@
 													"sources": [
 														{
 															"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-															"line": 59,
+															"line": 47,
 															"character": 22
 														}
 													]
@@ -4092,7 +4092,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 59,
+									"line": 47,
 									"character": 17
 								}
 							],
@@ -4364,7 +4364,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 146,
+									"line": 134,
 									"character": 27
 								}
 							],
@@ -4537,7 +4537,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 140,
+									"line": 128,
 									"character": 18
 								}
 							],
@@ -4664,7 +4664,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 92,
+									"line": 80,
 									"character": 24
 								}
 							]
@@ -4747,7 +4747,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 70,
+									"line": 58,
 									"character": 25
 								}
 							],

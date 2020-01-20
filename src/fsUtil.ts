@@ -14,7 +14,7 @@
   * 
   */
 
-import * as fs from 'fs';
+import * as fs          from 'fs';
 import * as path        from 'path';
 import { promiseChain } from 'hsutil';
 
@@ -168,41 +168,57 @@ export async function isLink(thePath:string):Promise<boolean> {
  * @param thePath the path to check
  * @return promise to provide the path name
  */ 
-export function mkdirs(thePath:string):Promise<string> {    
+export async function mkdirs(thePath:string):Promise<string> {    
     const p = path.normalize(path.resolve(process.cwd(),thePath));
-    if (p.indexOf(process.cwd())===0) { // --> thePath is local to current working directory
-        const r = p.substr(process.cwd().length+1);
-        let dirs = r.split('/');
-        // create complete successive subdirs from the split
-        dirs = dirs.map((dir, i) => './'+dirs.slice(0,i+1).join('/'));
-        // setup the execution calls for each dir:
-        const tasks = dirs.map(dir => () => isDirectory(dir)
-            .then((exists) => new Promise((resolve:(dir:boolean)=>void, reject) => {
-                if (exists) { 
-                    resolve(true);
-                } else { 
-                    fs.mkdir(dir, (err:any) => {
-                        if(!err) { resolve(true); }
-                        else if (err.toString().match(/Error: EEXIST: file already exists/)) {
-                            resolve(true);
-                        } else {
-                            reject(err);
-                        }
-                    });
-                }
-            }))
-        );
-        // serialize the directory creation: 
-        return promiseChain(tasks).then((res:boolean[]) => {
-            res.map((r, i) => {
-                if (r) { return true; }
-                throw `mkdir failed for ${dirs[i]}: ${r}`;
-            });
-            return dirs[dirs.length-1];
-        });
-    } else {
-        return Promise.reject(`target '${p}' not inside working directory '${process.cwd()}'`);
+    // console.log(`mkdirs: '${thePath}' -> '${p}'`);
+    let dirs = p.split('/');
+    // create complete successive subdirs from the split
+    dirs = dirs.map((dir, i) => dirs.slice(0,i+1).join('/'));
+    for (let i=0; i<dirs.length; i++) {
+        const dir = dirs[i];
+        const exists = await isDirectory(dir);
+        if (!exists) { try {
+            await fs.promises.mkdir(dir);
+        } catch(e) { 
+            console.error(e); 
+            throw `mkdir failed for ${dir}: ${p}\n${e}`;
+        }}
     }
+    return p;
+    // const p = path.normalize(path.resolve(process.cwd(),thePath));
+    // // if (p.indexOf(process.cwd())===0) { // --> thePath is local to current working directory
+    //     const r = p.substr(process.cwd().length+1);
+    //     let dirs = r.split('/');
+    //     // create complete successive subdirs from the split
+    //     dirs = dirs.map((dir, i) => './'+dirs.slice(0,i+1).join('/'));
+    //     // setup the execution calls for each dir:
+    //     const tasks = dirs.map(dir => () => isDirectory(dir)
+    //         .then((exists) => new Promise((resolve:(dir:boolean)=>void, reject) => {
+    //             if (exists) { 
+    //                 resolve(true);
+    //             } else { 
+    //                 fs.mkdir(dir, (err:any) => {
+    //                     if(!err) { resolve(true); }
+    //                     else if (err.toString().match(/Error: EEXIST: file already exists/)) {
+    //                         resolve(true);
+    //                     } else {
+    //                         reject(err);
+    //                     }
+    //                 });
+    //             }
+    //         }))
+    //     );
+    //     // serialize the directory creation: 
+    //     return promiseChain(tasks).then((res:boolean[]) => {
+    //         res.map((r, i) => {
+    //             if (r) { return true; }
+    //             throw `mkdir failed for ${dirs[i]}: ${r}`;
+    //         });
+    //         return dirs[dirs.length-1];
+    //     });
+    // // } else {
+    // //     return Promise.reject(`target '${p}' not inside working directory '${process.cwd()}'`);
+    // // }
 }
 
 /**
