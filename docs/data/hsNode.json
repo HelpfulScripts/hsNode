@@ -4762,7 +4762,6 @@
 							"kind": 2048,
 							"kindString": "Method",
 							"flags": {
-								"isProtected": true,
 								"isExported": true
 							},
 							"signatures": [
@@ -4816,7 +4815,7 @@
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
 									"line": 30,
-									"character": 17
+									"character": 7
 								}
 							],
 							"inheritedFrom": {
