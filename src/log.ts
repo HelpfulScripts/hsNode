@@ -128,7 +128,7 @@ export class LogServer extends LogUtil {
     public inspect(msg:any, depth=3, indent='   ', colors?:string[]):string {
         this.inspectColors = colors;
         if (colors) { indent = indent.replace(/ /g, '&nbsp;'); }
-        return super.inspect(msg, depth, indent);
+        return super.inspect(msg, depth, indent, colors);
     }
 
     protected getPrePostfix(indent:string, level:number, currIndent:string):[string,string] {

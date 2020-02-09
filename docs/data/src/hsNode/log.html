@@ -151,7 +151,7 @@
 <p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;inspect(msg:any,&nbsp;depth=3,&nbsp;indent='</quote>&nbsp;&nbsp;&nbsp;<quote>',&nbsp;colors?:string[]):string&nbsp;{</p>
 <p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.inspectColors&nbsp;=&nbsp;colors;</p>
 <p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(colors)&nbsp;{&nbsp;indent&nbsp;=&nbsp;indent.replace(/&nbsp;/g,&nbsp;'</quote>&nbsp;<quote>');&nbsp;}</p>
-<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;super.inspect(msg,&nbsp;depth,&nbsp;indent);</p>
+<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;super.inspect(msg,&nbsp;depth,&nbsp;indent,&nbsp;colors);</p>
 <p id=132 class="line"><span>&nbsp;132</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=133 class="line"><span>&nbsp;133</span></p>
 <p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;getPrePostfix(indent:string,&nbsp;level:number,&nbsp;currIndent:string):[string,string]&nbsp;{</p>
