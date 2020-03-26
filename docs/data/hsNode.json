@@ -46,7 +46,9 @@
 									"name": "exec",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"shortText": "executes `command` in a child process and promises to return the stdout and stderr streams.\n<pre>\nlet utils = require('./cpUtils');\nutils.exec(cmd)\n.then((stdout, stderr) => {...})\n.catch(err => {...});\n</pre>",
 										"returns": "promise to provide the stdout and stderr streams from the child process.\n"
@@ -57,7 +59,9 @@
 											"name": "command",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"comment": {
 												"shortText": "the shell command to execute"
 											},
@@ -72,6 +76,7 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
+												"isExported": true,
 												"isOptional": true
 											},
 											"comment": {
@@ -85,7 +90,6 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "Promise",
 										"typeArguments": [
 											{
 												"type": "reflection",
@@ -94,14 +98,18 @@
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
-													"flags": {},
+													"flags": {
+														"isExported": true
+													},
 													"children": [
 														{
 															"id": 9,
 															"name": "stderr",
 															"kind": 32,
 															"kindString": "Variable",
-															"flags": {},
+															"flags": {
+																"isExported": true
+															},
 															"sources": [
 																{
 																	"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/cpUtil.ts",
@@ -119,7 +127,9 @@
 															"name": "stdout",
 															"kind": 32,
 															"kindString": "Variable",
-															"flags": {},
+															"flags": {
+																"isExported": true
+															},
 															"sources": [
 																{
 																	"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/cpUtil.ts",
@@ -152,7 +162,8 @@
 													]
 												}
 											}
-										]
+										],
+										"name": "Promise"
 									}
 								}
 							],
@@ -232,7 +243,9 @@
 							"name": "appendFile",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "appends to a file either as binary or text and promises to return the file name.",
 								"returns": "promise to provide the realPath of the file written to.\n"
@@ -243,7 +256,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to write to"
 									},
@@ -257,7 +272,9 @@
 									"name": "content",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the content to write"
 									},
@@ -271,7 +288,9 @@
 									"name": "isText",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "`true`|`false` if file should be read as `utf8`|binary"
 									},
@@ -284,13 +303,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "string"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -356,7 +375,9 @@
 							"name": "isDirectory",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "determines if `thePath` is a directory and promises to provide `true` or `false`.",
 								"returns": "promise to provide `true` or `false`\n"
@@ -367,7 +388,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to check"
 									},
@@ -379,13 +402,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "boolean"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -411,7 +434,9 @@
 							"name": "isFile",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "determines if `thePath` is a file and promises to provide `true` or `false`.",
 								"returns": "promise to provide `true` or `false`\n"
@@ -422,7 +447,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to check"
 									},
@@ -434,13 +461,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "boolean"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -466,7 +493,9 @@
 							"name": "isLink",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "determines if `thePath` is a directory and promises to provide `true` or `false`.",
 								"returns": "promise to provide `true` or `false`\n"
@@ -477,7 +506,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to check"
 									},
@@ -489,13 +520,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "boolean"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -541,13 +572,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "reference",
 										"name": "Stats"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -573,7 +604,9 @@
 							"name": "mkdirs",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "creates any missing directories in `thePath` and promises to return the path name.\nCharacters after the last `/` in `thePath` will be interpreted as a filename, hence no directory willbe created form them.\nTerminate `thePath` with a final `/` to indicate that all parts should be created.\nFInally, for precaution `mkdirs` only creates directories within the current working directory.",
 								"returns": "promise to provide the path name\n"
@@ -584,7 +617,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to check"
 									},
@@ -596,13 +631,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "string"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -628,7 +663,9 @@
 							"name": "pathExists",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "determines if `thePath` exists and promises to provide `true` or `false`.",
 								"returns": "promise to provide `true` or `false`\n"
@@ -639,7 +676,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to check"
 									},
@@ -651,13 +690,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "boolean"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -683,7 +722,9 @@
 							"name": "readDir",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "lists all files in a directory and promises to provide the list.",
 								"returns": "promise to provide a list of directory entries.\n"
@@ -694,7 +735,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to check"
 									},
@@ -706,7 +749,6 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "array",
@@ -715,7 +757,8 @@
 											"name": "string"
 										}
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -741,7 +784,9 @@
 							"name": "readFile",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "reads a file either as binary or text and promises to provide the content.",
 								"returns": "promise to provide file content.\n"
@@ -752,7 +797,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to read"
 									},
@@ -766,7 +813,9 @@
 									"name": "isText",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "`true`|`false` if file should be read as `utf8`|binary"
 									},
@@ -779,13 +828,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "any"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -811,7 +860,9 @@
 							"name": "readJsonFile",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "reads a text file and promises to provide the content.",
 								"returns": "promise to provide file content.\n"
@@ -822,7 +873,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to read"
 									},
@@ -834,13 +887,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "any"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -866,7 +919,9 @@
 							"name": "readTextFile",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "reads a text file and promises to provide the content.",
 								"returns": "promise to provide file content.\n"
@@ -877,7 +932,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to read"
 									},
@@ -889,13 +946,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "string"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -921,7 +978,9 @@
 							"name": "realPath",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "determines the canonical path for `thePath`, resolving all symbolic links and '../'in the path.",
 								"returns": "promise to provide the real canonical system path.\n"
@@ -932,7 +991,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to check"
 									},
@@ -944,13 +1005,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "string"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -976,7 +1037,9 @@
 							"name": "remove",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "promises to delete a file or folder and return the file or folder name.",
 								"returns": "promise to provide the name of the removed file.\n"
@@ -987,7 +1050,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to write"
 									},
@@ -999,13 +1064,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "string"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -1051,13 +1116,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "reference",
 										"name": "Stats"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -1083,7 +1148,9 @@
 							"name": "writeFile",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "writes a file either as binary or text and promises to return the file name.",
 								"returns": "promise to provide the file name if successful.\n"
@@ -1094,7 +1161,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to write to"
 									},
@@ -1108,7 +1177,9 @@
 									"name": "content",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the content to write"
 									},
@@ -1122,7 +1193,9 @@
 									"name": "isText",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "`true`|`false` if file should be read as `utf8`|binary"
 									},
@@ -1135,13 +1208,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "string"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -1167,7 +1240,9 @@
 							"name": "writeJsonFile",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "writes a text file and promises to return the file name.",
 								"returns": "promise to provide the file name if successful.\n"
@@ -1178,7 +1253,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to write"
 									},
@@ -1192,7 +1269,9 @@
 									"name": "obj",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the object to write"
 									},
@@ -1204,13 +1283,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "string"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -1236,7 +1315,9 @@
 							"name": "writeStream",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "writes content to a file as a stream and promises to return the file name.",
 								"returns": "promise to provide the file name if successful.\n"
@@ -1247,7 +1328,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to write to"
 									},
@@ -1261,7 +1344,9 @@
 									"name": "content",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the content to write"
 									},
@@ -1273,13 +1358,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "string"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -1305,7 +1390,9 @@
 							"name": "writeTextFile",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "writes a text file and promises to return the file name.",
 								"returns": "promise to provide the file name if successful.\n"
@@ -1316,7 +1403,9 @@
 									"name": "thePath",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the path to write"
 									},
@@ -1330,7 +1419,9 @@
 									"name": "content",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "string"
@@ -1339,13 +1430,13 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "intrinsic",
 										"name": "string"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -1394,7 +1485,7 @@
 			]
 		},
 		{
-			"id": 178,
+			"id": 179,
 			"name": "\"httpUtil\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -1408,7 +1499,7 @@
 			},
 			"children": [
 				{
-					"id": 179,
+					"id": 180,
 					"name": "CachedHTTPRequest",
 					"kind": 128,
 					"kindString": "Class",
@@ -1421,7 +1512,7 @@
 					},
 					"children": [
 						{
-							"id": 180,
+							"id": 181,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
@@ -1433,21 +1524,25 @@
 							},
 							"signatures": [
 								{
-									"id": 183,
+									"id": 184,
 									"name": "new CachedHTTPRequest",
 									"kind": 16384,
 									"kindString": "Constructor signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"shortText": "Construct a cached get at a specified location int he file system."
 									},
 									"parameters": [
 										{
-											"id": 184,
+											"id": 185,
 											"name": "cacheLocation",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"comment": {
 												"shortText": "the location for the cache"
 											},
@@ -1457,11 +1552,12 @@
 											}
 										},
 										{
-											"id": 185,
+											"id": 186,
 											"name": "user",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
+												"isExported": true,
 												"isOptional": true
 											},
 											"comment": {
@@ -1469,15 +1565,15 @@
 											},
 											"type": {
 												"type": "reference",
-												"name": "Digest",
-												"id": 221
+												"id": 222,
+												"name": "Digest"
 											}
 										}
 									],
 									"type": {
 										"type": "reference",
-										"name": "CachedHTTPRequest",
-										"id": 179
+										"id": 180,
+										"name": "CachedHTTPRequest"
 									}
 								}
 							],
@@ -1490,7 +1586,7 @@
 							]
 						},
 						{
-							"id": 181,
+							"id": 182,
 							"name": "cacheLocation",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1515,7 +1611,7 @@
 							}
 						},
 						{
-							"id": 182,
+							"id": 183,
 							"name": "user",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1537,12 +1633,12 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Digest",
-								"id": 221
+								"id": 222,
+								"name": "Digest"
 							}
 						},
 						{
-							"id": 193,
+							"id": 194,
 							"name": "request",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1552,19 +1648,23 @@
 							},
 							"signatures": [
 								{
-									"id": 194,
+									"id": 195,
 									"name": "request",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {},
 									"parameters": [
 										{
-											"id": 195,
+											"id": 196,
 											"name": "url",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"comment": {
 												"text": "the URL to request, supports GET and POST"
 											},
@@ -1574,11 +1674,13 @@
 											}
 										},
 										{
-											"id": 196,
+											"id": 197,
 											"name": "useCached",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"comment": {
 												"text": "optional boolean: if `false`, a call to `request` will ignore\nany cached version of the response\n"
 											},
@@ -1591,13 +1693,13 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "Promise",
 										"typeArguments": [
 											{
 												"type": "intrinsic",
 												"name": "any"
 											}
-										]
+										],
+										"name": "Promise"
 									}
 								}
 							],
@@ -1610,7 +1712,7 @@
 							]
 						},
 						{
-							"id": 190,
+							"id": 191,
 							"name": "requestOffline",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1620,18 +1722,22 @@
 							},
 							"signatures": [
 								{
-									"id": 191,
+									"id": 192,
 									"name": "requestOffline",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"parameters": [
 										{
-											"id": 192,
+											"id": 193,
 											"name": "fname",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
@@ -1640,13 +1746,13 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "Promise",
 										"typeArguments": [
 											{
 												"type": "intrinsic",
 												"name": "string"
 											}
-										]
+										],
+										"name": "Promise"
 									}
 								}
 							],
@@ -1659,7 +1765,7 @@
 							]
 						},
 						{
-							"id": 186,
+							"id": 187,
 							"name": "requestOnline",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1669,29 +1775,35 @@
 							},
 							"signatures": [
 								{
-									"id": 187,
+									"id": 188,
 									"name": "requestOnline",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"parameters": [
 										{
-											"id": 188,
+											"id": 189,
 											"name": "url",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "reference",
 												"name": "URL"
 											}
 										},
 										{
-											"id": 189,
+											"id": 190,
 											"name": "fname",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
@@ -1700,13 +1812,13 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "Promise",
 										"typeArguments": [
 											{
 												"type": "intrinsic",
 												"name": "any"
 											}
-										]
+										],
+										"name": "Promise"
 									}
 								}
 							],
@@ -1724,24 +1836,24 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								180
+								181
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								181,
-								182
+								182,
+								183
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								193,
-								190,
-								186
+								194,
+								191,
+								187
 							]
 						}
 					],
@@ -1754,7 +1866,7 @@
 					]
 				},
 				{
-					"id": 221,
+					"id": 222,
 					"name": "Digest",
 					"kind": 128,
 					"kindString": "Class",
@@ -1766,7 +1878,7 @@
 					},
 					"children": [
 						{
-							"id": 225,
+							"id": 226,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
@@ -1775,29 +1887,35 @@
 							},
 							"signatures": [
 								{
-									"id": 226,
+									"id": 227,
 									"name": "new Digest",
 									"kind": 16384,
 									"kindString": "Constructor signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"parameters": [
 										{
-											"id": 227,
+											"id": 228,
 											"name": "username",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
 											}
 										},
 										{
-											"id": 228,
+											"id": 229,
 											"name": "password",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
@@ -1806,8 +1924,8 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "Digest",
-										"id": 221
+										"id": 222,
+										"name": "Digest"
 									}
 								}
 							],
@@ -1820,7 +1938,7 @@
 							]
 						},
 						{
-							"id": 222,
+							"id": 223,
 							"name": "nc",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1841,7 +1959,7 @@
 							"defaultValue": "0"
 						},
 						{
-							"id": 224,
+							"id": 225,
 							"name": "password",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1861,7 +1979,7 @@
 							}
 						},
 						{
-							"id": 223,
+							"id": 224,
 							"name": "username",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1881,7 +1999,7 @@
 							}
 						},
 						{
-							"id": 231,
+							"id": 232,
 							"name": "generateCNONCE",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1890,21 +2008,25 @@
 							},
 							"signatures": [
 								{
-									"id": 232,
+									"id": 233,
 									"name": "generateCNONCE",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"shortText": "Parse challenge digest"
 									},
 									"parameters": [
 										{
-											"id": 233,
+											"id": 234,
 											"name": "qop",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"comment": {
 												"text": "\n"
 											},
@@ -1917,18 +2039,22 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 234,
+											"id": 235,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"children": [
 												{
-													"id": 235,
+													"id": 236,
 													"name": "cnonce",
 													"kind": 32,
 													"kindString": "Variable",
-													"flags": {},
+													"flags": {
+														"isExported": true
+													},
 													"sources": [
 														{
 															"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/httpUtil.ts",
@@ -1940,14 +2066,16 @@
 														"type": "intrinsic",
 														"name": "any"
 													},
-													"defaultValue": " cnonce"
+													"defaultValue": "cnonce"
 												},
 												{
-													"id": 236,
+													"id": 237,
 													"name": "nc",
 													"kind": 32,
 													"kindString": "Variable",
-													"flags": {},
+													"flags": {
+														"isExported": true
+													},
 													"sources": [
 														{
 															"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/httpUtil.ts",
@@ -1959,7 +2087,7 @@
 														"type": "intrinsic",
 														"name": "string"
 													},
-													"defaultValue": " nc"
+													"defaultValue": "nc"
 												}
 											],
 											"groups": [
@@ -1967,8 +2095,8 @@
 													"title": "Variables",
 													"kind": 32,
 													"children": [
-														235,
-														236
+														236,
+														237
 													]
 												}
 											]
@@ -1985,7 +2113,7 @@
 							]
 						},
 						{
-							"id": 237,
+							"id": 238,
 							"name": "testDigestAuth",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1994,19 +2122,23 @@
 							},
 							"signatures": [
 								{
-									"id": 238,
+									"id": 239,
 									"name": "testDigestAuth",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {},
 									"parameters": [
 										{
-											"id": 239,
+											"id": 240,
 											"name": "options",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"comment": {},
 											"type": {
 												"type": "intrinsic",
@@ -2014,11 +2146,13 @@
 											}
 										},
 										{
-											"id": 240,
+											"id": 241,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"comment": {},
 											"type": {
 												"type": "intrinsic",
@@ -2026,31 +2160,33 @@
 											}
 										},
 										{
-											"id": 241,
+											"id": 242,
 											"name": "response",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"comment": {
 												"text": "\n"
 											},
 											"type": {
 												"type": "reference",
-												"name": "IncomingMessage",
-												"id": 197
+												"id": 198,
+												"name": "IncomingMessage"
 											}
 										}
 									],
 									"type": {
 										"type": "reference",
-										"name": "Promise",
 										"typeArguments": [
 											{
 												"type": "reference",
-												"name": "HttpResponse",
-												"id": 217
+												"id": 218,
+												"name": "HttpResponse"
 											}
-										]
+										],
+										"name": "Promise"
 									}
 								}
 							],
@@ -2063,7 +2199,7 @@
 							]
 						},
 						{
-							"id": 229,
+							"id": 230,
 							"name": "updateNC",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2072,11 +2208,13 @@
 							},
 							"signatures": [
 								{
-									"id": 230,
+									"id": 231,
 									"name": "updateNC",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"shortText": "Update and zero pad nc"
 									},
@@ -2100,25 +2238,25 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								225
+								226
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								222,
-								224,
-								223
+								223,
+								225,
+								224
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								231,
-								237,
-								229
+								232,
+								238,
+								230
 							]
 						}
 					],
@@ -2131,7 +2269,7 @@
 					]
 				},
 				{
-					"id": 217,
+					"id": 218,
 					"name": "HttpResponse",
 					"kind": 256,
 					"kindString": "Interface",
@@ -2143,7 +2281,7 @@
 					},
 					"children": [
 						{
-							"id": 220,
+							"id": 221,
 							"name": "body",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2164,7 +2302,7 @@
 							}
 						},
 						{
-							"id": 219,
+							"id": 220,
 							"name": "data",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2184,7 +2322,7 @@
 							}
 						},
 						{
-							"id": 218,
+							"id": 219,
 							"name": "response",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2209,9 +2347,9 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
+								221,
 								220,
-								219,
-								218
+								219
 							]
 						}
 					],
@@ -2224,7 +2362,7 @@
 					]
 				},
 				{
-					"id": 197,
+					"id": 198,
 					"name": "IncomingMessage",
 					"kind": 256,
 					"kindString": "Interface",
@@ -2236,7 +2374,7 @@
 					},
 					"children": [
 						{
-							"id": 216,
+							"id": 217,
 							"name": "_headers",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2256,7 +2394,7 @@
 							}
 						},
 						{
-							"id": 215,
+							"id": 216,
 							"name": "caseless",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2276,7 +2414,7 @@
 							}
 						},
 						{
-							"id": 198,
+							"id": 199,
 							"name": "headers",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2296,7 +2434,7 @@
 							}
 						},
 						{
-							"id": 199,
+							"id": 200,
 							"name": "httpVersion",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2316,7 +2454,7 @@
 							}
 						},
 						{
-							"id": 200,
+							"id": 201,
 							"name": "method",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2336,7 +2474,7 @@
 							}
 						},
 						{
-							"id": 210,
+							"id": 211,
 							"name": "on",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2353,36 +2491,44 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 211,
+									"id": 212,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"signatures": [
 										{
-											"id": 212,
+											"id": 213,
 											"name": "__call",
 											"kind": 4096,
 											"kindString": "Call signature",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"parameters": [
 												{
-													"id": 213,
+													"id": 214,
 													"name": "event",
 													"kind": 32768,
 													"kindString": "Parameter",
-													"flags": {},
+													"flags": {
+														"isExported": true
+													},
 													"type": {
 														"type": "intrinsic",
 														"name": "string"
 													}
 												},
 												{
-													"id": 214,
+													"id": 215,
 													"name": "callback",
 													"kind": 32768,
 													"kindString": "Parameter",
-													"flags": {},
+													"flags": {
+														"isExported": true
+													},
 													"type": {
 														"type": "intrinsic",
 														"name": "any"
@@ -2406,7 +2552,7 @@
 							}
 						},
 						{
-							"id": 201,
+							"id": 202,
 							"name": "rawHeaders",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2429,7 +2575,7 @@
 							}
 						},
 						{
-							"id": 202,
+							"id": 203,
 							"name": "rawTrailers",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2452,7 +2598,7 @@
 							}
 						},
 						{
-							"id": 206,
+							"id": 207,
 							"name": "setEncoding",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2469,25 +2615,31 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 207,
+									"id": 208,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"signatures": [
 										{
-											"id": 208,
+											"id": 209,
 											"name": "__call",
 											"kind": 4096,
 											"kindString": "Call signature",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"parameters": [
 												{
-													"id": 209,
+													"id": 210,
 													"name": "enc",
 													"kind": 32768,
 													"kindString": "Parameter",
-													"flags": {},
+													"flags": {
+														"isExported": true
+													},
 													"type": {
 														"type": "intrinsic",
 														"name": "string"
@@ -2511,7 +2663,7 @@
 							}
 						},
 						{
-							"id": 203,
+							"id": 204,
 							"name": "statusCode",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2531,7 +2683,7 @@
 							}
 						},
 						{
-							"id": 204,
+							"id": 205,
 							"name": "statusMessage",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2551,7 +2703,7 @@
 							}
 						},
 						{
-							"id": 205,
+							"id": 206,
 							"name": "url",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2576,18 +2728,18 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
+								217,
 								216,
-								215,
-								198,
 								199,
 								200,
-								210,
 								201,
+								211,
 								202,
-								206,
 								203,
+								207,
 								204,
-								205
+								205,
+								206
 							]
 						}
 					],
@@ -2600,7 +2752,7 @@
 					]
 				},
 				{
-					"id": 242,
+					"id": 243,
 					"name": "log",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2616,20 +2768,20 @@
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogServer",
-						"id": 77
+						"id": 77,
+						"name": "LogServer"
 					},
-					"defaultValue": " new Log('httpUtil')"
+					"defaultValue": "new Log('httpUtil')"
 				},
 				{
-					"id": 256,
+					"id": 257,
 					"name": "compileParams",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 257,
+							"id": 258,
 							"name": "compileParams",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2639,7 +2791,7 @@
 							},
 							"parameters": [
 								{
-									"id": 258,
+									"id": 259,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2668,21 +2820,21 @@
 					]
 				},
 				{
-					"id": 269,
+					"id": 270,
 					"name": "getAttributes",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 270,
+							"id": 271,
 							"name": "getAttributes",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 271,
+									"id": 272,
 									"name": "tag",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2693,7 +2845,7 @@
 									}
 								},
 								{
-									"id": 272,
+									"id": 273,
 									"name": "result",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2719,21 +2871,21 @@
 					]
 				},
 				{
-					"id": 266,
+					"id": 267,
 					"name": "isBinary",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 267,
+							"id": 268,
 							"name": "isBinary",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 268,
+									"id": 269,
 									"name": "contentType",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2759,21 +2911,21 @@
 					]
 				},
 				{
-					"id": 252,
+					"id": 253,
 					"name": "omitNull",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 253,
+							"id": 254,
 							"name": "omitNull",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 254,
+									"id": 255,
 									"name": "data",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2787,7 +2939,7 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 255,
+									"id": 256,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
@@ -2805,21 +2957,21 @@
 					]
 				},
 				{
-					"id": 262,
+					"id": 263,
 					"name": "parseDigestResponse",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 263,
+							"id": 264,
 							"name": "parseDigestResponse",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 264,
+									"id": 265,
 									"name": "digestHeader",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2833,7 +2985,7 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 265,
+									"id": 266,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
@@ -2851,14 +3003,14 @@
 					]
 				},
 				{
-					"id": 259,
+					"id": 260,
 					"name": "putDoubleQuotes",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 260,
+							"id": 261,
 							"name": "putDoubleQuotes",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2868,7 +3020,7 @@
 							},
 							"parameters": [
 								{
-									"id": 261,
+									"id": 262,
 									"name": "entry",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2897,7 +3049,7 @@
 					]
 				},
 				{
-					"id": 246,
+					"id": 247,
 					"name": "request",
 					"kind": 64,
 					"kindString": "Function",
@@ -2906,22 +3058,26 @@
 					},
 					"signatures": [
 						{
-							"id": 247,
+							"id": 248,
 							"name": "request",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "sends a http or https GET or POST request and promises to return the result.",
 								"returns": "promise to provide the result of the request.\n"
 							},
 							"parameters": [
 								{
-									"id": 248,
+									"id": 249,
 									"name": "url",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "the URL to pass along to the GET or POST request"
 									},
@@ -2940,11 +3096,12 @@
 									}
 								},
 								{
-									"id": 249,
+									"id": 250,
 									"name": "user",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {
+										"isExported": true,
 										"isOptional": true
 									},
 									"comment": {
@@ -2952,16 +3109,17 @@
 									},
 									"type": {
 										"type": "reference",
-										"name": "Digest",
-										"id": 221
+										"id": 222,
+										"name": "Digest"
 									}
 								},
 								{
-									"id": 250,
+									"id": 251,
 									"name": "referer",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {
+										"isExported": true,
 										"isOptional": true
 									},
 									"type": {
@@ -2970,11 +3128,12 @@
 									}
 								},
 								{
-									"id": 251,
+									"id": 252,
 									"name": "postData",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {
+										"isExported": true,
 										"isOptional": true
 									},
 									"comment": {
@@ -2988,14 +3147,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "reference",
-										"name": "HttpResponse",
-										"id": 217
+										"id": 218,
+										"name": "HttpResponse"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -3008,21 +3167,21 @@
 					]
 				},
 				{
-					"id": 273,
+					"id": 274,
 					"name": "requestOptions",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 274,
+							"id": 275,
 							"name": "requestOptions",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 275,
+									"id": 276,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3033,7 +3192,7 @@
 									}
 								},
 								{
-									"id": 276,
+									"id": 277,
 									"name": "user",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3042,12 +3201,12 @@
 									},
 									"type": {
 										"type": "reference",
-										"name": "Digest",
-										"id": 221
+										"id": 222,
+										"name": "Digest"
 									}
 								},
 								{
-									"id": 277,
+									"id": 278,
 									"name": "postData",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3062,14 +3221,14 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Promise",
 								"typeArguments": [
 									{
 										"type": "reference",
-										"name": "HttpResponse",
-										"id": 217
+										"id": 218,
+										"name": "HttpResponse"
 									}
-								]
+								],
+								"name": "Promise"
 							}
 						}
 					],
@@ -3082,7 +3241,7 @@
 					]
 				},
 				{
-					"id": 243,
+					"id": 244,
 					"name": "xml2json",
 					"kind": 64,
 					"kindString": "Function",
@@ -3091,21 +3250,25 @@
 					},
 					"signatures": [
 						{
-							"id": 244,
+							"id": 245,
 							"name": "xml2json",
 							"kind": 4096,
 							"kindString": "Call signature",
-							"flags": {},
+							"flags": {
+								"isExported": true
+							},
 							"comment": {
 								"shortText": "Decodes an xm or html string into a JSON representation"
 							},
 							"parameters": [
 								{
-									"id": 245,
+									"id": 246,
 									"name": "xml",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"text": "\n"
 									},
@@ -3135,38 +3298,38 @@
 					"title": "Classes",
 					"kind": 128,
 					"children": [
-						179,
-						221
+						180,
+						222
 					]
 				},
 				{
 					"title": "Interfaces",
 					"kind": 256,
 					"children": [
-						217,
-						197
+						218,
+						198
 					]
 				},
 				{
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						242
+						243
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						256,
-						269,
-						266,
-						252,
-						262,
-						259,
-						246,
-						273,
-						243
+						257,
+						270,
+						267,
+						253,
+						263,
+						260,
+						247,
+						274,
+						244
 					]
 				}
 			],
@@ -3188,6 +3351,16 @@
 			},
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/index.ts",
 			"children": [
+				{
+					"id": 178,
+					"name": "Log",
+					"kind": 16777216,
+					"kindString": "Reference",
+					"flags": {
+						"isExported": true
+					},
+					"target": 77
+				},
 				{
 					"id": 167,
 					"name": "node",
@@ -3220,14 +3393,18 @@
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"children": [
 										{
 											"id": 171,
 											"name": "exec",
 											"kind": 64,
 											"kindString": "Function",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"comment": {
 												"shortText": "executes `command` in a child process and promises to return the stdout and stderr streams.\n<pre>\nlet utils = require('./cpUtils');\nutils.exec(cmd)\n.then((stdout, stderr) => {...})\n.catch(err => {...});\n</pre>",
 												"returns": "promise to provide the stdout and stderr streams from the child process.\n"
@@ -3238,7 +3415,9 @@
 													"name": "exec",
 													"kind": 4096,
 													"kindString": "Call signature",
-													"flags": {},
+													"flags": {
+														"isExported": true
+													},
 													"comment": {
 														"shortText": "executes `command` in a child process and promises to return the stdout and stderr streams.\n<pre>\nlet utils = require('./cpUtils');\nutils.exec(cmd)\n.then((stdout, stderr) => {...})\n.catch(err => {...});\n</pre>",
 														"returns": "promise to provide the stdout and stderr streams from the child process.\n"
@@ -3249,7 +3428,9 @@
 															"name": "command",
 															"kind": 32768,
 															"kindString": "Parameter",
-															"flags": {},
+															"flags": {
+																"isExported": true
+															},
 															"comment": {
 																"shortText": "the shell command to execute"
 															},
@@ -3264,6 +3445,7 @@
 															"kind": 32768,
 															"kindString": "Parameter",
 															"flags": {
+																"isExported": true,
 																"isOptional": true
 															},
 															"comment": {
@@ -3277,7 +3459,6 @@
 													],
 													"type": {
 														"type": "reference",
-														"name": "Promise",
 														"typeArguments": [
 															{
 																"type": "reflection",
@@ -3286,14 +3467,18 @@
 																	"name": "__type",
 																	"kind": 65536,
 																	"kindString": "Type literal",
-																	"flags": {},
+																	"flags": {
+																		"isExported": true
+																	},
 																	"children": [
 																		{
 																			"id": 177,
 																			"name": "stderr",
 																			"kind": 32,
 																			"kindString": "Variable",
-																			"flags": {},
+																			"flags": {
+																				"isExported": true
+																			},
 																			"sources": [
 																				{
 																					"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/cpUtil.ts",
@@ -3311,7 +3496,9 @@
 																			"name": "stdout",
 																			"kind": 32,
 																			"kindString": "Variable",
-																			"flags": {},
+																			"flags": {
+																				"isExported": true
+																			},
 																			"sources": [
 																				{
 																					"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/cpUtil.ts",
@@ -3344,7 +3531,8 @@
 																	]
 																}
 															}
-														]
+														],
+														"name": "Promise"
 													}
 												}
 											],
@@ -3368,7 +3556,7 @@
 									]
 								}
 							},
-							"defaultValue": " child_process"
+							"defaultValue": "child_process"
 						},
 						{
 							"id": 168,
@@ -3387,10 +3575,10 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "\"/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil\"",
-								"id": 10
+								"id": 10,
+								"name": "\"/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil\""
 							},
-							"defaultValue": " fs"
+							"defaultValue": "fs"
 						}
 					],
 					"groups": [
@@ -3417,6 +3605,13 @@
 				}
 			],
 			"groups": [
+				{
+					"title": "References",
+					"kind": 16777216,
+					"children": [
+						178
+					]
+				},
 				{
 					"title": "Object literals",
 					"kind": 2097152,
@@ -3469,14 +3664,18 @@
 									"name": "new LogServer",
 									"kind": 16384,
 									"kindString": "Constructor signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"parameters": [
 										{
 											"id": 83,
 											"name": "prefix",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
@@ -3485,8 +3684,8 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "LogServer",
-										"id": 77
+										"id": 77,
+										"name": "LogServer"
 									},
 									"overwrites": {
 										"type": "reference",
@@ -3579,6 +3778,7 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 126,
 								"name": "Log.reportLevel"
 							}
 						},
@@ -3604,6 +3804,7 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 127,
 								"name": "Log.reportPrefix"
 							}
 						},
@@ -3629,6 +3830,7 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 113,
 								"name": "Log.DEBUG"
 							}
 						},
@@ -3654,6 +3856,7 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 116,
 								"name": "Log.ERROR"
 							}
 						},
@@ -3679,6 +3882,7 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 114,
 								"name": "Log.INFO"
 							}
 						},
@@ -3704,6 +3908,7 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 115,
 								"name": "Log.WARN"
 							}
 						},
@@ -3730,6 +3935,7 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 112,
 								"name": "Log.dateFormat"
 							}
 						},
@@ -3756,6 +3962,7 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 111,
 								"name": "Log.defDateFormat"
 							}
 						},
@@ -3782,6 +3989,7 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 125,
 								"name": "Log.globalLevel"
 							}
 						},
@@ -3809,21 +4017,27 @@
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"indexSignature": [
 										{
 											"id": 119,
 											"name": "__index",
 											"kind": 8192,
 											"kindString": "Index signature",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"parameters": [
 												{
 													"id": 120,
 													"name": "x",
 													"kind": 32768,
 													"kindString": "Parameter",
-													"flags": {},
+													"flags": {
+														"isExported": true
+													},
 													"type": {
 														"type": "intrinsic",
 														"name": "string"
@@ -3837,14 +4051,18 @@
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
-													"flags": {},
+													"flags": {
+														"isExported": true
+													},
 													"children": [
 														{
 															"id": 124,
 															"name": "desc",
 															"kind": 32,
 															"kindString": "Variable",
-															"flags": {},
+															"flags": {
+																"isExported": true
+															},
 															"sources": [
 																{
 																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
@@ -3862,7 +4080,9 @@
 															"name": "importance",
 															"kind": 32,
 															"kindString": "Variable",
-															"flags": {},
+															"flags": {
+																"isExported": true
+															},
 															"sources": [
 																{
 																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
@@ -3880,7 +4100,9 @@
 															"name": "sym",
 															"kind": 32,
 															"kindString": "Variable",
-															"flags": {},
+															"flags": {
+																"isExported": true
+															},
 															"sources": [
 																{
 																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
@@ -3927,6 +4149,7 @@
 							},
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 117,
 								"name": "Log.levels"
 							}
 						},
@@ -3949,10 +4172,10 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "LogServer",
-								"id": 77
+								"id": 77,
+								"name": "LogServer"
 							},
-							"defaultValue": " new LogServer('')",
+							"defaultValue": "new LogServer('')",
 							"overwrites": {
 								"type": "reference",
 								"name": "Log.log"
@@ -3973,7 +4196,9 @@
 									"name": "config",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"shortText": "configures the log facility.\n- cfg.colors: boolean, determines if output is colored\n- cfg.logfile: sets the naming template for the logfile. Set logFile=null to disable.\n- cfg.format: sets the format for the timestamp for each log entry\n- cfg.level: sets the reporting level (same as calling log.level())"
 									},
@@ -3983,7 +4208,9 @@
 											"name": "cfg",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"comment": {
 												"text": "\n"
 											},
@@ -3994,7 +4221,9 @@
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
-													"flags": {},
+													"flags": {
+														"isExported": true
+													},
 													"children": [
 														{
 															"id": 88,
@@ -4002,6 +4231,7 @@
 															"kind": 32,
 															"kindString": "Variable",
 															"flags": {
+																"isExported": true,
 																"isOptional": true
 															},
 															"sources": [
@@ -4022,6 +4252,7 @@
 															"kind": 32,
 															"kindString": "Variable",
 															"flags": {
+																"isExported": true,
 																"isOptional": true
 															},
 															"sources": [
@@ -4042,6 +4273,7 @@
 															"kind": 32,
 															"kindString": "Variable",
 															"flags": {
+																"isExported": true,
 																"isOptional": true
 															},
 															"sources": [
@@ -4115,14 +4347,18 @@
 									"name": "debug",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"parameters": [
 										{
 											"id": 134,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "any"
@@ -4134,6 +4370,7 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
+												"isExported": true,
 												"isOptional": true
 											},
 											"type": {
@@ -4144,16 +4381,17 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "Promise",
 										"typeArguments": [
 											{
 												"type": "intrinsic",
 												"name": "string"
 											}
-										]
+										],
+										"name": "Promise"
 									},
 									"inheritedFrom": {
 										"type": "reference",
+										"id": 132,
 										"name": "Log.debug"
 									}
 								}
@@ -4167,6 +4405,7 @@
 							],
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 132,
 								"name": "Log.debug"
 							}
 						},
@@ -4184,14 +4423,18 @@
 									"name": "error",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"parameters": [
 										{
 											"id": 146,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "any"
@@ -4203,6 +4446,7 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
+												"isExported": true,
 												"isOptional": true
 											},
 											"type": {
@@ -4213,16 +4457,17 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "Promise",
 										"typeArguments": [
 											{
 												"type": "intrinsic",
 												"name": "string"
 											}
-										]
+										],
+										"name": "Promise"
 									},
 									"inheritedFrom": {
 										"type": "reference",
+										"id": 144,
 										"name": "Log.error"
 									}
 								}
@@ -4236,6 +4481,7 @@
 							],
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 144,
 								"name": "Log.error"
 							}
 						},
@@ -4253,7 +4499,9 @@
 									"name": "format",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"parameters": [
 										{
 											"id": 154,
@@ -4261,6 +4509,7 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
+												"isExported": true,
 												"isOptional": true
 											},
 											"type": {
@@ -4275,6 +4524,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
+										"id": 152,
 										"name": "Log.format"
 									}
 								}
@@ -4288,6 +4538,7 @@
 							],
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 152,
 								"name": "Log.format"
 							}
 						},
@@ -4306,14 +4557,18 @@
 									"name": "getPrePostfix",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"parameters": [
 										{
 											"id": 108,
 											"name": "indent",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
@@ -4324,7 +4579,9 @@
 											"name": "level",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -4335,7 +4592,9 @@
 											"name": "currIndent",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
@@ -4387,14 +4646,18 @@
 									"name": "info",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"parameters": [
 										{
 											"id": 138,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "any"
@@ -4406,6 +4669,7 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
+												"isExported": true,
 												"isOptional": true
 											},
 											"type": {
@@ -4416,16 +4680,17 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "Promise",
 										"typeArguments": [
 											{
 												"type": "intrinsic",
 												"name": "string"
 											}
-										]
+										],
+										"name": "Promise"
 									},
 									"inheritedFrom": {
 										"type": "reference",
+										"id": 136,
 										"name": "Log.info"
 									}
 								}
@@ -4439,6 +4704,7 @@
 							],
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 136,
 								"name": "Log.info"
 							}
 						},
@@ -4457,7 +4723,9 @@
 									"name": "inspect",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"shortText": "returns a string representation of an object literal, similar to the Node `util.inspect` call.",
 										"text": "Usage: `log.info(log.inspect(struct, 1))`\n\nThe call returns a raw formatted text string, or a HTM formatted string if `colors` is defined."
@@ -4468,7 +4736,9 @@
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "any"
@@ -4479,7 +4749,9 @@
 											"name": "depth",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"comment": {
 												"text": "depth of recursion, defaults to 1. Use `null` for infinite depth"
 											},
@@ -4494,7 +4766,9 @@
 											"name": "indent",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"comment": {
 												"text": "the indent string to use, will accumulate for each level of indentation, defaults to ''"
 											},
@@ -4509,7 +4783,9 @@
 											"name": "colors",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"comment": {
 												"text": "an array of css color values to apply to keywords in the inspected structure;\nif present, `inspect` will generate HTML content instead of raw text, substituting any `space` characters\n(' ') with `&nbsp;`. The color applied to each keyword cycles through the array with each increasing level,\nand restarts at index 0 when the level exceeds the length of the array.\n"
 											},
@@ -4559,7 +4835,9 @@
 									"name": "level",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"parameters": [
 										{
 											"id": 130,
@@ -4567,6 +4845,7 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
+												"isExported": true,
 												"isOptional": true
 											},
 											"type": {
@@ -4580,6 +4859,7 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
+												"isExported": true,
 												"isOptional": true
 											},
 											"type": {
@@ -4594,6 +4874,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
+										"id": 128,
 										"name": "Log.level"
 									}
 								}
@@ -4607,6 +4888,7 @@
 							],
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 128,
 								"name": "Log.level"
 							}
 						},
@@ -4625,7 +4907,9 @@
 									"name": "logFile",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"shortText": "sets a new logfile name template. Logfiles are created using this template\nat the time of each log entry call. If the file exists, the log entry will be appended.\nThis is a global setting that affects reporting in all modules.\nUsage:\n- `logFile()`: return the current logfile name\n- `logFile(null)`: disable log file\n- `logFile('')`: set default log file template `log-%YYYY-%MM-%DD.txt`\n- `logFile('log%D/%M/%Y.log')`: set new log file template",
 										"returns": "promise to return the current logfile name, or `undefined` if loggimng is disabled.\n"
@@ -4637,6 +4921,7 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
+												"isExported": true,
 												"isOptional": true
 											},
 											"comment": {
@@ -4650,13 +4935,13 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "Promise",
 										"typeArguments": [
 											{
 												"type": "intrinsic",
 												"name": "string"
 											}
-										]
+										],
+										"name": "Promise"
 									}
 								}
 							],
@@ -4683,7 +4968,9 @@
 									"name": "makeMessage",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"comment": {
 										"shortText": "Creates the core format of the reported message. This method is\ncalled within `out` to allow for\n- format extensions using color codes.\n- logging messages to a file."
 									},
@@ -4693,7 +4980,9 @@
 											"name": "line",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
@@ -4704,7 +4993,9 @@
 											"name": "lvl",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
@@ -4715,7 +5006,9 @@
 											"name": "dateStr",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
@@ -4726,7 +5019,9 @@
 											"name": "desc",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
@@ -4770,14 +5065,18 @@
 									"name": "out",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"parameters": [
 										{
 											"id": 150,
 											"name": "lvl",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
@@ -4788,7 +5087,9 @@
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "any"
@@ -4797,16 +5098,17 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "Promise",
 										"typeArguments": [
 											{
 												"type": "intrinsic",
 												"name": "string"
 											}
-										]
+										],
+										"name": "Promise"
 									},
 									"inheritedFrom": {
 										"type": "reference",
+										"id": 148,
 										"name": "Log.out"
 									}
 								}
@@ -4820,6 +5122,7 @@
 							],
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 148,
 								"name": "Log.out"
 							}
 						},
@@ -4837,7 +5140,9 @@
 									"name": "prefix",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"parameters": [
 										{
 											"id": 157,
@@ -4845,6 +5150,7 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
+												"isExported": true,
 												"isOptional": true
 											},
 											"type": {
@@ -4859,6 +5165,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
+										"id": 155,
 										"name": "Log.prefix"
 									}
 								}
@@ -4872,6 +5179,7 @@
 							],
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 155,
 								"name": "Log.prefix"
 							}
 						},
@@ -4889,14 +5197,18 @@
 									"name": "warn",
 									"kind": 4096,
 									"kindString": "Call signature",
-									"flags": {},
+									"flags": {
+										"isExported": true
+									},
 									"parameters": [
 										{
 											"id": 142,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isExported": true
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "any"
@@ -4908,6 +5220,7 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
+												"isExported": true,
 												"isOptional": true
 											},
 											"type": {
@@ -4918,16 +5231,17 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "Promise",
 										"typeArguments": [
 											{
 												"type": "intrinsic",
 												"name": "string"
 											}
-										]
+										],
+										"name": "Promise"
 									},
 									"inheritedFrom": {
 										"type": "reference",
+										"id": 140,
 										"name": "Log.warn"
 									}
 								}
@@ -4941,6 +5255,7 @@
 							],
 							"inheritedFrom": {
 								"type": "reference",
+								"id": 140,
 								"name": "Log.warn"
 							}
 						}
@@ -5216,7 +5531,7 @@
 			]
 		},
 		{
-			"id": 278,
+			"id": 279,
 			"name": "\"overview\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -5244,10 +5559,10 @@
 			"children": [
 				1,
 				10,
-				178,
+				179,
 				166,
 				76,
-				278
+				279
 			]
 		}
 	]
