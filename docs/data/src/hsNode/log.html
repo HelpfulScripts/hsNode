@@ -20,7 +20,7 @@
                     height:90%;
             }
             code { padding: 5px 0;}</style></html><body>
-                <h1>src/log.ts</h1>
+                <h1>log.ts</h1>
                 <div class='listing'><code><p id=1 class="line"><span>&nbsp;&nbsp;&nbsp;1</span><comment>/**</comment></p>
 <p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span><comment>&nbsp;*&nbsp;##&nbsp;log&nbsp;module</comment></p>
 <p id=3 class="line"><span>&nbsp;&nbsp;&nbsp;3</span><comment>&nbsp;*/</comment></p>
@@ -148,7 +148,7 @@
 <p id=125 class="line"><span>&nbsp;125</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;('</quote>&nbsp;<quote>')&nbsp;with&nbsp;`&nbsp;`.&nbsp;The&nbsp;color&nbsp;applied&nbsp;to&nbsp;each&nbsp;keyword&nbsp;cycles&nbsp;through&nbsp;the&nbsp;array&nbsp;with&nbsp;each&nbsp;increasing&nbsp;level,&nbsp;</comment></p>
 <p id=126 class="line"><span>&nbsp;126</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;and&nbsp;restarts&nbsp;at&nbsp;index&nbsp;0&nbsp;when&nbsp;the&nbsp;level&nbsp;exceeds&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;array.</comment></p>
 <p id=127 class="line"><span>&nbsp;127</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</comment></p>
-<p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;inspect(msg:any,&nbsp;depth=3,&nbsp;indent='</quote>&nbsp;&nbsp;&nbsp;<quote>',&nbsp;colors?:string[]):string&nbsp;{</p>
+<p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;inspect(msg:any,&nbsp;depth=3,&nbsp;indent='</quote>&nbsp;&nbsp;&nbsp;<quote>',&nbsp;colors:string[]=null):string&nbsp;{</p>
 <p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.inspectColors&nbsp;=&nbsp;colors;</p>
 <p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(colors)&nbsp;{&nbsp;indent&nbsp;=&nbsp;indent.replace(/&nbsp;/g,&nbsp;'</quote>&nbsp;<quote>');&nbsp;}</p>
 <p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;super.inspect(msg,&nbsp;depth,&nbsp;indent,&nbsp;colors);</p>

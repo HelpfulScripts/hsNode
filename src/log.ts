@@ -125,7 +125,7 @@ export class LogServer extends LogUtil {
      * (' ') with `&nbsp;`. The color applied to each keyword cycles through the array with each increasing level, 
      * and restarts at index 0 when the level exceeds the length of the array.
      */
-    public inspect(msg:any, depth=3, indent='   ', colors?:string[]):string {
+    public inspect(msg:any, depth=3, indent='   ', colors:string[]=null):string {
         this.inspectColors = colors;
         if (colors) { indent = indent.replace(/ /g, '&nbsp;'); }
         return super.inspect(msg, depth, indent, colors);

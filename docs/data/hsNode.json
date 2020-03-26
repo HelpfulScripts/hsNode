@@ -4509,9 +4509,7 @@
 											"name": "colors",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {
-												"isOptional": true
-											},
+											"flags": {},
 											"comment": {
 												"text": "an array of css color values to apply to keywords in the inspected structure;\nif present, `inspect` will generate HTML content instead of raw text, substituting any `space` characters\n(' ') with `&nbsp;`. The color applied to each keyword cycles through the array with each increasing level,\nand restarts at index 0 when the level exceeds the length of the array.\n"
 											},
@@ -4521,7 +4519,8 @@
 													"type": "intrinsic",
 													"name": "string"
 												}
-											}
+											},
+											"defaultValue": "null"
 										}
 									],
 									"type": {
