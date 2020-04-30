@@ -104,7 +104,7 @@
 <p id=81 class="line"><span>&nbsp;&nbsp;81</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</comment></p>
 <p id=82 class="line"><span>&nbsp;&nbsp;82</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;setPace&nbsp;=&nbsp;(pace:number,&nbsp;max=10)&nbsp;=>&nbsp;{</p>
 <p id=83 class="line"><span>&nbsp;&nbsp;83</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.pace.setPace(pace);</p>
-<p id=84 class="line"><span>&nbsp;&nbsp;84</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.pace.setMacConcurrent(max);</p>
+<p id=84 class="line"><span>&nbsp;&nbsp;84</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.pace.setMaxConcurrent(max);</p>
 <p id=85 class="line"><span>&nbsp;&nbsp;85</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=86 class="line"><span>&nbsp;&nbsp;86</span>&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <p id=87 class="line"><span>&nbsp;&nbsp;87</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;decodeJSON&nbsp;=&nbsp;(options:Options)&nbsp;=>&nbsp;false;</p>
@@ -165,7 +165,7 @@
 <p id=142 class="line"><span>&nbsp;142</span></p>
 <p id=143 class="line"><span>&nbsp;143</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;async&nbsp;readCached(fname:string,&nbsp;decodeJSON:boolean)&nbsp;{</p>
 <p id=144 class="line"><span>&nbsp;144</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;content&nbsp;=&nbsp;decodeJSON?&nbsp;await&nbsp;fs.readJsonFile(fname+<quote>'.json'</quote>)&nbsp;:&nbsp;await&nbsp;fs.readFile(fname+<quote>'.src'</quote>,&nbsp;false);&nbsp;</p>
-<p id=145 class="line"><span>&nbsp;145</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.transient(`cached&nbsp;${fname.slice(this.cacheBaseLocation.length+1)}`);</p>
+<p id=145 class="line"><span>&nbsp;145</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.transient(`cached&nbsp;${fname.slice(this.cacheBaseLocation.length+1)}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`);</p>
 <p id=146 class="line"><span>&nbsp;146</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;content;</p>
 <p id=147 class="line"><span>&nbsp;147</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=148 class="line"><span>&nbsp;148</span></p>

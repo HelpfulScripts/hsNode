@@ -1003,7 +1003,7 @@ export class Request {
      */
     public setPace = <span class="fstat-no" title="function not covered" >(p</span>ace:number, max=<span class="branch-0 cbranch-no" title="branch not covered" >10)</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >        this.pace.setPace(pace);</span>
-<span class="cstat-no" title="statement not covered" >        this.pace.setMacConcurrent(max);</span>
+<span class="cstat-no" title="statement not covered" >        this.pace.setMaxConcurrent(max);</span>
     }
     
     public decodeJSON = (options:Options) =&gt; false;
@@ -1064,7 +1064,7 @@ export class Request {
 &nbsp;
     protected async readCached(fname:string, decodeJSON:boolean) {
         const content = decodeJSON? <span class="branch-0 cbranch-no" title="branch not covered" >await fs.readJsonFile(fname+'.json') </span>: await fs.readFile(fname+'.src', false); 
-        log.transient(`cached ${fname.slice(this.cacheBaseLocation.length+1)}`);
+        log.transient(`cached ${fname.slice(this.cacheBaseLocation.length+1)}                     `);
         return content;
     }
 &nbsp;

@@ -81,7 +81,7 @@ export class Request {
      */
     public setPace = (pace:number, max=10) => {
         this.pace.setPace(pace);
-        this.pace.setMacConcurrent(max);
+        this.pace.setMaxConcurrent(max);
     }
     
     public decodeJSON = (options:Options) => false;
