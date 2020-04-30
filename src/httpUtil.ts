@@ -19,8 +19,208 @@ import { URL }          from 'url';
 import { createHash }   from 'crypto';
 import { Log }          from './index';   const log = new Log('httpUtil');
 import * as fs          from "./fsUtil";
+import http             from 'http';
+import https            from 'https';
+import { Pace }         from 'hsutil';
+
+const protocol = {http:http, https:https};
 
 // log.level(log.DEBUG);
+
+export interface Config {
+    user?:      Digest;
+    referer?:   string;
+}
+
+export interface Options {
+    url:        string;
+    method:     'GET'|'POST';
+    protocol:   string;
+    host:       string;
+    hostname:   string;
+    port:       string;
+    pathname:   string;
+    path:       string;
+    headers:    any;
+    rejectUnauthorized: boolean;
+}
+
+/**
+ * general HTTP response structure
+ */
+export interface Response {
+    response?:   any;
+    data:       string;
+    body?:      any;
+    error?:     any;
+}
+
+
+
+export class Request {
+    private pending = 0;
+    private pendingDigits = 3;
+    private pace = new Pace();
+
+    private user: Digest;
+    
+    private authToken: string;
+
+    public cacheBaseLocation:string;
+
+    public setDigest = (user:string, password:string) =>
+        this.user = new Digest(user, password)
+    
+    public setAuthToken = (token:string) =>
+        this.authToken = token
+    
+    /**
+     * sets a `Pace` for the requests: 
+     * @param pace number of ms between requests
+     * @param max upper limit of concurrent outstanding requests
+     */
+    public setPace = (pace:number, max=10) => {
+        this.pace.setPace(pace);
+        this.pace.setMacConcurrent(max);
+    }
+    
+    public decodeJSON = (options:Options) => false;
+
+    /**
+     * constructs the cache name to use. The function call can be overwritten with 
+     * a custom function to modify cache locations. 
+     * @param options the request options
+     */
+    public cacheName = (options:Options):string => //     'q=.../' --> 'q=...-'    remove ?
+        `${this.cacheBaseLocation}${options.path.replace(/q=(.*?)\//g,'q=$1-').replace(/\?/g,'')}`
+
+    public get = async (url:string|URL, useCached=true) => 
+        this.decodedRequest(url, 'GET', useCached)
+
+    public post = async (url:string|URL, postData:any, useCached=true) => 
+        this.decodedRequest(url, 'POST', useCached, postData)
+
+    protected getOptions(url:string|URL, method:'GET'|'POST'):Options {
+        if (typeof url === 'string') { url = new URL(url); }
+        const options = {
+            rejectUnauthorized: false,
+            url:        url.toString(),
+            method:     method,
+            protocol:   url.protocol,
+            host:       url.host,
+            hostname:   url.hostname,
+            port:       url.port,
+            pathname:   url.pathname,
+            path:       url.pathname + (url.search || ''),
+            headers:    <any>{},
+        };  
+        if (this.authToken) { options.headers.AuthToken = this.authToken; }
+        return options;  
+    }
+
+    /**
+     * issues a `GET` or `POST` call and returns the `url` response. 
+     * If `usedCache` is `true`, the cached version will be returned if available. 
+     * Otherwise an `http` or `https` request is initiated, the result cached and returned.
+     * If `decodeJSON` returns `true` for the given url, an attempt will be made to covert
+     * the retrieved content to a JSON object. 
+     * @param url the url to retrieve
+     * @param method 'GET' or 'POST'
+     * @param useCached if `true`, attempt to return a cahced version. If `false`, or no cached version
+     * exists, a remote call will be attempted.
+     * @param postData data to submit for a `POST` call
+     */
+    protected async decodedRequest(url:string|URL, method:'GET'|'POST', useCached:boolean, postData?:any):Promise<any> {
+        const options = this.getOptions(url, method);
+        try {
+            const result = await this.requestOptions(options, useCached, postData);
+            return result;
+        } catch(e) {
+            return undefined;
+        }
+    }
+
+    protected async readCached(fname:string, decodeJSON:boolean) {
+        const content = decodeJSON? await fs.readJsonFile(fname+'.json') : await fs.readFile(fname+'.src', false); 
+        log.transient(`cached ${fname.slice(this.cacheBaseLocation.length+1)}                     `);
+        return content;
+    }
+
+    protected async writeCached(fname:string, decodeJSON:boolean, data:any) {
+        if (decodeJSON) { 
+            data = JSON.parse(data === ''? '{}' : data); 
+        }
+        if (fname) { try {
+            if (decodeJSON) { 
+                await fs.writeJsonFile(fname+'.json', data === ''? '{}' : data); 
+            }
+            else { await fs.writeFile(fname+'.src', data, false); }
+        } catch(e) {
+            log.error(e);
+        }}
+        return data;
+    }
+
+    protected async requestOptions(options:Options, useCached:boolean, postData?:any):Promise<string> {
+        const decode = this.decodeJSON(options);
+        const pending = () => `  ${this.pending}`.slice(-this.pendingDigits);
+        const fname = this.cacheBaseLocation? this.cacheName(options) : undefined;
+        if (fname && useCached) { try { 
+            return await this.readCached(fname, decode); 
+        } catch(e) {}}
+
+        let response: Response;
+        const err = <{statusCode:string, statusMessage:string, url:string}>{};
+        try { 
+            log.info(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) requesting ${options.url}`);
+            response = this.pace? await this.pace.add(() => this.request(options, postData)) : await this.request(options, postData);
+            log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()})             `);
+            if((response.response.statusCode||response.response.status) === 200) {
+                return this.writeCached(fname, decode, response.data);
+            }
+            log.warn(`${response.response.statusCode||response.response.status} requesting ${options.url}: ${response.response.statusMessage}`);
+            err.statusCode = response.response.statusCode || response.response.status|| 'no code';
+            err.statusMessage = response.response.statusMessage || 'no message';
+        }
+        catch(e) {
+            log.warn(`error requesting ${options.url}: ${e.error.code}\n${log.inspect(e, 2)}`);
+            err.statusCode = response.response.statusCode || response.response.status|| 'no code';
+            err.statusMessage = JSON.stringify(e);
+        }
+        err.url = options.url;  
+        fs.writeTextFile(fname + '.error.txt', JSON.stringify(err)); 
+        throw(`response code ${err.statusCode} for ${options.url}`);
+    }
+
+    protected async request(options:Options, postData?:any):Promise<Response> {
+        const httpProt:string = options.protocol.slice(0,-1);
+        const http = protocol[httpProt];
+        let auth = (options.headers && options.headers.Authorization);
+        log.debug(`requesting ${log.inspect(options, 4)}`);
+        const response = await new Promise((resolve:(out:Response)=>void, reject:(e:Response)=>void) => {
+            let data = ''; 
+            log.debug(`sending request ${auth? 'with authorization ':''}for ${options.protocol}//${options.host}:${options.port}${options.path}`); 
+            const req = http.request(options, (res:any) => {
+                const encoding = isBinary(res.headers['content-type'])? 'binary' : 'utf8';
+                log.debug(`receiving...${res.headers['content-type']} => ${encoding}`);
+                res.setEncoding(encoding);
+                res.on('data', (chunk:string) => data += chunk);
+                res.on('end', () => resolve({data:data, response:res}));
+            });
+            req.on('error', (e:any) => reject({data:'', error:e}));
+    
+            // write data to request body
+            if (postData !== undefined) { req.write(postData); }
+            req.end();
+        });
+        if (this.user && response.response.headers['www-authenticate']) { 
+            const digestOptions = this.user.testDigestAuth(options, response.data, response.response);
+            return this.request(digestOptions);
+        } else {
+            return response; 
+        } 
+    }
+}
 
 /**
  * Decodes an xm or html string into a JSON representation
@@ -54,87 +254,12 @@ export function xml2json(xml:string):any {
 }
 
 
-/**
- * sends a http or https GET or POST request and promises to return the result.
- * @param url the URL to pass along to the GET or POST request
- * @param user an optional user {@link Digest Digest}
- * @param postData optional data to post. If provided, a POST request will be sent instead of the default GET 
- * @return promise to provide the result of the request.
- */
-export function request(url:URL|string, user?:Digest, referer?:string, postData?:any):Promise<HttpResponse> {
-    if (typeof url === 'string') { url = new URL(url); }
-    let options = {
-        method:     postData? 'POST': 'GET',
-        protocol:   url.protocol,
-        host:       url.host,
-        hostname:   url.hostname,
-        port:       url.port,
-        pathname:   url.pathname,
-        path:       url.pathname + (url.search || ''),
-        headers:    <any>{ 'User-Agent': 'helpful scripts' },
-    };
-    if (referer) { options.headers.referer = referer; }
-    return requestOptions(options, user, postData);
-}
-
-
-/**
- * Establishes a caching of retrieved sites. The class uses a cache location provided
- * during construction. Each `get` call will return a cache for the site, if available.
- * Otherwise, a call to the site is initiated and the result is cached at the specified location.
- * Any returned error codes, such as 404 messages, are treated as valid responses and cached 
- * to be returned future in future calls.
- * 
- * ### Usage
- * ```
- * const cachedGet = new CachedHTTPRequest('./data/cache/');
- * const pageText = await cachedGet.request(url, '');
- * ```
- */
-export class CachedHTTPRequest {
-    /**
-     * Construct a cached get at a specified location int he file system.
-     * @param cacheLocation the location for the cache
-     * @param user an optional {@link Digest `Digest`} authentication information
-     */
-    constructor(public cacheLocation: string, public user?:Digest) {
-    }
-
-    //--------- private methods -------
-    private async requestOnline(url:URL, fname:string) {
-        const resp:any = await request(url, this.user);
-        log.info(`requested ${url}`);
-        await fs.writeTextFile(fname, resp.data);
-        return resp.data;
-    }
-    
-    private async requestOffline(fname:string) {
-        log.info(`get cached '${fname}'`);
-        return await fs.readTextFile(fname);
-    }
-
-    //--------- public methods -------
-
-    /**
-     * 
-     * @param url the URL to request, supports GET and POST
-     * @param useCached optional boolean: if `false`, a call to `request` will ignore 
-     * any cached version of the response
-     */
-    public async request(url:URL, useCached=true) {
-        const fname = `${this.cacheLocation}${url.host}/${url.pathname}${url.search}`;
-        const exists = await fs.isFile(fname);
-        return (exists && useCached)? 
-            await this.requestOffline(fname) : await this.requestOnline(url, fname);
-    }
-}
-
 
 
 /**
  * Describes an incoming message; used in `Digest.testDigestAuth`
  */
-export interface IncomingMessage { 
+interface IncomingMessage { 
     headers:        any;
     httpVersion:    string;
     method:         string;
@@ -149,20 +274,11 @@ export interface IncomingMessage {
     _headers:       any;
 }
 
-/**
- * general HTTP response structure
- */
-export interface HttpResponse {
-    response:  any;
-    data:      string;
-    body?:     any;
-}
-
 
 /**
  * Implements a Digest authentication, used in {@link request `request`} call.
  */
-export class Digest {
+class Digest {
     nc = 0;
     username:string;
     password:string;
@@ -206,7 +322,7 @@ export class Digest {
      * @param data 
      * @param response 
      */
-    testDigestAuth(options:any, data:string, response:IncomingMessage): Promise<HttpResponse> {
+    testDigestAuth(options:Options, data:string, response:IncomingMessage): Options {
         log.debug(`received www-authenticate request for ${options.host}`);
 
         let challenge:any = parseDigestResponse(response.headers['www-authenticate']);
@@ -241,7 +357,7 @@ export class Digest {
         }
     
         options.headers.Authorization = compileParams(authParams);
-        return requestOptions(options);
+        return options;
     }
 }
 
@@ -319,34 +435,3 @@ function getAttributes(tag:string, result:any) {
     return tag;
 }
 
-function requestOptions(options:any, user?:Digest, postData?:any):Promise<HttpResponse> {
-    const prot:any = {
-        'http:': require('http'),
-        'https:': require('https')
-    };
-    let auth = (options.headers && options.headers.Authorization);
-    log.debug(`requesting ${log.inspect(options, 4)}`);
-    return new Promise((resolve:(out:HttpResponse)=>void, reject:(e:HttpResponse)=>void) => {
-        let data = ''; 
-        log.debug(`sending request ${auth? 'with authorization ':''}for ${options.protocol}//${options.host}:${options.port}${options.path}`); 
-        const req = prot[options.protocol].request(options, (res:any) => {
-            const encoding = isBinary(res.headers['content-type'])? 'binary' : 'utf8';
-            log.debug(`receiving...${res.headers['content-type']} => ${encoding}`);
-            res.setEncoding(encoding);
-            res.on('data', (chunk:string) => { data += chunk; });
-            res.on('end', () => { log.debug(`received ${encoding}`); resolve({data:data, response:res}); });
-        });
-        req.on('error', (e:any) => reject({data:'', response:e}));
-
-        // write data to request body
-        if (postData !== undefined) { req.write(postData); }
-        req.end();
-    })
-    .then((res:HttpResponse) => {
-        if (user && res.response.headers['www-authenticate']) { 
-            return user.testDigestAuth(options, res.data, res.response);
-        } else {
-            return res; 
-        } 
-    });
-}

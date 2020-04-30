@@ -1,0 +1,1 @@
+{"statusCode":"no code","statusMessage":"no message","url":"http://my.space.com/myDigest"}
