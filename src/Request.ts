@@ -84,11 +84,32 @@ export interface Options {
  * general HTTP response structure
  */
 export interface Response {
-    response?:   any;
+    response: IncomingMessage;
     data:       string;
     body?:      any;
     error?:     any;
 }
+
+/**
+ * Describes an incoming message; used in `Digest.testDigestAuth`
+ */
+interface IncomingMessage { 
+    headers:        {'content-type': string; };
+    httpVersion:    string;
+    method:         string;
+    rawHeaders:     string[];    
+    rawTrailers:    string[];
+    status:         number;
+    statusCode:     number;
+    statusMessage:  string;
+    url:            string;
+    setEncoding:    (enc:string) => void;
+    on:             (event:string, callback: any) => void;
+    caseless:       any;
+    _headers:       any;
+}
+
+
 
 /** 
  * decoder function interface. For the given `Options` and data a function implementation  
@@ -156,10 +177,12 @@ export class Request {
     /**
      * constructs the cache name to use. The function call can be overwritten with 
      * a custom function to modify cache locations. 
+     * This default implementation uses the `path` element in `Options` to create 
+     * required subdirectories underneath the `cache` location.
      * @param options the request options
      */
     public cacheName = (options:Options):string => //     'q=.../' --> 'q=...-'    remove ?
-        `${this.cache}/${options.hostname}/${options.path.replace(/q=(.*?)\//g,'q=$1-').replace(/\?/g,'')}`
+        `${this.cache}/${options.path.replace(/q=(.*?)\//g,'q=$1-').replace(/\?/g,'')}`
 
     /**
      * gets the content for the addressed `url`. `HTTP` and `HTTPS` are supported.
@@ -219,23 +242,59 @@ export class Request {
         catch(e) { return undefined; }
     }
 
+    /**
+     * attempts to read a cached file and returns `undefined` if none is found.
+     * The attempt consists of two steps:
+     * - return a file named `<fname>.txt` as a text file, if available
+     * - return a file names `<fname>.bin` as a binary file, if available
+     * @param fname the path and name of the file, without extension
+     * 
+     */
     protected async readCached(fname:string) {
-        return await fs.readFile(fname, false); 
+        let result;
+        try {
+            if (await fs.isFile(fname+'.txt')) {
+                result = await fs.readTextFile(`${fname}.txt`); 
+            } else if (await fs.isFile(fname+'.bin')) {
+                result = await fs.readFile(`${fname}.bin`, false); 
+            }
+        } catch(e) {}
+        if (result) { log.transient(`found cache for ${fname}        `); }
+        return result;   // no cache found
     }
 
-    protected async writeCached(fname:string, data:any) {
-        return await fs.writeFile(fname, data, false);
+    protected async writeCached(fname:string, data:any, contentType:string) {
+        try {
+            let txt = false;
+            if (contentType===undefined) { contentType = 'text/html'; }
+            else { contentType = contentType.split(';')[0]; }
+            const subTypes = contentType.split('/');
+            switch (subTypes[0]) {
+                case 'text':        txt = true; break;
+                case 'image':       
+                case 'audio':
+                case 'font':        break;
+                case 'application': switch(subTypes[1]) {
+                    case 'json':    txt = true; break;
+                    case 'pdf':     break;
+                    default: log.debug(`caching ${contentType} as binary for ${fname}`);    
+                }
+                break;
+                default: log.warn(`caching ${contentType} as binary for ${fname}`);    
+            }
+            return await (txt? fs.writeTextFile(`${fname}.txt`, data) : fs.writeFile(`${fname}.bin`, data, false));
+        } catch(e) { log.warn(`error writing cache for content ${contentType} and file ${fname}: ${e}`); }
     }
 
     protected async requestOptions(options:Options, useCached:boolean, postData?:any):Promise<string> {
         const fname = this.cache? this.cacheName(options) : undefined;
         if (fname && useCached && options.method === 'GET') { 
-            try { return await this.readCached(fname); }
-            catch(e) {} // no cache available
+            const result = await this.readCached(fname); 
+            if (result !== undefined) { return result; }
         }
 
         let response: Response;
-        const err = <{statusCode:string, statusMessage:string, url:string}>{};
+        const err = <{statusCode:string|number, statusMessage:string, url:string}>{};
         try { 
             if (this.pace) { 
                 log.info(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) requesting ${options.url}`); 
@@ -248,8 +307,7 @@ export class Request {
             }
             if((response.response.statusCode||response.response.status) === 200) {
                 if (fname && options.method === 'GET') {
-                    try { await this.writeCached(fname, response.data); }
-                    catch(e) { log.warn(`writing cache for ${fname}: ${e}`); }
+                    await this.writeCached(fname, response.data, response.response.headers["content-type"]);
                 }
                 return response.data;
             }
@@ -271,7 +329,7 @@ export class Request {
         const httpProt:string = options.protocol.slice(0,-1);
         const http = protocol[httpProt];
         let auth = (options.headers && options.headers.Authorization);
-        const response = await new Promise((resolve:(out:Response)=>void, reject:(e:Response)=>void) => {
+        const response = await new Promise((resolve:(out:Response)=>void, reject:(e:{data:string, error:any})=>void) => {
             let data = ''; 
             log.debug(`requesting ${log.inspect(options, 4)}`);
             const req = http.request(options, (res:any) => {
@@ -315,24 +373,6 @@ function _atob(str:string):string {
   
   
 
-
-/**
- * Describes an incoming message; used in `Digest.testDigestAuth`
- */
-interface IncomingMessage { 
-    headers:        any;
-    httpVersion:    string;
-    method:         string;
-    rawHeaders:     string[];    
-    rawTrailers:    string[];
-    statusCode:     number;
-    statusMessage:  string;
-    url:            string;
-    setEncoding:    (enc:string) => void;
-    on:             (event:string, callback: any) => void;
-    caseless:       any;
-    _headers:       any;
-}
 
 
 /**
