@@ -11,8 +11,7 @@ const payLoad = {
 };
 
 function __setPayLoads(payloads) {
-    payloads.forEach(p => payLoad[p.path] = { code:p.code, content: p.content});
-    // console.log(`defined payloads:\n${payloads.map(p => JSON.stringify(p)).join('\n')}`);
+    payloads.forEach(p => payLoad[p.path] = p);
 }
 
 function request(options, callBack) {
@@ -29,7 +28,8 @@ function request(options, callBack) {
     if (!pl) { console.log(`no payload entry found for '${options.path}'`); }
     const resultProcessor = {
         headers: {
-            'content-type': cType || 'text/html'
+            'content-type': cType || 'text/html',
+            'www-authenticate': pl.authenticate || undefined
         },
         request: options,
         setEncoding: (_enc) => {
@@ -40,13 +40,14 @@ function request(options, callBack) {
         status: pl? pl.code : undefined
     };
     if (resultProcessor.status > 400) { 
-// console.log(`http-mock: 400`);
-// console.log(options.headers);        
         if (options.headers.Authorization) {
             resultProcessor.Authorization = options.headers.Authorization;
+            resultProcessor.headers['www-authenticate'] = undefined;
             resultProcessor.status = 200;
         } else {
-            resultProcessor.headers['www-authenticate'] = 'Digest realm="IPCamera Login", nonce="cc6e4ead42917cb50548b4f94b4752fd", qop="auth"'; 
+            resultProcessor.headers['www-authenticate'] = 
+                pl.authenticate==='Digest'? 'Digest realm="IPCamera Login", nonce="cc6e4ead42917cb50548b4f94b4752fd", qop="auth"' :
+                pl.authenticate==='Basic'? 'Basic realm="User Visible Realm"' : undefined; 
         }
     }
     return {
@@ -59,7 +60,6 @@ function request(options, callBack) {
             .then(() => callBack(resultProcessor))
             // now start feeding the event callbacks
             .then(() => { 
-                // console.log(`recalling '${options.path}'`); 
                 eventCallbacks['data'](pl? pl.content : undefined);
                 eventCallbacks['end']();
             })

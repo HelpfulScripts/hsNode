@@ -45,10 +45,7 @@ export class LogServer extends LogUtil {
      * @return promise to return the file written to, or undefined
      */
     public transient(msg:any):string { 
-        // const log = console.log;
-        // console.log = process.stdout.write.bind(process.stdout.write);
         const result = this.out(LogUtil.INFO, msg+'\r'); 
-        // console.log = log;
         return result;
     }
 
@@ -96,34 +93,33 @@ export class LogServer extends LogUtil {
     public async logFile(file?:string):Promise<string> {
         if (file === null) {                    // disable logging in file
             this.LogFile = undefined; 
-            await this.info("disabling logfile");
+            this.info("disabling logfile");
             return this.LogFile;
         } else if (file === undefined) {        // leave this.LogFile unchanged, return promise for logfile name
             return date(this.LogFile);
         } else if (file.indexOf('/')>=0) { 
             const parts = path.parse(file);
-            await pathExists(parts.dir)
-                .then(async (exists:boolean) => { 
-                    if (!exists) {
-                        this.LogFile = undefined;
-                        await this.warn(`path '${file}' doesn't exists; logfile disabled`);
-                    } else {
-                        this.LogFile = file;
-                        await this.info("now logging to file " + date(file));
-                    }
-                    return this.LogFile;
-                })
-                .catch(async () => { 
-                    this.LogFile = undefined; 
-                    await this.error(`checking path ${file}; logfile disabled`);
-                    return this.LogFile;
-                });
+            try {
+                const exists:boolean = await pathExists(parts.dir);
+                if (!exists) {
+                    this.LogFile = undefined;
+                    this.warn(`path '${parts.dir}' doesn't exists; logfile disabled`);
+                } else {
+                    this.LogFile = file;
+                    this.info("now logging to file " + date(file));
+                }
+                return this.LogFile;
+            } catch(e) {
+                this.LogFile = undefined; 
+                this.error(`checking path ${parts.dir}; logfile disabled`);
+                return this.LogFile;
+            }
         } else if (file === '') {
             this.LogFile = 'log-%YYYY-%MM-%DD.txt';
         } else {
             this.LogFile=file;
         }
-        await this.info(this.LogFile? `now logging to file ${date(this.LogFile)}` : 'logfile disbaled');
+        this.info(this.LogFile? `now logging to file ${date(this.LogFile)}` : 'logfile disbaled');
         return this.LogFile;
     }
 

@@ -241,118 +241,133 @@
 <p id=218 class="line"><span>&nbsp;218</span><comment>&nbsp;*/</comment></p>
 <p id=219 class="line"><span>&nbsp;219</span>export&nbsp;function&nbsp;readFile(thePath:string,&nbsp;isText=true):Promise<any>&nbsp;{</p>
 <p id=220 class="line"><span>&nbsp;220</span>	return&nbsp;new&nbsp;Promise((resolve:(data:any)=>void,&nbsp;reject:(err:any)=>void)&nbsp;=>&nbsp;{</p>
-<p id=221 class="line"><span>&nbsp;221</span>		let&nbsp;encoding&nbsp;=&nbsp;isText?&nbsp;<quote>'utf8'</quote>&nbsp;:&nbsp;{};</p>
-<p id=222 class="line"><span>&nbsp;222</span>		fs.readFile(thePath,&nbsp;encoding,&nbsp;(err:any,&nbsp;data:any)&nbsp;=>&nbsp;</p>
-<p id=223 class="line"><span>&nbsp;223</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;err?&nbsp;reject(err)&nbsp;:&nbsp;resolve(data));</p>
-<p id=224 class="line"><span>&nbsp;224</span>	})</p>
-<p id=225 class="line"><span>&nbsp;225</span>&nbsp;&nbsp;&nbsp;&nbsp;.catch(error);</p>
-<p id=226 class="line"><span>&nbsp;226</span>}</p>
-<p id=227 class="line"><span>&nbsp;227</span></p>
-<p id=228 class="line"><span>&nbsp;228</span><comment>/**</comment></p>
-<p id=229 class="line"><span>&nbsp;229</span><comment>&nbsp;*&nbsp;reads&nbsp;a&nbsp;text&nbsp;file&nbsp;and&nbsp;promises&nbsp;to&nbsp;provide&nbsp;the&nbsp;content.</comment></p>
-<p id=230 class="line"><span>&nbsp;230</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;read</comment></p>
-<p id=231 class="line"><span>&nbsp;231</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;file&nbsp;content.</comment></p>
-<p id=232 class="line"><span>&nbsp;232</span><comment>&nbsp;*/</comment></p>
-<p id=233 class="line"><span>&nbsp;233</span>export&nbsp;async&nbsp;function&nbsp;readTextFile(thePath:string):Promise<string>&nbsp;{&nbsp;</p>
-<p id=234 class="line"><span>&nbsp;234</span>	try&nbsp;{&nbsp;return&nbsp;await&nbsp;readFile(thePath,&nbsp;true);&nbsp;}</p>
-<p id=235 class="line"><span>&nbsp;235</span>&nbsp;&nbsp;&nbsp;&nbsp;catch(err)&nbsp;{&nbsp;error(err);&nbsp;}</p>
-<p id=236 class="line"><span>&nbsp;236</span>}</p>
-<p id=237 class="line"><span>&nbsp;237</span></p>
-<p id=238 class="line"><span>&nbsp;238</span><comment>/**</comment></p>
-<p id=239 class="line"><span>&nbsp;239</span><comment>&nbsp;*&nbsp;reads&nbsp;a&nbsp;text&nbsp;file&nbsp;and&nbsp;promises&nbsp;to&nbsp;provide&nbsp;the&nbsp;content.</comment></p>
-<p id=240 class="line"><span>&nbsp;240</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;read</comment></p>
-<p id=241 class="line"><span>&nbsp;241</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;file&nbsp;content.</comment></p>
-<p id=242 class="line"><span>&nbsp;242</span><comment>&nbsp;*/</comment></p>
-<p id=243 class="line"><span>&nbsp;243</span>export&nbsp;async&nbsp;function&nbsp;readJsonFile(thePath:string):Promise<any>&nbsp;{</p>
-<p id=244 class="line"><span>&nbsp;244</span>&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</p>
-<p id=245 class="line"><span>&nbsp;245</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;data&nbsp;=&nbsp;await&nbsp;readFile(thePath,&nbsp;true);</p>
-<p id=246 class="line"><span>&nbsp;246</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(typeof&nbsp;data&nbsp;===&nbsp;<quote>'string'</quote>)?&nbsp;JSON.parse(data)&nbsp;:&nbsp;data;</p>
-<p id=247 class="line"><span>&nbsp;247</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=248 class="line"><span>&nbsp;248</span>&nbsp;&nbsp;&nbsp;&nbsp;catch(err)&nbsp;{&nbsp;error(err);&nbsp;}</p>
-<p id=249 class="line"><span>&nbsp;249</span>}</p>
-<p id=250 class="line"><span>&nbsp;250</span></p>
-<p id=251 class="line"><span>&nbsp;251</span><comment>/**</comment></p>
-<p id=252 class="line"><span>&nbsp;252</span><comment>&nbsp;*&nbsp;writes&nbsp;a&nbsp;file&nbsp;either&nbsp;as&nbsp;binary&nbsp;or&nbsp;text&nbsp;and&nbsp;promises&nbsp;to&nbsp;return&nbsp;the&nbsp;file&nbsp;name.</comment></p>
-<p id=253 class="line"><span>&nbsp;253</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;write&nbsp;to</comment></p>
-<p id=254 class="line"><span>&nbsp;254</span><comment>&nbsp;*&nbsp;@param&nbsp;content&nbsp;the&nbsp;content&nbsp;to&nbsp;write</comment></p>
-<p id=255 class="line"><span>&nbsp;255</span><comment>&nbsp;*&nbsp;@param&nbsp;isText&nbsp;`true`|`false`&nbsp;if&nbsp;file&nbsp;should&nbsp;be&nbsp;read&nbsp;as&nbsp;`utf8`|binary&nbsp;</comment></p>
-<p id=256 class="line"><span>&nbsp;256</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;file&nbsp;name&nbsp;if&nbsp;successful.</comment></p>
-<p id=257 class="line"><span>&nbsp;257</span><comment>&nbsp;*/</comment></p>
-<p id=258 class="line"><span>&nbsp;258</span>export&nbsp;async&nbsp;function&nbsp;writeFile(thePath:string,&nbsp;content:string,&nbsp;isText:boolean=true):Promise<string>&nbsp;{</p>
-<p id=259 class="line"><span>&nbsp;259</span>&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;encoding:any&nbsp;=&nbsp;isText?&nbsp;<quote>'utf8'</quote>&nbsp;:&nbsp;<quote>'binary'</quote>;</p>
-<p id=260 class="line"><span>&nbsp;260</span>&nbsp;&nbsp;&nbsp;&nbsp;await&nbsp;mkdirs(path.dirname(thePath));</p>
-<p id=261 class="line"><span>&nbsp;261</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;await&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=>&nbsp;{</p>
-<p id=262 class="line"><span>&nbsp;262</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fs.writeFile(thePath,&nbsp;content,&nbsp;encoding,&nbsp;(err:any)&nbsp;=></p>
-<p id=263 class="line"><span>&nbsp;263</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;err?&nbsp;reject(`mkdirs&nbsp;failed&nbsp;in&nbsp;writeFile&nbsp;for&nbsp;<quote>'${thePath}'</quote>:&nbsp;${err}`)&nbsp;:&nbsp;resolve(thePath));</p>
-<p id=264 class="line"><span>&nbsp;264</span>&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;</p>
-<p id=265 class="line"><span>&nbsp;265</span>}</p>
-<p id=266 class="line"><span>&nbsp;266</span></p>
-<p id=267 class="line"><span>&nbsp;267</span><comment>/**</comment></p>
-<p id=268 class="line"><span>&nbsp;268</span><comment>&nbsp;*&nbsp;writes&nbsp;content&nbsp;to&nbsp;a&nbsp;file&nbsp;as&nbsp;a&nbsp;stream&nbsp;and&nbsp;promises&nbsp;to&nbsp;return&nbsp;the&nbsp;file&nbsp;name.</comment></p>
-<p id=269 class="line"><span>&nbsp;269</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;write&nbsp;to</comment></p>
-<p id=270 class="line"><span>&nbsp;270</span><comment>&nbsp;*&nbsp;@param&nbsp;content&nbsp;the&nbsp;content&nbsp;to&nbsp;write</comment></p>
-<p id=271 class="line"><span>&nbsp;271</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;file&nbsp;name&nbsp;if&nbsp;successful.</comment></p>
-<p id=272 class="line"><span>&nbsp;272</span><comment>&nbsp;*/</comment></p>
-<p id=273 class="line"><span>&nbsp;273</span>export&nbsp;async&nbsp;function&nbsp;writeStream(thePath:string,&nbsp;content:string):Promise<string>&nbsp;{</p>
-<p id=274 class="line"><span>&nbsp;274</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;await&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=>&nbsp;{</p>
-<p id=275 class="line"><span>&nbsp;275</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;s&nbsp;=&nbsp;fs.createWriteStream(thePath,&nbsp;{flags:<quote>'w'</quote>,&nbsp;mode:0o666});</p>
-<p id=276 class="line"><span>&nbsp;276</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.on(<quote>'error'</quote>,&nbsp;(src:any)&nbsp;=>&nbsp;reject(`writeStream&nbsp;error&nbsp;<quote>'${src}'</quote>&nbsp;for&nbsp;path&nbsp;<quote>'${thePath}'</quote>`));</p>
-<p id=277 class="line"><span>&nbsp;277</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.write(content,&nbsp;<quote>'binary'</quote>,&nbsp;()&nbsp;=>&nbsp;resolve(thePath));</p>
-<p id=278 class="line"><span>&nbsp;278</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.end();</p>
-<p id=279 class="line"><span>&nbsp;279</span>&nbsp;&nbsp;&nbsp;&nbsp;});</p>
-<p id=280 class="line"><span>&nbsp;280</span>}</p>
-<p id=281 class="line"><span>&nbsp;281</span></p>
-<p id=282 class="line"><span>&nbsp;282</span><comment>/**</comment></p>
-<p id=283 class="line"><span>&nbsp;283</span><comment>&nbsp;*&nbsp;writes&nbsp;a&nbsp;text&nbsp;file&nbsp;and&nbsp;promises&nbsp;to&nbsp;return&nbsp;the&nbsp;file&nbsp;name.</comment></p>
-<p id=284 class="line"><span>&nbsp;284</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;write</comment></p>
-<p id=285 class="line"><span>&nbsp;285</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;file&nbsp;name&nbsp;if&nbsp;successful.</comment></p>
-<p id=286 class="line"><span>&nbsp;286</span><comment>&nbsp;*/</comment></p>
-<p id=287 class="line"><span>&nbsp;287</span>export&nbsp;async&nbsp;function&nbsp;writeTextFile(thePath:string,&nbsp;content:string):Promise<string>&nbsp;{&nbsp;</p>
-<p id=288 class="line"><span>&nbsp;288</span>	return&nbsp;await&nbsp;writeFile(thePath,&nbsp;content,&nbsp;true)</p>
-<p id=289 class="line"><span>&nbsp;289</span>&nbsp;&nbsp;&nbsp;&nbsp;.catch(error);</p>
-<p id=290 class="line"><span>&nbsp;290</span>}</p>
-<p id=291 class="line"><span>&nbsp;291</span></p>
-<p id=292 class="line"><span>&nbsp;292</span><comment>/**</comment></p>
-<p id=293 class="line"><span>&nbsp;293</span><comment>&nbsp;*&nbsp;writes&nbsp;a&nbsp;text&nbsp;file&nbsp;and&nbsp;promises&nbsp;to&nbsp;return&nbsp;the&nbsp;file&nbsp;name.</comment></p>
-<p id=294 class="line"><span>&nbsp;294</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;write</comment></p>
-<p id=295 class="line"><span>&nbsp;295</span><comment>&nbsp;*&nbsp;@param&nbsp;obj&nbsp;the&nbsp;object&nbsp;to&nbsp;write</comment></p>
-<p id=296 class="line"><span>&nbsp;296</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;file&nbsp;name&nbsp;if&nbsp;successful.</comment></p>
-<p id=297 class="line"><span>&nbsp;297</span><comment>&nbsp;*/</comment></p>
-<p id=298 class="line"><span>&nbsp;298</span>export&nbsp;async&nbsp;function&nbsp;writeJsonFile(thePath:string,&nbsp;obj:any):Promise<string>&nbsp;{</p>
-<p id=299 class="line"><span>&nbsp;299</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;await&nbsp;Promise.resolve(obj)</p>
-<p id=300 class="line"><span>&nbsp;300</span>	.then(JSON.stringify)</p>
-<p id=301 class="line"><span>&nbsp;301</span>	.then(async&nbsp;data&nbsp;=>&nbsp;await&nbsp;writeTextFile(thePath,&nbsp;data))</p>
-<p id=302 class="line"><span>&nbsp;302</span>&nbsp;&nbsp;&nbsp;&nbsp;.catch(error);</p>
-<p id=303 class="line"><span>&nbsp;303</span>}</p>
-<p id=304 class="line"><span>&nbsp;304</span></p>
-<p id=305 class="line"><span>&nbsp;305</span><comment>/**</comment></p>
-<p id=306 class="line"><span>&nbsp;306</span><comment>&nbsp;*&nbsp;appends&nbsp;to&nbsp;a&nbsp;file&nbsp;either&nbsp;as&nbsp;binary&nbsp;or&nbsp;text&nbsp;and&nbsp;promises&nbsp;to&nbsp;return&nbsp;the&nbsp;file&nbsp;name.</comment></p>
-<p id=307 class="line"><span>&nbsp;307</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;write&nbsp;to</comment></p>
-<p id=308 class="line"><span>&nbsp;308</span><comment>&nbsp;*&nbsp;@param&nbsp;content&nbsp;the&nbsp;content&nbsp;to&nbsp;write</comment></p>
-<p id=309 class="line"><span>&nbsp;309</span><comment>&nbsp;*&nbsp;@param&nbsp;isText&nbsp;`true`|`false`&nbsp;if&nbsp;file&nbsp;should&nbsp;be&nbsp;read&nbsp;as&nbsp;`utf8`|binary&nbsp;</comment></p>
-<p id=310 class="line"><span>&nbsp;310</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;realPath&nbsp;of&nbsp;the&nbsp;file&nbsp;written&nbsp;to.</comment></p>
-<p id=311 class="line"><span>&nbsp;311</span><comment>&nbsp;*/</comment></p>
-<p id=312 class="line"><span>&nbsp;312</span>export&nbsp;async&nbsp;function&nbsp;appendFile(thePath:string,&nbsp;content:string,&nbsp;isText:boolean=true):Promise<string>&nbsp;{</p>
-<p id=313 class="line"><span>&nbsp;313</span>	return&nbsp;await&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=>&nbsp;{</p>
-<p id=314 class="line"><span>&nbsp;314</span>		var&nbsp;encoding:any&nbsp;=&nbsp;isText?&nbsp;<quote>'utf8'</quote>&nbsp;:&nbsp;{encoding:&nbsp;null};</p>
-<p id=315 class="line"><span>&nbsp;315</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fs.appendFile(thePath,&nbsp;content,&nbsp;encoding,&nbsp;(err:any)&nbsp;=>&nbsp;err?&nbsp;reject(err)&nbsp;:&nbsp;resolve(thePath));</p>
-<p id=316 class="line"><span>&nbsp;316</span>&nbsp;&nbsp;&nbsp;&nbsp;})</p>
-<p id=317 class="line"><span>&nbsp;317</span>&nbsp;&nbsp;&nbsp;&nbsp;.then(realPath)</p>
-<p id=318 class="line"><span>&nbsp;318</span>&nbsp;&nbsp;&nbsp;&nbsp;.catch(error);</p>
-<p id=319 class="line"><span>&nbsp;319</span>}</p>
-<p id=320 class="line"><span>&nbsp;320</span></p>
-<p id=321 class="line"><span>&nbsp;321</span><comment>/**</comment></p>
-<p id=322 class="line"><span>&nbsp;322</span><comment>&nbsp;*&nbsp;promises&nbsp;to&nbsp;delete&nbsp;a&nbsp;file&nbsp;or&nbsp;folder&nbsp;and&nbsp;return&nbsp;the&nbsp;file&nbsp;or&nbsp;folder&nbsp;name.</comment></p>
-<p id=323 class="line"><span>&nbsp;323</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;write</comment></p>
-<p id=324 class="line"><span>&nbsp;324</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;removed&nbsp;file.</comment></p>
-<p id=325 class="line"><span>&nbsp;325</span><comment>&nbsp;*/</comment></p>
-<p id=326 class="line"><span>&nbsp;326</span>export&nbsp;async&nbsp;function&nbsp;remove(thePath:string):Promise<string>&nbsp;{</p>
-<p id=327 class="line"><span>&nbsp;327</span>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dir:boolean&nbsp;=&nbsp;await&nbsp;isDirectory(thePath);</p>
-<p id=328 class="line"><span>&nbsp;328</span>	return&nbsp;await&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=>&nbsp;{</p>
-<p id=329 class="line"><span>&nbsp;329</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dir?&nbsp;fs.rmdir(thePath,&nbsp;(e:any)&nbsp;=>&nbsp;(e?&nbsp;reject(e)&nbsp;:&nbsp;resolve(thePath)))</p>
-<p id=330 class="line"><span>&nbsp;330</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;fs.unlink(thePath,&nbsp;(e:any)&nbsp;=>&nbsp;(e?&nbsp;reject(e)&nbsp;:&nbsp;resolve(thePath)));</p>
-<p id=331 class="line"><span>&nbsp;331</span>	});</p>
-<p id=332 class="line"><span>&nbsp;332</span>}</p>
-<p id=333 class="line"><span>&nbsp;333</span></p></code></div>
+<p id=221 class="line"><span>&nbsp;221</span>		fs.readFile(thePath,&nbsp;isText?&nbsp;<quote>'utf8'</quote>&nbsp;:&nbsp;{},&nbsp;(err:any,&nbsp;data:any)&nbsp;=>&nbsp;</p>
+<p id=222 class="line"><span>&nbsp;222</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;err?&nbsp;reject(err)&nbsp;:&nbsp;resolve(data));</p>
+<p id=223 class="line"><span>&nbsp;223</span>	})</p>
+<p id=224 class="line"><span>&nbsp;224</span>&nbsp;&nbsp;&nbsp;&nbsp;.catch(error);</p>
+<p id=225 class="line"><span>&nbsp;225</span>}</p>
+<p id=226 class="line"><span>&nbsp;226</span></p>
+<p id=227 class="line"><span>&nbsp;227</span><comment>/**</comment></p>
+<p id=228 class="line"><span>&nbsp;228</span><comment>&nbsp;*&nbsp;reads&nbsp;a&nbsp;text&nbsp;file&nbsp;and&nbsp;promises&nbsp;to&nbsp;provide&nbsp;the&nbsp;content.</comment></p>
+<p id=229 class="line"><span>&nbsp;229</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;read</comment></p>
+<p id=230 class="line"><span>&nbsp;230</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;file&nbsp;content.</comment></p>
+<p id=231 class="line"><span>&nbsp;231</span><comment>&nbsp;*/</comment></p>
+<p id=232 class="line"><span>&nbsp;232</span>export&nbsp;async&nbsp;function&nbsp;readTextFile(thePath:string):Promise<string>&nbsp;{&nbsp;</p>
+<p id=233 class="line"><span>&nbsp;233</span>	try&nbsp;{&nbsp;return&nbsp;await&nbsp;readFile(thePath,&nbsp;true);&nbsp;}</p>
+<p id=234 class="line"><span>&nbsp;234</span>&nbsp;&nbsp;&nbsp;&nbsp;catch(err)&nbsp;{&nbsp;error(err);&nbsp;}</p>
+<p id=235 class="line"><span>&nbsp;235</span>}</p>
+<p id=236 class="line"><span>&nbsp;236</span></p>
+<p id=237 class="line"><span>&nbsp;237</span><comment>/**</comment></p>
+<p id=238 class="line"><span>&nbsp;238</span><comment>&nbsp;*&nbsp;reads&nbsp;a&nbsp;text&nbsp;file&nbsp;and&nbsp;promises&nbsp;to&nbsp;provide&nbsp;the&nbsp;content.</comment></p>
+<p id=239 class="line"><span>&nbsp;239</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;read</comment></p>
+<p id=240 class="line"><span>&nbsp;240</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;file&nbsp;content.</comment></p>
+<p id=241 class="line"><span>&nbsp;241</span><comment>&nbsp;*/</comment></p>
+<p id=242 class="line"><span>&nbsp;242</span>export&nbsp;async&nbsp;function&nbsp;readJsonFile(thePath:string):Promise<any>&nbsp;{</p>
+<p id=243 class="line"><span>&nbsp;243</span>&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</p>
+<p id=244 class="line"><span>&nbsp;244</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;data&nbsp;=&nbsp;await&nbsp;readFile(thePath,&nbsp;true);</p>
+<p id=245 class="line"><span>&nbsp;245</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(typeof&nbsp;data&nbsp;===&nbsp;<quote>'string'</quote>)?&nbsp;JSON.parse(data)&nbsp;:&nbsp;data;</p>
+<p id=246 class="line"><span>&nbsp;246</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=247 class="line"><span>&nbsp;247</span>&nbsp;&nbsp;&nbsp;&nbsp;catch(err)&nbsp;{&nbsp;error(err);&nbsp;}</p>
+<p id=248 class="line"><span>&nbsp;248</span>}</p>
+<p id=249 class="line"><span>&nbsp;249</span></p>
+<p id=250 class="line"><span>&nbsp;250</span><comment>/**</comment></p>
+<p id=251 class="line"><span>&nbsp;251</span><comment>&nbsp;*&nbsp;writes&nbsp;a&nbsp;file&nbsp;either&nbsp;as&nbsp;binary&nbsp;or&nbsp;text&nbsp;and&nbsp;promises&nbsp;to&nbsp;return&nbsp;the&nbsp;file&nbsp;name.</comment></p>
+<p id=252 class="line"><span>&nbsp;252</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;write&nbsp;to</comment></p>
+<p id=253 class="line"><span>&nbsp;253</span><comment>&nbsp;*&nbsp;@param&nbsp;content&nbsp;the&nbsp;content&nbsp;to&nbsp;write</comment></p>
+<p id=254 class="line"><span>&nbsp;254</span><comment>&nbsp;*&nbsp;@param&nbsp;isText&nbsp;`true`|`false`&nbsp;if&nbsp;file&nbsp;should&nbsp;be&nbsp;read&nbsp;as&nbsp;`utf8`|binary&nbsp;</comment></p>
+<p id=255 class="line"><span>&nbsp;255</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;file&nbsp;name&nbsp;if&nbsp;successful.</comment></p>
+<p id=256 class="line"><span>&nbsp;256</span><comment>&nbsp;*/</comment></p>
+<p id=257 class="line"><span>&nbsp;257</span>export&nbsp;async&nbsp;function&nbsp;writeFile(thePath:string,&nbsp;content:string,&nbsp;isText:boolean=true):Promise<string>&nbsp;{</p>
+<p id=258 class="line"><span>&nbsp;258</span>&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;encoding:any&nbsp;=&nbsp;isText?&nbsp;<quote>'utf8'</quote>&nbsp;:&nbsp;<quote>'binary'</quote>;</p>
+<p id=259 class="line"><span>&nbsp;259</span>&nbsp;&nbsp;&nbsp;&nbsp;await&nbsp;mkdirs(path.dirname(thePath));</p>
+<p id=260 class="line"><span>&nbsp;260</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;await&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=>&nbsp;{</p>
+<p id=261 class="line"><span>&nbsp;261</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fs.writeFile(thePath,&nbsp;content,&nbsp;encoding,&nbsp;(err:any)&nbsp;=></p>
+<p id=262 class="line"><span>&nbsp;262</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;err?&nbsp;reject(`mkdirs&nbsp;failed&nbsp;in&nbsp;writeFile&nbsp;for&nbsp;<quote>'${thePath}'</quote>:&nbsp;${err}`)&nbsp;:&nbsp;resolve(thePath));</p>
+<p id=263 class="line"><span>&nbsp;263</span>&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;</p>
+<p id=264 class="line"><span>&nbsp;264</span>}</p>
+<p id=265 class="line"><span>&nbsp;265</span></p>
+<p id=266 class="line"><span>&nbsp;266</span><comment>/**</comment></p>
+<p id=267 class="line"><span>&nbsp;267</span><comment>&nbsp;*&nbsp;writes&nbsp;content&nbsp;to&nbsp;a&nbsp;file&nbsp;as&nbsp;a&nbsp;stream&nbsp;and&nbsp;promises&nbsp;to&nbsp;return&nbsp;the&nbsp;file&nbsp;name.</comment></p>
+<p id=268 class="line"><span>&nbsp;268</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;write&nbsp;to</comment></p>
+<p id=269 class="line"><span>&nbsp;269</span><comment>&nbsp;*&nbsp;@param&nbsp;content&nbsp;the&nbsp;content&nbsp;to&nbsp;write</comment></p>
+<p id=270 class="line"><span>&nbsp;270</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;file&nbsp;name&nbsp;if&nbsp;successful.</comment></p>
+<p id=271 class="line"><span>&nbsp;271</span><comment>&nbsp;*/</comment></p>
+<p id=272 class="line"><span>&nbsp;272</span>export&nbsp;async&nbsp;function&nbsp;writeStream(thePath:string,&nbsp;content:string):Promise<string>&nbsp;{</p>
+<p id=273 class="line"><span>&nbsp;273</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;await&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=>&nbsp;{</p>
+<p id=274 class="line"><span>&nbsp;274</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;s&nbsp;=&nbsp;fs.createWriteStream(thePath,&nbsp;{flags:<quote>'w'</quote>,&nbsp;mode:0o666});</p>
+<p id=275 class="line"><span>&nbsp;275</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.on(<quote>'error'</quote>,&nbsp;(src:any)&nbsp;=>&nbsp;reject(`writeStream&nbsp;error&nbsp;<quote>'${src}'</quote>&nbsp;for&nbsp;path&nbsp;<quote>'${thePath}'</quote>`));</p>
+<p id=276 class="line"><span>&nbsp;276</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.write(content,&nbsp;<quote>'binary'</quote>,&nbsp;()&nbsp;=>&nbsp;resolve(thePath));</p>
+<p id=277 class="line"><span>&nbsp;277</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.end();</p>
+<p id=278 class="line"><span>&nbsp;278</span>&nbsp;&nbsp;&nbsp;&nbsp;});</p>
+<p id=279 class="line"><span>&nbsp;279</span>}</p>
+<p id=280 class="line"><span>&nbsp;280</span></p>
+<p id=281 class="line"><span>&nbsp;281</span><comment>/**</comment></p>
+<p id=282 class="line"><span>&nbsp;282</span><comment>&nbsp;*&nbsp;writes&nbsp;a&nbsp;text&nbsp;file&nbsp;and&nbsp;promises&nbsp;to&nbsp;return&nbsp;the&nbsp;file&nbsp;name.</comment></p>
+<p id=283 class="line"><span>&nbsp;283</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;write</comment></p>
+<p id=284 class="line"><span>&nbsp;284</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;file&nbsp;name&nbsp;if&nbsp;successful.</comment></p>
+<p id=285 class="line"><span>&nbsp;285</span><comment>&nbsp;*/</comment></p>
+<p id=286 class="line"><span>&nbsp;286</span>export&nbsp;async&nbsp;function&nbsp;writeTextFile(thePath:string,&nbsp;content:string):Promise<string>&nbsp;{&nbsp;</p>
+<p id=287 class="line"><span>&nbsp;287</span>	return&nbsp;await&nbsp;writeFile(thePath,&nbsp;content,&nbsp;true)</p>
+<p id=288 class="line"><span>&nbsp;288</span>&nbsp;&nbsp;&nbsp;&nbsp;.catch(error);</p>
+<p id=289 class="line"><span>&nbsp;289</span>}</p>
+<p id=290 class="line"><span>&nbsp;290</span></p>
+<p id=291 class="line"><span>&nbsp;291</span><comment>/**</comment></p>
+<p id=292 class="line"><span>&nbsp;292</span><comment>&nbsp;*&nbsp;writes&nbsp;a&nbsp;text&nbsp;file&nbsp;and&nbsp;promises&nbsp;to&nbsp;return&nbsp;the&nbsp;file&nbsp;name.</comment></p>
+<p id=293 class="line"><span>&nbsp;293</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;write</comment></p>
+<p id=294 class="line"><span>&nbsp;294</span><comment>&nbsp;*&nbsp;@param&nbsp;obj&nbsp;the&nbsp;object&nbsp;to&nbsp;write</comment></p>
+<p id=295 class="line"><span>&nbsp;295</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;file&nbsp;name&nbsp;if&nbsp;successful.</comment></p>
+<p id=296 class="line"><span>&nbsp;296</span><comment>&nbsp;*/</comment></p>
+<p id=297 class="line"><span>&nbsp;297</span>export&nbsp;async&nbsp;function&nbsp;writeJsonFile(thePath:string,&nbsp;obj:any):Promise<string>&nbsp;{</p>
+<p id=298 class="line"><span>&nbsp;298</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;await&nbsp;Promise.resolve(obj)</p>
+<p id=299 class="line"><span>&nbsp;299</span>	.then(JSON.stringify)</p>
+<p id=300 class="line"><span>&nbsp;300</span>	.then(async&nbsp;data&nbsp;=>&nbsp;await&nbsp;writeTextFile(thePath,&nbsp;data))</p>
+<p id=301 class="line"><span>&nbsp;301</span>&nbsp;&nbsp;&nbsp;&nbsp;.catch(error);</p>
+<p id=302 class="line"><span>&nbsp;302</span>}</p>
+<p id=303 class="line"><span>&nbsp;303</span></p>
+<p id=304 class="line"><span>&nbsp;304</span><comment>/**</comment></p>
+<p id=305 class="line"><span>&nbsp;305</span><comment>&nbsp;*&nbsp;appends&nbsp;to&nbsp;a&nbsp;file&nbsp;either&nbsp;as&nbsp;binary&nbsp;or&nbsp;text&nbsp;and&nbsp;promises&nbsp;to&nbsp;return&nbsp;the&nbsp;file&nbsp;name.</comment></p>
+<p id=306 class="line"><span>&nbsp;306</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;write&nbsp;to</comment></p>
+<p id=307 class="line"><span>&nbsp;307</span><comment>&nbsp;*&nbsp;@param&nbsp;content&nbsp;the&nbsp;content&nbsp;to&nbsp;write</comment></p>
+<p id=308 class="line"><span>&nbsp;308</span><comment>&nbsp;*&nbsp;@param&nbsp;isText&nbsp;`true`|`false`&nbsp;if&nbsp;file&nbsp;should&nbsp;be&nbsp;read&nbsp;as&nbsp;`utf8`|binary&nbsp;</comment></p>
+<p id=309 class="line"><span>&nbsp;309</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;realPath&nbsp;of&nbsp;the&nbsp;file&nbsp;written&nbsp;to.</comment></p>
+<p id=310 class="line"><span>&nbsp;310</span><comment>&nbsp;*/</comment></p>
+<p id=311 class="line"><span>&nbsp;311</span>export&nbsp;async&nbsp;function&nbsp;appendFile(thePath:string,&nbsp;content:string,&nbsp;isText:boolean=true):Promise<string>&nbsp;{</p>
+<p id=312 class="line"><span>&nbsp;312</span>	return&nbsp;await&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=>&nbsp;{</p>
+<p id=313 class="line"><span>&nbsp;313</span>		var&nbsp;encoding:any&nbsp;=&nbsp;isText?&nbsp;<quote>'utf8'</quote>&nbsp;:&nbsp;{encoding:&nbsp;null};</p>
+<p id=314 class="line"><span>&nbsp;314</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fs.appendFile(thePath,&nbsp;content,&nbsp;encoding,&nbsp;(err:any)&nbsp;=>&nbsp;err?&nbsp;reject(err)&nbsp;:&nbsp;resolve(thePath));</p>
+<p id=315 class="line"><span>&nbsp;315</span>&nbsp;&nbsp;&nbsp;&nbsp;})</p>
+<p id=316 class="line"><span>&nbsp;316</span>&nbsp;&nbsp;&nbsp;&nbsp;.then(realPath)</p>
+<p id=317 class="line"><span>&nbsp;317</span>&nbsp;&nbsp;&nbsp;&nbsp;.catch(error);</p>
+<p id=318 class="line"><span>&nbsp;318</span>}</p>
+<p id=319 class="line"><span>&nbsp;319</span></p>
+<p id=320 class="line"><span>&nbsp;320</span><comment>/**</comment></p>
+<p id=321 class="line"><span>&nbsp;321</span><comment>&nbsp;*&nbsp;promises&nbsp;to&nbsp;delete&nbsp;a&nbsp;file&nbsp;or&nbsp;folder&nbsp;and&nbsp;return&nbsp;the&nbsp;file&nbsp;or&nbsp;folder&nbsp;name.</comment></p>
+<p id=322 class="line"><span>&nbsp;322</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;write</comment></p>
+<p id=323 class="line"><span>&nbsp;323</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;removed&nbsp;file.</comment></p>
+<p id=324 class="line"><span>&nbsp;324</span><comment>&nbsp;*/</comment></p>
+<p id=325 class="line"><span>&nbsp;325</span>export&nbsp;async&nbsp;function&nbsp;remove(thePath:string):Promise<string>&nbsp;{</p>
+<p id=326 class="line"><span>&nbsp;326</span>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dir:boolean&nbsp;=&nbsp;await&nbsp;isDirectory(thePath);</p>
+<p id=327 class="line"><span>&nbsp;327</span>	return&nbsp;await&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=>&nbsp;{</p>
+<p id=328 class="line"><span>&nbsp;328</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dir?&nbsp;fs.rmdir(thePath,&nbsp;(e:any)&nbsp;=>&nbsp;(e?&nbsp;reject(e)&nbsp;:&nbsp;resolve(thePath)))</p>
+<p id=329 class="line"><span>&nbsp;329</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;fs.unlink(thePath,&nbsp;(e:any)&nbsp;=>&nbsp;(e?&nbsp;reject(e)&nbsp;:&nbsp;resolve(thePath)));</p>
+<p id=330 class="line"><span>&nbsp;330</span>	});</p>
+<p id=331 class="line"><span>&nbsp;331</span>}</p>
+<p id=332 class="line"><span>&nbsp;332</span></p>
+<p id=333 class="line"><span>&nbsp;333</span><comment>/**</comment></p>
+<p id=334 class="line"><span>&nbsp;334</span><comment>&nbsp;*&nbsp;promises&nbsp;to&nbsp;delete&nbsp;a&nbsp;file&nbsp;or&nbsp;folder&nbsp;and&nbsp;return&nbsp;the&nbsp;file&nbsp;or&nbsp;folder&nbsp;name.</comment></p>
+<p id=335 class="line"><span>&nbsp;335</span><comment>&nbsp;*&nbsp;@param&nbsp;thePath&nbsp;the&nbsp;path&nbsp;to&nbsp;write</comment></p>
+<p id=336 class="line"><span>&nbsp;336</span><comment>&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;provide&nbsp;the&nbsp;list&nbsp;of&nbsp;names&nbsp;of&nbsp;the&nbsp;removed&nbsp;files.</comment></p>
+<p id=337 class="line"><span>&nbsp;337</span><comment>&nbsp;*/</comment></p>
+<p id=338 class="line"><span>&nbsp;338</span>export&nbsp;async&nbsp;function&nbsp;removeAll(thePath:string):Promise<string[]>&nbsp;{</p>
+<p id=339 class="line"><span>&nbsp;339</span>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;removed&nbsp;=&nbsp;[];</p>
+<p id=340 class="line"><span>&nbsp;340</span>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dir:boolean&nbsp;=&nbsp;await&nbsp;isDirectory(thePath);</p>
+<p id=341 class="line"><span>&nbsp;341</span>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(dir)&nbsp;{</p>
+<p id=342 class="line"><span>&nbsp;342</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;list&nbsp;=&nbsp;await&nbsp;readDir(thePath);</p>
+<p id=343 class="line"><span>&nbsp;343</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;await&nbsp;Promise.all(list.map(async&nbsp;i&nbsp;=>&nbsp;removed.push(...await&nbsp;removeAll(`${thePath}/${i}`))));</p>
+<p id=344 class="line"><span>&nbsp;344</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=345 class="line"><span>&nbsp;345</span>&nbsp;&nbsp;&nbsp;&nbsp;removed.push(await&nbsp;remove(thePath));</p>
+<p id=346 class="line"><span>&nbsp;346</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;removed;</p>
+<p id=347 class="line"><span>&nbsp;347</span>}</p>
+<p id=348 class="line"><span>&nbsp;348</span></p></code></div>
                 </body>
             

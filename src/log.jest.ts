@@ -59,6 +59,12 @@ describe('log', () => {
             expect(gMsg).toMatch(/INFO.*yes/); 
         });
         
+        it('should print transient', () => {
+            log.transient("yes");
+            expect(log.level()).toBe(Log.INFO);
+            expect(gMsg).not.toBeDefined(); // because it uses process.stdout.write, not console.log
+        });
+        
         it('should print warning', () => {
             log.warn("alert");
             expect(log.level()).toBe(Log.INFO);
@@ -170,6 +176,18 @@ describe('log', () => {
         it('should print prefix "test"', () => expect(gMsg).toMatch(/colors/));
     });                    
 
+    describe('inspection', () => {
+        const expectation = "{<br><b><span style='color:#444;'><b><span style='color:#444;'>&nbsp;&nbsp;&nbsp;a</span></b></span></b>: {<br><b><span style='color:#666;'><b><span style='color:#666;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b</span></b></span></b>: 'c'<br>&nbsp;&nbsp;&nbsp;}<br>}";
+        let result:string;
+        beforeEach(() => {
+            log.config({colors: true});
+            result = log.inspect({a:{b:'c'}}, 3, '   ', ['#444', '#666']);
+        });
+        afterEach(() => log.config({colors: false}));   // reset the date format
+
+        it('should print colored inspection', () => expect(result).toMatch(expectation));
+    });                    
+
     describe('log file', () => { 
         it('should be created next to Gruntfile for default path', async () => {
             try {
@@ -178,6 +196,24 @@ describe('log', () => {
                 gLog(`...setting log file ${file}`);
                 expect(file).toBeDefined();
                 expect(file).toMatch(/log-%YYYY-%MM-%DD.txt/);
+                gLog(`...msg match '${gMsg}'`);
+                expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g);
+                const file2 = await log.logFile();
+                const b = await fsUtil.isFile(file2);
+                expect(b).toBe(true);
+                await fsUtil.remove(file2); 
+            } catch(e) {
+                gLog(e);
+            }
+        });
+        
+        it('should be created at a specific path', async () => {
+            try {
+                expect.assertions(4);
+                const file = await log.logFile('./bin/log-%YYYY-%MM-%DD.txt');
+                gLog(`...setting log file ${file}`);
+                expect(file).toBeDefined();
+                expect(file).toMatch(/bin\/log-%YYYY-%MM-%DD.txt/);
                 gLog(`...msg match '${gMsg}'`);
                 expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g);
                 const file2 = await log.logFile();

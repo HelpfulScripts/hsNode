@@ -1,15 +1,49 @@
 /**
- * # Utility functions for HTTP and HTTPS calls
- * Convenience functions for http and https access, wrapped in Promises.
- * - &nbsp; {@link httpUtil.request request}: sends a http or https GET or POST request
- * - &nbsp; {@link httpUtil.CachedHTTPGet CachedHTTPGet}: used for cached requests
+ * Utility functions for HTTP and HTTPS GET and POST. The module wraps the respective `Node` calls in async/await patterns
+ * and provides support for
+ * - simple authentication methods, 
+ * - local caching,  
+ * - decoding of received comntent.
+ * - request pacing
+ * 
+ * ### Authentication
+ * Authentication is enabled by setting {@link Request.Request.setCredentials `request.setCredentials`} before any call to 
+ * {@link Request.Request.get `request.get`} or {@link Request.Request.post `request.post`}.
+ * The following authentication schemes are currently supported:
+ * - Basic
+ * - Digest
+ * 
+ * ### Caching
+ * If caching is enabled, `GET` requests will attempt to return an available cached content
+ * before issuing the request to the server.
+ * Caching is disabled by default and can be enabled by setting a caching directory location before any `GET` call
+ * `request.cache = './data'`.
+ * Once set, individual `request.get(url)` requests will by default use caching. This can be 
+ * disabled on a per call basis by providing `false` as a second parameter:
+ * `request.get(url, false)` behaves as if `cache` is undefined
+ * 
+ * ### Decoding
+ * Content received from a server or a cache can be decoded before returning the result. 
+ * Decoding is disabled by default and can be enabled by setting a `Decoder` function:
+ * `request.decode = Request.decoders.str2json`
+ * 
+ * For convenience, the following predefined decoder functions are provided as static members of `Request.decoders`:
+ * - str2json applies JSON.parse to the content to return an object literal
+ * - html2json applies (html2json)[https://github.com/jxck/html2json#readme] to the content
+ * 
+ * ### Pacing
+ * Enable request pacing via `request.setPace(ms, max)`. When enabled, requests will be issued with a minimal 
+ * amount of `ms` milliseconds between them, and there will never be more than `max` number of calls pending.
+ * All additional calls will be placed in a queue until the `ms` abd `max` conditions allow calling them.
  * 
  * ### Usage:
  * ```
- * import { http } from 'hsnode';
- * const cache = new CachedHTTPRequest('./cacheDir/');
- * const url = new URL('http://mysite.com/');
- * cache.request(url);
+ * import { Request } from 'hsnode';
+ * const request = new Request.Request();
+ * request.cache = __dirname + '/../_data/cache';
+ * request.decode = (options:http.Options) => options.path.indexOf('binData?id=') < 0;
+ * request.setAuthToken(apptokens.token);
+ * const content = await request.get('http://...');
  * ```
  */
 
@@ -17,11 +51,12 @@
 
 import { URL }          from 'url';
 import { createHash }   from 'crypto';
-import { Log }          from './index';   const log = new Log('httpUtil');
+import { Log }          from './index';   const log = new Log('Request');
 import * as fs          from "./fsUtil";
 import http             from 'http';
 import https            from 'https';
 import { Pace }         from 'hsutil';
+var html2json = require('html2json').html2json;
 
 const protocol = {http:http, https:https};
 
@@ -55,23 +90,50 @@ export interface Response {
     error?:     any;
 }
 
+/** 
+ * decoder function interface. For the given `Options` and data a function implementation  
+ * shoul;d return a decoded version of `data`.
+ */
+export interface Decoder {
+    /**
+     * decoder function, returns a decoded version of `data`
+     * @param options the `Options` structure used to place the request
+     * @param data the data to decode
+     * @return a decoded version of `data`
+     */
+    (data:string, options:Options):any;
+}
 
 
 export class Request {
-    private pending = 0;
-    private pendingDigits = 3;
-    private pace = new Pace();
+    public static decoders = {
+        str2json:  (data:string) => JSON.parse(data),
+        html2json: (data:string) => html2json(data)
+    };
 
-    private user: Digest;
+    /** the pacing queue used to manage request flow */
+    private pace:Pace;
+
+    /** the credentials to use for authentication, or `undefined` */
+    private credentials: {user:string; password:string};
     
+    /** the `AuthToken` to set in the header */
     private authToken: string;
 
-    public cacheBaseLocation:string;
+    /** the location to use for caching */
+    public cache:string;
 
-    public setDigest = (user:string, password:string) =>
-        this.user = new Digest(user, password)
+    /**
+     * sets the credentials for `Basic` and `Digest` authentications.
+     * @param user the username to use; if `undefined`, then authentication will be disabled.
+     * @param password the password to use
+     */
+    public setCredentials = (user?:string, password?:string) => {
+        this.credentials = user===undefined? undefined : { user: user, password: password };
+    }
     
-    public setAuthToken = (token:string) =>
+    /** sets an authentication token that is passed on to the server via a header field `AuthToken` */
+    public setAuthToken = (token?:string) =>
         this.authToken = token
     
     /**
@@ -79,12 +141,17 @@ export class Request {
      * @param pace number of ms between requests
      * @param max upper limit of concurrent outstanding requests
      */
-    public setPace = (pace:number, max=10) => {
-        this.pace.setPace(pace);
-        this.pace.setMaxConcurrent(max);
+    public setPace = (pace?:number, max=10) => {
+        this.pace = pace===undefined? undefined : new Pace(pace, max);
     }
     
-    public decodeJSON = (options:Options) => false;
+    /** 
+     * sets an optional decode function for retrieved content. The function will be 
+     * applied to content retrieved either from the cache or from the server response.
+     * Convenience function are available via the static list `Request.decoders`.
+     * For example, `request.decode = Request.decoders.str2json
+     */
+    public decode = <Decoder>undefined;
 
     /**
      * constructs the cache name to use. The function call can be overwritten with 
@@ -92,13 +159,27 @@ export class Request {
      * @param options the request options
      */
     public cacheName = (options:Options):string => //     'q=.../' --> 'q=...-'    remove ?
-        `${this.cacheBaseLocation}${options.path.replace(/q=(.*?)\//g,'q=$1-').replace(/\?/g,'')}`
+        `${this.cache}/${options.hostname}/${options.path.replace(/q=(.*?)\//g,'q=$1-').replace(/\?/g,'')}`
 
+    /**
+     * gets the content for the addressed `url`. `HTTP` and `HTTPS` are supported.
+     * @param url the address to fetch from
+     * @param useCached optional, defaults to `true`. Set to `false` to avoid using 
+     * the cache for this call in case caching is enabled.
+     */
     public get = async (url:string|URL, useCached=true) => 
         this.decodedRequest(url, 'GET', useCached)
 
-    public post = async (url:string|URL, postData:any, useCached=true) => 
-        this.decodedRequest(url, 'POST', useCached, postData)
+    /**
+     * posts the content in `postData` to the server at the address specified by `url`.
+     * @param url the address to post to
+     * @param postData the data to post
+     */
+    public post = async (url:string|URL, postData:any) => 
+        this.decodedRequest(url, 'POST', false, postData)
+
+
+
 
     protected getOptions(url:string|URL, method:'GET'|'POST'):Options {
         if (typeof url === 'string') { url = new URL(url); }
@@ -122,8 +203,7 @@ export class Request {
      * issues a `GET` or `POST` call and returns the `url` response. 
      * If `usedCache` is `true`, the cached version will be returned if available. 
      * Otherwise an `http` or `https` request is initiated, the result cached and returned.
-     * If `decodeJSON` returns `true` for the given url, an attempt will be made to covert
-     * the retrieved content to a JSON object. 
+     * If `decode` is defined it is called with the retrieved data before returning the result. 
      * @param url the url to retrieve
      * @param method 'GET' or 'POST'
      * @param useCached if `true`, attempt to return a cahced version. If `false`, or no cached version
@@ -132,51 +212,46 @@ export class Request {
      */
     protected async decodedRequest(url:string|URL, method:'GET'|'POST', useCached:boolean, postData?:any):Promise<any> {
         const options = this.getOptions(url, method);
-        try {
-            const result = await this.requestOptions(options, useCached, postData);
-            return result;
-        } catch(e) {
-            return undefined;
+        try { 
+            const result = await this.requestOptions(options, useCached, postData); 
+            return this.decode? this.decode(result, options) : result;
         }
+        catch(e) { return undefined; }
     }
 
-    protected async readCached(fname:string, decodeJSON:boolean) {
-        const content = decodeJSON? await fs.readJsonFile(fname+'.json') : await fs.readFile(fname+'.src', false); 
-        log.transient(`cached ${fname.slice(this.cacheBaseLocation.length+1)}                     `);
-        return content;
+    protected async readCached(fname:string) {
+        return await fs.readFile(fname, false); 
     }
 
-    protected async writeCached(fname:string, decodeJSON:boolean, data:any) {
-        if (decodeJSON) { 
-            data = JSON.parse(data === ''? '{}' : data); 
-        }
-        if (fname) { try {
-            if (decodeJSON) { 
-                await fs.writeJsonFile(fname+'.json', data === ''? '{}' : data); 
-            }
-            else { await fs.writeFile(fname+'.src', data, false); }
-        } catch(e) {
-            log.error(e);
-        }}
-        return data;
+    protected async writeCached(fname:string, data:any) {
+        return await fs.writeFile(fname, data, false);
     }
 
     protected async requestOptions(options:Options, useCached:boolean, postData?:any):Promise<string> {
-        const decode = this.decodeJSON(options);
-        const pending = () => `  ${this.pending}`.slice(-this.pendingDigits);
-        const fname = this.cacheBaseLocation? this.cacheName(options) : undefined;
-        if (fname && useCached) { try { 
-            return await this.readCached(fname, decode); 
-        } catch(e) {}}
+        const fname = this.cache? this.cacheName(options) : undefined;
+        if (fname && useCached && options.method === 'GET') { 
+            try { return await this.readCached(fname); }
+            catch(e) {} // no cache available
+        }
 
         let response: Response;
         const err = <{statusCode:string, statusMessage:string, url:string}>{};
         try { 
-            log.info(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) requesting ${options.url}`);
-            response = this.pace? await this.pace.add(() => this.request(options, postData)) : await this.request(options, postData);
-            log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()})             `);
+            if (this.pace) { 
+                log.info(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) requesting ${options.url}`); 
+                response = await this.pace.add(() => this.request(options, postData));
+                log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()})             `);
+            }
+            else { 
+                log.info(`requesting ${options.url}`); 
+                response = await this.request(options, postData);
+            }
             if((response.response.statusCode||response.response.status) === 200) {
-                return this.writeCached(fname, decode, response.data);
+                if (fname && options.method === 'GET') {
+                    try { await this.writeCached(fname, response.data); }
+                    catch(e) { log.warn(`writing cache for ${fname}: ${e}`); }
+                }
+                return response.data;
             }
             log.warn(`${response.response.statusCode||response.response.status} requesting ${options.url}: ${response.response.statusMessage}`);
             err.statusCode = response.response.statusCode || response.response.status|| 'no code';
@@ -196,10 +271,9 @@ export class Request {
         const httpProt:string = options.protocol.slice(0,-1);
         const http = protocol[httpProt];
         let auth = (options.headers && options.headers.Authorization);
-        log.debug(`requesting ${log.inspect(options, 4)}`);
         const response = await new Promise((resolve:(out:Response)=>void, reject:(e:Response)=>void) => {
             let data = ''; 
-            log.debug(`sending request ${auth? 'with authorization ':''}for ${options.protocol}//${options.host}:${options.port}${options.path}`); 
+            log.debug(`requesting ${log.inspect(options, 4)}`);
             const req = http.request(options, (res:any) => {
                 const encoding = isBinary(res.headers['content-type'])? 'binary' : 'utf8';
                 log.debug(`receiving...${res.headers['content-type']} => ${encoding}`);
@@ -213,47 +287,33 @@ export class Request {
             if (postData !== undefined) { req.write(postData); }
             req.end();
         });
-        if (this.user && response.response.headers['www-authenticate']) { 
-            const digestOptions = this.user.testDigestAuth(options, response.data, response.response);
-            return this.request(digestOptions);
+        const prot = response.response.headers['www-authenticate'];
+        if (this.credentials && prot) { 
+            if (prot.trim().indexOf('Digest') === 0) {
+                const digest = new Digest(this.credentials.user, this.credentials.password);
+                digest.testDigestAuth(options, response.data, response.response);
+                return this.request(options);
+            }
+            if (prot.trim().indexOf('Basic') === 0) {
+                options.headers.Authorization = 'Basic ' + _btoa(`${this.credentials.user}:${this.credentials.password}`);
+                return this.request(options);
+            }
         } else {
             return response; 
         } 
     }
 }
 
-/**
- * Decodes an xm or html string into a JSON representation
- * @param xml 
- */
-export function xml2json(xml:string):any {
-    let result:any;
-    while(xml.length>0) {
-        let tag:any = xml.match(/<.*?>/);
-        if (tag && tag.length > 0) {
-            tag = tag[0].substring(1, tag[0].length-1);     // strip '<' and '>'
-            result = result || {};
-            tag = getAttributes(tag, result);
-            let start = xml.indexOf(`<${tag}`);
-            let end  = xml.indexOf(`</${tag}>`);
-            if (end > 0) {
-                const close = xml.indexOf('>', start);
-                let content = xml.substring(close+1, end).trim();   // remove opening and closing tag
-                result[tag] = this.xml2json(content);
-                xml = xml.substring(end+tag.length+3).trim(); 
-            } else {    // no closing tag
-                //result[tag] = {};
-                xml = xml.substring(xml.indexOf('>')+1).trim(); // remove tag
-            }
-        } else { // literal
-            result = xml.slice(0);
-            xml = '';
-        }
-    }
-    return result;
+function _btoa(str:string|Buffer):string {
+    const buffer = str instanceof Buffer? str : Buffer.from(str.toString(), 'binary');
+    return buffer.toString('base64');
 }
 
-
+function _atob(str:string):string {
+    return Buffer.from(str, 'base64').toString('binary');
+}
+  
+  
 
 
 /**
@@ -364,10 +424,6 @@ class Digest {
 //----------- Local functions ------------------------------
 
 function omitNull(data:any) {
-    // _.omit(data, (elt) => {
-    //   console.log('elt ' + elt + ' et condition : ' + elt === null);
-    //   return elt == null;
-    // });
     let newObject = {};
     Object.keys(data).forEach((k:string) => {
         if (data[k] !== null && data[k] !== undefined) { newObject[k] = data[k]; }
@@ -417,21 +473,5 @@ function isBinary(contentType:string) {
     };
     const result = binary[contentType];
     return (result === undefined)? false : result;
-}
-
-function getAttributes(tag:string, result:any) {
-    let fields = tag.split(/(?=([^"]*"[^"]*")*[^"]*$)\s+/g);
-    tag = fields[0].trim();
-    result[tag] = {};
-    fields.map(f => {
-        if (f) {
-            let attrs = f.split('=');
-            result[tag].attrs = result[tag].attrs || {};
-            if (attrs.length>1) {
-                result[tag].attrs[attrs[0].trim()] = attrs[1].replace(/\"/g, '').trim();
-            }
-        }
-    });
-    return tag;
 }
 

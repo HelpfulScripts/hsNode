@@ -218,8 +218,7 @@ export async function readDir(thePath:string):Promise<string[]> {
  */
 export function readFile(thePath:string, isText=true):Promise<any> {
 	return new Promise((resolve:(data:any)=>void, reject:(err:any)=>void) => {
-		let encoding = isText? 'utf8' : {};
-		fs.readFile(thePath, encoding, (err:any, data:any) => 
+		fs.readFile(thePath, isText? 'utf8' : {}, (err:any, data:any) => 
             err? reject(err) : resolve(data));
 	})
     .catch(error);
@@ -329,4 +328,20 @@ export async function remove(thePath:string):Promise<string> {
         dir? fs.rmdir(thePath, (e:any) => (e? reject(e) : resolve(thePath)))
            : fs.unlink(thePath, (e:any) => (e? reject(e) : resolve(thePath)));
 	});
+}
+
+/**
+ * promises to delete a file or folder and return the file or folder name.
+ * @param thePath the path to write
+ * @return promise to provide the list of names of the removed files.
+ */
+export async function removeAll(thePath:string):Promise<string[]> {
+    const removed = [];
+    const dir:boolean = await isDirectory(thePath);
+    if (dir) {
+        const list = await readDir(thePath);
+        await Promise.all(list.map(async i => removed.push(...await removeAll(`${thePath}/${i}`))));
+    }
+    removed.push(await remove(thePath));
+    return removed;
 }

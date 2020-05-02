@@ -1,8 +1,8 @@
 // const  http =  require('http'); 
 
 import { URL }          from 'url';
-import { Log }          from './index';  const log = new Log('httpUtil.jest');
-import * as httpUtil    from "./httpUtil";
+import { Log }          from './index';  const log = new Log('Request.jest');
+import { Request }      from "./Request";
 import * as fsUtil      from "./fsUtil";
 
 jest.mock('http');
@@ -10,47 +10,66 @@ const http = require('http');
 
 const payloads = [
     { path: '/myPath?query=value', code:200, content: '<html><body id="theBody"><h1 id=main>The Content</h1>the Body<p></body></html>' },
+    { path: '/myPath?query=json', code:200, content: '{"first":"one", "second":"two"}' },
     { path: '/myCached', code:200, content: '<html><body id="theBody"><h1 id=main>The Content</h1>the Body<p></body></html>' },
-    { path: '/myAuth', code:403, content: '<html><body><h1>403 - Forbidden</h1></body></html>' },
-    { path: '/myDigest', code:401, content: '<html><body><h1>Show me the goods</h1></body></html>' },
+    { path: '/myAuth', code:403, authenticate: 'Basic', content: '<html><body><h1>403 - Forbidden</h1></body></html>' },
+    { path: '/myDigest', code:401, authenticate: 'Digest', content: '<html><body><h1>Show me the goods</h1></body></html>' },
 ];
 
 http.__setPayLoads(payloads);
 
-// http.request.mockImplementation((u:URL) => {
-//     const load:any = payloads.filter(p => u.pathname === p.path);
-//     return Promise.resolve(load.content);
-// });
+const request = new Request();
 
-const request = new httpUtil.Request();
-
-describe('httpUtil', ()=>{
+describe('Request', ()=>{
+    beforeEach(() => {
+        request.decode = undefined;
+        request.setPace();
+        request.setCredentials();
+        request.setAuthToken();
+    });
 
     test(`myPath?query=value should have h1`, (done) => {
-        expect.assertions(5);
+        expect.assertions(6);
         const test = async () => {
             const url = 'http://my.space.com/myPath?query=value';
-            try {
-                const r = await request.get(url);
-                const json = httpUtil.xml2json(r);
-                expect(r).toHaveLength(78);
-                expect(json).toHaveProperty('html');
-                expect(json.html).toHaveProperty('body');
-                expect(json.html.body).toHaveProperty('h1');
-                expect(json.html.body.h1).toEqual('The Content');
-                done();
-            } catch(e) { log.warn(`myPath?query=value should have h1: ${e.toString()}`); }
+            let json = <any>{};
+            request.decode = Request.decoders.html2json;
+            try { json = await request.get(url); }
+            catch(e) { log.warn(`myPath?query=value should have h1: ${e.toString()}`); }
+            expect(json).toHaveProperty('child');
+            expect(json.child[0].tag).toBe('html');
+            expect(json.child[0]).toHaveProperty('child');
+            expect(json.child[0].child[0].tag).toBe('body');
+            expect(json.child[0].child[0]).toHaveProperty('child');
+            expect(json.child[0].child[0].child[0].tag).toBe('h1');
+            done();
         };
         try { test(); }
         catch(e) { log.error(e); }
     });
 
+    test(`myPath?query=json should have one`, (done) => {
+        expect.assertions(2);
+        const test = async () => {
+            const url = 'http://my.space.com/myPath?query=json';
+            let json = <any>{};
+            request.decode = Request.decoders.str2json;
+            try { json = await request.get(url); }
+            catch(e) { log.warn(`myPath?query=value should have h1: ${e.toString()}`); }
+            expect(json).toHaveProperty('first');
+            expect(json.first).toBe('one');
+            done();
+        };
+        try { test(); }
+        catch(e) { log.error(e); }
+    });
 
-    it('should ask for authentication', async (done)=>{
+    it('should ask for Basic authentication', async (done)=>{
         try {
             expect.assertions(1);
             const url = 'http://my.space.com/myAuth';  
-            request.setDigest('me', 'mysecret');
+            request.setCredentials('me', 'mysecret');
+            request.decode = undefined;
             try {
                 const r = await request.get(url);
                 expect(r).toBe('<html><body><h1>403 - Forbidden</h1></body></html>');
@@ -60,10 +79,10 @@ describe('httpUtil', ()=>{
         catch(e) { log.error(e); }
     });
 
-    it('should authenticate', async (done)=>{
+    it('should ask for Digest authentication', async (done)=>{
         try {
             const url = 'http://my.space.com/myDigest';
-            request.setDigest('admin', 'littleSecret');
+            request.setCredentials('admin', 'littleSecret');
             try {
                 const r = await request.get(url);
                 expect(r).toBe('<html><body><h1>Show me the goods</h1></body></html>');
@@ -74,13 +93,14 @@ describe('httpUtil', ()=>{
     });
 
     describe('caching', () => {
+        const dir = __dirname + '/../bin/cache';
         beforeAll(() => {
-            request.cacheBaseLocation = __dirname + '/../bin/cache';
+            request.cache = dir;
         });
         afterAll(async () => {
-            await fsUtil.remove(__dirname + '/../bin/cache/myCached');
-            await fsUtil.remove(__dirname + '/../bin/cache/');
-            await fsUtil.isDirectory(__dirname + '/../bin/cache/');
+            log.info('removing...');
+            try { await fsUtil.removeAll(__dirname + '/../bin/cache/'); }
+            catch(e) { log.warn(`cleaning up: ${e}`); }
         });
         it('should request online', async (done) => {
             expect.assertions(2);

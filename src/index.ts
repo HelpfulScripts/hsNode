@@ -9,6 +9,6 @@ export const node = {
 
 export { LogServer as Log } from "./log";
 
-import * as http            from "./httpUtil";
+import * as http            from "./Request";
 export { http };
 
