@@ -45,8 +45,7 @@ export class LogServer extends LogUtil {
      * @return promise to return the file written to, or undefined
      */
     public transient(msg:any):string { 
-        const result = this.out(LogUtil.INFO, msg+'\r'); 
-        return result;
+        return this.out(LogUtil.INFO, msg+'\r'); 
     }
 
     /**

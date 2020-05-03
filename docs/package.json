@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "hsutil": "3.2.x",
-    "node": "14.1.0"
+    "node": "14.1.0",
+    "html2json":"1.0.x"
   }
 }
