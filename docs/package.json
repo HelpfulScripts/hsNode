@@ -53,7 +53,7 @@
     "webpack": "^4.43.x"
   },
   "dependencies": {
-    "hsutil": "3.2.x",
+    "hsutil": "3.3.x",
     "node": "14.1.0",
     "html2json": "1.0.x"
   }
