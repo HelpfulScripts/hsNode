@@ -58,6 +58,8 @@ import https            from 'https';
 import { Pace }         from 'hsutil';
 var html2json = require('html2json').html2json;
 
+log.messageLength = 120;
+
 const protocol = {http:http, https:https};
 
 // log.level(log.DEBUG);
@@ -259,7 +261,7 @@ export class Request {
                 result = await fs.readFile(`${fname}.bin`, false); 
             }
         } catch(e) {}
-        if (result) { log.transient(`found cache for ${fname}        `); }
+        if (result) { log.transient(`found cache for ${fname} `); }
         return result;   // no cache found
     }
 

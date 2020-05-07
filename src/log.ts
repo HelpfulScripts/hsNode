@@ -45,7 +45,7 @@ export class LogServer extends LogUtil {
      * @return promise to return the file written to, or undefined
      */
     public transient(msg:any):string { 
-        return this.out(LogUtil.INFO, msg+'\r'); 
+        return this.out(LogUtil.INFO, msg+' \r'); 
     }
 
     /**
@@ -70,11 +70,8 @@ export class LogServer extends LogUtil {
     protected makeMessage(line:string, lvl:string, dateStr:string, desc:string):string {
         const colors = { [LogServer.ERROR]: color.red+color.bold, [LogServer.WARN]: color.yellow+color.bold, [LogServer.DEBUG]: color.blue, [LogServer.INFO]: color.green };
         const logLine = super.makeMessage(line, lvl, dateStr, desc);
-        if (this.LogFile) {
-            appendFile(date(this.LogFile), logLine+'\n');
-        }
-        const colorLine = `${colors[lvl]||''} ${dateStr} ${this.reportPrefix} ${desc} ${color.clear} ${line}`;
-        return gColors? colorLine : logLine;
+        if (this.LogFile) { appendFile(date(this.LogFile), logLine+'\n'); }
+        return gColors? `${colors[lvl]||''} ${dateStr} ${this.reportPrefix} ${desc} ${color.clear} ${line.length} ${line}` : logLine;
     }
 
     /**

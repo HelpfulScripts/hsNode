@@ -5,7 +5,7 @@
 	"flags": {},
 	"children": [
 		{
-			"id": 171,
+			"id": 176,
 			"name": "\"Request\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -19,7 +19,7 @@
 			},
 			"children": [
 				{
-					"id": 283,
+					"id": 288,
 					"name": "Digest",
 					"kind": 128,
 					"kindString": "Class",
@@ -29,21 +29,21 @@
 					},
 					"children": [
 						{
-							"id": 287,
+							"id": 292,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
 							"flags": {},
 							"signatures": [
 								{
-									"id": 288,
+									"id": 293,
 									"name": "new Digest",
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 289,
+											"id": 294,
 											"name": "username",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -54,7 +54,7 @@
 											}
 										},
 										{
-											"id": 290,
+											"id": 295,
 											"name": "password",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -67,7 +67,7 @@
 									],
 									"type": {
 										"type": "reference",
-										"id": 283,
+										"id": 288,
 										"name": "Digest"
 									}
 								}
@@ -75,13 +75,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 384,
+									"line": 386,
 									"character": 20
 								}
 							]
 						},
 						{
-							"id": 284,
+							"id": 289,
 							"name": "nc",
 							"kind": 1024,
 							"kindString": "Property",
@@ -89,7 +89,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 382,
+									"line": 384,
 									"character": 6
 								}
 							],
@@ -100,7 +100,7 @@
 							"defaultValue": "0"
 						},
 						{
-							"id": 286,
+							"id": 291,
 							"name": "password",
 							"kind": 1024,
 							"kindString": "Property",
@@ -108,7 +108,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 384,
+									"line": 386,
 									"character": 12
 								}
 							],
@@ -118,7 +118,7 @@
 							}
 						},
 						{
-							"id": 285,
+							"id": 290,
 							"name": "username",
 							"kind": 1024,
 							"kindString": "Property",
@@ -126,7 +126,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 383,
+									"line": 385,
 									"character": 12
 								}
 							],
@@ -136,14 +136,14 @@
 							}
 						},
 						{
-							"id": 293,
+							"id": 298,
 							"name": "generateCNONCE",
 							"kind": 2048,
 							"kindString": "Method",
 							"flags": {},
 							"signatures": [
 								{
-									"id": 294,
+									"id": 299,
 									"name": "generateCNONCE",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -153,7 +153,7 @@
 									},
 									"parameters": [
 										{
-											"id": 295,
+											"id": 300,
 											"name": "qop",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -170,14 +170,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 296,
+											"id": 301,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 297,
+													"id": 302,
 													"name": "cnonce",
 													"kind": 32,
 													"kindString": "Variable",
@@ -185,7 +185,7 @@
 													"sources": [
 														{
 															"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-															"line": 416,
+															"line": 418,
 															"character": 22
 														}
 													],
@@ -196,7 +196,7 @@
 													"defaultValue": "cnonce"
 												},
 												{
-													"id": 298,
+													"id": 303,
 													"name": "nc",
 													"kind": 32,
 													"kindString": "Variable",
@@ -204,7 +204,7 @@
 													"sources": [
 														{
 															"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-															"line": 416,
+															"line": 418,
 															"character": 34
 														}
 													],
@@ -220,8 +220,8 @@
 													"title": "Variables",
 													"kind": 32,
 													"children": [
-														297,
-														298
+														302,
+														303
 													]
 												}
 											]
@@ -232,20 +232,20 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 406,
+									"line": 408,
 									"character": 18
 								}
 							]
 						},
 						{
-							"id": 299,
+							"id": 304,
 							"name": "testDigestAuth",
 							"kind": 2048,
 							"kindString": "Method",
 							"flags": {},
 							"signatures": [
 								{
-									"id": 300,
+									"id": 305,
 									"name": "testDigestAuth",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -253,7 +253,7 @@
 									"comment": {},
 									"parameters": [
 										{
-											"id": 301,
+											"id": 306,
 											"name": "options",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -261,12 +261,12 @@
 											"comment": {},
 											"type": {
 												"type": "reference",
-												"id": 175,
+												"id": 180,
 												"name": "Options"
 											}
 										},
 										{
-											"id": 302,
+											"id": 307,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -278,7 +278,7 @@
 											}
 										},
 										{
-											"id": 303,
+											"id": 308,
 											"name": "response",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -288,14 +288,14 @@
 											},
 											"type": {
 												"type": "reference",
-												"id": 191,
+												"id": 196,
 												"name": "IncomingMessage"
 											}
 										}
 									],
 									"type": {
 										"type": "reference",
-										"id": 175,
+										"id": 180,
 										"name": "Options"
 									}
 								}
@@ -303,20 +303,20 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 425,
+									"line": 427,
 									"character": 18
 								}
 							]
 						},
 						{
-							"id": 291,
+							"id": 296,
 							"name": "updateNC",
 							"kind": 2048,
 							"kindString": "Method",
 							"flags": {},
 							"signatures": [
 								{
-									"id": 292,
+									"id": 297,
 									"name": "updateNC",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -333,7 +333,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 394,
+									"line": 396,
 									"character": 12
 								}
 							]
@@ -344,38 +344,38 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								287
+								292
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								284,
-								286,
-								285
+								289,
+								291,
+								290
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								293,
-								299,
-								291
+								298,
+								304,
+								296
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 381,
+							"line": 383,
 							"character": 12
 						}
 					]
 				},
 				{
-					"id": 218,
+					"id": 223,
 					"name": "Request",
 					"kind": 128,
 					"kindString": "Class",
@@ -384,7 +384,7 @@
 					},
 					"children": [
 						{
-							"id": 231,
+							"id": 236,
 							"name": "authToken",
 							"kind": 1024,
 							"kindString": "Property",
@@ -398,7 +398,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 142,
+									"line": 144,
 									"character": 21
 								}
 							],
@@ -408,7 +408,7 @@
 							}
 						},
 						{
-							"id": 232,
+							"id": 237,
 							"name": "cache",
 							"kind": 1024,
 							"kindString": "Property",
@@ -422,7 +422,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 145,
+									"line": 147,
 									"character": 16
 								}
 							],
@@ -432,7 +432,7 @@
 							}
 						},
 						{
-							"id": 227,
+							"id": 232,
 							"name": "credentials",
 							"kind": 1024,
 							"kindString": "Property",
@@ -446,14 +446,14 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 139,
+									"line": 141,
 									"character": 23
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 228,
+									"id": 233,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
@@ -462,7 +462,7 @@
 									},
 									"children": [
 										{
-											"id": 230,
+											"id": 235,
 											"name": "password",
 											"kind": 32,
 											"kindString": "Variable",
@@ -472,7 +472,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-													"line": 139,
+													"line": 141,
 													"character": 47
 												}
 											],
@@ -482,7 +482,7 @@
 											}
 										},
 										{
-											"id": 229,
+											"id": 234,
 											"name": "user",
 											"kind": 32,
 											"kindString": "Variable",
@@ -492,7 +492,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-													"line": 139,
+													"line": 141,
 													"character": 30
 												}
 											],
@@ -507,15 +507,15 @@
 											"title": "Variables",
 											"kind": 32,
 											"children": [
-												230,
-												229
+												235,
+												234
 											]
 										}
 									],
 									"sources": [
 										{
 											"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-											"line": 139,
+											"line": 141,
 											"character": 24
 										}
 									]
@@ -523,7 +523,7 @@
 							}
 						},
 						{
-							"id": 244,
+							"id": 249,
 							"name": "decode",
 							"kind": 1024,
 							"kindString": "Property",
@@ -537,19 +537,19 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 175,
+									"line": 177,
 									"character": 17
 								}
 							],
 							"type": {
 								"type": "reference",
-								"id": 214,
+								"id": 219,
 								"name": "Decoder"
 							},
 							"defaultValue": "<Decoder>undefined"
 						},
 						{
-							"id": 226,
+							"id": 231,
 							"name": "pace",
 							"kind": 1024,
 							"kindString": "Property",
@@ -563,7 +563,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 136,
+									"line": 138,
 									"character": 16
 								}
 							],
@@ -573,7 +573,7 @@
 							}
 						},
 						{
-							"id": 245,
+							"id": 250,
 							"name": "cacheName",
 							"kind": 2048,
 							"kindString": "Method",
@@ -586,7 +586,7 @@
 							},
 							"signatures": [
 								{
-									"id": 246,
+									"id": 251,
 									"name": "cacheName",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -598,7 +598,7 @@
 									},
 									"parameters": [
 										{
-											"id": 247,
+											"id": 252,
 											"name": "options",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -610,7 +610,7 @@
 											},
 											"type": {
 												"type": "reference",
-												"id": 175,
+												"id": 180,
 												"name": "Options"
 											}
 										}
@@ -624,13 +624,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 184,
+									"line": 186,
 									"character": 20
 								}
 							]
 						},
 						{
-							"id": 260,
+							"id": 265,
 							"name": "decodedRequest",
 							"kind": 2048,
 							"kindString": "Method",
@@ -640,7 +640,7 @@
 							},
 							"signatures": [
 								{
-									"id": 261,
+									"id": 266,
 									"name": "decodedRequest",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -652,7 +652,7 @@
 									},
 									"parameters": [
 										{
-											"id": 262,
+											"id": 267,
 											"name": "url",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -677,7 +677,7 @@
 											}
 										},
 										{
-											"id": 263,
+											"id": 268,
 											"name": "method",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -702,7 +702,7 @@
 											}
 										},
 										{
-											"id": 264,
+											"id": 269,
 											"name": "useCached",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -718,7 +718,7 @@
 											}
 										},
 										{
-											"id": 265,
+											"id": 270,
 											"name": "postData",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -750,13 +750,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 236,
+									"line": 238,
 									"character": 34
 								}
 							]
 						},
 						{
-							"id": 248,
+							"id": 253,
 							"name": "get",
 							"kind": 2048,
 							"kindString": "Method",
@@ -769,7 +769,7 @@
 							},
 							"signatures": [
 								{
-									"id": 249,
+									"id": 254,
 									"name": "get",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -781,7 +781,7 @@
 									},
 									"parameters": [
 										{
-											"id": 250,
+											"id": 255,
 											"name": "url",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -806,7 +806,7 @@
 											}
 										},
 										{
-											"id": 251,
+											"id": 256,
 											"name": "useCached",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -838,13 +838,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 193,
+									"line": 195,
 									"character": 14
 								}
 							]
 						},
 						{
-							"id": 256,
+							"id": 261,
 							"name": "getOptions",
 							"kind": 2048,
 							"kindString": "Method",
@@ -854,7 +854,7 @@
 							},
 							"signatures": [
 								{
-									"id": 257,
+									"id": 262,
 									"name": "getOptions",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -863,7 +863,7 @@
 									},
 									"parameters": [
 										{
-											"id": 258,
+											"id": 263,
 											"name": "url",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -885,7 +885,7 @@
 											}
 										},
 										{
-											"id": 259,
+											"id": 264,
 											"name": "method",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -909,7 +909,7 @@
 									],
 									"type": {
 										"type": "reference",
-										"id": 175,
+										"id": 180,
 										"name": "Options"
 									}
 								}
@@ -917,13 +917,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 207,
+									"line": 209,
 									"character": 24
 								}
 							]
 						},
 						{
-							"id": 252,
+							"id": 257,
 							"name": "post",
 							"kind": 2048,
 							"kindString": "Method",
@@ -936,7 +936,7 @@
 							},
 							"signatures": [
 								{
-									"id": 253,
+									"id": 258,
 									"name": "post",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -948,7 +948,7 @@
 									},
 									"parameters": [
 										{
-											"id": 254,
+											"id": 259,
 											"name": "url",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -973,7 +973,7 @@
 											}
 										},
 										{
-											"id": 255,
+											"id": 260,
 											"name": "postData",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1004,13 +1004,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 201,
+									"line": 203,
 									"character": 15
 								}
 							]
 						},
 						{
-							"id": 266,
+							"id": 271,
 							"name": "readCached",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1020,7 +1020,7 @@
 							},
 							"signatures": [
 								{
-									"id": 267,
+									"id": 272,
 									"name": "readCached",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1032,7 +1032,7 @@
 									},
 									"parameters": [
 										{
-											"id": 268,
+											"id": 273,
 											"name": "fname",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1063,13 +1063,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 253,
+									"line": 255,
 									"character": 30
 								}
 							]
 						},
 						{
-							"id": 279,
+							"id": 284,
 							"name": "request",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1079,7 +1079,7 @@
 							},
 							"signatures": [
 								{
-									"id": 280,
+									"id": 285,
 									"name": "request",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1088,7 +1088,7 @@
 									},
 									"parameters": [
 										{
-											"id": 281,
+											"id": 286,
 											"name": "options",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1097,12 +1097,12 @@
 											},
 											"type": {
 												"type": "reference",
-												"id": 175,
+												"id": 180,
 												"name": "Options"
 											}
 										},
 										{
-											"id": 282,
+											"id": 287,
 											"name": "postData",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1121,7 +1121,7 @@
 										"typeArguments": [
 											{
 												"type": "reference",
-												"id": 186,
+												"id": 191,
 												"name": "Response"
 											}
 										],
@@ -1132,13 +1132,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 328,
+									"line": 330,
 									"character": 27
 								}
 							]
 						},
 						{
-							"id": 274,
+							"id": 279,
 							"name": "requestOptions",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1148,7 +1148,7 @@
 							},
 							"signatures": [
 								{
-									"id": 275,
+									"id": 280,
 									"name": "requestOptions",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1157,7 +1157,7 @@
 									},
 									"parameters": [
 										{
-											"id": 276,
+											"id": 281,
 											"name": "options",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1166,12 +1166,12 @@
 											},
 											"type": {
 												"type": "reference",
-												"id": 175,
+												"id": 180,
 												"name": "Options"
 											}
 										},
 										{
-											"id": 277,
+											"id": 282,
 											"name": "useCached",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1184,7 +1184,7 @@
 											}
 										},
 										{
-											"id": 278,
+											"id": 283,
 											"name": "postData",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1213,13 +1213,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 289,
+									"line": 291,
 									"character": 34
 								}
 							]
 						},
 						{
-							"id": 237,
+							"id": 242,
 							"name": "setAuthToken",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1232,7 +1232,7 @@
 							},
 							"signatures": [
 								{
-									"id": 238,
+									"id": 243,
 									"name": "setAuthToken",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1244,7 +1244,7 @@
 									},
 									"parameters": [
 										{
-											"id": 239,
+											"id": 244,
 											"name": "token",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1267,13 +1267,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 157,
+									"line": 159,
 									"character": 23
 								}
 							]
 						},
 						{
-							"id": 233,
+							"id": 238,
 							"name": "setCredentials",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1286,7 +1286,7 @@
 							},
 							"signatures": [
 								{
-									"id": 234,
+									"id": 239,
 									"name": "setCredentials",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1298,7 +1298,7 @@
 									},
 									"parameters": [
 										{
-											"id": 235,
+											"id": 240,
 											"name": "user",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1315,7 +1315,7 @@
 											}
 										},
 										{
-											"id": 236,
+											"id": 241,
 											"name": "password",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1341,13 +1341,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 152,
+									"line": 154,
 									"character": 25
 								}
 							]
 						},
 						{
-							"id": 240,
+							"id": 245,
 							"name": "setPace",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1360,7 +1360,7 @@
 							},
 							"signatures": [
 								{
-									"id": 241,
+									"id": 246,
 									"name": "setPace",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1372,7 +1372,7 @@
 									},
 									"parameters": [
 										{
-											"id": 242,
+											"id": 247,
 											"name": "pace",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1389,7 +1389,7 @@
 											}
 										},
 										{
-											"id": 243,
+											"id": 248,
 											"name": "max",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1415,13 +1415,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 165,
+									"line": 167,
 									"character": 18
 								}
 							]
 						},
 						{
-							"id": 269,
+							"id": 274,
 							"name": "writeCached",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1431,7 +1431,7 @@
 							},
 							"signatures": [
 								{
-									"id": 270,
+									"id": 275,
 									"name": "writeCached",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1440,7 +1440,7 @@
 									},
 									"parameters": [
 										{
-											"id": 271,
+											"id": 276,
 											"name": "fname",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1453,7 +1453,7 @@
 											}
 										},
 										{
-											"id": 272,
+											"id": 277,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1466,7 +1466,7 @@
 											}
 										},
 										{
-											"id": 273,
+											"id": 278,
 											"name": "contentType",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1494,13 +1494,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 266,
+									"line": 268,
 									"character": 31
 								}
 							]
 						},
 						{
-							"id": 219,
+							"id": 224,
 							"name": "decoders",
 							"kind": 2097152,
 							"kindString": "Object literal",
@@ -1511,7 +1511,7 @@
 							},
 							"children": [
 								{
-									"id": 223,
+									"id": 228,
 									"name": "html2json",
 									"kind": 64,
 									"kindString": "Function",
@@ -1520,7 +1520,7 @@
 									},
 									"signatures": [
 										{
-											"id": 224,
+											"id": 229,
 											"name": "html2json",
 											"kind": 4096,
 											"kindString": "Call signature",
@@ -1529,7 +1529,7 @@
 											},
 											"parameters": [
 												{
-													"id": 225,
+													"id": 230,
 													"name": "data",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -1551,13 +1551,13 @@
 									"sources": [
 										{
 											"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-											"line": 132,
+											"line": 134,
 											"character": 17
 										}
 									]
 								},
 								{
-									"id": 220,
+									"id": 225,
 									"name": "str2json",
 									"kind": 64,
 									"kindString": "Function",
@@ -1566,7 +1566,7 @@
 									},
 									"signatures": [
 										{
-											"id": 221,
+											"id": 226,
 											"name": "str2json",
 											"kind": 4096,
 											"kindString": "Call signature",
@@ -1575,7 +1575,7 @@
 											},
 											"parameters": [
 												{
-													"id": 222,
+													"id": 227,
 													"name": "data",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -1597,7 +1597,7 @@
 									"sources": [
 										{
 											"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-											"line": 131,
+											"line": 133,
 											"character": 16
 										}
 									]
@@ -1608,15 +1608,15 @@
 									"title": "Functions",
 									"kind": 64,
 									"children": [
-										223,
-										220
+										228,
+										225
 									]
 								}
 							],
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 130,
+									"line": 132,
 									"character": 26
 								}
 							],
@@ -1631,49 +1631,49 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								231,
+								236,
+								237,
 								232,
-								227,
-								244,
-								226
+								249,
+								231
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								245,
-								260,
-								248,
-								256,
-								252,
-								266,
+								250,
+								265,
+								253,
+								261,
+								257,
+								271,
+								284,
 								279,
-								274,
-								237,
-								233,
-								240,
-								269
+								242,
+								238,
+								245,
+								274
 							]
 						},
 						{
 							"title": "Object literals",
 							"kind": 2097152,
 							"children": [
-								219
+								224
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 129,
+							"line": 131,
 							"character": 20
 						}
 					]
 				},
 				{
-					"id": 172,
+					"id": 177,
 					"name": "Config",
 					"kind": 256,
 					"kindString": "Interface",
@@ -1682,7 +1682,7 @@
 					},
 					"children": [
 						{
-							"id": 174,
+							"id": 179,
 							"name": "referer",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1693,7 +1693,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 67,
+									"line": 69,
 									"character": 11
 								}
 							],
@@ -1703,7 +1703,7 @@
 							}
 						},
 						{
-							"id": 173,
+							"id": 178,
 							"name": "user",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1714,13 +1714,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 66,
+									"line": 68,
 									"character": 8
 								}
 							],
 							"type": {
 								"type": "reference",
-								"id": 283,
+								"id": 288,
 								"name": "Digest"
 							}
 						}
@@ -1730,21 +1730,21 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								174,
-								173
+								179,
+								178
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 65,
+							"line": 67,
 							"character": 23
 						}
 					]
 				},
 				{
-					"id": 214,
+					"id": 219,
 					"name": "Decoder",
 					"kind": 256,
 					"kindString": "Interface",
@@ -1756,7 +1756,7 @@
 					},
 					"signatures": [
 						{
-							"id": 215,
+							"id": 220,
 							"name": "__call",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1769,7 +1769,7 @@
 							},
 							"parameters": [
 								{
-									"id": 216,
+									"id": 221,
 									"name": "data",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1785,7 +1785,7 @@
 									}
 								},
 								{
-									"id": 217,
+									"id": 222,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1797,7 +1797,7 @@
 									},
 									"type": {
 										"type": "reference",
-										"id": 175,
+										"id": 180,
 										"name": "Options"
 									}
 								}
@@ -1811,13 +1811,13 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 118,
+							"line": 120,
 							"character": 24
 						}
 					]
 				},
 				{
-					"id": 191,
+					"id": 196,
 					"name": "IncomingMessage",
 					"kind": 256,
 					"kindString": "Interface",
@@ -1827,7 +1827,7 @@
 					},
 					"children": [
 						{
-							"id": 213,
+							"id": 218,
 							"name": "_headers",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1835,7 +1835,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 109,
+									"line": 111,
 									"character": 12
 								}
 							],
@@ -1845,7 +1845,7 @@
 							}
 						},
 						{
-							"id": 212,
+							"id": 217,
 							"name": "caseless",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1853,7 +1853,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 108,
+									"line": 110,
 									"character": 12
 								}
 							],
@@ -1863,7 +1863,7 @@
 							}
 						},
 						{
-							"id": 192,
+							"id": 197,
 							"name": "headers",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1871,21 +1871,21 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 97,
+									"line": 99,
 									"character": 11
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 193,
+									"id": 198,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"children": [
 										{
-											"id": 194,
+											"id": 199,
 											"name": "content-type",
 											"kind": 32,
 											"kindString": "Variable",
@@ -1893,7 +1893,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-													"line": 97,
+													"line": 99,
 													"character": 35
 												}
 											],
@@ -1908,14 +1908,14 @@
 											"title": "Variables",
 											"kind": 32,
 											"children": [
-												194
+												199
 											]
 										}
 									],
 									"sources": [
 										{
 											"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-											"line": 97,
+											"line": 99,
 											"character": 12
 										}
 									]
@@ -1923,7 +1923,7 @@
 							}
 						},
 						{
-							"id": 195,
+							"id": 200,
 							"name": "httpVersion",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1931,7 +1931,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 98,
+									"line": 100,
 									"character": 15
 								}
 							],
@@ -1941,7 +1941,7 @@
 							}
 						},
 						{
-							"id": 196,
+							"id": 201,
 							"name": "method",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1949,7 +1949,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 99,
+									"line": 101,
 									"character": 10
 								}
 							],
@@ -1959,7 +1959,7 @@
 							}
 						},
 						{
-							"id": 207,
+							"id": 212,
 							"name": "on",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1967,28 +1967,28 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 107,
+									"line": 109,
 									"character": 6
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 208,
+									"id": 213,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"signatures": [
 										{
-											"id": 209,
+											"id": 214,
 											"name": "__call",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 210,
+													"id": 215,
 													"name": "event",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -1999,7 +1999,7 @@
 													}
 												},
 												{
-													"id": 211,
+													"id": 216,
 													"name": "callback",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -2019,7 +2019,7 @@
 									"sources": [
 										{
 											"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-											"line": 107,
+											"line": 109,
 											"character": 7
 										}
 									]
@@ -2027,7 +2027,7 @@
 							}
 						},
 						{
-							"id": 197,
+							"id": 202,
 							"name": "rawHeaders",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2035,7 +2035,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 100,
+									"line": 102,
 									"character": 14
 								}
 							],
@@ -2048,7 +2048,7 @@
 							}
 						},
 						{
-							"id": 198,
+							"id": 203,
 							"name": "rawTrailers",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2056,7 +2056,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 101,
+									"line": 103,
 									"character": 15
 								}
 							],
@@ -2069,7 +2069,7 @@
 							}
 						},
 						{
-							"id": 203,
+							"id": 208,
 							"name": "setEncoding",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2077,28 +2077,28 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 106,
+									"line": 108,
 									"character": 15
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 204,
+									"id": 209,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"signatures": [
 										{
-											"id": 205,
+											"id": 210,
 											"name": "__call",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 206,
+													"id": 211,
 													"name": "enc",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -2118,7 +2118,7 @@
 									"sources": [
 										{
 											"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-											"line": 106,
+											"line": 108,
 											"character": 16
 										}
 									]
@@ -2126,7 +2126,7 @@
 							}
 						},
 						{
-							"id": 199,
+							"id": 204,
 							"name": "status",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2134,7 +2134,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 102,
+									"line": 104,
 									"character": 10
 								}
 							],
@@ -2144,7 +2144,7 @@
 							}
 						},
 						{
-							"id": 200,
+							"id": 205,
 							"name": "statusCode",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2152,7 +2152,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 103,
+									"line": 105,
 									"character": 14
 								}
 							],
@@ -2162,7 +2162,7 @@
 							}
 						},
 						{
-							"id": 201,
+							"id": 206,
 							"name": "statusMessage",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2170,7 +2170,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 104,
+									"line": 106,
 									"character": 17
 								}
 							],
@@ -2180,7 +2180,7 @@
 							}
 						},
 						{
-							"id": 202,
+							"id": 207,
 							"name": "url",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2188,7 +2188,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 105,
+									"line": 107,
 									"character": 7
 								}
 							],
@@ -2203,32 +2203,32 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								213,
-								212,
-								192,
-								195,
-								196,
-								207,
+								218,
+								217,
 								197,
-								198,
-								203,
-								199,
 								200,
 								201,
-								202
+								212,
+								202,
+								203,
+								208,
+								204,
+								205,
+								206,
+								207
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 96,
+							"line": 98,
 							"character": 25
 						}
 					]
 				},
 				{
-					"id": 175,
+					"id": 180,
 					"name": "Options",
 					"kind": 256,
 					"kindString": "Interface",
@@ -2237,7 +2237,7 @@
 					},
 					"children": [
 						{
-							"id": 184,
+							"id": 189,
 							"name": "headers",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2247,7 +2247,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 79,
+									"line": 81,
 									"character": 11
 								}
 							],
@@ -2257,117 +2257,8 @@
 							}
 						},
 						{
-							"id": 179,
+							"id": 184,
 							"name": "host",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 74,
-									"character": 8
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "string"
-							}
-						},
-						{
-							"id": 180,
-							"name": "hostname",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 75,
-									"character": 12
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "string"
-							}
-						},
-						{
-							"id": 177,
-							"name": "method",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 72,
-									"character": 10
-								}
-							],
-							"type": {
-								"type": "union",
-								"types": [
-									{
-										"type": "stringLiteral",
-										"value": "GET"
-									},
-									{
-										"type": "stringLiteral",
-										"value": "POST"
-									}
-								]
-							}
-						},
-						{
-							"id": 183,
-							"name": "path",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 78,
-									"character": 8
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "string"
-							}
-						},
-						{
-							"id": 182,
-							"name": "pathname",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 77,
-									"character": 12
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "string"
-							}
-						},
-						{
-							"id": 181,
-							"name": "port",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
@@ -2386,8 +2277,8 @@
 							}
 						},
 						{
-							"id": 178,
-							"name": "protocol",
+							"id": 185,
+							"name": "hostname",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
@@ -2396,7 +2287,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 73,
+									"line": 77,
 									"character": 12
 								}
 							],
@@ -2406,8 +2297,37 @@
 							}
 						},
 						{
-							"id": 185,
-							"name": "rejectUnauthorized",
+							"id": 182,
+							"name": "method",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
+									"line": 74,
+									"character": 10
+								}
+							],
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "stringLiteral",
+										"value": "GET"
+									},
+									{
+										"type": "stringLiteral",
+										"value": "POST"
+									}
+								]
+							}
+						},
+						{
+							"id": 188,
+							"name": "path",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
@@ -2417,6 +2337,86 @@
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
 									"line": 80,
+									"character": 8
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 187,
+							"name": "pathname",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
+									"line": 79,
+									"character": 12
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 186,
+							"name": "port",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
+									"line": 78,
+									"character": 8
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 183,
+							"name": "protocol",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
+									"line": 75,
+									"character": 12
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 190,
+							"name": "rejectUnauthorized",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
+									"line": 82,
 									"character": 22
 								}
 							],
@@ -2426,7 +2426,7 @@
 							}
 						},
 						{
-							"id": 176,
+							"id": 181,
 							"name": "url",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2436,7 +2436,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 71,
+									"line": 73,
 									"character": 7
 								}
 							],
@@ -2451,29 +2451,29 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
+								189,
 								184,
-								179,
-								180,
-								177,
-								183,
-								182,
-								181,
-								178,
 								185,
-								176
+								182,
+								188,
+								187,
+								186,
+								183,
+								190,
+								181
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 70,
+							"line": 72,
 							"character": 24
 						}
 					]
 				},
 				{
-					"id": 186,
+					"id": 191,
 					"name": "Response",
 					"kind": 256,
 					"kindString": "Interface",
@@ -2485,7 +2485,7 @@
 					},
 					"children": [
 						{
-							"id": 189,
+							"id": 194,
 							"name": "body",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2496,7 +2496,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 89,
+									"line": 91,
 									"character": 8
 								}
 							],
@@ -2506,7 +2506,7 @@
 							}
 						},
 						{
-							"id": 188,
+							"id": 193,
 							"name": "data",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2516,7 +2516,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 88,
+									"line": 90,
 									"character": 8
 								}
 							],
@@ -2526,7 +2526,7 @@
 							}
 						},
 						{
-							"id": 190,
+							"id": 195,
 							"name": "error",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2537,7 +2537,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 90,
+									"line": 92,
 									"character": 9
 								}
 							],
@@ -2547,7 +2547,7 @@
 							}
 						},
 						{
-							"id": 187,
+							"id": 192,
 							"name": "response",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2557,13 +2557,13 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 87,
+									"line": 89,
 									"character": 12
 								}
 							],
 							"type": {
 								"type": "reference",
-								"id": 191,
+								"id": 196,
 								"name": "IncomingMessage"
 							}
 						}
@@ -2573,23 +2573,23 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								189,
-								188,
-								190,
-								187
+								194,
+								193,
+								195,
+								192
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 86,
+							"line": 88,
 							"character": 25
 						}
 					]
 				},
 				{
-					"id": 305,
+					"id": 310,
 					"name": "html2json",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2608,7 +2608,7 @@
 					"defaultValue": "require('html2json').html2json"
 				},
 				{
-					"id": 304,
+					"id": 309,
 					"name": "log",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2630,21 +2630,21 @@
 					"defaultValue": "new Log('Request')"
 				},
 				{
-					"id": 312,
+					"id": 317,
 					"name": "_atob",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 313,
+							"id": 318,
 							"name": "_atob",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 314,
+									"id": 319,
 									"name": "str",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2664,27 +2664,27 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 370,
+							"line": 372,
 							"character": 14
 						}
 					]
 				},
 				{
-					"id": 309,
+					"id": 314,
 					"name": "_btoa",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 310,
+							"id": 315,
 							"name": "_btoa",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 311,
+									"id": 316,
 									"name": "str",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2713,20 +2713,20 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 365,
+							"line": 367,
 							"character": 14
 						}
 					]
 				},
 				{
-					"id": 319,
+					"id": 324,
 					"name": "compileParams",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 320,
+							"id": 325,
 							"name": "compileParams",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2736,7 +2736,7 @@
 							},
 							"parameters": [
 								{
-									"id": 321,
+									"id": 326,
 									"name": "params",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2759,27 +2759,27 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 478,
+							"line": 480,
 							"character": 22
 						}
 					]
 				},
 				{
-					"id": 329,
+					"id": 334,
 					"name": "isBinary",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 330,
+							"id": 335,
 							"name": "isBinary",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 331,
+									"id": 336,
 									"name": "contentType",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2799,27 +2799,27 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 507,
+							"line": 509,
 							"character": 17
 						}
 					]
 				},
 				{
-					"id": 315,
+					"id": 320,
 					"name": "omitNull",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 316,
+							"id": 321,
 							"name": "omitNull",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 317,
+									"id": 322,
 									"name": "data",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2833,7 +2833,7 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 318,
+									"id": 323,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
@@ -2845,27 +2845,27 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 466,
+							"line": 468,
 							"character": 17
 						}
 					]
 				},
 				{
-					"id": 325,
+					"id": 330,
 					"name": "parseDigestResponse",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 326,
+							"id": 331,
 							"name": "parseDigestResponse",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 327,
+									"id": 332,
 									"name": "digestHeader",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2879,7 +2879,7 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 328,
+									"id": 333,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
@@ -2891,20 +2891,20 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 497,
+							"line": 499,
 							"character": 28
 						}
 					]
 				},
 				{
-					"id": 322,
+					"id": 327,
 					"name": "putDoubleQuotes",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 323,
+							"id": 328,
 							"name": "putDoubleQuotes",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2914,7 +2914,7 @@
 							},
 							"parameters": [
 								{
-									"id": 324,
+									"id": 329,
 									"name": "entry",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2937,13 +2937,13 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 493,
+							"line": 495,
 							"character": 24
 						}
 					]
 				},
 				{
-					"id": 306,
+					"id": 311,
 					"name": "protocol",
 					"kind": 2097152,
 					"kindString": "Object literal",
@@ -2952,7 +2952,7 @@
 					},
 					"children": [
 						{
-							"id": 307,
+							"id": 312,
 							"name": "http",
 							"kind": 32,
 							"kindString": "Variable",
@@ -2960,7 +2960,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 61,
+									"line": 63,
 									"character": 22
 								}
 							],
@@ -2971,7 +2971,7 @@
 							"defaultValue": "http"
 						},
 						{
-							"id": 308,
+							"id": 313,
 							"name": "https",
 							"kind": 32,
 							"kindString": "Variable",
@@ -2979,7 +2979,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-									"line": 61,
+									"line": 63,
 									"character": 34
 								}
 							],
@@ -2995,15 +2995,15 @@
 							"title": "Variables",
 							"kind": 32,
 							"children": [
-								307,
-								308
+								312,
+								313
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/Request.ts",
-							"line": 61,
+							"line": 63,
 							"character": 14
 						}
 					],
@@ -3018,47 +3018,47 @@
 					"title": "Classes",
 					"kind": 128,
 					"children": [
-						283,
-						218
+						288,
+						223
 					]
 				},
 				{
 					"title": "Interfaces",
 					"kind": 256,
 					"children": [
-						172,
-						214,
-						191,
-						175,
-						186
+						177,
+						219,
+						196,
+						180,
+						191
 					]
 				},
 				{
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						305,
-						304
+						310,
+						309
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						312,
-						309,
-						319,
-						329,
-						315,
-						325,
-						322
+						317,
+						314,
+						324,
+						334,
+						320,
+						330,
+						327
 					]
 				},
 				{
 					"title": "Object literals",
 					"kind": 2097152,
 					"children": [
-						306
+						311
 					]
 				}
 			],
@@ -4614,7 +4614,7 @@
 			]
 		},
 		{
-			"id": 332,
+			"id": 337,
 			"name": "\"index\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -4624,7 +4624,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/index.ts",
 			"children": [
 				{
-					"id": 344,
+					"id": 349,
 					"name": "Log",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -4634,7 +4634,7 @@
 					"target": 80
 				},
 				{
-					"id": 333,
+					"id": 338,
 					"name": "node",
 					"kind": 2097152,
 					"kindString": "Object literal",
@@ -4644,7 +4644,7 @@
 					},
 					"children": [
 						{
-							"id": 335,
+							"id": 340,
 							"name": "child_process",
 							"kind": 32,
 							"kindString": "Variable",
@@ -4661,7 +4661,7 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 336,
+									"id": 341,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
@@ -4670,7 +4670,7 @@
 									},
 									"children": [
 										{
-											"id": 337,
+											"id": 342,
 											"name": "exec",
 											"kind": 64,
 											"kindString": "Function",
@@ -4683,7 +4683,7 @@
 											},
 											"signatures": [
 												{
-													"id": 338,
+													"id": 343,
 													"name": "exec",
 													"kind": 4096,
 													"kindString": "Call signature",
@@ -4696,7 +4696,7 @@
 													},
 													"parameters": [
 														{
-															"id": 339,
+															"id": 344,
 															"name": "command",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -4712,7 +4712,7 @@
 															}
 														},
 														{
-															"id": 340,
+															"id": 345,
 															"name": "options",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -4735,7 +4735,7 @@
 															{
 																"type": "reflection",
 																"declaration": {
-																	"id": 341,
+																	"id": 346,
 																	"name": "__type",
 																	"kind": 65536,
 																	"kindString": "Type literal",
@@ -4744,7 +4744,7 @@
 																	},
 																	"children": [
 																		{
-																			"id": 343,
+																			"id": 348,
 																			"name": "stderr",
 																			"kind": 32,
 																			"kindString": "Variable",
@@ -4764,7 +4764,7 @@
 																			}
 																		},
 																		{
-																			"id": 342,
+																			"id": 347,
 																			"name": "stdout",
 																			"kind": 32,
 																			"kindString": "Variable",
@@ -4789,8 +4789,8 @@
 																			"title": "Variables",
 																			"kind": 32,
 																			"children": [
-																				343,
-																				342
+																				348,
+																				347
 																			]
 																		}
 																	],
@@ -4822,7 +4822,7 @@
 											"title": "Functions",
 											"kind": 64,
 											"children": [
-												337
+												342
 											]
 										}
 									]
@@ -4831,7 +4831,7 @@
 							"defaultValue": "child_process"
 						},
 						{
-							"id": 334,
+							"id": 339,
 							"name": "fs",
 							"kind": 32,
 							"kindString": "Variable",
@@ -4858,8 +4858,8 @@
 							"title": "Variables",
 							"kind": 32,
 							"children": [
-								335,
-								334
+								340,
+								339
 							]
 						}
 					],
@@ -4881,14 +4881,14 @@
 					"title": "References",
 					"kind": 16777216,
 					"children": [
-						344
+						349
 					]
 				},
 				{
 					"title": "Object literals",
 					"kind": 2097152,
 					"children": [
-						333
+						338
 					]
 				}
 			],
@@ -5026,6 +5026,32 @@
 									"type": "intrinsic",
 									"name": "string"
 								}
+							}
+						},
+						{
+							"id": 134,
+							"name": "maxLength",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isProtected": true,
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
+									"line": 24,
+									"character": 23
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"id": 134,
+								"name": "Log.maxLength"
 							}
 						},
 						{
@@ -5454,6 +5480,87 @@
 							}
 						},
 						{
+							"id": 135,
+							"name": "messageLength",
+							"kind": 262144,
+							"kindString": "Accessor",
+							"flags": {
+								"isExported": true
+							},
+							"getSignature": [
+								{
+									"id": 138,
+									"name": "__get",
+									"kind": 524288,
+									"kindString": "Get signature",
+									"flags": {
+										"isExported": true
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"id": 135,
+										"name": "Log.messageLength"
+									}
+								}
+							],
+							"setSignature": [
+								{
+									"id": 136,
+									"name": "__set",
+									"kind": 1048576,
+									"kindString": "Set signature",
+									"flags": {
+										"isExported": true
+									},
+									"parameters": [
+										{
+											"id": 137,
+											"name": "max",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isExported": true
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"id": 135,
+										"name": "Log.messageLength"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
+									"line": 26,
+									"character": 21
+								},
+								{
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
+									"line": 27,
+									"character": 21
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"id": 135,
+								"name": "Log.messageLength"
+							}
+						},
+						{
 							"id": 90,
 							"name": "config",
 							"kind": 2048,
@@ -5606,7 +5713,7 @@
 							}
 						},
 						{
-							"id": 138,
+							"id": 143,
 							"name": "debug",
 							"kind": 2048,
 							"kindString": "Method",
@@ -5615,7 +5722,7 @@
 							},
 							"signatures": [
 								{
-									"id": 139,
+									"id": 144,
 									"name": "debug",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -5624,7 +5731,7 @@
 									},
 									"parameters": [
 										{
-											"id": 140,
+											"id": 145,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -5643,7 +5750,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 138,
+										"id": 143,
 										"name": "Log.debug"
 									}
 								}
@@ -5651,18 +5758,18 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 26,
+									"line": 29,
 									"character": 9
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 138,
+								"id": 143,
 								"name": "Log.debug"
 							}
 						},
 						{
-							"id": 150,
+							"id": 155,
 							"name": "error",
 							"kind": 2048,
 							"kindString": "Method",
@@ -5671,7 +5778,7 @@
 							},
 							"signatures": [
 								{
-									"id": 151,
+									"id": 156,
 									"name": "error",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -5680,7 +5787,7 @@
 									},
 									"parameters": [
 										{
-											"id": 152,
+											"id": 157,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -5699,7 +5806,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 150,
+										"id": 155,
 										"name": "Log.error"
 									}
 								}
@@ -5707,18 +5814,18 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 30,
+									"line": 33,
 									"character": 9
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 150,
+								"id": 155,
 								"name": "Log.error"
 							}
 						},
 						{
-							"id": 157,
+							"id": 162,
 							"name": "format",
 							"kind": 2048,
 							"kindString": "Method",
@@ -5727,7 +5834,7 @@
 							},
 							"signatures": [
 								{
-									"id": 158,
+									"id": 163,
 									"name": "format",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -5736,7 +5843,7 @@
 									},
 									"parameters": [
 										{
-											"id": 159,
+											"id": 164,
 											"name": "fmtStr",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -5756,7 +5863,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 157,
+										"id": 162,
 										"name": "Log.format"
 									}
 								}
@@ -5764,13 +5871,13 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 33,
+									"line": 36,
 									"character": 10
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 157,
+								"id": 162,
 								"name": "Log.format"
 							}
 						},
@@ -5855,7 +5962,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 145,
+									"line": 142,
 									"character": 27
 								}
 							],
@@ -5865,7 +5972,7 @@
 							}
 						},
 						{
-							"id": 144,
+							"id": 149,
 							"name": "info",
 							"kind": 2048,
 							"kindString": "Method",
@@ -5874,7 +5981,7 @@
 							},
 							"signatures": [
 								{
-									"id": 145,
+									"id": 150,
 									"name": "info",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -5883,7 +5990,7 @@
 									},
 									"parameters": [
 										{
-											"id": 146,
+											"id": 151,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -5902,7 +6009,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 144,
+										"id": 149,
 										"name": "Log.info"
 									}
 								}
@@ -5910,13 +6017,13 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 28,
+									"line": 31,
 									"character": 8
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 144,
+								"id": 149,
 								"name": "Log.info"
 							}
 						},
@@ -6024,7 +6131,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 139,
+									"line": 136,
 									"character": 18
 								}
 							],
@@ -6034,7 +6141,7 @@
 							}
 						},
 						{
-							"id": 134,
+							"id": 139,
 							"name": "level",
 							"kind": 2048,
 							"kindString": "Method",
@@ -6043,7 +6150,7 @@
 							},
 							"signatures": [
 								{
-									"id": 135,
+									"id": 140,
 									"name": "level",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -6052,7 +6159,7 @@
 									},
 									"parameters": [
 										{
-											"id": 136,
+											"id": 141,
 											"name": "newLevelSym",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -6066,7 +6173,7 @@
 											}
 										},
 										{
-											"id": 137,
+											"id": 142,
 											"name": "setGlobalLevel",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -6086,7 +6193,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 134,
+										"id": 139,
 										"name": "Log.level"
 									}
 								}
@@ -6094,13 +6201,13 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 25,
+									"line": 28,
 									"character": 9
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 134,
+								"id": 139,
 								"name": "Log.level"
 							}
 						},
@@ -6160,7 +6267,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 92,
+									"line": 89,
 									"character": 24
 								}
 							]
@@ -6263,7 +6370,7 @@
 							}
 						},
 						{
-							"id": 153,
+							"id": 158,
 							"name": "out",
 							"kind": 2048,
 							"kindString": "Method",
@@ -6273,7 +6380,7 @@
 							},
 							"signatures": [
 								{
-									"id": 154,
+									"id": 159,
 									"name": "out",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -6282,7 +6389,7 @@
 									},
 									"parameters": [
 										{
-											"id": 155,
+											"id": 160,
 											"name": "lvl",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -6295,7 +6402,7 @@
 											}
 										},
 										{
-											"id": 156,
+											"id": 161,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -6314,7 +6421,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 153,
+										"id": 158,
 										"name": "Log.out"
 									}
 								}
@@ -6322,18 +6429,18 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 31,
+									"line": 34,
 									"character": 17
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 153,
+								"id": 158,
 								"name": "Log.out"
 							}
 						},
 						{
-							"id": 160,
+							"id": 165,
 							"name": "prefix",
 							"kind": 2048,
 							"kindString": "Method",
@@ -6342,7 +6449,7 @@
 							},
 							"signatures": [
 								{
-									"id": 161,
+									"id": 166,
 									"name": "prefix",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -6351,7 +6458,7 @@
 									},
 									"parameters": [
 										{
-											"id": 162,
+											"id": 167,
 											"name": "prf",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -6371,7 +6478,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 160,
+										"id": 165,
 										"name": "Log.prefix"
 									}
 								}
@@ -6379,18 +6486,18 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 34,
+									"line": 37,
 									"character": 10
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 160,
+								"id": 165,
 								"name": "Log.prefix"
 							}
 						},
 						{
-							"id": 141,
+							"id": 146,
 							"name": "progress",
 							"kind": 2048,
 							"kindString": "Method",
@@ -6399,7 +6506,7 @@
 							},
 							"signatures": [
 								{
-									"id": 142,
+									"id": 147,
 									"name": "progress",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -6408,7 +6515,7 @@
 									},
 									"parameters": [
 										{
-											"id": 143,
+											"id": 148,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -6427,7 +6534,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 141,
+										"id": 146,
 										"name": "Log.progress"
 									}
 								}
@@ -6435,13 +6542,13 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 27,
+									"line": 30,
 									"character": 12
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 141,
+								"id": 146,
 								"name": "Log.progress"
 							}
 						},
@@ -6500,7 +6607,7 @@
 							]
 						},
 						{
-							"id": 147,
+							"id": 152,
 							"name": "warn",
 							"kind": 2048,
 							"kindString": "Method",
@@ -6509,7 +6616,7 @@
 							},
 							"signatures": [
 								{
-									"id": 148,
+									"id": 153,
 									"name": "warn",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -6518,7 +6625,7 @@
 									},
 									"parameters": [
 										{
-											"id": 149,
+											"id": 154,
 											"name": "msg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -6537,7 +6644,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 147,
+										"id": 152,
 										"name": "Log.warn"
 									}
 								}
@@ -6545,13 +6652,13 @@
 							"sources": [
 								{
 									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/log.d.ts",
-									"line": 29,
+									"line": 32,
 									"character": 8
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 147,
+								"id": 152,
 								"name": "Log.warn"
 							}
 						}
@@ -6570,6 +6677,7 @@
 							"children": [
 								82,
 								83,
+								134,
 								132,
 								133,
 								119,
@@ -6584,24 +6692,31 @@
 							]
 						},
 						{
+							"title": "Accessors",
+							"kind": 262144,
+							"children": [
+								135
+							]
+						},
+						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
 								90,
-								138,
-								150,
-								157,
+								143,
+								155,
+								162,
 								112,
-								144,
+								149,
 								106,
-								134,
+								139,
 								103,
 								97,
-								153,
-								160,
-								141,
+								158,
+								165,
+								146,
 								87,
-								147
+								152
 							]
 						}
 					],
@@ -6620,7 +6735,7 @@
 					]
 				},
 				{
-					"id": 170,
+					"id": 175,
 					"name": "gColors",
 					"kind": 32,
 					"kindString": "Variable",
@@ -6644,7 +6759,7 @@
 					"defaultValue": "true"
 				},
 				{
-					"id": 163,
+					"id": 168,
 					"name": "color",
 					"kind": 2097152,
 					"kindString": "Object literal",
@@ -6656,7 +6771,7 @@
 					},
 					"children": [
 						{
-							"id": 166,
+							"id": 171,
 							"name": "blue",
 							"kind": 32,
 							"kindString": "Variable",
@@ -6675,7 +6790,7 @@
 							"defaultValue": "\"\u001b[36m\""
 						},
 						{
-							"id": 168,
+							"id": 173,
 							"name": "bold",
 							"kind": 32,
 							"kindString": "Variable",
@@ -6694,7 +6809,7 @@
 							"defaultValue": "\"\u001b[1m\""
 						},
 						{
-							"id": 169,
+							"id": 174,
 							"name": "clear",
 							"kind": 32,
 							"kindString": "Variable",
@@ -6713,7 +6828,7 @@
 							"defaultValue": "\"\u001b[0m\""
 						},
 						{
-							"id": 167,
+							"id": 172,
 							"name": "green",
 							"kind": 32,
 							"kindString": "Variable",
@@ -6732,7 +6847,7 @@
 							"defaultValue": "\"\u001b[32m\""
 						},
 						{
-							"id": 164,
+							"id": 169,
 							"name": "red",
 							"kind": 32,
 							"kindString": "Variable",
@@ -6751,7 +6866,7 @@
 							"defaultValue": "\"\u001b[31m\""
 						},
 						{
-							"id": 165,
+							"id": 170,
 							"name": "yellow",
 							"kind": 32,
 							"kindString": "Variable",
@@ -6775,12 +6890,12 @@
 							"title": "Variables",
 							"kind": 32,
 							"children": [
-								166,
-								168,
+								171,
+								173,
+								174,
+								172,
 								169,
-								167,
-								164,
-								165
+								170
 							]
 						}
 					],
@@ -6809,14 +6924,14 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						170
+						175
 					]
 				},
 				{
 					"title": "Object literals",
 					"kind": 2097152,
 					"children": [
-						163
+						168
 					]
 				}
 			],
@@ -6829,7 +6944,7 @@
 			]
 		},
 		{
-			"id": 345,
+			"id": 350,
 			"name": "\"overview\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -6855,12 +6970,12 @@
 			"title": "External modules",
 			"kind": 1,
 			"children": [
-				171,
+				176,
 				1,
 				10,
-				332,
+				337,
 				79,
-				345
+				350
 			]
 		}
 	]

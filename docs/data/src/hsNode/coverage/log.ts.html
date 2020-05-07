@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.44% </span>
+                <span class="strong">94.34% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>51/54</span>
+                <span class='fraction'>50/53</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.23% </span>
+                <span class="strong">94% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>49/52</span>
+                <span class='fraction'>47/50</span>
             </div>
         
             
@@ -209,10 +209,7 @@
 <a name='L150'></a><a href='#L150'>150</a>
 <a name='L151'></a><a href='#L151'>151</a>
 <a name='L152'></a><a href='#L152'>152</a>
-<a name='L153'></a><a href='#L153'>153</a>
-<a name='L154'></a><a href='#L154'>154</a>
-<a name='L155'></a><a href='#L155'>155</a>
-<a name='L156'></a><a href='#L156'>156</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L153'></a><a href='#L153'>153</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -284,9 +281,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">89x</span>
 <span class="cline-any cline-yes">89x</span>
-<span class="cline-any cline-yes">89x</span>
-<span class="cline-any cline-yes">78x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">89x</span>
 <span class="cline-any cline-yes">89x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -414,7 +408,7 @@ export class LogServer extends LogUtil {
      * @return promise to return the file written to, or undefined
      */
     public transient(msg:any):string { 
-        return this.out(LogUtil.INFO, msg+'\r'); 
+        return this.out(LogUtil.INFO, msg+' \r'); 
     }
 &nbsp;
     /**
@@ -439,11 +433,8 @@ export class LogServer extends LogUtil {
     protected makeMessage(line:string, lvl:string, dateStr:string, desc:string):string {
         const colors = { [LogServer.ERROR]: color.red+color.bold, [LogServer.WARN]: color.yellow+color.bold, [LogServer.DEBUG]: color.blue, [LogServer.INFO]: color.green };
         const logLine = super.makeMessage(line, lvl, dateStr, desc);
-        if (this.LogFile) {
-            appendFile(date(this.LogFile), logLine+'\n');
-        }
-        const colorLine = `${colors[lvl]||<span class="branch-1 cbranch-no" title="branch not covered" >''}</span> ${dateStr} ${this.reportPrefix} ${desc} ${color.clear} ${line}`;
-        return gColors? colorLine : logLine;
+        if (this.LogFile) { appendFile(date(this.LogFile), logLine+'\n'); }
+        return gColors? `${colors[lvl]||<span class="branch-1 cbranch-no" title="branch not covered" >''}</span> ${dateStr} ${this.reportPrefix} ${desc} ${color.clear} ${line.length} ${line}` : logLine;
     }
 &nbsp;
     /**
