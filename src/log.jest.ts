@@ -177,21 +177,23 @@ describe('log', () => {
     });                    
 
     describe('inspection', () => {
-        const expectation = "{<br><b><span style='color:#444;'><b><span style='color:#444;'>&nbsp;&nbsp;&nbsp;a</span></b></span></b>: {<br><b><span style='color:#666;'><b><span style='color:#666;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b</span></b></span></b>: 'c'<br>&nbsp;&nbsp;&nbsp;}<br>}";
         let result:string;
         beforeEach(() => {
             log.config({colors: true});
-            result = log.inspect({a:{b:'c'}}, 3, '   ', ['#444', '#666']);
+            result = log.inspect({a:{b:'c'}}, {depth:3});
         });
         afterEach(() => log.config({colors: false}));   // reset the date format
 
-        it('should print colored inspection', () => expect(result).toMatch(expectation));
+        it('should print colored inspection', () => {
+            expect(result).toMatch(/a(.)*?: {/);
+            expect(result).toMatch(/b(.)*?: 'c'/);
+        });
     });                    
 
     describe('log file', () => { 
         it('should be created next to Gruntfile for default path', async () => {
             try {
-                expect.assertions(4);
+                expect.assertions(5);
                 const file = await log.logFile('');
                 gLog(`...setting log file ${file}`);
                 expect(file).toBeDefined();
@@ -199,6 +201,7 @@ describe('log', () => {
                 gLog(`...msg match '${gMsg}'`);
                 expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g);
                 const file2 = await log.logFile();
+                expect(file2).toMatch(/log-\d\d\d\d-\d\d-\d\d.txt/);
                 const b = await fsUtil.isFile(file2);
                 expect(b).toBe(true);
                 await fsUtil.remove(file2); 

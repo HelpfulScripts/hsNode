@@ -12,17 +12,46 @@ import  path                from 'path';
 
 
 /** shell color escape codes */
-const color = {
-    red:    '\x1b[31m',
-    yellow: '\x1b[33m',
-    blue:   '\x1b[36m',
-    green:  '\x1b[32m',
-    bold:   '\x1b[1m',
-    clear:  '\x1b[0m'
+const COLOR = {
+    clear:      '\x1b[0m',
+
+    bold:       '\x1b[1m',
+    dim:        '\x1b[2m',
+    underscore: '\x1b[4m',
+    blink:      '\x1b[5m',
+    reverse:    '\x1b[7m',
+    hidden:     '\x1b[8m',
+
+    black:      '\x1b[30m',
+    red:        '\x1b[31m',
+    green:      '\x1b[32m',
+    yellow:     '\x1b[33m',    
+    blue:       '\x1b[34m',
+    magenta:    '\x1b[35m',
+    cyan:       '\x1b[36m',
+    white:      '\x1b[37m',
+    
+    darkred:    '\x1b[31m',
+    darkgreen:  '\x1b[32m',
+    darkyellow: '\x1b[33m',    
+    darkblue:   '\x1b[34m',
+    darkmagenta:'\x1b[35m',
+    darkcyan:   '\x1b[36m',
+    gray:       '\x1b[37m',
+    
+    bgBlack:    '\x1b[40m',
+    bgRed:      '\x1b[41m',
+    bgGreen:    '\x1b[42m',
+    bgYellow:   '\x1b[43m',
+    bgBlue:     '\x1b[44m',
+    bgMagenta:  '\x1b[45m',
+    bgCyan:     '\x1b[46m',
+    bgWhite:    '\x1b[47m'
 };
 
+
 /** boolean determining if log will be printed in color */
-let gColors = true;
+// let gColors = true;
 
 
 export class LogServer extends LogUtil {
@@ -32,7 +61,7 @@ export class LogServer extends LogUtil {
     protected LogFile: string;	// initially disabled
 
     /** temporary color setting, defined in call to `inspect()` and used in `getPrePostfix` */
-    protected inspectColors: string[];
+    // protected inspectColors: string[];
 
     constructor(prefix:string) { super(prefix); }
 
@@ -45,33 +74,15 @@ export class LogServer extends LogUtil {
      * @return promise to return the file written to, or undefined
      */
     public transient(msg:any):string { 
-        return this.out(LogUtil.INFO, msg+' \r'); 
-    }
-
-    /**
-     * configures the log facility.
-     * - cfg.colors: boolean, determines if output is colored
-     * - cfg.logfile: sets the naming template for the logfile. Set logFile=null to disable.
-     * - cfg.format: sets the format for the timestamp for each log entry
-     * - cfg.level: sets the reporting level (same as calling log.level())
-     * @param cfg 
-     */
-    public config(cfg:{colors?:boolean, format?:string, level?:string }) {
-        super.config(cfg);
-        if (cfg.colors!==undefined) { gColors = cfg.colors; }   // true / false
+        return this.out(LogUtil.INFO, { color: 'green', msg:msg+' \r' }); 
     }
 
     /** 
-     * Creates the core format of the reported message. This method is 
-     * called within `out` to allow for 
-     * - format extensions using color codes.
-     * - logging messages to a file.
      */
-    protected makeMessage(line:string, lvl:string, dateStr:string, desc:string):string {
-        const colors = { [LogServer.ERROR]: color.red+color.bold, [LogServer.WARN]: color.yellow+color.bold, [LogServer.DEBUG]: color.blue, [LogServer.INFO]: color.green };
-        const logLine = super.makeMessage(line, lvl, dateStr, desc);
-        if (this.LogFile) { appendFile(date(this.LogFile), logLine+'\n'); }
-        return gColors? `${colors[lvl]||''} ${dateStr} ${this.reportPrefix} ${desc} ${color.clear} ${line.length} ${line}` : logLine;
+    protected output(color:string, header:string, line:string) {
+        const msg = `${COLOR[color]}${header}${COLOR['clear']} ${line}`;
+        if (line.slice(-1)==='\r') { process.stdout.write(msg); }
+        else { console.log(msg); }
     }
 
     /**
@@ -92,7 +103,7 @@ export class LogServer extends LogUtil {
             this.info("disabling logfile");
             return this.LogFile;
         } else if (file === undefined) {        // leave this.LogFile unchanged, return promise for logfile name
-            return date(this.LogFile);
+            return this.LogFile===undefined? undefined : date(this.LogFile);
         } else if (file.indexOf('/')>=0) { 
             const parts = path.parse(file);
             try {
@@ -133,20 +144,26 @@ export class LogServer extends LogUtil {
      * (' ') with `&nbsp;`. The color applied to each keyword cycles through the array with each increasing level, 
      * and restarts at index 0 when the level exceeds the length of the array.
      */
-    public inspect(msg:any, depth=3, indent='   ', colors:string[]=null):string {
-        this.inspectColors = colors;
-        if (colors) { indent = indent.replace(/ /g, '&nbsp;'); }
-        return super.inspect(msg, depth, indent, colors);
-    }
+    // public inspect(msg:any, depth=3, indent='   ', colors=LogUtil.INDENT_COLORS):string {
+    //     this.inspectColors = colors;
+    //     if (colors) { indent = indent.replace(/ /g, '&nbsp;'); }
+    //     return super.inspect(msg, depth, indent, colors);
+    // }
 
-    protected getPrePostfix(indent:string, level:number, currIndent:string):[string,string] {
-        let [prefix, postfix] = super.getPrePostfix(indent, level, currIndent);
-        if (this.inspectColors) {
-            const color  = this.inspectColors[level % this.inspectColors.length];
-            prefix = `<b><span style='color:${color};'>${prefix}`;
-            postfix = `${postfix}</span></b>`;
-        }
-        return [prefix, postfix];
+    protected getPrePostfix(indent:string, level:number, currIndent:string, colors:string[]):[string,string,string,string] {
+        // let [prefix, postfix] = super.getPrePostfix(indent, level, currIndent, colors);
+        const color  = colors? COLOR[colors[level % colors.length]] : '';
+        // if (colors) {
+        //     prefix = `${color}'>${prefix}`;
+        //     postfix = `${postfix}</span></b>`;
+        // }
+        return [`${currIndent}${indent}${color}`, colors? COLOR.clear : '', '\n', currIndent];
     }
 }
 
+const colors = { 
+    [LogServer.ERROR]: COLOR.red+COLOR.bold, 
+    [LogServer.WARN]: COLOR.yellow+COLOR.bold, 
+    [LogServer.DEBUG]: COLOR.blue, 
+    [LogServer.INFO]: COLOR.green 
+};
