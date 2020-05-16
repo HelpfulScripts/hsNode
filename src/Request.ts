@@ -20,7 +20,9 @@
  * `request.cache = './data'`.
  * Once set, individual `request.get(url)` requests will by default use caching. This can be 
  * disabled on a per call basis by providing `false` as a second parameter:
- * `request.get(url, false)` behaves as if `cache` is undefined
+ * `request.get(url, false)` behaves as if `cache` is undefined.
+ * Likewise, to disable all caching on future `GET` calls, set 
+ * `request.cache = undefined`.
  * 
  * ### Decoding
  * Content received from a server or a cache can be decoded before returning the result. 
@@ -50,12 +52,14 @@
 /** */
 
 import { URL }          from 'url';
-import { createHash }   from 'crypto';
 import { Log }          from './index';   const log = new Log('Request');
 import * as fs          from "./fsUtil";
 import http             from 'http';
 import https            from 'https';
 import { Pace }         from 'hsutil';
+import { AuthDigest }   from './AuthDigest';
+import { AuthBasic }    from './AuthBasic';
+import { Auth } from './Auth';
 var html2json = require('html2json').html2json;
 
 log.messageLength = 120;
@@ -63,11 +67,6 @@ log.messageLength = 120;
 const protocol = {http:http, https:https};
 
 // log.level(log.DEBUG);
-
-export interface Config {
-    user?:      Digest;
-    referer?:   string;
-}
 
 export interface Options {
     url:        string;
@@ -95,7 +94,7 @@ export interface Response {
 /**
  * Describes an incoming message; used in `Digest.testDigestAuth`
  */
-interface IncomingMessage { 
+export interface IncomingMessage { 
     headers:        {'content-type': string; };
     httpVersion:    string;
     method:         string;
@@ -143,7 +142,11 @@ export class Request {
     /** the `AuthToken` to set in the header */
     private authToken: string;
 
-    /** the location to use for caching */
+    /** 
+     * the location to use for caching. Set this property to the caching directory, e.g.:
+     * `request.cache = './bin'`, ommitting a trailing `/`. 
+     * To disable caching, set it to `undefined`.
+     */
     public cache:string;
 
     /**
@@ -183,8 +186,9 @@ export class Request {
      * required subdirectories underneath the `cache` location.
      * @param options the request options
      */
-    public cacheName = (options:Options):string => //     'q=.../' --> 'q=...-'    remove ?
-        `${this.cache}/${options.path.replace(/q=(.*?)\//g,'q=$1-').replace(/\?/g,'')}`
+    public cacheName = (options:Options):string =>
+        this.cache===undefined? undefined :  //   'q=.../' --> 'q=...-'    remove ?
+            `${this.cache}/${options.path.replace(/q=(.*?)\//g,'q=$1-').replace(/\?/g,'')}`
 
     /**
      * gets the content for the addressed `url`. `HTTP` and `HTTPS` are supported.
@@ -239,7 +243,7 @@ export class Request {
         const options = this.getOptions(url, method);
         try { 
             const result = await this.requestOptions(options, useCached, postData); 
-            return this.decode? this.decode(result, options) : result;
+            return (this.decode && result.txt)? this.decode(result.content, options) : result.content;
         }
         catch(e) { return undefined; }
     }
@@ -252,47 +256,33 @@ export class Request {
      * @param fname the path and name of the file, without extension
      * 
      */
-    protected async readCached(fname:string) {
+    protected async readCached(fname:string):Promise<{txt:boolean; content:any}> {
         let result;
+        let txt = true;
         try {
             if (await fs.isFile(fname+'.txt')) {
                 result = await fs.readTextFile(`${fname}.txt`); 
             } else if (await fs.isFile(fname+'.bin')) {
+                txt = false;
                 result = await fs.readFile(`${fname}.bin`, false); 
             }
         } catch(e) {}
         if (result) { log.transient(`found cache for ${fname} `); }
-        return result;   // no cache found
+        return {txt:txt, content: result};   // no cache found
     }
 
-    protected async writeCached(fname:string, data:any, contentType:string) {
+    protected async writeCached(fname:string, data:any, contentType:string, txt:boolean) {
         try {
-            let txt = false;
-            if (contentType===undefined) { contentType = 'text/html'; }
-            else { contentType = contentType.split(';')[0]; }
-            const subTypes = contentType.split('/');
-            switch (subTypes[0]) {
-                case 'text':        txt = true; break;
-                case 'image':       
-                case 'audio':
-                case 'font':        break;
-                case 'application': switch(subTypes[1]) {
-                    case 'json':    txt = true; break;
-                    case 'pdf':     break;
-                    default: log.debug(`caching ${contentType} as binary for ${fname}`);    
-                }
-                break;
-                default: log.warn(`caching ${contentType} as binary for ${fname}`);    
-            }
-            return await (txt? fs.writeTextFile(`${fname}.txt`, data) : fs.writeFile(`${fname}.bin`, data, false));
-        } catch(e) { log.warn(`error writing cache for content ${contentType} and file ${fname}: ${e}`); }
+            if (txt) { await fs.writeTextFile(`${fname}.txt`, data); }
+                else { await fs.writeFile(`${fname}.bin`, data, false); }
+       } catch(e) { log.warn(`error writing cache for content ${contentType} and file ${fname}: ${e}`); }
     }
 
-    protected async requestOptions(options:Options, useCached:boolean, postData?:any):Promise<string> {
+    protected async requestOptions(options:Options, useCached:boolean, postData?:any):Promise<{txt:boolean; content:any}> {
         const fname = this.cache? this.cacheName(options) : undefined;
         if (fname && useCached && options.method === 'GET') { 
             const result = await this.readCached(fname); 
-            if (result !== undefined) { return result; }
+            if (result.content !== undefined) { return result; }
         }
 
         let response: Response;
@@ -308,17 +298,18 @@ export class Request {
                 response = await this.request(options, postData);
             }
             if((response.response.statusCode||response.response.status) === 200) {
+                const txt = isTextual(fname, response.response.headers["content-type"]);
                 if (fname && options.method === 'GET') {
-                    await this.writeCached(fname, response.data, response.response.headers["content-type"]);
+                    await this.writeCached(fname, response.data, response.response.headers["content-type"], txt);
                 }
-                return response.data;
+                return {txt:txt, content: response.data};
             }
             log.warn(`${response.response.statusCode||response.response.status} requesting ${options.url}: ${response.response.statusMessage}`);
             err.statusCode = response.response.statusCode || response.response.status|| 'no code';
             err.statusMessage = response.response.statusMessage || 'no message';
         }
         catch(e) {
-            log.warn(`error requesting ${options.url}: ${e.error.code}\n${log.inspect(e, 2)}`);
+            log.warn(`error requesting ${options.url}: ${e.error.code}\n${log.inspect(e, {depth:2})}`);
             err.statusCode = response.response.statusCode || response.response.status|| 'no code';
             err.statusMessage = JSON.stringify(e);
         }
@@ -333,10 +324,9 @@ export class Request {
         let auth = (options.headers && options.headers.Authorization);
         const response = await new Promise((resolve:(out:Response)=>void, reject:(e:{data:string, error:any})=>void) => {
             let data = ''; 
-            log.debug(`requesting ${log.inspect(options, 4)}`);
+            log.debug(`requesting ${log.inspect(options, {depth:4})}`);
             const req = http.request(options, (res:any) => {
-                const encoding = isBinary(res.headers['content-type'])? 'binary' : 'utf8';
-                log.debug(`receiving...${res.headers['content-type']} => ${encoding}`);
+                const encoding = isTextual(options.url, res.headers['content-type'])? 'utf8' : 'binary';
                 res.setEncoding(encoding);
                 res.on('data', (chunk:string) => data += chunk);
                 res.on('end', () => resolve({data:data, response:res}));
@@ -347,173 +337,57 @@ export class Request {
             if (postData !== undefined) { req.write(postData); }
             req.end();
         });
-        const prot = response.response.headers['www-authenticate'];
+        let prot = response.response.headers['www-authenticate'];
         if (this.credentials && prot) { 
-            if (prot.trim().indexOf('Digest') === 0) {
-                const digest = new Digest(this.credentials.user, this.credentials.password);
-                digest.testDigestAuth(options, response.data, response.response);
-                return this.request(options);
+            prot = prot.trim();
+            let auth: Auth;
+            if (prot.indexOf('Digest') === 0) {
+                auth = new AuthDigest(this.credentials.user, this.credentials.password);
+            } else if (prot.indexOf('Basic') === 0) {
+                auth = new AuthBasic(this.credentials.user, this.credentials.password);
+            } else {
+                log.warn(`unimplemented authentication request ${prot} for '${options.url}'`);
+                return response;
             }
-            if (prot.trim().indexOf('Basic') === 0) {
-                options.headers.Authorization = 'Basic ' + _btoa(`${this.credentials.user}:${this.credentials.password}`);
-                return this.request(options);
-            }
+            auth.testAuth(options, response.data, response.response);
+            return this.request(options);
         } else {
             return response; 
         } 
     }
 }
 
-function _btoa(str:string|Buffer):string {
-    const buffer = str instanceof Buffer? str : Buffer.from(str.toString(), 'binary');
-    return buffer.toString('base64');
-}
-
-function _atob(str:string):string {
-    return Buffer.from(str, 'base64').toString('binary');
-}
-  
-  
 
 
-
-/**
- * Implements a Digest authentication, used in {@link request `request`} call.
- */
-class Digest {
-    nc = 0;
-    username:string;
-    password:string;
-
-    constructor(username:string, password:string) {
-        this.username = username;
-        this.password = password;
-    }
-
-    /**
-     * Update and zero pad nc
-     */
-    updateNC():string {
-        let max = 99999999;
-        let padding = new Array(8).join('0') + '';
-        this.nc = (this.nc > max ? 1 : this.nc + 1);
-        let nc = this.nc + '';
-        return padding.substr(0, 8 - nc.length) + nc;
-    }
-
-    /**
-     * Parse challenge digest
-     * @param qop 
-     */
-    generateCNONCE(qop:string) {
-        let cnonce:any;
-        let nc:string;
-
-        if (typeof qop === 'string') {
-            let cnonceHash = createHash('md5');
-            cnonceHash.update(Math.random().toString(36));
-            cnonce = cnonceHash.digest('hex').substr(0, 16);
-            nc = this.updateNC();
-        }
-        return {cnonce: cnonce, nc: nc};
-    }
-
-    /**
-     * 
-     * @param options 
-     * @param data 
-     * @param response 
-     */
-    testDigestAuth(options:Options, data:string, response:IncomingMessage): Options {
-        log.debug(`received www-authenticate request for ${options.host}`);
-
-        let challenge:any = parseDigestResponse(response.headers['www-authenticate']);
-        let ha1 = createHash('md5');
-        let _str = `${this.username}:${challenge.realm}:${this.password}`;
-        ha1.update(_str);
-        let ha2 = createHash('md5');
-        _str = `${options.method}:${options.path}`;
-        ha2.update(_str);
-    
-        let {nc, cnonce} = this.generateCNONCE(challenge.qop);
-        let hash = createHash('md5');
-        _str = `${ha1.digest('hex')}:${challenge.nonce}:${nc}:${cnonce}:${challenge.qop}:${ha2.digest('hex')}`;
-        hash.update(_str);
-    
-        // Setup response parameters
-        let authParams:any = {
-            realm: challenge.realm,
-            username: this.username,
-            uri: options.path,
-            qop: challenge.qop,
-            nonce: challenge.nonce,
-            algorithm: "MD5",
-            response: hash.digest('hex')
-        };
-    
-        authParams = omitNull(authParams);
-    
-        if (cnonce) {
-            authParams.nc = nc;
-            authParams.cnonce = cnonce;
-        }
-    
-        options.headers.Authorization = compileParams(authParams);
-        return options;
-    }
-}
 
 //----------- Local functions ------------------------------
 
-function omitNull(data:any) {
-    let newObject = {};
-    Object.keys(data).forEach((k:string) => {
-        if (data[k] !== null && data[k] !== undefined) { newObject[k] = data[k]; }
-    });
-    return newObject;
-}
 
-/**
- * Compose authorization header
- * @param params 
- */
-function compileParams(params:any) {
-    let parts = [];
-    for (let i in params) {
-        if (typeof params[i] !== 'function') {
-            let param = i + '=' + (putDoubleQuotes(i) ? `"${params[i]}"` : params[i]);
-            parts.push(param);
+function isTextual(fname:string, contentType:string):boolean {
+    let txt = false;
+    if (contentType===undefined) { contentType = 'text/html'; }
+    else { contentType = contentType.split(';')[0]; }
+    const subTypes = contentType.split('/');
+    switch (subTypes[0]) {
+        case 'text':        txt = true; break;
+        case 'image':       
+        case 'audio':
+        case 'font':        break;
+        case 'application': switch(subTypes[1]) {
+            case 'json':    txt = true; break;
+            case 'pdf':     break;
+            case 'vnd.openxmlformats-officedocument.presentationml.presentation': break;
+            case 'vnd.openxmlformats-officedocument.spreadsheetml.sheet': break;
+            case 'vnd.ms-powerpoint': break;
+            case 'vnd.ms-excel': break;
+            case 'octet-stream': break;
+            case 'vnd.ms-excel.sheet.macroenabled.12': break;
+            default: log.info(`caching ${contentType} as binary`);
         }
+        break;
+        default: log.warn(`caching ${contentType} as binary`);    
     }
-    return 'Digest ' + parts.join(',');
+    return txt;
 }
 
-/**
- * return `true` if double quotes are needed for `entry`
- * @param entry
- */
-function putDoubleQuotes(entry:string) {
-    return ['qop', 'nc'].indexOf(entry)<0;
-}
-
-function parseDigestResponse(digestHeader:string) {
-    digestHeader = digestHeader.split('Digest ')[1];
-    const params = {};
-    digestHeader.split(',').forEach((part:string) => { 
-        const kv = part.split('=').map((v:string) => v.trim());
-        params[kv[0]] = kv[1].replace(/\"/g, '');
-    });
-    return params;
-}
-
-function isBinary(contentType:string) {
-    const binary = {
-        'text/html':    false,
-        'text/plain':   false,
-        'image/jpeg':   true,
-        'image/png':    true
-    };
-    const result = binary[contentType];
-    return (result === undefined)? false : result;
-}
 

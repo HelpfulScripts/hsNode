@@ -6,7 +6,7 @@
 import { Log as LogUtil }   from 'hsutil';
 import { date }             from 'hsutil';
 import { pathExists }       from './fsUtil';
-import { appendFile }       from './fsUtil';
+import { appendFileSync }   from './fsUtil';
 import  path                from 'path';
 
 
@@ -50,18 +50,11 @@ const COLOR = {
 };
 
 
-/** boolean determining if log will be printed in color */
-// let gColors = true;
-
-
 export class LogServer extends LogUtil {
     public static log = new LogServer('');
 
     /** name of the current log file, or undefined */
     protected LogFile: string;	// initially disabled
-
-    /** temporary color setting, defined in call to `inspect()` and used in `getPrePostfix` */
-    // protected inspectColors: string[];
 
     constructor(prefix:string) { super(prefix); }
 
@@ -81,6 +74,7 @@ export class LogServer extends LogUtil {
      */
     protected output(color:string, header:string, line:string) {
         const msg = `${COLOR[color]}${header}${COLOR['clear']} ${line}`;
+        if (this.LogFile) { appendFileSync(date(this.LogFile), `${header} ${line}\n`); }
         if (line.slice(-1)==='\r') { process.stdout.write(msg); }
         else { console.log(msg); }
     }
@@ -94,26 +88,26 @@ export class LogServer extends LogUtil {
      * - `logFile(null)`: disable log file
      * - `logFile('')`: set default log file template `log-%YYYY-%MM-%DD.txt`
      * - `logFile('log%D/%M/%Y.log')`: set new log file template
-     * @param file a template to use for log file names. Options for calling:
+     * @param filePattern a template to use for log file names. Options for calling:
      * @return promise to return the current logfile name, or `undefined` if loggimng is disabled.
      */
-    public async logFile(file?:string):Promise<string> {
-        if (file === null) {                    // disable logging in file
+    public async logFile(filePattern?:string):Promise<string> {
+        if (filePattern === null) {                    // disable logging in file
             this.LogFile = undefined; 
             this.info("disabling logfile");
             return this.LogFile;
-        } else if (file === undefined) {        // leave this.LogFile unchanged, return promise for logfile name
+        } else if (filePattern === undefined) {        // leave this.LogFile unchanged, return promise for logfile name
             return this.LogFile===undefined? undefined : date(this.LogFile);
-        } else if (file.indexOf('/')>=0) { 
-            const parts = path.parse(file);
+        } else if (filePattern.indexOf('/')>=0) { 
+            const parts = path.parse(filePattern);
             try {
                 const exists:boolean = await pathExists(parts.dir);
                 if (!exists) {
                     this.LogFile = undefined;
                     this.warn(`path '${parts.dir}' doesn't exists; logfile disabled`);
                 } else {
-                    this.LogFile = file;
-                    this.info("now logging to file " + date(file));
+                    this.LogFile = filePattern;
+                    this.info("now logging to file " + date(filePattern));
                 }
                 return this.LogFile;
             } catch(e) {
@@ -121,42 +115,17 @@ export class LogServer extends LogUtil {
                 this.error(`checking path ${parts.dir}; logfile disabled`);
                 return this.LogFile;
             }
-        } else if (file === '') {
+        } else if (filePattern === '') {
             this.LogFile = 'log-%YYYY-%MM-%DD.txt';
         } else {
-            this.LogFile=file;
+            this.LogFile=filePattern;
         }
         this.info(this.LogFile? `now logging to file ${date(this.LogFile)}` : 'logfile disbaled');
         return this.LogFile;
     }
 
-    /**
-     * returns a string representation of an object literal, similar to the Node `util.inspect` call.
-     * 
-     * Usage: `log.info(log.inspect(struct, 1))`
-     * 
-     * The call returns a raw formatted text string, or a HTM formatted string if `colors` is defined.
-     * @param struct the object literal to inspect
-     * @param depth depth of recursion, defaults to 1. Use `null` for infinite depth
-     * @param indent the indent string to use, will accumulate for each level of indentation, defaults to ''
-     * @param colors an array of css color values to apply to keywords in the inspected structure;
-     * if present, `inspect` will generate HTML content instead of raw text, substituting any `space` characters
-     * (' ') with `&nbsp;`. The color applied to each keyword cycles through the array with each increasing level, 
-     * and restarts at index 0 when the level exceeds the length of the array.
-     */
-    // public inspect(msg:any, depth=3, indent='   ', colors=LogUtil.INDENT_COLORS):string {
-    //     this.inspectColors = colors;
-    //     if (colors) { indent = indent.replace(/ /g, '&nbsp;'); }
-    //     return super.inspect(msg, depth, indent, colors);
-    // }
-
     protected getPrePostfix(indent:string, level:number, currIndent:string, colors:string[]):[string,string,string,string] {
-        // let [prefix, postfix] = super.getPrePostfix(indent, level, currIndent, colors);
         const color  = colors? COLOR[colors[level % colors.length]] : '';
-        // if (colors) {
-        //     prefix = `${color}'>${prefix}`;
-        //     postfix = `${postfix}</span></b>`;
-        // }
         return [`${currIndent}${indent}${color}`, colors? COLOR.clear : '', '\n', currIndent];
     }
 }

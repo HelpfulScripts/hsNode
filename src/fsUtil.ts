@@ -37,22 +37,6 @@ import * as path        from 'path';
  * - &nbsp;{@link hsNode.fsUtil.remove remove}
  */
 
-//  export interface Stats {
-//     path:       string;     // path to the file
-//     device:     any;        // ID of device containing file
-//     iNode:      number;     // Inode number 
-//     type:       number;     // File type and mode 
-//     numLinks:   number;     // Number of hard links 
-//     userID:     string;     // User ID of owner 
-//     groupID:    string;     // Group ID of owner 
-//     deviceID:   string;     // Device ID (if special file) 
-//     totalSize:  number;     // Total size, in bytes 
-//     blockSize:  number;     // Block size for filesystem I/O 
-//     numBlocks:  number;     // Number of 512B blocks allocated 
-//     accessTime:       any;  // Time of last access
-//     modifyTime:       any;  // Time of last modification
-//     statusChangeTime: any;  // Time of last status change     
-//  }
 
 //===============================================================================
 //  Low level Promise wrappers
@@ -218,7 +202,7 @@ export async function readDir(thePath:string):Promise<string[]> {
  */
 export function readFile(thePath:string, isText=true):Promise<any> {
 	return new Promise((resolve:(data:any)=>void, reject:(err:any)=>void) => {
-		fs.readFile(thePath, isText? 'utf8' : {}, (err:any, data:any) => 
+		fs.readFile(thePath, isText? 'utf8' : 'binary', (err:any, data:any) => 
             err? reject(err) : resolve(data));
 	})
     .catch(error);
@@ -262,6 +246,11 @@ export async function writeFile(thePath:string, content:string, isText:boolean=t
             err? reject(`mkdirs failed in writeFile for '${thePath}': ${err}`) : resolve(thePath));
     }); 
 }
+
+// expected: 0D0A25B5 B5B5B50D 0A312030
+// ascii:    0D0A25FD FDFDFD0D 0A312030
+// binary:   0D0A25FD FDFDFD0D 0A312030
+// latin1:   0D0A25FD FDFDFD0D 0A312030
 
 /**
  * writes content to a file as a stream and promises to return the file name.
@@ -309,12 +298,25 @@ export async function writeJsonFile(thePath:string, obj:any):Promise<string> {
  * @return promise to provide the realPath of the file written to.
  */
 export async function appendFile(thePath:string, content:string, isText:boolean=true):Promise<string> {
-	return await new Promise((resolve, reject) => {
-		var encoding:any = isText? 'utf8' : {encoding: null};
+    var encoding:any = isText? 'utf8' : {encoding: null};
+    try { return await new Promise((resolve, reject) => {
         fs.appendFile(thePath, content, encoding, (err:any) => err? reject(err) : resolve(thePath));
-    })
-    .then(realPath)
-    .catch(error);
+    })} catch(e) { error(e); };
+}
+
+/**
+ * appends to a file either as binary or text and promises to return the file name.
+ * @param thePath the path to write to
+ * @param content the content to write
+ * @param isText `true`|`false` if file should be read as `utf8`|binary 
+ * @return promise to provide the realPath of the file written to.
+ */
+export function appendFileSync(thePath:string, content:string, isText:boolean=true):string {
+    var encoding:any = isText? 'utf8' : {encoding: null};
+    try { 
+        fs.appendFileSync(thePath, content, encoding);
+        return thePath;
+    } catch(e) { error(e); };
 }
 
 /**

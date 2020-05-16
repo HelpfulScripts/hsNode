@@ -1,6 +1,6 @@
 import { node } from './';
 
-const fsUtil = node.fs;
+import * as fsUtil from './fsUtil';
 const cpUtil = node.child_process;
 const dir = __dirname+'/'; 
 const TEST_DIR = dir+'example/';
@@ -83,8 +83,11 @@ describe('hsFSutil', () => {
             expect.assertions(3);
             const path = await fsUtil.mkdirs('../hsNode/__jest_test/a/b/c');
             expect(path).toMatch(/__jest_test\/a\/b\/c/);
-            expect(fsUtil.isDirectory('./__jest_test/a/b/c')).resolves.toBe(true);
-            return expect(fsUtil.isDirectory('../hsNode/__jest_test/a/b/c/')).resolves.toBe(true);
+            let dir = await fsUtil.isDirectory('./__jest_test/a/b/c');
+            expect(dir).toBe(true);
+            dir = await fsUtil.isDirectory('../hsNode/__jest_test/a/b/c/');
+            expect(dir).toBe(true);
+            return true;
         });
         it('should not create subdirectory', ()=> 
             expect(fsUtil.mkdirs('/__jest_test/a/b/c')).rejects.toMatch(/EROFS\: read-only file system, mkdir \'\/__jest_test\'/)
@@ -159,7 +162,7 @@ describe('hsFSutil', () => {
             expect(fsUtil.isFile(file)).resolves.toBe(true)   
         );
 		it(`should now contain payload in ${file}`, () => 
-            expect(fsUtil.readFile(file, false)).resolves.toEqual(Buffer.from('test2'))
+            expect(fsUtil.readFile(file, false)).resolves.toEqual('test2')
         );
 		it(`should not contain 'test3' in ${file}`, () => 
             expect(fsUtil.readFile(file, false)).resolves.not.toEqual(Buffer.from('test3'))
@@ -181,7 +184,7 @@ describe('hsFSutil', () => {
             expect.assertions(1);
             await fsUtil.appendFile(file, 'test2', false);
             await fsUtil.appendFile(file, 'test3', false);
-            return expect(fsUtil.readFile(file, false)).resolves.toEqual(Buffer.from('test2test3'));
+            return expect(fsUtil.readFile(file, false)).resolves.toEqual('test2test3');
         });   
 
         it('should reject', async () => {
@@ -234,7 +237,7 @@ describe('hsFSutil', () => {
         test(`file should contain content`, () => {
             expect.assertions(1);
             return fsUtil.readFile(file,false).then((r)=> 
-                expect(r).toEqual(Buffer.from('test2'))
+                expect(r).toEqual('test2')
             );
         });   
     });

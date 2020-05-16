@@ -192,18 +192,17 @@ describe('log', () => {
 
     describe('log file', () => { 
         it('should be created next to Gruntfile for default path', async () => {
+            expect.assertions(5);
             try {
-                expect.assertions(5);
                 const file = await log.logFile('');
-                gLog(`...setting log file ${file}`);
+                // gLog(`...setting log file ${file}`);
                 expect(file).toBeDefined();
                 expect(file).toMatch(/log-%YYYY-%MM-%DD.txt/);
-                gLog(`...msg match '${gMsg}'`);
-                expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g);
+                // gLog(`...msg match '${gMsg}'`);
+                expect(gMsg).toMatch(/log.jest INFO.*now logging to file log-\d\d\d\d-\d\d-\d\d.txt/g);
                 const file2 = await log.logFile();
                 expect(file2).toMatch(/log-\d\d\d\d-\d\d-\d\d.txt/);
-                const b = await fsUtil.isFile(file2);
-                expect(b).toBe(true);
+                expect(fsUtil.isFile(file2)).resolves.toBe(true);
                 await fsUtil.remove(file2); 
             } catch(e) {
                 gLog(e);
@@ -211,13 +210,13 @@ describe('log', () => {
         });
         
         it('should be created at a specific path', async () => {
+            expect.assertions(4);
             try {
-                expect.assertions(4);
                 const file = await log.logFile('./bin/log-%YYYY-%MM-%DD.txt');
-                gLog(`...setting log file ${file}`);
+                // gLog(`...setting log file ${file}`);
                 expect(file).toBeDefined();
                 expect(file).toMatch(/bin\/log-%YYYY-%MM-%DD.txt/);
-                gLog(`...msg match '${gMsg}'`);
+                // gLog(`...msg match '${gMsg}'`);
                 expect(gMsg).toMatch(/log.jest INFO.*now logging to file/g);
                 const file2 = await log.logFile();
                 const b = await fsUtil.isFile(file2);
@@ -229,8 +228,8 @@ describe('log', () => {
         });
         
         it('should be created with format template', async () => {
+            expect.assertions(4);
             try {
-                expect.assertions(4);
                 const file = await log.logFile('%YY%M%Dlog.log');
                 gLog(`...setting log file template ${file}`);
                 expect(file).toBeDefined();
@@ -246,22 +245,18 @@ describe('log', () => {
             }
         });
         
-        it('should be stopped for missing paths', () =>
-            log.logFile('/missing/log.txt').then((file:any) => 
-                expect(file).toBe(undefined)
-            )
-        );
+        it('should be stopped for missing paths', async () => {
+            expect.assertions(1);
+            const file = await log.logFile('/missing/log.txt');
+            expect(file).toBe(undefined)
+        });
         
-        it('should be disabled', () =>
-            log.logFile(null)
-                .then((file:string)=> {
-                    expect(file).toBe(undefined);
-                    expect(gMsg).toMatch(/disabling logfile/);
-                    return log.info('unlogged entry');
-                })
-                .then(() => {
-                    return expect(gMsg).toMatch(/log.jest INFO.*unlogged entry/);
-                })
-        );
+        it('should be disabled', async () => {
+            const file = await log.logFile(null);
+            expect(file).toBe(undefined);
+            expect(gMsg).toMatch(/disabling logfile/);
+            await log.info('unlogged entry');
+            return expect(gMsg).toMatch(/log.jest INFO.*unlogged entry/);
+        });
     });
 });

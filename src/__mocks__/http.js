@@ -21,7 +21,7 @@ function request(options, callBack) {
     const eventCallbacks = {};
     const file = options.pathname;
     const extIndex = file.lastIndexOf('.');
-    const fileExt = (extIndex>0)? file.substr(extIndex) : '';
+    const fileExt = (extIndex>0)? file.substr(extIndex+1) : '';
     const cType = contentTypes[fileExt];
     if (!cType) { console.log(`http mock encountered unknown filetype '${fileExt}' for path '${options.path}'`); }
     const pl = payLoad[options.path];
