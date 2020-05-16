@@ -70,7 +70,7 @@ export class Log extends LogUtil {
     /**
      * reports a transient message to the log. This is an `INFO` level message that omits the
      * `line feed` character (i.e. `carriage return` only) so that it will be overwritten 
-     * by the next logging output. Internally 
+     * by the next logging output. 
      * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
      * @param log optional flag to enable/suppress logging to file. Defaults to `true`
      * @return promise to return the file written to, or undefined
