@@ -1,8 +1,8 @@
 /**
  * ## log module
  * Exension of [hsUtil.Log](https://helpfulscripts.github.io/hsUtil/#!/api/hsUtil/hsUtil.log), adding
- * - support for {@link Log.logFile logging to a file}
- * - support for {@link Log.transient transient } logging level
+ * - support for {@link log.Log.logFile logging to a file}
+ * - support for {@link log.Log.transient transient } logging level
  * - adaptation of `color` codes for use in a terminal
  */
 
@@ -53,7 +53,12 @@ const COLOR = {
     bgWhite:    '\x1b[47m'
 };
 
-
+/**
+* Exension of [hsUtil.Log](https://helpfulscripts.github.io/hsUtil/#!/api/hsUtil/hsUtil.log), adding
+* - support for {@link log.Log.logFile logging to a file}
+* - support for {@link log.Log.transient transient } logging level
+* - adaptation of `color` codes for use in a terminal
+*/
 export class Log extends LogUtil {
     public static log = new Log('');
 
