@@ -1,13 +1,10 @@
 {
   "name": "hsnode",
-  "version": "2.16.0",
+  "version": "2.16.1",
   "main": "./index.js",
   "types": "./index.d.ts",
   "keywords": [
-    "node",
-    "es6",
-    "promises",
-    "log"
+    "node", "es6", "promises", "logging", "request"
   ],
   "description": "Helpful Scripts promise wrappers for node functions",
   "license": "MIT",

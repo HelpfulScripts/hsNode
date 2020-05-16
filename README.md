@@ -15,4 +15,19 @@ Helpful Scripts functions that wrap some nodejs calls in Promise wrappers.
 Install `hsNode` from `npm` the standard way:
 > `npm i hsnode`
 
+## {@link Log Logging} functions (extends on [hsUtil](https://github.com/HelpfulScripts/hsUtil) logging), adding support for
+- log files
+-  using `transient` logging
+
+## REST {@link Request requests}, with support for
+- pacing requests - max request rate, max number of unresolved requests; see [hsUtil](https://github.com/HelpfulScripts/hsUtil)
+- content decoding - e.g. `str2json` of `html2json`
+- simple authentication 
+- cached requests - allowing for targeted reloads for cached responses
+
+## Promise wrappers for nodejs functions:
+- `child_processs` execution
+- `file system` functions
+
+
 See [docs](https://helpfulscripts.github.io/hsNode/#!/api/hsNode/0) for details

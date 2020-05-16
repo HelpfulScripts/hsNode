@@ -50,8 +50,8 @@ const COLOR = {
 };
 
 
-export class LogServer extends LogUtil {
-    public static log = new LogServer('');
+export class Log extends LogUtil {
+    public static log = new Log('');
 
     /** name of the current log file, or undefined */
     protected LogFile: string;	// initially disabled
@@ -71,6 +71,7 @@ export class LogServer extends LogUtil {
     }
 
     /** 
+     * the actual logging; overrides `output` in `hsUtil.Log`
      */
     protected output(color:string, header:string, line:string) {
         const msg = `${COLOR[color]}${header}${COLOR['clear']} ${line}`;
@@ -131,8 +132,8 @@ export class LogServer extends LogUtil {
 }
 
 const colors = { 
-    [LogServer.ERROR]: COLOR.red+COLOR.bold, 
-    [LogServer.WARN]: COLOR.yellow+COLOR.bold, 
-    [LogServer.DEBUG]: COLOR.blue, 
-    [LogServer.INFO]: COLOR.green 
+    [Log.ERROR]: COLOR.red+COLOR.bold, 
+    [Log.WARN]: COLOR.yellow+COLOR.bold, 
+    [Log.DEBUG]: COLOR.blue, 
+    [Log.INFO]: COLOR.green 
 };

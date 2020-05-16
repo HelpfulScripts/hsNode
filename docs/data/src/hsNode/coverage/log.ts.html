@@ -195,7 +195,8 @@
 <a name='L136'></a><a href='#L136'>136</a>
 <a name='L137'></a><a href='#L137'>137</a>
 <a name='L138'></a><a href='#L138'>138</a>
-<a name='L139'></a><a href='#L139'>139</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -265,6 +266,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -385,8 +387,8 @@ const COLOR = {
 };
 &nbsp;
 &nbsp;
-export class LogServer extends LogUtil {
-    public static log = new LogServer('');
+export class Log extends LogUtil {
+    public static log = new Log('');
 &nbsp;
     /** name of the current log file, or undefined */
     protected LogFile: string;	// initially disabled
@@ -406,6 +408,7 @@ export class LogServer extends LogUtil {
     }
 &nbsp;
     /** 
+     * the actual logging; overrides `output` in `hsUtil.Log`
      */
     protected output(color:string, header:string, line:string) {
         const msg = `${COLOR[color]}${header}${COLOR['clear']} ${line}`;
@@ -466,10 +469,10 @@ export class LogServer extends LogUtil {
 }
 &nbsp;
 const colors = { 
-    [LogServer.ERROR]: COLOR.red+COLOR.bold, 
-    [LogServer.WARN]: COLOR.yellow+COLOR.bold, 
-    [LogServer.DEBUG]: COLOR.blue, 
-    [LogServer.INFO]: COLOR.green 
+    [Log.ERROR]: COLOR.red+COLOR.bold, 
+    [Log.WARN]: COLOR.yellow+COLOR.bold, 
+    [Log.DEBUG]: COLOR.blue, 
+    [Log.INFO]: COLOR.green 
 };
 &nbsp;</pre></td></tr></table></pre>
 

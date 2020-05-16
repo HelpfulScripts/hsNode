@@ -7,7 +7,7 @@ export const node = {
     child_process: child_process
 };
 
-export { LogServer as Log } from "./log";
+export { Log } from "./log";
 
 import * as http            from "./Request";
 export { http };

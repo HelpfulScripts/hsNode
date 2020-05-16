@@ -545,7 +545,7 @@
 					"type": {
 						"type": "reference",
 						"id": 85,
-						"name": "LogServer"
+						"name": "Log"
 					},
 					"defaultValue": "new Log('RequestBasic')"
 				},
@@ -1134,7 +1134,7 @@
 					"type": {
 						"type": "reference",
 						"id": 85,
-						"name": "LogServer"
+						"name": "Log"
 					},
 					"defaultValue": "new Log('RequestDigest')"
 				},
@@ -3744,7 +3744,7 @@
 					"type": {
 						"type": "reference",
 						"id": 85,
-						"name": "LogServer"
+						"name": "Log"
 					},
 					"defaultValue": "new Log('Request')"
 				},
@@ -4231,7 +4231,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 300,
+							"line": 299,
 							"character": 32
 						}
 					]
@@ -4317,7 +4317,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 314,
+							"line": 313,
 							"character": 30
 						}
 					]
@@ -4357,7 +4357,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 74,
+							"line": 73,
 							"character": 14
 						}
 					]
@@ -4416,7 +4416,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 126,
+							"line": 125,
 							"character": 33
 						}
 					]
@@ -4475,7 +4475,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 113,
+							"line": 112,
 							"character": 28
 						}
 					]
@@ -4534,7 +4534,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 139,
+							"line": 138,
 							"character": 28
 						}
 					]
@@ -4586,7 +4586,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 67,
+							"line": 66,
 							"character": 20
 						}
 					]
@@ -4645,7 +4645,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 155,
+							"line": 154,
 							"character": 28
 						}
 					]
@@ -4704,7 +4704,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 99,
+							"line": 98,
 							"character": 32
 						}
 					]
@@ -4766,7 +4766,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 182,
+							"line": 181,
 							"character": 29
 						}
 					]
@@ -4842,7 +4842,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 203,
+							"line": 202,
 							"character": 24
 						}
 					]
@@ -4901,7 +4901,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 226,
+							"line": 225,
 							"character": 34
 						}
 					]
@@ -4960,7 +4960,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 216,
+							"line": 215,
 							"character": 34
 						}
 					]
@@ -5019,7 +5019,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 87,
+							"line": 86,
 							"character": 24
 						}
 					]
@@ -5078,7 +5078,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 327,
+							"line": 326,
 							"character": 28
 						}
 					]
@@ -5140,7 +5140,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 340,
+							"line": 339,
 							"character": 31
 						}
 					]
@@ -5192,7 +5192,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 49,
+							"line": 48,
 							"character": 19
 						}
 					]
@@ -5284,7 +5284,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 241,
+							"line": 240,
 							"character": 31
 						}
 					]
@@ -5359,7 +5359,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 286,
+							"line": 285,
 							"character": 35
 						}
 					]
@@ -5434,7 +5434,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 261,
+							"line": 260,
 							"character": 33
 						}
 					]
@@ -5506,7 +5506,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/fsUtil.ts",
-							"line": 275,
+							"line": 274,
 							"character": 35
 						}
 					]
@@ -5851,7 +5851,7 @@
 			"children": [
 				{
 					"id": 85,
-					"name": "LogServer",
+					"name": "Log",
 					"kind": 128,
 					"kindString": "Class",
 					"flags": {
@@ -5869,7 +5869,7 @@
 							"signatures": [
 								{
 									"id": 89,
-									"name": "new LogServer",
+									"name": "new Log",
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {
@@ -5893,7 +5893,7 @@
 									"type": {
 										"type": "reference",
 										"id": 85,
-										"name": "LogServer"
+										"name": "Log"
 									},
 									"overwrites": {
 										"type": "reference",
@@ -6436,9 +6436,9 @@
 							"type": {
 								"type": "reference",
 								"id": 85,
-								"name": "LogServer"
+								"name": "Log"
 							},
-							"defaultValue": "new LogServer('')",
+							"defaultValue": "new Log('')",
 							"overwrites": {
 								"type": "reference",
 								"name": "Log.log"
@@ -6946,7 +6946,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 127,
+									"line": 128,
 									"character": 27
 								}
 							],
@@ -7300,7 +7300,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 94,
+									"line": 95,
 									"character": 24
 								}
 							]
@@ -7393,7 +7393,9 @@
 									"flags": {
 										"isExported": true
 									},
-									"comment": {},
+									"comment": {
+										"shortText": "the actual logging; overrides `output` in `hsUtil.Log`"
+									},
 									"parameters": [
 										{
 											"id": 96,
@@ -7448,7 +7450,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 75,
+									"line": 76,
 									"character": 20
 								}
 							],
@@ -7743,7 +7745,7 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
 							"line": 53,
-							"character": 22
+							"character": 16
 						}
 					],
 					"extendedTypes": [
@@ -8404,23 +8406,23 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-									"line": 134,
-									"character": 21
-								},
-								{
-									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
 									"line": 135,
-									"character": 20
+									"character": 15
 								},
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
 									"line": 136,
-									"character": 21
+									"character": 14
 								},
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
 									"line": 137,
-									"character": 20
+									"character": 15
+								},
+								{
+									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
+									"line": 138,
+									"character": 14
 								}
 							],
 							"type": {
@@ -8442,7 +8444,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/log.ts",
-							"line": 133,
+							"line": 134,
 							"character": 12
 						}
 					],
@@ -8488,7 +8490,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/overview.ts",
 			"comment": {
 				"shortText": "# hsNode",
-				"text": "Helpful Scripts functions that wrap some nodejs calls in Promise wrappers.\n<a href=\"./data/src/hsNode/coverage/\" target=\"_blank\">[Coverage Info]</a>\n\n[![npm version](https://badge.fury.io/js/hsnode.svg)](https://badge.fury.io/js/hsnode)\n[![GitHub](https://img.shields.io/badge/GitHub-hsNode-blue.svg)](https://github.com/helpfulscripts/hsnode)\n[![docs](https://img.shields.io/badge/hsDocs-hsNode-blue.svg)](https://helpfulscripts.github.io/hsNode/#!/api/hsNode/0)\n[![Build Status](https://travis-ci.org/HelpfulScripts/hsNode.svg?branch=master)](https://travis-ci.org/HelpfulScripts/hsNode)\n[![Dependencies Status](https://david-dm.org/helpfulscripts/hsnode.svg)](https://david-dm.org/helpfulscripts/hsnode)\n[![codecov](https://codecov.io/gh/HelpfulScripts/hsNode/branch/master/graph/badge.svg)](https://codecov.io/gh/HelpfulScripts/hsNode)\n[![Known Vulnerabilities](https://snyk.io/test/github/HelpfulScripts/hsNode/badge.svg?targetFile=package.json)](https://snyk.io/test/github/HelpfulScripts/hsNode?targetFile=package.json)\n[![NPM License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://www.npmjs.com/package/hsnode)\n\n___\n\n## Index of nodejs wrappers\n- &nbsp; {@link cpUtil child_processs} child process execution\n- &nbsp; {@link fsUtil file system} functions:\n- &nbsp; {@link httpUtil http} web server functions\n\n## Index of other node support functions\n- &nbsp; {@link log log} logging support with per-module prefixes\n\n## Accessing the library functions:\n```\nimport * as hsNode from 'hsnode';\nconst log = hsNode.log('myModule');\nconst fs = hsNode.fs;\nconst exec = hsNode.chid_process.exec;\n```\nor access submodules individually:\n```\nimport { node } from 'hsnode';\nconst fs = node.fs\n\nimport { log as gLog } from 'hsnode';\nconst log = gLog('myModule');\nlog.info('running');\n\nimport { http } from 'hsnode';\nconst cache = new CachedHTTPRequest('./cacheDir/');\nconst url = new URL('http://mysite.com/');\ncache.request(url);\n```\n"
+				"text": "Helpful Scripts functions that wrap some nodejs calls in Promise wrappers.\n<a href=\"./data/src/hsNode/coverage/\" target=\"_blank\">[Coverage Info]</a>\n\n[![npm version](https://badge.fury.io/js/hsnode.svg)](https://badge.fury.io/js/hsnode)\n[![GitHub](https://img.shields.io/badge/GitHub-hsNode-blue.svg)](https://github.com/helpfulscripts/hsnode)\n[![docs](https://img.shields.io/badge/hsDocs-hsNode-blue.svg)](https://helpfulscripts.github.io/hsNode/#!/api/hsNode/0)\n[![Build Status](https://travis-ci.org/HelpfulScripts/hsNode.svg?branch=master)](https://travis-ci.org/HelpfulScripts/hsNode)\n[![Dependencies Status](https://david-dm.org/helpfulscripts/hsnode.svg)](https://david-dm.org/helpfulscripts/hsnode)\n[![codecov](https://codecov.io/gh/HelpfulScripts/hsNode/branch/master/graph/badge.svg)](https://codecov.io/gh/HelpfulScripts/hsNode)\n[![Known Vulnerabilities](https://snyk.io/test/github/HelpfulScripts/hsNode/badge.svg?targetFile=package.json)](https://snyk.io/test/github/HelpfulScripts/hsNode?targetFile=package.json)\n[![NPM License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://www.npmjs.com/package/hsnode)\n\n___\n\n## {@link Log Logging} functions (extends on [hsUtil](https://github.com/HelpfulScripts/hsUtil) logging), adding support for\n- log files\n-  using {@ling Log.Log.transient transient} logging\n\n## REST {@link Request requests}, with support for\n- pacing requests - max request rate, max number of unresolved requests; see [hsUtil](https://github.com/HelpfulScripts/hsUtil)\n- content decoding - e.g. `str2json` of `html2json`\n- simple authentication\n- cached requests - allowing for targeted reloads for cached responses\n\n## Promise wrappers for nodejs functions:\n- &nbsp; {@link cpUtil child_processs} execution\n- &nbsp; {@link fsUtil file system} functions:\n\n\n## Accessing the library functions:\n```\nimport * as hsNode from 'hsnode';\nconst log = hsNode.log('myModule');\nconst fs = hsNode.fs;\nconst exec = hsNode.chid_process.exec;\n```\nor access submodules individually:\n```\nimport { node } from 'hsnode';\nconst fs = node.fs\n\nimport { log as gLog } from 'hsnode';\nconst log = gLog('myModule');\nlog.info('running');\n\nimport { http } from 'hsnode';\nconst cache = new CachedHTTPRequest('./cacheDir/');\nconst url = new URL('http://mysite.com/');\ncache.request(url);\n```\n"
 			},
 			"sources": [
 				{

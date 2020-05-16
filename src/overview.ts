@@ -15,13 +15,20 @@ Helpful Scripts functions that wrap some nodejs calls in Promise wrappers.
 
 ___
 
-## Index of nodejs wrappers
-- &nbsp; {@link cpUtil child_processs} child process execution
-- &nbsp; {@link fsUtil file system} functions:
-- &nbsp; {@link httpUtil http} web server functions
+## {@link Log Logging} functions (extends on [hsUtil](https://github.com/HelpfulScripts/hsUtil) logging), adding support for
+- log files
+-  using {@ling Log.Log.transient transient} logging
 
-## Index of other node support functions
-- &nbsp; {@link log log} logging support with per-module prefixes
+## REST {@link Request requests}, with support for
+- pacing requests - max request rate, max number of unresolved requests; see [hsUtil](https://github.com/HelpfulScripts/hsUtil)
+- content decoding - e.g. `str2json` of `html2json`
+- simple authentication 
+- cached requests - allowing for targeted reloads for cached responses
+
+## Promise wrappers for nodejs functions:
+- &nbsp; {@link cpUtil child_processs} execution
+- &nbsp; {@link fsUtil file system} functions:
+
 
 ## Accessing the library functions:
 ```
