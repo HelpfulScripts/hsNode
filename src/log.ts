@@ -1,5 +1,9 @@
 /**
  * ## log module
+ * Exension of [hsUtil.Log](https://helpfulscripts.github.io/hsUtil/#!/api/hsUtil/hsUtil.log), adding
+ * - support for {@link Log.logFile logging to a file}
+ * - support for {@link Log.transient transient } logging level
+ * - adaptation of `color` codes for use in a terminal
  */
 
 /** */
@@ -67,14 +71,15 @@ export class Log extends LogUtil {
      * @return promise to return the file written to, or undefined
      */
     public transient(msg:any):string { 
-        return this.out(LogUtil.INFO, { color: 'green', msg:msg+' \r' }); 
+        return this.out(LogUtil.INFO, { color: ['green'], msg:msg+' \r' }); 
     }
 
     /** 
      * the actual logging; overrides `output` in `hsUtil.Log`
      */
-    protected output(color:string, header:string, line:string) {
-        const msg = `${COLOR[color]}${header}${COLOR['clear']} ${line}`;
+    protected output(color:string[], header:string, line:string) {
+        const c = color.map(c => COLOR[c]).join('');
+        const msg = `${c}${header}${COLOR['clear']} ${line}`;
         if (this.LogFile) { appendFileSync(date(this.LogFile), `${header} ${line}\n`); }
         if (line.slice(-1)==='\r') { process.stdout.write(msg); }
         else { console.log(msg); }
@@ -131,9 +136,9 @@ export class Log extends LogUtil {
     }
 }
 
-const colors = { 
-    [Log.ERROR]: COLOR.red+COLOR.bold, 
-    [Log.WARN]: COLOR.yellow+COLOR.bold, 
-    [Log.DEBUG]: COLOR.blue, 
-    [Log.INFO]: COLOR.green 
-};
+// const colors = { 
+//     [Log.ERROR]: COLOR.red+COLOR.bold, 
+//     [Log.WARN]: COLOR.yellow+COLOR.bold, 
+//     [Log.DEBUG]: COLOR.blue, 
+//     [Log.INFO]: COLOR.green 
+// };
