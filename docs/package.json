@@ -1,10 +1,14 @@
 {
   "name": "hsnode",
-  "version": "2.16.1",
+  "version": "2.16.2",
   "main": "./index.js",
   "types": "./index.d.ts",
   "keywords": [
-    "node", "es6", "promises", "logging", "request"
+    "node",
+    "es6",
+    "promises",
+    "logging",
+    "request"
   ],
   "description": "Helpful Scripts promise wrappers for node functions",
   "license": "MIT",
@@ -50,7 +54,7 @@
     "webpack": "^4.43.x"
   },
   "dependencies": {
-    "hsutil": "3.3.x",
+    "hsutil": "3.4.x",
     "node": "14.1.0",
     "html2json": "1.0.x"
   }

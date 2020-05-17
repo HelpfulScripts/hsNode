@@ -347,7 +347,7 @@
 <p id=324 class="line"><span>&nbsp;324</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;auth&nbsp;=&nbsp;(options.headers&nbsp;&&&nbsp;options.headers.Authorization);</p>
 <p id=325 class="line"><span>&nbsp;325</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;response&nbsp;=&nbsp;await&nbsp;new&nbsp;Promise((resolve:(out:Response)=>void,&nbsp;reject:(e:{data:string,&nbsp;error:any})=>void)&nbsp;=>&nbsp;{</p>
 <p id=326 class="line"><span>&nbsp;326</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;data&nbsp;=&nbsp;<quote>''</quote>;&nbsp;</p>
-<p id=327 class="line"><span>&nbsp;327</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.debug(`requesting&nbsp;${log.inspect(options,&nbsp;{depth:4})}`);</p>
+<p id=327 class="line"><span>&nbsp;327</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.debug(()=>`requesting&nbsp;${log.inspect(options,&nbsp;{depth:4})}`);</p>
 <p id=328 class="line"><span>&nbsp;328</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;req&nbsp;=&nbsp;http.request(options,&nbsp;(res:any)&nbsp;=>&nbsp;{</p>
 <p id=329 class="line"><span>&nbsp;329</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;encoding&nbsp;=&nbsp;isTextual(options.url,&nbsp;res.headers[<quote>'content-type'</quote>])?&nbsp;<quote>'utf8'</quote>&nbsp;:&nbsp;<quote>'binary'</quote>;</p>
 <p id=330 class="line"><span>&nbsp;330</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res.setEncoding(encoding);</p>

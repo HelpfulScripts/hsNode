@@ -16,13 +16,13 @@ Install `hsNode` from `npm` the standard way:
 > `npm i hsnode`
 
 ## [Logging](https://helpfulscripts.github.io/hsNode/#!/api/hsNode/hsNode.log.Log) functions (extends on [hsUtil](https://github.com/HelpfulScripts/hsUtil) logging), adding support for
-- log files
+- log recordings in configurable log files
 -  using `transient` logging
 
 ## [Request REST-API](https://helpfulscripts.github.io/hsNode/#!/api/hsNode/hsNode.Request) with support for
-- pacing requests - max request rate, max number of unresolved requests; see [hsUtil](https://github.com/HelpfulScripts/hsUtil)
-- content decoding - e.g. `str2json` of `html2json`
-- simple authentication 
+- paced requests - configure limits on requests per second and max number of unresolved requests; see [hsUtil](https://github.com/HelpfulScripts/hsUtil)
+- integrated, configuarble, content decoding - e.g. `str2json` or `html2json` or a a self defined decoder
+- simple authentication, currently: Basic, Digest, and Token authentication
 - cached requests - allowing for targeted reloads for cached responses
 
 ## Promise wrappers for nodejs functions:

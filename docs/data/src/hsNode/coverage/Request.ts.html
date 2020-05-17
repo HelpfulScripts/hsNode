@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.81% </span>
+                <span class="strong">76.26% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>106/138</span>
+                <span class='fraction'>106/139</span>
             </div>
         
             
@@ -37,9 +37,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">84% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>21/24</span>
+                <span class='fraction'>21/25</span>
             </div>
         
             
@@ -1169,7 +1169,7 @@ export class Request {
         let auth = (options.headers &amp;&amp; options.headers.Authorization);
         const response = await new Promise((resolve:(out:Response)=&gt;void, reject:(e:{data:string, error:any})=&gt;void) =&gt; {
             let data = ''; 
-            log.debug(`requesting ${log.inspect(options, {depth:4})}`);
+            log.debug(<span class="fstat-no" title="function not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >`requesting ${log.inspect(options, {depth:4})}`)</span>;
             const req = http.request(options, (res:any) =&gt; {
                 const encoding = isTextual(options.url, res.headers['content-type'])? 'utf8' : 'binary';
                 res.setEncoding(encoding);

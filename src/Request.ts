@@ -324,7 +324,7 @@ export class Request {
         let auth = (options.headers && options.headers.Authorization);
         const response = await new Promise((resolve:(out:Response)=>void, reject:(e:{data:string, error:any})=>void) => {
             let data = ''; 
-            log.debug(`requesting ${log.inspect(options, {depth:4})}`);
+            log.debug(()=>`requesting ${log.inspect(options, {depth:4})}`);
             const req = http.request(options, (res:any) => {
                 const encoding = isTextual(options.url, res.headers['content-type'])? 'utf8' : 'binary';
                 res.setEncoding(encoding);

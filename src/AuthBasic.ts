@@ -6,7 +6,7 @@ import { Auth }             from './Auth';
 
 export class AuthBasic extends Auth {
     testAuth(options:Options, data:string, response:IncomingMessage): Options {
-        log.debug(`received www-authenticate request for ${options.host}`);
+        log.debug(()=>`received www-authenticate request for ${options.host}`);
         options.headers.Authorization = 'Basic ' + _btoa(`${this.username}:${this.password}`);
         return options;
     }
