@@ -15,9 +15,9 @@ Helpful Scripts functions that wrap some nodejs calls in Promise wrappers.
 
 ___
 
-## {@link Log Logging} functions (extends on [hsUtil](https://github.com/HelpfulScripts/hsUtil) logging), adding support for
+## Provides {@link Log Logging} functions (extends on [hsUtil](https://helpfulscripts.github.io/hsUtil/#!/api/hsUtil/0) logging), adding support for
 - log files
--  using {@ling Log.Log.transient transient} logging
+-  using {@link Log.Log.transient transient} logging
 
 ## REST {@link Request requests}, with support for
 - pacing requests - max request rate, max number of unresolved requests; see [hsUtil](https://github.com/HelpfulScripts/hsUtil)
@@ -33,7 +33,7 @@ ___
 ## Accessing the library functions:
 ```
 import * as hsNode from 'hsnode';
-const log = hsNode.log('myModule');
+const log = new hsNode.Log('myModule');
 const fs = hsNode.fs;
 const exec = hsNode.chid_process.exec;
 ```
@@ -42,14 +42,14 @@ or access submodules individually:
 import { node } from 'hsnode';
 const fs = node.fs
 
-import { log as gLog } from 'hsnode';
-const log = gLog('myModule');
+import { Log } from 'hsnode';
+const log = new Log('myModule');
 log.info('running');
 
-import { http } from 'hsnode';
-const cache = new CachedHTTPRequest('./cacheDir/');
-const url = new URL('http://mysite.com/');
-cache.request(url);
+import { Request } from 'hsnode';
+const request = new Request();
+request.cache = './cacheDir/';
+request.get('http://mysite.com/');
 ```
 */
 

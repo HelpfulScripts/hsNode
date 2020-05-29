@@ -1,5 +1,6 @@
 /**
- * Utility functions for HTTP and HTTPS GET and POST. The module wraps the respective `Node` calls in async/await patterns
+ * Utility functions for HTTP and HTTPS GET and POST. The module builds upon 
+ * [hsUtils.Request](https://helpfulscripts.github.io/hsUtil/#!/api/hsUtil/hsUtil.Request)
  * and provides support for
  * - simple authentication methods, 
  * - local caching,  
@@ -66,11 +67,13 @@ log.messageLength = 120;
 
 const protocol = {"http:":http, "https:":https};
 
-RequestUtil.decoders['html2json'] = (data:string) => { try { return html2json(data); } catch(e) { return {}; }};
-
-
 
 export class Request extends RequestUtil {
+    public static decoders:{[fn:string]: (data:string) => any} = {
+        str2json:  (data:string) => { try {return JSON.parse(data)} catch(e) { return {}}},
+        html2json: (data:string) => { try { return html2json(data); } catch(e) { return {}; }}
+    };
+
     /** the `log` facility to use */
     protected log: Log = log;
 
@@ -90,7 +93,11 @@ export class Request extends RequestUtil {
         try {
             const meta = JSON.parse(await fs.readTextFile(`${fname}-meta.json`)); 
             const data = await fs.readFile(fname+'.bin');
-            this.log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) found cache for ${fname} `); 
+            if (this.pace ) {
+                this.log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) found cache for ${fname} `); 
+            } else {
+                this.log.transient(`found cache for ${fname} `); 
+            }
             return {response:meta, data: data};   
         } catch(e) {
             return undefined; // no cache found
