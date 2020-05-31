@@ -92,7 +92,7 @@
 <p id=69 class="line"><span>&nbsp;&nbsp;69</span></p>
 <p id=70 class="line"><span>&nbsp;&nbsp;70</span></p>
 <p id=71 class="line"><span>&nbsp;&nbsp;71</span>export&nbsp;class&nbsp;Request&nbsp;extends&nbsp;RequestUtil&nbsp;{</p>
-<p id=72 class="line"><span>&nbsp;&nbsp;72</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;decoders:{[fn:string]:&nbsp;(data:string)&nbsp;=>&nbsp;any}&nbsp;=&nbsp;{</p>
+<p id=72 class="line"><span>&nbsp;&nbsp;72</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;decoders&nbsp;=&nbsp;{&nbsp;</p>
 <p id=73 class="line"><span>&nbsp;&nbsp;73</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str2json:&nbsp;&nbsp;(data:string)&nbsp;=>&nbsp;{&nbsp;try&nbsp;{return&nbsp;JSON.parse(data)}&nbsp;catch(e)&nbsp;{&nbsp;return&nbsp;{}}},</p>
 <p id=74 class="line"><span>&nbsp;&nbsp;74</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;html2json:&nbsp;(data:string)&nbsp;=>&nbsp;{&nbsp;try&nbsp;{&nbsp;return&nbsp;html2json(data);&nbsp;}&nbsp;catch(e)&nbsp;{&nbsp;return&nbsp;{};&nbsp;}}</p>
 <p id=75 class="line"><span>&nbsp;&nbsp;75</span>&nbsp;&nbsp;&nbsp;&nbsp;};</p>

@@ -69,7 +69,7 @@ const protocol = {"http:":http, "https:":https};
 
 
 export class Request extends RequestUtil {
-    public static decoders:{[fn:string]: (data:string) => any} = {
+    public static decoders = { 
         str2json:  (data:string) => { try {return JSON.parse(data)} catch(e) { return {}}},
         html2json: (data:string) => { try { return html2json(data); } catch(e) { return {}; }}
     };
