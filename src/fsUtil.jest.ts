@@ -1,7 +1,7 @@
-import { node } from './';
+import { child_process } from './cpUtil';
 
 import * as fsUtil from './fsUtil';
-const cpUtil = node.child_process;
+const cpUtil = child_process;
 const dir = __dirname+'/'; 
 const TEST_DIR = dir+'example/';
 

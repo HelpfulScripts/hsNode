@@ -1,6 +1,6 @@
 
 import * as fsUtil      from './fsUtil';
-import { Log }          from './index';  const log = new Log('log.jest');
+import { Log }          from './log';  const log = new Log('log.jest');
 
 describe('log', () => {
     let gLog: any;

@@ -1,6 +1,6 @@
-import { node } from './';
+import { child_process } from './cpUtil';
 
-const exec = node.child_process.exec;
+const exec = child_process.exec;
 
 describe('cpUtil', () => {
 

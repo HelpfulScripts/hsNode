@@ -53,15 +53,16 @@
 /** */
 
 import { URL }          from 'url';
-import { Log }          from './index';   const log = new Log('NodeRequest');
+import { Log }          from './log';   const log = new Log('NodeRequest');
 import * as fs          from "./fsUtil";
 import http             from 'http';
 import https            from 'https';
 import { Request as RequestUtil }   from 'hsutil';
-import { Options }                  from 'hsutil';
-import { Response }                 from 'hsutil';
-import { IncomingMessage }          from 'hsutil';
-var html2json = require('html2json').html2json;
+import { Options }      from 'hsutil';
+import { Response }     from 'hsutil';
+export { Response }     from 'hsutil';
+
+const html2json = require('html2json').html2json;
 
 log.messageLength = 120;
 

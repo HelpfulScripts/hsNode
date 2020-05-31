@@ -1,18 +1,26 @@
-// const  http =  require('http'); 
-
-import { Log }          from './index';  const log = new Log('Request.jest');
+import { Log }          from './log';  const log = new Log('Request.jest');
 import { Request }      from "./Request";
 import * as fsUtil      from "./fsUtil";
 
 jest.mock('http');
 const http = require('http');
 
-// const Digest = `Digest realm="testrealm@host.com", qop="auth,auth-int", nonce="dcd98b7102dd2f0e8b11d0f600bfb0c093", opaque="5ccc069c403ebaf9f0171e9517f40e41"`
+
+const HTMLpayload = `
+<html>
+<body id="theBody">
+<h1 id=main>The Content</h1>
+the Body<p>
+<div>first level
+    <div>second level</div>
+</div>
+</body></html>`;
 
 const payloads = [
     { path: '/myPath?query=value', code:200, content: '<html><body id="theBody"><h1 id=main>The Content</h1>the Body<p></body></html>' },
     { path: '/myPath.json', code:200, content: '{"first":"one", "second":"two"}' },
-    { path: '/myCached', code:200, content: '<html><body id="theBody"><h1 id=main>The Content</h1>the Body<p></body></html>' },
+    { path: '/myPath.html', code:200, content: HTMLpayload },
+    { path: '/myCached', code:200, content: HTMLpayload },
     { path: '/myCached.jpg', code:200, content: 'garykxxrgQWV ZHDOGILFTEFVXCFGADcstjukjcr' },
     { path: '/myAuth', code:403, authenticate: 'Basic', content: '<html><body><h1>403 - Forbidden</h1></body></html>' },
     { path: '/myDigest', code:401, authenticate: 'Digest', content: '<html><body><h1>Show me the goods</h1></body></html>' },
@@ -93,7 +101,7 @@ describe('Request', ()=>{
             const calls = http.request.mock.calls.length;
             const response = await request.get('http://my.space.com/myCached');
             const pageText = <string>response.data;
-            expect(pageText.length).toBe(78);
+            expect(pageText.length).toBe(135);
             expect(http.request.mock.calls.length).toBe(calls+1);
             done();
         });
@@ -113,7 +121,7 @@ describe('Request', ()=>{
             const calls = http.request.mock.calls.length;
             const response = await request.get('http://my.space.com/myCached');
             const pageText = <string>response.data;
-            expect(pageText.length).toBe(78);
+            expect(pageText.length).toBe(135);
             expect(http.request.mock.calls.length).toBe(calls+1);
             done();
         });
@@ -122,7 +130,7 @@ describe('Request', ()=>{
             const calls = http.request.mock.calls.length;
             const response = await request.get('http://my.space.com/myCached');
             const pageText = <string>response.data;
-            expect(pageText.length).toBe(78);
+            expect(pageText.length).toBe(135);
             expect(http.request.mock.calls.length).toBe(calls); // same as before
             done();
         }); 

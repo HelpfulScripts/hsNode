@@ -1,13 +1,8 @@
 
-import * as fs              from "./fsUtil";
-import { child_process }    from "./cpUtil";
+import * as fs  from "./fsUtil";
+import * as cp  from "./cpUtil";
+export *        from "./log";
+export *        from "./Request";
 
-export const node = { 
-    fs: fs,
-    child_process: child_process
-};
-
-export { Log }              from "./log";
-
-export { Request }          from "./Request";
-
+export { fs };
+export { cp };
