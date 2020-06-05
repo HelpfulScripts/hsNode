@@ -93,7 +93,7 @@ export class Request extends RequestUtil {
     protected async readCached(fname:string):Promise<Response> {
         try {
             const meta = JSON.parse(await fs.readTextFile(`${fname}-meta.json`)); 
-            const data = await fs.readFile(fname+'.bin');
+            const data = await fs.readFile(fname+'.bin', false);
             if (this.pace ) {
                 this.log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) found cache for ${fname} `); 
             } else {

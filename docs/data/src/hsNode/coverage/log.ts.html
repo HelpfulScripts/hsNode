@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.82% </span>
+                <span class="strong">79.17% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>18/22</span>
+                <span class='fraction'>19/24</span>
             </div>
         
             
@@ -433,7 +433,7 @@ export class Log extends LogUtil {
      * @return promise to return the file written to, or undefined
      */
     public transient(msg:any):string { 
-        return this.out(LogUtil.INFO, { color: ['green'], msg:msg+' \r' }); 
+        return this.out(LogUtil.INFO, msg.padEnd(this.messageLength || <span class="branch-1 cbranch-no" title="branch not covered" >80,</span> ' ')+' \r', { color: ['green']}); 
     }
 &nbsp;
     /** 

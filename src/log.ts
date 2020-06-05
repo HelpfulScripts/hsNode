@@ -76,7 +76,7 @@ export class Log extends LogUtil {
      * @return promise to return the file written to, or undefined
      */
     public transient(msg:any):string { 
-        return this.out(LogUtil.INFO, { color: ['green'], msg:msg+' \r' }); 
+        return this.out(LogUtil.INFO, msg.padEnd(this.messageLength || 80, ' ')+' \r', { color: ['green']}); 
     }
 
     /** 

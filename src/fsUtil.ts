@@ -246,11 +246,6 @@ export async function writeFile(thePath:string, content:string, isText:boolean=t
     }); 
 }
 
-// expected: 0D0A25B5 B5B5B50D 0A312030
-// ascii:    0D0A25FD FDFDFD0D 0A312030
-// binary:   0D0A25FD FDFDFD0D 0A312030
-// latin1:   0D0A25FD FDFDFD0D 0A312030
-
 /**
  * writes content to a file as a stream and promises to return the file name.
  * @param thePath the path to write to
