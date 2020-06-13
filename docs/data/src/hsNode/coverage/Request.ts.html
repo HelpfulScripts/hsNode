@@ -446,7 +446,7 @@ export class Request extends RequestUtil {
     protected async readCached(fname:string):Promise&lt;Response&gt; {
         try {
             const meta = JSON.parse(await fs.readTextFile(`${fname}-meta.json`)); 
-            const data = await fs.readFile(fname+'.bin');
+            const data = await fs.readFile(fname+'.bin', false);
             <span class="missing-if-branch" title="else path not taken" >E</span>if (this.pace ) {
                 this.log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) found cache for ${fname} `); 
             } else {
