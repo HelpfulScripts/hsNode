@@ -8,7 +8,7 @@
 			"id": 208,
 			"name": "\"Request\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -2125,7 +2125,7 @@
 			"id": 1,
 			"name": "\"cpUtil\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -2336,7 +2336,7 @@
 			"id": 10,
 			"name": "\"fsUtil\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -3755,14 +3755,14 @@
 			"id": 313,
 			"name": "\"index\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/node/hsNode/src/index.ts",
 			"children": [
 				{
-					"id": 314,
+					"id": 316,
 					"name": "Log",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -3772,7 +3772,7 @@
 					"target": 85
 				},
 				{
-					"id": 316,
+					"id": 318,
 					"name": "Request",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -3782,7 +3782,7 @@
 					"target": 209
 				},
 				{
-					"id": 315,
+					"id": 317,
 					"name": "Response",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -3790,6 +3790,26 @@
 						"isExported": true
 					},
 					"target": -1
+				},
+				{
+					"id": 315,
+					"name": "cp",
+					"kind": 16777216,
+					"kindString": "Reference",
+					"flags": {
+						"isExported": true
+					},
+					"target": 2
+				},
+				{
+					"id": 314,
+					"name": "fs",
+					"kind": 16777216,
+					"kindString": "Reference",
+					"flags": {
+						"isExported": true
+					},
+					"target": 10
 				}
 			],
 			"groups": [
@@ -3797,9 +3817,11 @@
 					"title": "References",
 					"kind": 16777216,
 					"children": [
-						314,
 						316,
-						315
+						318,
+						317,
+						315,
+						314
 					]
 				}
 			],
@@ -3815,7 +3837,7 @@
 			"id": 84,
 			"name": "\"log\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -6416,10 +6438,10 @@
 			]
 		},
 		{
-			"id": 317,
+			"id": 319,
 			"name": "\"overview\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -6439,7 +6461,7 @@
 	],
 	"groups": [
 		{
-			"title": "External modules",
+			"title": "Modules",
 			"kind": 1,
 			"children": [
 				208,
@@ -6447,7 +6469,7 @@
 				10,
 				313,
 				84,
-				317
+				319
 			]
 		}
 	]
