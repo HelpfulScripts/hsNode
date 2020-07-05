@@ -20,10 +20,10 @@ describe('hsFSutil', () => {
 		it(`${dir} should be a file`, () => 
 			expect(fsUtil.isFile(dir)).resolves.toBe(false)    // dir is a directory
 		);
-		it(`'./Gruntfile.js' should be a file`, () => 
-			expect(fsUtil.isFile('./Gruntfile.js')).resolves.toBe(true)
+		it(`'./Gruntfile.cjs' should be a file`, () => 
+			expect(fsUtil.isFile('./Gruntfile.cjs')).resolves.toBe(true)
 		);
-		it(`'./Gruntfile2.js' should be a file`, () => 
+		it(`missing file should not be a file`, () => 
 			expect(fsUtil.isFile('./Gruntfile2.js')).resolves.toBe(false)
 		);		
 	});
@@ -35,10 +35,10 @@ describe('hsFSutil', () => {
         it('./ should be a directory', () => 
             expect(fsUtil.isDirectory('./')).resolves.toBe(true)			
         );
-        it('./Gruntfile.js should not be a directory', () => 
-            expect(fsUtil.isDirectory('./Gruntfile.js')).resolves.toBe(false)			
+        it('./Gruntfile.cjs should not be a directory', () => 
+            expect(fsUtil.isDirectory('./Gruntfile.cjs')).resolves.toBe(false)			
         );
-        it('./Gruntfile2.js should not be a directory', () => 
+        it('missing file should not be a directory', () => 
             expect(fsUtil.isDirectory('./Gruntfile2.js')).resolves.toBe(false)			
         );
 	});

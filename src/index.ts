@@ -1,6 +1,6 @@
+export { child_process as cp }  from "./cpUtil.js";
+export *                        from "./log.js";
+export *                        from "./Request.js";
 
-export * as fs                  from "./fsUtil";
-export { child_process as cp }  from "./cpUtil";
-export *                        from "./log";
-export *                        from "./Request";
-
+import * as fs                  from "./fsUtil.js";
+export { fs };
