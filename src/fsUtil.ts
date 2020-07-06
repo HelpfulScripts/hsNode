@@ -105,6 +105,19 @@ export async function pathExists(thePath:string):Promise<boolean> {
 }
 
 /**
+ * determines if `thePath` is a file and promises to return the size in bytes.
+ * @param thePath the path to check
+ * @return promise to provide the size
+ */
+export async function fileSize(thePath:string):Promise<number> {
+    try { 
+        return (await stat(thePath)).size;
+    } catch(e) {
+        return -1;
+    }
+}
+
+/**
  * determines if `thePath` is a file and promises to provide `true` or `false`.
  * @param thePath the path to check
  * @return promise to provide `true` or `false`
