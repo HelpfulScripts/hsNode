@@ -47,7 +47,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 43,
 									"character": 9
 								}
@@ -72,7 +72,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 52,
 									"character": 13
 								}
@@ -119,7 +119,7 @@
 									],
 									"sources": [
 										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 											"line": 52,
 											"character": 14
 										}
@@ -142,7 +142,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 51,
 									"character": 10
 								}
@@ -198,7 +198,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 40,
 									"character": 18
 								}
@@ -223,7 +223,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 45,
 									"character": 16
 								}
@@ -271,7 +271,7 @@
 									],
 									"sources": [
 										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 											"line": 45,
 											"character": 17
 										}
@@ -294,7 +294,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 44,
 									"character": 18
 								}
@@ -356,7 +356,7 @@
 									],
 									"sources": [
 										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 											"line": 44,
 											"character": 19
 										}
@@ -379,7 +379,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 46,
 									"character": 11
 								}
@@ -435,7 +435,7 @@
 																	},
 																	"sources": [
 																		{
-																			"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+																			"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 																			"line": 46,
 																			"character": 43
 																		}
@@ -455,7 +455,7 @@
 																	},
 																	"sources": [
 																		{
-																			"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+																			"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 																			"line": 46,
 																			"character": 25
 																		}
@@ -475,7 +475,7 @@
 																	},
 																	"sources": [
 																		{
-																			"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+																			"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 																			"line": 46,
 																			"character": 20
 																		}
@@ -499,7 +499,7 @@
 															],
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 																	"line": 46,
 																	"character": 14
 																}
@@ -516,7 +516,7 @@
 									],
 									"sources": [
 										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 											"line": 46,
 											"character": 12
 										}
@@ -621,7 +621,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 67,
 									"character": 28
 								}
@@ -703,7 +703,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 																	"line": 53,
 																	"character": 47
 																}
@@ -731,7 +731,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 																	"line": 53,
 																	"character": 38
 																}
@@ -754,7 +754,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+															"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 															"line": 53,
 															"character": 26
 														}
@@ -782,7 +782,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 53,
 									"character": 7
 								}
@@ -861,7 +861,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 66,
 									"character": 24
 								}
@@ -982,7 +982,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 73,
 									"character": 30
 								}
@@ -1039,7 +1039,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 74,
 									"character": 30
 								}
@@ -1209,7 +1209,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 																	"line": 61,
 																	"character": 63
 																}
@@ -1237,7 +1237,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 																	"line": 61,
 																	"character": 54
 																}
@@ -1260,7 +1260,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+															"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 															"line": 61,
 															"character": 42
 														}
@@ -1288,7 +1288,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 61,
 									"character": 8
 								}
@@ -1383,7 +1383,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 																	"line": 57,
 																	"character": 62
 																}
@@ -1411,7 +1411,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 																	"line": 57,
 																	"character": 53
 																}
@@ -1434,7 +1434,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+															"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 															"line": 57,
 															"character": 41
 														}
@@ -1462,7 +1462,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 57,
 									"character": 7
 								}
@@ -1606,7 +1606,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 71,
 									"character": 21
 								}
@@ -1696,7 +1696,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/Request.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
 									"line": 70,
 									"character": 28
 								}
@@ -3997,7 +3997,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 30,
 									"character": 20
 								}
@@ -4023,7 +4023,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 29,
 									"character": 23
 								}
@@ -4049,7 +4049,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 27,
 									"character": 25
 								}
@@ -4075,7 +4075,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 28,
 									"character": 26
 								}
@@ -4101,7 +4101,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 14,
 									"character": 16
 								}
@@ -4127,7 +4127,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 17,
 									"character": 16
 								}
@@ -4154,7 +4154,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 11,
 									"character": 34
 								}
@@ -4183,7 +4183,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 15,
 									"character": 15
 								}
@@ -4209,7 +4209,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 16,
 									"character": 15
 								}
@@ -4236,7 +4236,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 13,
 									"character": 31
 								}
@@ -4263,7 +4263,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 12,
 									"character": 34
 								}
@@ -4290,7 +4290,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 26,
 									"character": 32
 								}
@@ -4317,7 +4317,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 18,
 									"character": 27
 								}
@@ -4377,7 +4377,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 																	"line": 22,
 																	"character": 16
 																}
@@ -4397,7 +4397,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 																	"line": 20,
 																	"character": 22
 																}
@@ -4417,7 +4417,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 																	"line": 21,
 																	"character": 15
 																}
@@ -4441,7 +4441,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+															"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 															"line": 19,
 															"character": 20
 														}
@@ -4452,7 +4452,7 @@
 									],
 									"sources": [
 										{
-											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+											"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 											"line": 18,
 											"character": 28
 										}
@@ -4558,12 +4558,12 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 32,
 									"character": 21
 								},
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 33,
 									"character": 21
 								}
@@ -4622,7 +4622,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 																	"line": 46,
 																	"character": 14
 																}
@@ -4643,7 +4643,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 																	"line": 47,
 																	"character": 14
 																}
@@ -4664,7 +4664,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 																	"line": 48,
 																	"character": 13
 																}
@@ -4688,7 +4688,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+															"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 															"line": 45,
 															"character": 15
 														}
@@ -4710,7 +4710,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 45,
 									"character": 10
 								}
@@ -4766,7 +4766,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 35,
 									"character": 9
 								}
@@ -4822,7 +4822,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 40,
 									"character": 9
 								}
@@ -4879,7 +4879,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 43,
 									"character": 10
 								}
@@ -5049,7 +5049,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 38,
 									"character": 8
 								}
@@ -5122,7 +5122,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 																	"line": 50,
 																	"character": 45
 																}
@@ -5145,7 +5145,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 																	"line": 50,
 																	"character": 29
 																}
@@ -5165,7 +5165,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+																	"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 																	"line": 50,
 																	"character": 37
 																}
@@ -5189,7 +5189,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+															"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 															"line": 50,
 															"character": 21
 														}
@@ -5211,7 +5211,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 50,
 									"character": 11
 								}
@@ -5282,7 +5282,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 34,
 									"character": 9
 								}
@@ -5426,7 +5426,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 41,
 									"character": 17
 								}
@@ -5570,7 +5570,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 44,
 									"character": 10
 								}
@@ -5626,7 +5626,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 37,
 									"character": 12
 								}
@@ -5744,7 +5744,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/esm/log.d.ts",
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/log.d.ts",
 									"line": 39,
 									"character": 8
 								}
