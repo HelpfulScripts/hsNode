@@ -4966,25 +4966,7 @@
 										}
 									],
 									"type": {
-										"type": "tuple",
-										"elements": [
-											{
-												"type": "intrinsic",
-												"name": "string"
-											},
-											{
-												"type": "intrinsic",
-												"name": "string"
-											},
-											{
-												"type": "intrinsic",
-												"name": "string"
-											},
-											{
-												"type": "intrinsic",
-												"name": "string"
-											}
-										]
+										"type": "tuple"
 									},
 									"overwrites": {
 										"type": "reference",

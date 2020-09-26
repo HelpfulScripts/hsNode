@@ -110,7 +110,7 @@ export class Request extends RequestUtil {
             // this.log.info(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) received ${fname} `); 
             const type = response.response.headers["content-type"];
             const meta = {
-                headers: Object.assign({}, response.response.headers),
+                headers: {...response.response.headers},
                 statusCode: response.response.statusCode,
                 statusMessage: response.response.statusMessage,
                 txt: response.response.txt
