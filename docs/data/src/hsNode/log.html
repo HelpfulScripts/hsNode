@@ -106,7 +106,7 @@
 <p id=83 class="line"><span>&nbsp;&nbsp;83</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;the&nbsp;actual&nbsp;logging;&nbsp;overrides&nbsp;`output`&nbsp;in&nbsp;`hsUtil.Log`</comment></p>
 <p id=84 class="line"><span>&nbsp;&nbsp;84</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</comment></p>
 <p id=85 class="line"><span>&nbsp;&nbsp;85</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;output(color:string[],&nbsp;header:string,&nbsp;line:string)&nbsp;{</p>
-<p id=86 class="line"><span>&nbsp;&nbsp;86</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;c&nbsp;=&nbsp;color.map(c&nbsp;=>&nbsp;COLOR[c]).join(<quote>''</quote>);</p>
+<p id=86 class="line"><span>&nbsp;&nbsp;86</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;c&nbsp;=&nbsp;color.map(c&nbsp;=&gt;&nbsp;COLOR[c]).join(<quote>''</quote>);</p>
 <p id=87 class="line"><span>&nbsp;&nbsp;87</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;msg&nbsp;=&nbsp;`${c}${header}${COLOR[<quote>'clear'</quote>]}&nbsp;${line}`;</p>
 <p id=88 class="line"><span>&nbsp;&nbsp;88</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(this.LogFile)&nbsp;{&nbsp;appendFileSync(date(this.LogFile),&nbsp;`${header}&nbsp;${line}\n`);&nbsp;}</p>
 <p id=89 class="line"><span>&nbsp;&nbsp;89</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(line.slice(-1)===<quote>'\r'</quote>)&nbsp;{&nbsp;process.stdout.write(msg);&nbsp;}</p>
@@ -125,14 +125,14 @@
 <p id=102 class="line"><span>&nbsp;102</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;filePattern&nbsp;a&nbsp;template&nbsp;to&nbsp;use&nbsp;for&nbsp;log&nbsp;file&nbsp;names.&nbsp;Options&nbsp;for&nbsp;calling:</comment></p>
 <p id=103 class="line"><span>&nbsp;103</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;return&nbsp;the&nbsp;current&nbsp;logfile&nbsp;name,&nbsp;or&nbsp;`undefined`&nbsp;if&nbsp;loggimng&nbsp;is&nbsp;disabled.</comment></p>
 <p id=104 class="line"><span>&nbsp;104</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</comment></p>
-<p id=105 class="line"><span>&nbsp;105</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;async&nbsp;logFile(filePattern?:string):Promise<string>&nbsp;{</p>
+<p id=105 class="line"><span>&nbsp;105</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;async&nbsp;logFile(filePattern?:string):Promise&lt;string&gt;&nbsp;{</p>
 <p id=106 class="line"><span>&nbsp;106</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(filePattern&nbsp;===&nbsp;null)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;disable&nbsp;logging&nbsp;in&nbsp;file</comment></p>
 <p id=107 class="line"><span>&nbsp;107</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.LogFile&nbsp;=&nbsp;undefined;&nbsp;</p>
 <p id=108 class="line"><span>&nbsp;108</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.info(<quote>"disabling&nbsp;logfile"</quote>);</p>
 <p id=109 class="line"><span>&nbsp;109</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.LogFile;</p>
 <p id=110 class="line"><span>&nbsp;110</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;if&nbsp;(filePattern&nbsp;===&nbsp;undefined)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;leave&nbsp;this.LogFile&nbsp;unchanged,&nbsp;return&nbsp;promise&nbsp;for&nbsp;logfile&nbsp;name</comment></p>
 <p id=111 class="line"><span>&nbsp;111</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.LogFile===undefined?&nbsp;undefined&nbsp;:&nbsp;date(this.LogFile);</p>
-<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;if&nbsp;(filePattern.indexOf(<quote>'/'</quote>)>=0)&nbsp;{&nbsp;</p>
+<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;if&nbsp;(filePattern.indexOf(<quote>'/'</quote>)&gt;=0)&nbsp;{&nbsp;</p>
 <p id=113 class="line"><span>&nbsp;113</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;parts&nbsp;=&nbsp;path.parse(filePattern);</p>
 <p id=114 class="line"><span>&nbsp;114</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</p>
 <p id=115 class="line"><span>&nbsp;115</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;exists:boolean&nbsp;=&nbsp;await&nbsp;pathExists(parts.dir);</p>
