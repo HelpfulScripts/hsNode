@@ -1,9 +1,62 @@
 import { child_process } from './cpUtil';
 
+
 import * as fsUtil from './fsUtil';
 const cpUtil = child_process;
-const dir = __dirname+'/'; 
-const TEST_DIR = dir+'example/';
+const dir = './bin/';
+const TEST_DIR = './src/example/';
+
+// jest.mock('fs', mock);
+
+// function mock() {
+//     function addToDirs(dir:string) {
+//         if (dirs.indexOf(dir) < 0) {
+//             dir.split('/').reduce((d, part) => { 
+//                 if (d === '/') { d = `${d}${part}`} else { d = `${d}/${part}`; }
+//                 if (dirs.indexOf(d)<0) { dirs.push(d); }
+//                 return d; 
+//             },'');
+//         }
+//     }
+//     const dirs:string[] = [];
+//     const fs = {
+//         ...jest.requireActual('fs'),
+//     }
+//     addToDirs(__dirname);
+//     fs.actualStat = fs.stat;
+//     fs.stat = (path:string, cb: (err:any, stats:any) => void) => {
+//         if (path.indexOf('__jest_test')>=0) { 
+//             console.log(`mock: checking stats '${path}': ${dirs.indexOf(path)}`);
+//         }
+//         fs.actualStat(path, (err:any, stats:any) => {
+//             stats.isDirectory = () => {
+//                 if (path.indexOf('__jest_test')>=0 || dirs.indexOf(path)<0) { 
+//                     console.log(`mock: checking dir '${path}': ${dirs.indexOf(path)}`);
+//                 }
+//                 return dirs.indexOf(path)>=0;
+//             }
+//             cb(err, stats);
+//         });
+//     };
+//     fs.unlink = (path:string, cb: (err?:any) => void) => cb();
+//     fs.rmdir = (path:string, cb: (err?:any) => void) => {
+//         const i = dirs.indexOf(path);
+//         if (i>=0) { dirs.splice(i,1); }
+//         cb();
+//     }
+//     fs.promises.mkdir = (dir:string) => {
+//         return new Promise((resolve, reject) => {
+//             if (dirs.indexOf(dir) < 0) {
+//                 addToDirs(dir);
+//                 resolve();
+//             } else { 
+//                 // console.log(`mock: dir exists error creating dir '${dir}'\n`);
+//                 reject({code:'EEXIST'}); 
+//             }
+//         })
+//     }
+//     return fs;
+// };
 
 describe('hsFSutil', () => {
     describe('pathExists', () => {
@@ -17,7 +70,7 @@ describe('hsFSutil', () => {
     });
 	
 	describe('isFile', () => {
-		it(`${dir} should be a file`, () => 
+		it(`${dir} should not be a file`, () => 
 			expect(fsUtil.isFile(dir)).resolves.toBe(false)    // dir is a directory
 		);
 		it(`'./Gruntfile.cjs' should be a file`, () => 
@@ -46,21 +99,18 @@ describe('hsFSutil', () => {
 	describe('isLink', () => {
         beforeAll(() => 
             fsUtil.isLink(`./_testLnk`)
-            .then(islink => islink? undefined : cpUtil.exec(`ln -s ./Gruntfile.js ./_testLnk`))
+            .then(islink => islink? undefined : cpUtil.exec(`ln -s ./Gruntfile.js ./bin/_testLnk`))
             .catch(console.log)
         );
         afterAll(() =>      // cleanup link
-            fsUtil.remove(`./_testLnk`)
+            fsUtil.remove(`./bin/_testLnk`)
             .catch(console.log)
         );
         it(`${__dirname} should not be a link`, () => 
             expect(fsUtil.isLink(__dirname)).resolves.toBe(false)			
         );
-        it(`${dir+'../_testLnk'} should be a link`, () => 
-            expect(fsUtil.isLink(dir+'../_testLnk')).resolves.toBe(true)
-        );
-        it(`${'./_testLnk'} should be a link`, () => 
-            expect(fsUtil.isLink('./_testLnk')).resolves.toBe(true)
+        it(`_testLnk should be a link`, () => 
+            expect(fsUtil.isLink('./bin/_testLnk')).resolves.toBe(true)
         );
         it(`${__dirname+'/abc'} should resolve to false for invalid name`, () => 
             fsUtil.isLink(__dirname+'/abc')
@@ -70,36 +120,36 @@ describe('hsFSutil', () => {
     });
 
     describe('mkdirs', () => {
+        const base = 'bin/__jest_test';
+        beforeAll(() => {
+        })
         afterAll(async () => {
-            await fsUtil.remove('./__jest_test/abc');
-            await fsUtil.remove('./__jest_test/a/b/c');
-            await fsUtil.remove('./__jest_test/a/b/');
-            await fsUtil.remove('./__jest_test/a/');
-            await fsUtil.remove('./__jest_test/');
-            await fsUtil.isDirectory('./__jest_test/');
+            await fsUtil.remove(`./${base}/abc`);
+            await fsUtil.remove(`./${base}/a/b/c`);
+            await fsUtil.remove(`./${base}/a/b/`);
+            await fsUtil.remove(`./${base}/a/`);
+            await fsUtil.remove(`./${base}/`);
+            await fsUtil.isDirectory(`./${base}/`);
         });
 
         it('should create subdirectory', async ()=> {
             expect.assertions(3);
-            const path = await fsUtil.mkdirs('../hsNode/__jest_test/a/b/c');
+            const path = await fsUtil.mkdirs(`../hsNode/${base}/a/b/c`);
             expect(path).toMatch(/__jest_test\/a\/b\/c/);
-            let dir = await fsUtil.isDirectory('./__jest_test/a/b/c');
+            let dir = await fsUtil.isDirectory(`./${base}/a/b/c`);
             expect(dir).toBe(true);
-            dir = await fsUtil.isDirectory('../hsNode/__jest_test/a/b/c/');
+            dir = await fsUtil.isDirectory(`../hsNode/${base}/a/b/c/`);
             expect(dir).toBe(true);
             return true;
         });
-        it('should not create subdirectory', ()=> 
-            expect(fsUtil.mkdirs('/__jest_test/a/b/c')).rejects.toMatch(/EROFS\: read-only file system, mkdir \'\/__jest_test\'/)
-        );
-        it('should pass without creating subdirectory', ()=> 
-            expect(fsUtil.mkdirs('./bin/')).resolves.toMatch(/.\/./)
-        );
+        it('should pass without creating subdirectory', ()=> {
+            return expect(fsUtil.mkdirs('./bin/')).resolves.toMatch(/.\/./);
+        });
         it('should catch duplicate mkdir', async () => {
             let path = [];
-            path[0] = await fsUtil.mkdirs('../hsNode/__jest_test/abc/');
-            path[1] = await fsUtil.mkdirs('../hsNode/__jest_test/abc/');
-            path[2] = await fsUtil.mkdirs('../hsNode/__jest_test/abc/');
+            path[0] = await fsUtil.mkdirs(`../hsNode/${base}/abc/`);
+            path[1] = await fsUtil.mkdirs(`../hsNode/${base}/abc/`);
+            path[2] = await fsUtil.mkdirs(`../hsNode/${base}/abc/`);
             expect(path[0]).toMatch(/\/__jest_test\/abc/);
             expect(path[0]).toMatch(/\/__jest_test\/abc/);
             return expect(path[0]).toMatch(/\/__jest_test\/abc/);

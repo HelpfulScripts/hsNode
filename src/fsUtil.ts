@@ -166,7 +166,6 @@ export async function isLink(thePath:string):Promise<boolean> {
  */ 
 export async function mkdirs(thePath:string):Promise<string> {    
     const p = path.normalize(path.resolve(process.cwd(),thePath));
-    // console.log(`mkdirs: '${thePath}' -> '${p}'`);
     let dirs = p.split('/');
     // create complete successive subdirs from the split
     dirs = dirs.map((dir, i) => dirs.slice(0,i+1).join('/'));
@@ -176,9 +175,9 @@ export async function mkdirs(thePath:string):Promise<string> {
         if (!exists) { try {
             await fs.promises.mkdir(dir);
         } catch(e) { 
-            if (e.code !== 'EEXIST') {
-                console.error(`error in mkdirs: ${e.code}`);
-                console.error(e); 
+            if (e?.code !== 'EEXIST') {
+                console.warn(`error in mkdirs: ${e?.code}`);
+                console.warn(e); 
                 throw `mkdir failed for ${dir}: ${p}\n${e}`;
             }
         }}
