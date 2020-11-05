@@ -1,62 +1,9 @@
 import { child_process } from './cpUtil';
 
-
 import * as fsUtil from './fsUtil';
 const cpUtil = child_process;
 const dir = './bin/';
 const TEST_DIR = './src/example/';
-
-// jest.mock('fs', mock);
-
-// function mock() {
-//     function addToDirs(dir:string) {
-//         if (dirs.indexOf(dir) < 0) {
-//             dir.split('/').reduce((d, part) => { 
-//                 if (d === '/') { d = `${d}${part}`} else { d = `${d}/${part}`; }
-//                 if (dirs.indexOf(d)<0) { dirs.push(d); }
-//                 return d; 
-//             },'');
-//         }
-//     }
-//     const dirs:string[] = [];
-//     const fs = {
-//         ...jest.requireActual('fs'),
-//     }
-//     addToDirs(__dirname);
-//     fs.actualStat = fs.stat;
-//     fs.stat = (path:string, cb: (err:any, stats:any) => void) => {
-//         if (path.indexOf('__jest_test')>=0) { 
-//             console.log(`mock: checking stats '${path}': ${dirs.indexOf(path)}`);
-//         }
-//         fs.actualStat(path, (err:any, stats:any) => {
-//             stats.isDirectory = () => {
-//                 if (path.indexOf('__jest_test')>=0 || dirs.indexOf(path)<0) { 
-//                     console.log(`mock: checking dir '${path}': ${dirs.indexOf(path)}`);
-//                 }
-//                 return dirs.indexOf(path)>=0;
-//             }
-//             cb(err, stats);
-//         });
-//     };
-//     fs.unlink = (path:string, cb: (err?:any) => void) => cb();
-//     fs.rmdir = (path:string, cb: (err?:any) => void) => {
-//         const i = dirs.indexOf(path);
-//         if (i>=0) { dirs.splice(i,1); }
-//         cb();
-//     }
-//     fs.promises.mkdir = (dir:string) => {
-//         return new Promise((resolve, reject) => {
-//             if (dirs.indexOf(dir) < 0) {
-//                 addToDirs(dir);
-//                 resolve();
-//             } else { 
-//                 // console.log(`mock: dir exists error creating dir '${dir}'\n`);
-//                 reject({code:'EEXIST'}); 
-//             }
-//         })
-//     }
-//     return fs;
-// };
 
 describe('hsFSutil', () => {
     describe('pathExists', () => {
