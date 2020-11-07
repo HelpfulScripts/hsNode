@@ -21,6 +21,7 @@ const payloads = [
     { path: '/myPath.json', code:200, content: '{"first":"one", "second":"two"}' },
     { path: '/myPath.html', code:200, content: HTMLpayload },
     { path: '/myCached', code:200, content: HTMLpayload },
+    { path: '/myCached.txt', code:200, content: HTMLpayload },
     { path: '/myCached.jpg', code:200, content: 'garykxxrgQWV ZHDOGILFTEFVXCFGADcstjukjcr' },
     { path: '/myAuth', code:403, authenticate: 'Basic', content: '<html><body><h1>403 - Forbidden</h1></body></html>' },
     { path: '/myDigest', code:401, authenticate: 'Digest', content: '<html><body><h1>Show me the goods</h1></body></html>' },
@@ -39,71 +40,65 @@ describe('Request', ()=>{
         request.setAuthToken();
     });
 
-    test(`myPath?query=value should decode html`, (done) => {
+    test(`myPath?query=value should decode html`, async () => {
         expect.assertions(6);
-        const test = async () => {
-            const url = 'http://my.space.com/myPath?query=value';
-            request.decode = Request.decoders.html2json;
-            const response = await request.get(url);
-            const json:any = response.data;
-            expect(json).toHaveProperty('child');
-            expect(json.child[0].tag).toBe('html');
-            expect(json.child[0]).toHaveProperty('child');
-            expect(json.child[0].child[0].tag).toBe('body');
-            expect(json.child[0].child[0]).toHaveProperty('child');
-            expect(json.child[0].child[0].child[0].tag).toBe('h1');
-            done();
-        };
-        test();
+        const url = 'http://my.space.com/myPath?query=value';
+        request.decode = Request.decoders.html2json;
+        const response = await request.get(url);
+        const json:any = response.data;
+        return Promise.all([
+            expect(json).toHaveProperty('child'),
+            expect(json.child[0].tag).toBe('html'),
+            expect(json.child[0]).toHaveProperty('child'),
+            expect(json.child[0].child[0].tag).toBe('body'),
+            expect(json.child[0].child[0]).toHaveProperty('child'),
+            expect(json.child[0].child[0].child[0].tag).toBe('h1')
+        ]);
     });
 
-    test(`myPath.json should decode json`, (done) => {
+    test(`myPath.json should decode json`, async () => {
         expect.assertions(2);
-        const test = async () => {
-            const url = 'http://my.space.com/myPath.json';
-            request.decode = Request.decoders.str2json;
-            const response = await request.get(url);
-            const json:any = response.data;
-            expect(json).toHaveProperty('first');
-            expect(json.first).toBe('one');
-            done();
-        };
-        test();
+        const url = 'http://my.space.com/myPath.json';
+        request.decode = Request.decoders.str2json;
+        const response = await request.get(url);
+        const json:any = response.data;
+        return Promise.all([
+            expect(json).toHaveProperty('first'),
+            expect(json.first).toBe('one')
+        ]);
     });
 
-    it('should ask for Basic authentication', async (done)=>{
+    it('should ask for Basic authentication', async ()=>{
         expect.assertions(1);
         const url = 'http://my.space.com/myAuth';  
         request.setCredentials('me', 'mysecret');
         request.decode = undefined;
         const response = await request.get(url);
         const r = response.data;
-        expect(r).toBe('<html><body><h1>403 - Forbidden</h1></body></html>');
-        done();
+        return expect(r).toBe('<html><body><h1>403 - Forbidden</h1></body></html>');
     });
 
-    it('should ask for Digest authentication', async (done)=>{
+    it('should ask for Digest authentication', async ()=>{
         const url = 'http://my.space.com/myDigest';
         request.setCredentials('admin', 'littleSecret');
         const response = await request.get(url);
         const r = response.data;
-        expect(r).toBe('<html><body><h1>Show me the goods</h1></body></html>');
-        done();
+        return expect(r).toBe('<html><body><h1>Show me the goods</h1></body></html>');
     });
 
     describe('pacing', () => {
         beforeEach(() => {
-            request.cache = undefined;
             request.setPace({pace:50, max:10});
+            request.setCredentials();
         });
-        it('should request online', async (done) => {
+        it('should request online', async () => {
             expect.assertions(2);
             const calls = http.request.mock.calls.length;
-            const response = await request.get('http://my.space.com/myCached');
-            const pageText = <string>response.data;
-            expect(pageText.length).toBe(135);
-            expect(http.request.mock.calls.length).toBe(calls+1);
-            done();
+            const pageText = await request.get('http://my.space.com/myCached.txt');
+            return Promise.all([
+                expect((<string>pageText.data).length).toBe(135),
+                expect(http.request.mock.calls.length).toBe(calls+1)
+            ]);
         });
     });
 
@@ -112,9 +107,8 @@ describe('Request', ()=>{
         beforeEach(() => {
             request.cache = dir;
         });
-        afterAll(async (done) => {
-            await fsUtil.removeAll(__dirname + '/../bin/cache/'); 
-            done();
+        afterAll(async () => {
+            return await fsUtil.removeAll(__dirname + '/../bin/cache/'); 
         });
         it('should request online', async (done) => {
             expect.assertions(2);

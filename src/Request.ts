@@ -78,9 +78,28 @@ export class Request extends RequestUtil {
     /** the `log` facility to use */
     protected log: Log = log;
 
+    /** 
+     * the location to use for caching. Set this property to the caching directory, e.g.:
+     * `request.cache = './bin'`, ommitting a trailing `/`. 
+     * To disable caching, set it to `undefined`.
+     */
+    public cache:string;
+
     protected getURL(url:string|URL):URL { 
         return (typeof url === 'string')? new URL(url) : url; 
     }
+
+    /**
+     * constructs the cache name to use. The function call can be overwritten with 
+     * a custom function to modify cache locations. 
+     * This default implementation uses `request.cache/` as a prefix and adds 
+     * the `path` element in `Options` to create required subdirectories 
+     * underneath the `cache` location.
+     * @param options the request options
+     */
+    public cacheName = (options:Options):string =>
+        this.cache===undefined? undefined :  //   'q=.../' --> 'q=...-'    remove ?
+            `${this.cache}/${options.path.replace(/q=(.*?)\//g,'q=$1-').replace(/\?/g,'')}`
 
     /**
      * attempts to read a cached file and returns `undefined` if none is found.
@@ -120,12 +139,44 @@ export class Request extends RequestUtil {
        } catch(e) { this.log.warn(`error writing cache for content ${response.response.headers["content-type"]} and file ${fname}: ${e}`); }
     }
 
+    protected async requestOptions(options:Options, useCached:boolean, postData?:any):Promise<Response> {
+        const fname = this.cacheName(options);
+        if (fname && useCached && options.method === 'GET') { 
+            const result = await this.readCached(fname); 
+            if (result !== undefined) { return result; }
+        }
+
+        const response = await super.requestOptions(options, useCached, postData);
+        
+        // let request: Promise<Response>;
+        // if (this.pace) {
+        //     this.log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) ${options.method}-ing ${options.url}`); 
+        //     request = this.pace.add(() => this.request(options, postData), `${options.method} ${options.url}`);
+        // } else {
+        //     request = this.request(options, postData);
+        // }
+        // // this.log.debug(()=>`${options.method}-ing ${options.url}`); 
+        // const response = await request;
+        // if (this.pace) { this.log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) received ${options.method} ${options.url} `); }
+        // // this.log.debug(()=>`received ${options.method} ${response.response.statusMessage} ${options.method} ${options.url}`); 
+
+        const code = response.response.statusCode||response.response.status;
+        if(code >= 200 && code < 300) {
+            if (fname && options.method === 'GET') {
+                await this.writeCached(fname, response);
+            }
+        }
+        return response;
+    }
+
+
+
     protected async issueRequest(options:Options, postData?:any):Promise<Response> {
         const request = this;
         const prot = protocol[options.protocol];
         return new Promise((resolve:(out:Response)=>void, reject:(e:{data:string, error:any})=>void) => {
             let data = ''; 
-            this.log.debug(()=>`requesting ${this.log.inspect(options, {depth:4})}`);
+            // this.log.info(()=>`requesting ${this.log.inspect(options, {depth:4})}`);
             const req = prot.request(options, (res:any) => {
                 const encoding = request.isTextualContent(res.headers['content-type'])? 'utf8' : 'binary';
                 res.setEncoding(encoding);
