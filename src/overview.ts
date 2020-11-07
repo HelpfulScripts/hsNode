@@ -8,9 +8,9 @@ Helpful Scripts functions that wrap some nodejs calls in Promise wrappers.
 [![npm version](https://badge.fury.io/js/hsnode.svg)](https://badge.fury.io/js/hsnode)
 [![docs](https://img.shields.io/badge/hsDocs-hsNode-blue.svg)](https://helpfulscripts.github.io/hsNode/#!/api/hsNode/0)
 [![Build Status](https://github.com/HelpfulScripts/hsNode/workflows/CI/badge.svg)](https://github.com/HelpfulScripts/hsNode/) 
-[![Dependencies Status](https://david-dm.org/helpfulscripts/hsnode.svg)](https://david-dm.org/helpfulscripts/hsnode)
 [![codecov](https://codecov.io/gh/HelpfulScripts/hsNode/branch/master/graph/badge.svg)](https://codecov.io/gh/HelpfulScripts/hsNode)
 [![Known Vulnerabilities](https://snyk.io/test/github/HelpfulScripts/hsNode/badge.svg?targetFile=package.json)](https://snyk.io/test/github/HelpfulScripts/hsNode?targetFile=package.json)
+[![Dependencies Status](https://david-dm.org/helpfulscripts/hsnode.svg)](https://david-dm.org/helpfulscripts/hsnode)
 
 ___
 
