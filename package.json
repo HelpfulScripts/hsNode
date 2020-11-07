@@ -5,7 +5,8 @@
     "files": [
         "bin/"
     ],
-    "types": "./bin/cjs/index.d.ts",
+    "types": "./bin/esm/index.d.ts",
+    "type": "module",
     "scripts": {
         "grunt": "grunt --gruntfile Gruntfile.cjs",
         "prepublishOnly": "npm run grunt",
