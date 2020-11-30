@@ -116,12 +116,12 @@
 <p id=93 class="line"><span>&nbsp;&nbsp;93</span>&nbsp;&nbsp;&nbsp;&nbsp;<comment>/**</comment></p>
 <p id=94 class="line"><span>&nbsp;&nbsp;94</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;sets&nbsp;a&nbsp;new&nbsp;logfile&nbsp;name&nbsp;template.&nbsp;Logfiles&nbsp;are&nbsp;created&nbsp;using&nbsp;this&nbsp;template&nbsp;</comment></p>
 <p id=95 class="line"><span>&nbsp;&nbsp;95</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;at&nbsp;the&nbsp;time&nbsp;of&nbsp;each&nbsp;log&nbsp;entry&nbsp;call.&nbsp;If&nbsp;the&nbsp;file&nbsp;exists,&nbsp;the&nbsp;log&nbsp;entry&nbsp;will&nbsp;be&nbsp;appended.</comment></p>
-<p id=96 class="line"><span>&nbsp;&nbsp;96</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;This&nbsp;is&nbsp;a&nbsp;global&nbsp;setting&nbsp;that&nbsp;affects&nbsp;reporting&nbsp;in&nbsp;all&nbsp;modules.</comment></p>
+<p id=96 class="line"><span>&nbsp;&nbsp;96</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Any&nbsp;path&nbsp;information&nbsp;in&nbsp;`filePattern`&nbsp;is&nbsp;interpreted&nbsp;relative&nbsp;to&nbsp;the&nbsp;runtime&nbsp;base&nbsp;directory.</comment></p>
 <p id=97 class="line"><span>&nbsp;&nbsp;97</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Usage:</comment></p>
 <p id=98 class="line"><span>&nbsp;&nbsp;98</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;-&nbsp;`logFile()`:&nbsp;return&nbsp;the&nbsp;current&nbsp;logfile&nbsp;name</comment></p>
 <p id=99 class="line"><span>&nbsp;&nbsp;99</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;-&nbsp;`logFile(null)`:&nbsp;disable&nbsp;log&nbsp;file</comment></p>
 <p id=100 class="line"><span>&nbsp;100</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;-&nbsp;`logFile(<quote>''</quote>)`:&nbsp;set&nbsp;default&nbsp;log&nbsp;file&nbsp;template&nbsp;`log-%YYYY-%MM-%DD.txt`</comment></p>
-<p id=101 class="line"><span>&nbsp;101</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;-&nbsp;`logFile(<quote>'log%D/%M/%Y.log'</quote>)`:&nbsp;set&nbsp;new&nbsp;log&nbsp;file&nbsp;template</comment></p>
+<p id=101 class="line"><span>&nbsp;101</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;-&nbsp;`logFile(<quote>'log-%YYYY-%MM-%DD.txt'</quote>)`:&nbsp;set&nbsp;new&nbsp;log&nbsp;file&nbsp;template</comment></p>
 <p id=102 class="line"><span>&nbsp;102</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;filePattern&nbsp;a&nbsp;template&nbsp;to&nbsp;use&nbsp;for&nbsp;log&nbsp;file&nbsp;names.&nbsp;Options&nbsp;for&nbsp;calling:</comment></p>
 <p id=103 class="line"><span>&nbsp;103</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;promise&nbsp;to&nbsp;return&nbsp;the&nbsp;current&nbsp;logfile&nbsp;name,&nbsp;or&nbsp;`undefined`&nbsp;if&nbsp;loggimng&nbsp;is&nbsp;disabled.</comment></p>
 <p id=104 class="line"><span>&nbsp;104</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</comment></p>

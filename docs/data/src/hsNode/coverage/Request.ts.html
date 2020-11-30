@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.63% </span>
+                <span class="strong">89.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>58/64</span>
+                <span class='fraction'>58/65</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.86% </span>
+                <span class="strong">86.67% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>13/14</span>
+                <span class='fraction'>13/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.64% </span>
+                <span class="strong">92.98% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>53/56</span>
+                <span class='fraction'>53/57</span>
             </div>
         
             
@@ -247,15 +247,7 @@
 <a name='L188'></a><a href='#L188'>188</a>
 <a name='L189'></a><a href='#L189'>189</a>
 <a name='L190'></a><a href='#L190'>190</a>
-<a name='L191'></a><a href='#L191'>191</a>
-<a name='L192'></a><a href='#L192'>192</a>
-<a name='L193'></a><a href='#L193'>193</a>
-<a name='L194'></a><a href='#L194'>194</a>
-<a name='L195'></a><a href='#L195'>195</a>
-<a name='L196'></a><a href='#L196'>196</a>
-<a name='L197'></a><a href='#L197'>197</a>
-<a name='L198'></a><a href='#L198'>198</a>
-<a name='L199'></a><a href='#L199'>199</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L191'></a><a href='#L191'>191</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -334,6 +326,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -404,18 +400,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
@@ -533,6 +517,10 @@ export class Request extends RequestUtil {
     /** the `log` facility to use */
     protected log: Log = log;
 &nbsp;
+    public <span class="fstat-no" title="function not covered" >setLogFile(</span>file:string) {
+<span class="cstat-no" title="statement not covered" >        this.log.logFile(file);</span>
+    }
+&nbsp;
     /** 
      * the location to use for caching. Set this property to the caching directory, e.g.:
      * `request.cache = './bin'`, ommitting a trailing `/`. 
@@ -603,18 +591,6 @@ export class Request extends RequestUtil {
 &nbsp;
         const response = await super.requestOptions(options, useCached, postData);
         
-        // let request: Promise&lt;Response&gt;;
-        // if (this.pace) {
-        //     this.log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) ${options.method}-ing ${options.url}`); 
-        //     request = this.pace.add(() =&gt; this.request(options, postData), `${options.method} ${options.url}`);
-        // } else {
-        //     request = this.request(options, postData);
-        // }
-        // // this.log.debug(()=&gt;`${options.method}-ing ${options.url}`); 
-        // const response = await request;
-        // if (this.pace) { this.log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) received ${options.method} ${options.url} `); }
-        // // this.log.debug(()=&gt;`received ${options.method} ${response.response.statusMessage} ${options.method} ${options.url}`); 
-&nbsp;
         const code = response.response.statusCode||response.response.status;
         <span class="missing-if-branch" title="else path not taken" >E</span>if(code &gt;= 200 &amp;&amp; code &lt; 300) {
             if (fname &amp;&amp; options.method === 'GET') {

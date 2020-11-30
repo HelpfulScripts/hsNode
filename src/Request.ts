@@ -78,6 +78,10 @@ export class Request extends RequestUtil {
     /** the `log` facility to use */
     protected log: Log = log;
 
+    public setLogFile(file:string) {
+        this.log.logFile(file);
+    }
+
     /** 
      * the location to use for caching. Set this property to the caching directory, e.g.:
      * `request.cache = './bin'`, ommitting a trailing `/`. 

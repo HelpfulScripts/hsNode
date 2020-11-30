@@ -93,12 +93,12 @@ export class Log extends LogUtil {
     /**
      * sets a new logfile name template. Logfiles are created using this template 
      * at the time of each log entry call. If the file exists, the log entry will be appended.
-     * This is a global setting that affects reporting in all modules.
+     * Any path information in `filePattern` is interpreted relative to the runtime base directory.
      * Usage:
      * - `logFile()`: return the current logfile name
      * - `logFile(null)`: disable log file
      * - `logFile('')`: set default log file template `log-%YYYY-%MM-%DD.txt`
-     * - `logFile('log%D/%M/%Y.log')`: set new log file template
+     * - `logFile('log-%YYYY-%MM-%DD.txt')`: set new log file template
      * @param filePattern a template to use for log file names. Options for calling:
      * @return promise to return the current logfile name, or `undefined` if loggimng is disabled.
      */
