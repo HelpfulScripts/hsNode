@@ -39,7 +39,7 @@ module.exports = (grunt) => {
 
 
 const launchJest = () => require('child_process').spawnSync('./node_modules/.bin/jest',  ['-c=jest.config.json', '-i'], {stdio: 'inherit'});
-const commit     = () => require('child_process').spawnSync('git',  ['status'], {stdio: 'inherit'});
+const commit     = () => require('child_process').spawnSync('git',  ['commit', '-m "version bump"', '-a'], {stdio: 'inherit'});
 
 function make(grunt) {
     const cfg = require('./gruntCfg.json');
