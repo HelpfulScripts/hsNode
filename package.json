@@ -1,6 +1,6 @@
 {
     "name": "hsnode",
-    "version": "2.18.10",
+    "version": "2.18.11",
     "main": "./bin/cjs/index.js",
     "files": [
         "bin/"
@@ -9,7 +9,7 @@
     "type": "module",
     "scripts": {
         "grunt": "grunt --gruntfile Gruntfile.cjs",
-        "prepublishOnly": "npm run grunt publish", 
+        "prepublishOnly": "npm run grunt publish",
         "postpublish": "npm version patch"
     },
     "keywords": [
