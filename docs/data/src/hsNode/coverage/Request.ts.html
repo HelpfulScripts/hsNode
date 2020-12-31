@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.67% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>13/15</span>
+                <span class='fraction'>14/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.98% </span>
+                <span class="strong">92.86% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>53/57</span>
+                <span class='fraction'>52/56</span>
             </div>
         
             
@@ -245,9 +245,7 @@
 <a name='L186'></a><a href='#L186'>186</a>
 <a name='L187'></a><a href='#L187'>187</a>
 <a name='L188'></a><a href='#L188'>188</a>
-<a name='L189'></a><a href='#L189'>189</a>
-<a name='L190'></a><a href='#L190'>190</a>
-<a name='L191'></a><a href='#L191'>191</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L189'></a><a href='#L189'>189</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -416,8 +414,6 @@
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
@@ -533,8 +529,8 @@ export class Request extends RequestUtil {
     }
 &nbsp;
     /**
-     * constructs the cache name to use. The function call can be overwritten with 
-     * a custom function to modify cache locations. 
+     * constructs the cache name to use for the request instance described in `options`. 
+     * The function call can be overwritten with a custom function to modify cache locations. 
      * This default implementation uses `request.cache/` as a prefix and adds 
      * the `path` element in `Options` to create required subdirectories 
      * underneath the `cache` location.
@@ -603,22 +599,20 @@ export class Request extends RequestUtil {
 &nbsp;
 &nbsp;
     protected async issueRequest(options:Options, postData?:any):Promise&lt;Response&gt; {
-        const request = this;
         const prot = protocol[options.protocol];
-        return new Promise((resolve:(out:Response)=&gt;void, reject:(e:{data:string, error:any})=&gt;void) =&gt; {
+        return new Promise((resolve:(out:Response)=&gt;void, reject:(e:any)=&gt;void) =&gt; {
             let data = ''; 
-            // this.log.info(()=&gt;`requesting ${this.log.inspect(options, {depth:4})}`);
+            this.log.info(()=&gt;`requesting ${options.url} with headers\n${this.log.inspect(options.headers)}`);
             const req = prot.request(options, (res:any) =&gt; {
-                const encoding = request.isTextualContent(res.headers['content-type'])? 'utf8' : 'binary';
-                res.setEncoding(encoding);
-                res.txt = encoding === 'utf8';
+                res.txt = Request.isTextualContent(res.headers['content-type'])
+                res.setEncoding(res.txt?'utf8':'binary');    // returns data as Buffer if not set
                 res.on('data', (chunk:string) =&gt; data += chunk);
                 res.on('end', () =&gt; {
                     resolve({data:data, response:res});
                 });
             });
             req.on('error', <span class="fstat-no" title="function not covered" >(e</span>:any) =&gt; {
-<span class="cstat-no" title="statement not covered" >                reject({data:'', error:e});</span>
+<span class="cstat-no" title="statement not covered" >                reject(e);</span>
             });
     
             // write data to request body

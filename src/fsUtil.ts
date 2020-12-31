@@ -3,8 +3,8 @@
  * 
  * ### Usage:
  * ```
- * import { node } from 'hsnode';
- * const files = node.fs.readDir('./');
+ * import { fs } from 'hsnode';
+ * const files = fs.readDir('./');
  *     .then((stdout, stderr) => {...})
  *     .catch(err => {...});
  * ```

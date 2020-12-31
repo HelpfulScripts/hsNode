@@ -94,8 +94,8 @@ export class Request extends RequestUtil {
     }
 
     /**
-     * constructs the cache name to use. The function call can be overwritten with 
-     * a custom function to modify cache locations. 
+     * constructs the cache name to use for the request instance described in `options`. 
+     * The function call can be overwritten with a custom function to modify cache locations. 
      * This default implementation uses `request.cache/` as a prefix and adds 
      * the `path` element in `Options` to create required subdirectories 
      * underneath the `cache` location.
@@ -164,22 +164,20 @@ export class Request extends RequestUtil {
 
 
     protected async issueRequest(options:Options, postData?:any):Promise<Response> {
-        const request = this;
         const prot = protocol[options.protocol];
-        return new Promise((resolve:(out:Response)=>void, reject:(e:{data:string, error:any})=>void) => {
+        return new Promise((resolve:(out:Response)=>void, reject:(e:any)=>void) => {
             let data = ''; 
-            // this.log.info(()=>`requesting ${this.log.inspect(options, {depth:4})}`);
+            this.log.info(()=>`requesting ${options.url} with headers\n${this.log.inspect(options.headers)}`);
             const req = prot.request(options, (res:any) => {
-                const encoding = request.isTextualContent(res.headers['content-type'])? 'utf8' : 'binary';
-                res.setEncoding(encoding);
-                res.txt = encoding === 'utf8';
+                res.txt = Request.isTextualContent(res.headers['content-type'])
+                res.setEncoding(res.txt?'utf8':'binary');    // returns data as Buffer if not set
                 res.on('data', (chunk:string) => data += chunk);
                 res.on('end', () => {
                     resolve({data:data, response:res});
                 });
             });
             req.on('error', (e:any) => {
-                reject({data:'', error:e});
+                reject(e);
             });
     
             // write data to request body

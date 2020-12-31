@@ -83,8 +83,13 @@ export class Log extends LogUtil {
      * the actual logging; overrides `output` in `hsUtil.Log`
      */
     protected output(color:string[], header:string, line:string) {
+        const lines = line.split('\n')
+        if (this.maxLength>0) {
+            lines.forEach((l,i) => l.length <= this.maxLength? '' :
+                lines[i] = `${line.slice(0, this.maxLength/2-2)}...${line.slice(-this.maxLength/2+2)}`)
+        }
         const c = color.map(c => COLOR[c]).join('');
-        const msg = `${c}${header}${COLOR['clear']} ${line}`;
+        const msg = `${c}${header}${COLOR['clear']} ${lines.join('\n')}`;
         if (this.LogFile) { appendFileSync(date(this.LogFile), `${header} ${line}\n`); }
         if (line.slice(-1)==='\r') { process.stdout.write(msg); }
         else { console.log(msg); }
