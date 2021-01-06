@@ -1,6 +1,7 @@
 import { Log }          from './log';  const log = new Log('Request.jest');
 import { Request }      from "./Request";
 import * as fsUtil      from "./fsUtil";
+import './AuthDigest'
 
 jest.mock('http');
 const http = require('http');
@@ -30,6 +31,7 @@ const payloads = [
 http.__setPayLoads(payloads);
 
 const request = new Request();
+
 
 describe('Request', ()=>{
     beforeEach(() => {

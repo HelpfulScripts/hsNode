@@ -4,3 +4,6 @@ export *                        from "./Request.js";
 
 import * as fs                  from "./fsUtil.js";
 export { fs };
+
+// enable 'Digest' authentication
+import './AuthDigest'

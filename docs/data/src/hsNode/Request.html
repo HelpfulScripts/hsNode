@@ -190,7 +190,7 @@
 <p id=167 class="line"><span>&nbsp;167</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;prot&nbsp;=&nbsp;protocol[options.protocol];</p>
 <p id=168 class="line"><span>&nbsp;168</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;new&nbsp;Promise((resolve:(out:Response)=&gt;void,&nbsp;reject:(e:any)=&gt;void)&nbsp;=&gt;&nbsp;{</p>
 <p id=169 class="line"><span>&nbsp;169</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;data&nbsp;=&nbsp;<quote>''</quote>;&nbsp;</p>
-<p id=170 class="line"><span>&nbsp;170</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.log.info(()=&gt;`requesting&nbsp;${options.url}&nbsp;with&nbsp;headers\n${this.log.inspect(options.headers)}`);</p>
+<p id=170 class="line"><span>&nbsp;170</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.log.debug(()=&gt;`requesting&nbsp;${options.url}`);</p>
 <p id=171 class="line"><span>&nbsp;171</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;req&nbsp;=&nbsp;prot.request(options,&nbsp;(res:any)&nbsp;=&gt;&nbsp;{</p>
 <p id=172 class="line"><span>&nbsp;172</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res.txt&nbsp;=&nbsp;Request.isTextualContent(res.headers[<quote>'content-type'</quote>])</p>
 <p id=173 class="line"><span>&nbsp;173</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res.setEncoding(res.txt?<quote>'utf8'</quote>:<quote>'binary'</quote>);&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;returns&nbsp;data&nbsp;as&nbsp;Buffer&nbsp;if&nbsp;not&nbsp;set</comment></p>
