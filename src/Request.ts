@@ -167,7 +167,7 @@ export class Request extends RequestUtil {
         const prot = protocol[options.protocol];
         return new Promise((resolve:(out:Response)=>void, reject:(e:any)=>void) => {
             let data = ''; 
-            this.log.info(()=>`requesting ${options.url} with headers\n${this.log.inspect(options.headers)}`);
+            this.log.debug(()=>`requesting ${options.url}`);
             const req = prot.request(options, (res:any) => {
                 res.txt = Request.isTextualContent(res.headers['content-type'])
                 res.setEncoding(res.txt?'utf8':'binary');    // returns data as Buffer if not set
