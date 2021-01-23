@@ -666,7 +666,7 @@
 			},
 			"children": [
 				{
-					"id": 353,
+					"id": 355,
 					"name": "Response",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -1624,6 +1624,89 @@
 							}
 						},
 						{
+							"id": 346,
+							"name": "isTextualContent",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isProtected": true,
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 347,
+									"name": "isTextualContent",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {
+										"isExported": true
+									},
+									"parameters": [
+										{
+											"id": 348,
+											"name": "contentType",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isExported": true
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											}
+										},
+										{
+											"id": 349,
+											"name": "contentLength",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isExported": true
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 350,
+											"name": "url",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isExported": true
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"id": 346,
+										"name": "Request.isTextualContent"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
+									"line": 81,
+									"character": 30
+								}
+							],
+							"inheritedFrom": {
+								"type": "reference",
+								"id": 346,
+								"name": "Request.isTextualContent"
+							}
+						},
+						{
 							"id": 278,
 							"name": "issueRequest",
 							"kind": 2048,
@@ -1689,7 +1772,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/code/ts/hsLibs/node/hsNode/src/Request.ts",
-									"line": 166,
+									"line": 169,
 									"character": 32
 								}
 							],
@@ -2219,7 +2302,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/code/ts/hsLibs/node/hsNode/src/Request.ts",
-									"line": 146,
+									"line": 149,
 									"character": 34
 								}
 							],
@@ -2336,7 +2419,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/code/ts/hsLibs/node/hsNode/src/Request.ts",
-									"line": 131,
+									"line": 132,
 									"character": 31
 								}
 							]
@@ -2412,65 +2495,7 @@
 							}
 						},
 						{
-							"id": 346,
-							"name": "isTextualContent",
-							"kind": 2048,
-							"kindString": "Method",
-							"flags": {
-								"isProtected": true,
-								"isStatic": true,
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 347,
-									"name": "isTextualContent",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {
-										"isExported": true
-									},
-									"parameters": [
-										{
-											"id": 348,
-											"name": "contentType",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "string"
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "boolean"
-									},
-									"inheritedFrom": {
-										"type": "reference",
-										"id": 346,
-										"name": "Request.isTextualContent"
-									}
-								}
-							],
-							"sources": [
-								{
-									"fileName": "Shared/Sites/staging/apps/hsDocs/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 81,
-									"character": 37
-								}
-							],
-							"inheritedFrom": {
-								"type": "reference",
-								"id": 346,
-								"name": "Request.isTextualContent"
-							}
-						},
-						{
-							"id": 349,
+							"id": 351,
 							"name": "isTextualRequest",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2481,7 +2506,7 @@
 							},
 							"signatures": [
 								{
-									"id": 350,
+									"id": 352,
 									"name": "isTextualRequest",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2490,7 +2515,7 @@
 									},
 									"parameters": [
 										{
-											"id": 351,
+											"id": 353,
 											"name": "pathName",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2509,7 +2534,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 349,
+										"id": 351,
 										"name": "Request.isTextualRequest"
 									}
 								}
@@ -2523,7 +2548,7 @@
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 349,
+								"id": 351,
 								"name": "Request.isTextualRequest"
 							}
 						},
@@ -2682,6 +2707,7 @@
 								308,
 								332,
 								260,
+								346,
 								278,
 								324,
 								316,
@@ -2691,8 +2717,7 @@
 								256,
 								269,
 								282,
-								346,
-								349
+								351
 							]
 						},
 						{
@@ -2718,7 +2743,7 @@
 					]
 				},
 				{
-					"id": 354,
+					"id": 356,
 					"name": "html2json",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2739,7 +2764,7 @@
 					"defaultValue": "require('html2json').html2json"
 				},
 				{
-					"id": 352,
+					"id": 354,
 					"name": "log",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2761,7 +2786,48 @@
 					"defaultValue": "new Log('NodeRequest')"
 				},
 				{
-					"id": 355,
+					"id": 360,
+					"name": "getExtension",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 361,
+							"name": "getExtension",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 362,
+									"name": "type",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									},
+									"defaultValue": "\"\""
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "sth1pal/Documents/Development/code/ts/hsLibs/node/hsNode/src/Request.ts",
+							"line": 193,
+							"character": 21
+						}
+					]
+				},
+				{
+					"id": 357,
 					"name": "protocol",
 					"kind": 2097152,
 					"kindString": "Object literal",
@@ -2770,7 +2836,7 @@
 					},
 					"children": [
 						{
-							"id": 356,
+							"id": 358,
 							"name": "http:",
 							"kind": 32,
 							"kindString": "Variable",
@@ -2789,7 +2855,7 @@
 							"defaultValue": "http"
 						},
 						{
-							"id": 357,
+							"id": 359,
 							"name": "https:",
 							"kind": 32,
 							"kindString": "Variable",
@@ -2813,8 +2879,8 @@
 							"title": "Variables",
 							"kind": 32,
 							"children": [
-								356,
-								357
+								358,
+								359
 							]
 						}
 					],
@@ -2836,7 +2902,7 @@
 					"title": "References",
 					"kind": 16777216,
 					"children": [
-						353
+						355
 					]
 				},
 				{
@@ -2850,15 +2916,22 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						354,
-						352
+						356,
+						354
+					]
+				},
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						360
 					]
 				},
 				{
 					"title": "Object literals",
 					"kind": 2097152,
 					"children": [
-						355
+						357
 					]
 				}
 			],
@@ -4561,7 +4634,7 @@
 			]
 		},
 		{
-			"id": 358,
+			"id": 363,
 			"name": "\"index\"",
 			"kind": 1,
 			"kindString": "Module",
@@ -4571,7 +4644,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/code/ts/hsLibs/node/hsNode/src/index.ts",
 			"children": [
 				{
-					"id": 360,
+					"id": 365,
 					"name": "Log",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -4581,7 +4654,7 @@
 					"target": 79
 				},
 				{
-					"id": 362,
+					"id": 367,
 					"name": "Request",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -4591,7 +4664,7 @@
 					"target": 247
 				},
 				{
-					"id": 361,
+					"id": 366,
 					"name": "Response",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -4601,7 +4674,7 @@
 					"target": -1
 				},
 				{
-					"id": 359,
+					"id": 364,
 					"name": "cp",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -4616,10 +4689,10 @@
 					"title": "References",
 					"kind": 16777216,
 					"children": [
-						360,
-						362,
-						361,
-						359
+						365,
+						367,
+						366,
+						364
 					]
 				}
 			],
@@ -7236,7 +7309,7 @@
 			]
 		},
 		{
-			"id": 363,
+			"id": 368,
 			"name": "\"overview\"",
 			"kind": 1,
 			"kindString": "Module",
@@ -7266,9 +7339,9 @@
 				246,
 				237,
 				1,
-				358,
+				363,
 				78,
-				363
+				368
 			]
 		}
 	]

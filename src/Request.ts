@@ -116,8 +116,9 @@ export class Request extends RequestUtil {
     protected async readCached(fname:string):Promise<Response> {
         try {
             const meta = JSON.parse(await fs.readTextFile(`${fname}-meta.json`)); 
-            const data = await fs.readFile(fname+'.bin', false);
-            if (this.pace ) {
+            const ext = getExtension(meta.headers['content-type'])
+            const data = await fs.readFile(`${fname}.${ext}`, false);
+            if (this.pace) {
                 this.log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) found cache for ${fname} `); 
             } else {
                 this.log.transient(`found cache for ${fname} `); 
@@ -130,17 +131,19 @@ export class Request extends RequestUtil {
 
     protected async writeCached(fname:string, response:Response) {
         try {
-            // this.log.info(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) received ${fname} `); 
-            const type = response.response.headers["content-type"];
+            // const type = response.response.headers["content-type"];
             const meta = {
                 headers: {...response.response.headers},
-                statusCode: response.response.statusCode,
-                statusMessage: response.response.statusMessage,
-                txt: response.response.txt
+                statusCode:     response.response.statusCode,
+                statusMessage:  response.response.statusMessage,
+                txt:            response.response.txt
             }
+            const ext = getExtension(meta.headers['content-type'])
             await fs.writeTextFile(`${fname}-meta.json`, JSON.stringify(meta));
-            await fs.writeFile(`${fname}.bin`, <string>response.data, false);
-       } catch(e) { this.log.warn(`error writing cache for content ${response.response.headers["content-type"]} and file ${fname}: ${e}`); }
+            await fs.writeFile(`${fname}.${ext}`, <string>response.data, false);
+       } catch(e) { 
+           this.log.warn(`error writing cache for content ${response.response.headers["content-type"]} and file ${fname}: ${e}`); 
+        }
     }
 
     protected async requestOptions(options:Options, useCached:boolean, postData?:any):Promise<Response> {
@@ -165,16 +168,15 @@ export class Request extends RequestUtil {
 
     protected async issueRequest(options:Options, postData?:any):Promise<Response> {
         const prot = protocol[options.protocol];
+        const isTextualContent = this.isTextualContent.bind(this)
         return new Promise((resolve:(out:Response)=>void, reject:(e:any)=>void) => {
             let data = ''; 
             this.log.debug(()=>`requesting ${options.url}`);
             const req = prot.request(options, (res:any) => {
-                res.txt = Request.isTextualContent(res.headers['content-type'])
+                res.txt = isTextualContent(res.headers['content-type'], res.headers['content-length'], options.url)
                 res.setEncoding(res.txt?'utf8':'binary');    // returns data as Buffer if not set
                 res.on('data', (chunk:string) => data += chunk);
-                res.on('end', () => {
-                    resolve({data:data, response:res});
-                });
+                res.on('end', () => resolve({data:data, response:res}));
             });
             req.on('error', (e:any) => {
                 reject(e);
@@ -185,4 +187,11 @@ export class Request extends RequestUtil {
             req.end();
         });
     }
+}
+
+
+function getExtension(type=''):string {
+    if (type.indexOf('json')) return 'json'
+    if (type.indexOf('html')) return 'html'
+    return 'bin'
 }
