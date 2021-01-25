@@ -9,8 +9,9 @@
 /** */
 import { Log as LogUtil }   from 'hsutil';
 import { date }             from 'hsutil';
-import { pathExists }       from './fsUtil';
-import { appendFileSync }   from './fsUtil';
+import { Msg }              from 'hsutil';
+import { appendFileSync, pathExistsSync, writeTextFileSync }   
+                            from './fsUtil';
 import  path                from 'path';
 
 
@@ -60,38 +61,23 @@ const COLOR = {
 * - adaptation of `color` codes for use in a terminal
 */
 export class Log extends LogUtil {
-    public static log = new Log('');
+    public static log:LogUtil = Log.globalLog(Log);
 
     /** name of the current log file, or undefined */
-    protected LogFile: string;	// initially disabled
+    protected static LogFile: string;	// initially disabled
 
-    constructor(prefix:string) { super(prefix); }
-
-    /**
-     * reports a transient message to the log. This is an `INFO` level message that omits the
-     * `line feed` character (i.e. `carriage return` only) so that it will be overwritten 
-     * by the next logging output. 
-     * @param msg the message to report. If msg is an object literal, a deep inspection will be printed.
-     * @param log optional flag to enable/suppress logging to file. Defaults to `true`
-     * @return promise to return the file written to, or undefined
-     */
-    public transient(msg:any):string { 
-        return this.out(LogUtil.INFO, msg.padEnd(this.messageLength || 80, ' ')+' \r', { color: ['green']}); 
-    }
 
     /** 
      * the actual logging; overrides `output` in `hsUtil.Log`
      */
-    protected output(color:string[], header:string, line:string) {
-        const lines = line.split('\n')
-        if (this.maxLength>0) {
-            lines.forEach((l,i) => l.length <= this.maxLength? '' :
-                lines[i] = `${line.slice(0, this.maxLength/2-2)}...${line.slice(-this.maxLength/2+2)}`)
-        }
-        const c = color.map(c => COLOR[c]).join('');
+    protected output(options:Msg, headerParts:string[], line:string) {
+        const color = options.color
+        const lines = this.limitLength(line, options.maxLen)
+        const header = headerParts.join(' ')
+        const c = color.map(_c => COLOR[_c]).join('');
         const msg = `${c}${header}${COLOR['clear']} ${lines.join('\n')}`;
-        if (this.LogFile) { appendFileSync(date(this.LogFile), `${header} ${line}\n`); }
-        if (line.slice(-1)==='\r') { process.stdout.write(msg); }
+        if (Log.LogFile) { appendFileSync(date(Log.LogFile), `${header} ${line}\n`); }
+        if (options.lf==='\r') { process.stdout.write(msg+'\r'); }
         else { console.log(msg); }
     }
 
@@ -105,39 +91,43 @@ export class Log extends LogUtil {
      * - `logFile('')`: set default log file template `log-%YYYY-%MM-%DD.txt`
      * - `logFile('log-%YYYY-%MM-%DD.txt')`: set new log file template
      * @param filePattern a template to use for log file names. Options for calling:
+     * @param append (default: `true`) whether to append to or erase an existing file
      * @return promise to return the current logfile name, or `undefined` if loggimng is disabled.
      */
-    public async logFile(filePattern?:string):Promise<string> {
+    public logFile(filePattern?:string, append=true):string {
         if (filePattern === null) {                    // disable logging in file
-            this.LogFile = undefined; 
+            Log.LogFile = undefined; 
             this.info("disabling logfile");
-            return this.LogFile;
-        } else if (filePattern === undefined) {        // leave this.LogFile unchanged, return promise for logfile name
-            return this.LogFile===undefined? undefined : date(this.LogFile);
+            // return Log.LogFile;
+        } else if (filePattern === undefined) {        // leave Log.LogFile unchanged, return promise for logfile name
+            return Log.LogFile===undefined? undefined : date(Log.LogFile);
         } else if (filePattern.indexOf('/')>=0) { 
             const parts = path.parse(filePattern);
             try {
-                const exists:boolean = await pathExists(parts.dir);
+                const exists:boolean = pathExistsSync(parts.dir);
                 if (!exists) {
-                    this.LogFile = undefined;
+                    Log.LogFile = undefined;
                     this.warn(`path '${parts.dir}' doesn't exists; logfile disabled`);
                 } else {
-                    this.LogFile = filePattern;
+                    Log.LogFile = filePattern;
                     this.info("now logging to file " + date(filePattern));
                 }
-                return this.LogFile;
+                // return Log.LogFile;
             } catch(e) {
-                this.LogFile = undefined; 
+                Log.LogFile = undefined; 
                 this.error(`checking path ${parts.dir}; logfile disabled`);
-                return this.LogFile;
+                // return Log.LogFile;
             }
         } else if (filePattern === '') {
-            this.LogFile = 'log-%YYYY-%MM-%DD.txt';
+            Log.LogFile = 'log-%YYYY-%MM-%DD.txt';
         } else {
-            this.LogFile=filePattern;
+            Log.LogFile=filePattern;
         }
-        this.info(this.LogFile? `now logging to file ${date(this.LogFile)}` : 'logfile disbaled');
-        return this.LogFile;
+        if (Log.LogFile) {
+            this.info(Log.LogFile? `now logging to file ${date(Log.LogFile)}` : 'logfile disbaled');
+            if (!append) writeTextFileSync(date(Log.LogFile), '')
+        }
+        return Log.LogFile;
     }
 
     protected getPrePostfix(indent:string, level:number, currIndent:string, colors:string[]):[string,string,string,string] {

@@ -57,6 +57,12 @@ async function stat(thePath:string):Promise<fs.Stats> {
         });
     });
 }
+function statSync(thePath:string):fs.Stats {
+    try {
+        const p = realPathSync(thePath);
+        return fs.statSync(p);
+    } catch(e) {}   // returns undefined if not existent
+}
 
 /**
  * returns a promise for the stats of the file addressed by `thePath`.
@@ -68,6 +74,12 @@ async function lstat(thePath:string):Promise<fs.Stats> {
 	return new Promise((resolve, reject) => 
         fs.lstat(p, (err:any, stats:any) => err? reject(err) : resolve(stats))
 	);
+}
+function lstatSync(thePath:string):fs.Stats {
+    try {
+        const p = path.normalize(thePath);
+        return fs.lstatSync(p);
+    } catch(e) { error(e) }
 }
 
 function error(err:any):any {
@@ -83,11 +95,15 @@ function error(err:any):any {
  * @param thePath the path to check
  * @return promise to provide the real canonical system path.
  */
-export function realPath(thePath:string):Promise<string> {
+export async function realPath(thePath:string):Promise<string> {
 	return new Promise((resolve:(path:string)=>void, reject:(err:any)=>void) => {
 		fs.realpath(thePath, (err:any, resolvedPath:string) => err? reject(err) : resolve(resolvedPath) );
     })
     .catch(error);
+}
+export function realPathSync(thePath:string):string {
+    try { return fs.realpathSync(thePath) }
+    catch(e) { error(e) }
 }
 
 /**
@@ -103,6 +119,9 @@ export async function pathExists(thePath:string):Promise<boolean> {
         return false;
     }
 }
+export function pathExistsSync(thePath:string):boolean {
+    return statSync(thePath)? true : false;
+}
 
 /**
  * determines if `thePath` is a file and promises to return the size in bytes.
@@ -115,6 +134,9 @@ export async function fileSize(thePath:string):Promise<number> {
     } catch(e) {
         return -1;
     }
+}
+export function fileSizeSync(thePath:string):number {
+    return statSync(thePath)?.size ?? -1;
 }
 
 /**
@@ -129,6 +151,9 @@ export async function isFile(thePath:string):Promise<boolean> {
         return false;
     }
 }
+export function isFileSync(thePath:string):boolean {
+    return statSync(thePath)?.isFile() ?? false;
+}
 
 /**
  * determines if `thePath` is a directory and promises to provide `true` or `false`.
@@ -142,6 +167,9 @@ export async function isDirectory(thePath:string):Promise<boolean> {
         return false;
     }
 }
+export function isDirectorySync(thePath:string):boolean {
+    return fs.statSync(thePath)?.isDirectory() ?? false;
+}
 
 /**
  * determines if `thePath` is a directory and promises to provide `true` or `false`.
@@ -154,6 +182,9 @@ export async function isLink(thePath:string):Promise<boolean> {
     } catch(e) {
         return false;
     }
+}
+export function isLinkSync(thePath:string):boolean {
+    return lstatSync(thePath)?.isSymbolicLink() ?? false;
 }
 
 /**
@@ -184,6 +215,26 @@ export async function mkdirs(thePath:string):Promise<string> {
     }
     return p;
 }
+export function mkdirsSync(thePath:string):string {    
+    const p = path.normalize(path.resolve(process.cwd(),thePath));
+    let dirs = p.split('/');
+    // create complete successive subdirs from the split
+    dirs = dirs.map((dir, i) => dirs.slice(0,i+1).join('/'));
+    for (let i=0; i<dirs.length; i++) {
+        const dir = dirs[i];
+        const exists = isDirectorySync(dir);
+        if (!exists) { try { 
+            fs.mkdirSync(dir);
+        } catch(e) { 
+            if (e?.code !== 'EEXIST') {
+                console.warn(`error in mkdirs: ${e?.code}`);
+                console.warn(e); 
+                throw `mkdir failed for ${dir}: ${p}\n${e}`;
+            }
+        }}
+    }
+    return p;
+}
 
 /**
  * lists all files in a directory and promises to provide the list.
@@ -203,7 +254,14 @@ export async function readDir(thePath:string):Promise<string[]> {
     })
     .catch(error);
 }
-
+export function readDirSync(thePath:string):string[] {
+    try {
+        const p = realPathSync(thePath);
+        const files = fs.readdirSync(p);
+        (files as any).path = p
+        return files
+    } catch(e) { error(e) }
+}
 
 /**
  * reads a file either as binary or text and promises to provide the content.
@@ -218,6 +276,10 @@ export function readFile(thePath:string, isText=true):Promise<any> {
 	})
     .catch(error);
 }
+export function readFileSync(thePath:string, isText=true):any {
+    try { return fs.readFileSync(thePath, isText? 'utf8' : 'binary') }
+    catch(e) { error(e) }
+}
 
 /**
  * reads a text file and promises to provide the content.
@@ -227,6 +289,9 @@ export function readFile(thePath:string, isText=true):Promise<any> {
 export async function readTextFile(thePath:string):Promise<string> { 
 	try { return await readFile(thePath, true); }
     catch(err) { error(err); }
+}
+export function readTextFileSync(thePath:string):string { 
+	return readFileSync(thePath, true); 
 }
 
 /**
@@ -241,6 +306,13 @@ export async function readJsonFile(thePath:string):Promise<any> {
     }
     catch(err) { error(err); }
 }
+export function readJsonFileSync(thePath:string):any {
+    try {
+        const data = readFileSync(thePath, true);
+        return (typeof data === 'string')? JSON.parse(data) : data;
+    }
+    catch(err) { error(err); }
+}
 
 /**
  * writes a file either as binary or text and promises to return the file name.
@@ -250,12 +322,22 @@ export async function readJsonFile(thePath:string):Promise<any> {
  * @return promise to provide the file name if successful.
  */
 export async function writeFile(thePath:string, content:string, isText:boolean=true):Promise<string> {
-    var encoding:any = isText? 'utf8' : 'binary';
+    const encoding:any = isText? 'utf8' : 'binary';
     await mkdirs(path.dirname(thePath));
     return await new Promise((resolve, reject) => {
         fs.writeFile(thePath, content, encoding, (err:any) =>
             err? reject(`mkdirs failed in writeFile for '${thePath}': ${err}`) : resolve(thePath));
     }); 
+}
+export function writeFileSync(thePath:string, content:string, isText:boolean=true):string {
+    try {
+        const encoding:any = isText? 'utf8' : 'binary';
+        mkdirsSync(path.dirname(thePath));
+        fs.writeFileSync(thePath, content, encoding)
+        return thePath;
+    } catch(e) {
+        error(`mkdirs failed in writeFile for '${thePath}': ${e}`)
+    } 
 }
 
 /**
@@ -282,6 +364,9 @@ export async function writeTextFile(thePath:string, content:string):Promise<stri
 	return await writeFile(thePath, content, true)
     .catch(error);
 }
+export function writeTextFileSync(thePath:string, content:string):string { 
+	return writeFileSync(thePath, content, true)
+}
 
 /**
  * writes a text file and promises to return the file name.
@@ -294,6 +379,11 @@ export async function writeJsonFile(thePath:string, obj:any):Promise<string> {
 	.then(JSON.stringify)
 	.then(async data => await writeTextFile(thePath, data))
     .catch(error);
+}
+export function writeJsonFileSync(thePath:string, obj:any):string {
+    try {
+        return writeTextFileSync(thePath, JSON.stringify(obj))
+    } catch(e) { error(e) }
 }
 
 /**
@@ -309,14 +399,6 @@ export async function appendFile(thePath:string, content:string, isText:boolean=
         fs.appendFile(thePath, content, encoding, (err:any) => err? reject(err) : resolve(thePath));
     })} catch(e) { error(e); };
 }
-
-/**
- * appends to a file either as binary or text and promises to return the file name.
- * @param thePath the path to write to
- * @param content the content to write
- * @param isText `true`|`false` if file should be read as `utf8`|binary 
- * @return promise to provide the realPath of the file written to.
- */
 export function appendFileSync(thePath:string, content:string, isText:boolean=true):string {
     var encoding:any = isText? 'utf8' : {encoding: null};
     try { 
@@ -337,6 +419,16 @@ export async function remove(thePath:string):Promise<string> {
            : fs.unlink(thePath, (e:any) => (e? reject(e) : resolve(thePath)));
 	});
 }
+export function removeSync(thePath:string):string {
+    try {
+        const dir:boolean = isDirectorySync(thePath);
+        if (dir) fs.rmdirSync(thePath)
+            else fs.unlinkSync(thePath);
+        return thePath
+	} catch(e) {
+        error(e)
+    }
+}
 
 /**
  * promises to delete a file or folder and return the file or folder name.
@@ -351,5 +443,15 @@ export async function removeAll(thePath:string):Promise<string[]> {
         await Promise.all(list.map(async i => removed.push(...await removeAll(`${thePath}/${i}`))));
     }
     removed.push(await remove(thePath));
+    return removed;
+}
+export function removeAllSync(thePath:string):string[] {
+    const removed = [];
+    const dir:boolean = isDirectorySync(thePath);
+    if (dir) {
+        const list = readDirSync(thePath);
+        list.map(i => removed.push(...removeAllSync(`${thePath}/${i}`)));
+    }
+    removed.push(removeSync(thePath));
     return removed;
 }
