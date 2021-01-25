@@ -1,6 +1,6 @@
 {
     "name": "hsnode",
-    "version": "2.18.12",
+    "version": "2.19.0",
     "main": "./bin/cjs/index.js",
     "files": [
         "bin/"
