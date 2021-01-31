@@ -168,7 +168,7 @@ export async function isDirectory(thePath:string):Promise<boolean> {
     }
 }
 export function isDirectorySync(thePath:string):boolean {
-    return fs.statSync(thePath)?.isDirectory() ?? false;
+    return statSync(thePath)?.isDirectory() ?? false;
 }
 
 /**
@@ -395,12 +395,14 @@ export function writeJsonFileSync(thePath:string, obj:any):string {
  */
 export async function appendFile(thePath:string, content:string, isText:boolean=true):Promise<string> {
     var encoding:any = isText? 'utf8' : {encoding: null};
+    await mkdirs(path.dirname(thePath));
     try { return await new Promise((resolve, reject) => {
         fs.appendFile(thePath, content, encoding, (err:any) => err? reject(err) : resolve(thePath));
     })} catch(e) { error(e); };
 }
 export function appendFileSync(thePath:string, content:string, isText:boolean=true):string {
     var encoding:any = isText? 'utf8' : {encoding: null};
+    mkdirsSync(path.dirname(thePath));
     try { 
         fs.appendFileSync(thePath, content, encoding);
         return thePath;
