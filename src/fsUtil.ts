@@ -255,12 +255,10 @@ export async function readDir(thePath:string):Promise<string[]> {
     .catch(error);
 }
 export function readDirSync(thePath:string):string[] {
-    try {
-        const p = realPathSync(thePath);
-        const files = fs.readdirSync(p);
-        (files as any).path = p
-        return files
-    } catch(e) { error(e) }
+    const p = realPathSync(thePath);
+    const files = fs.readdirSync(p);
+    (files as any).path = p
+    return files
 }
 
 /**
@@ -277,8 +275,7 @@ export function readFile(thePath:string, isText=true):Promise<any> {
     .catch(error);
 }
 export function readFileSync(thePath:string, isText=true):any {
-    try { return fs.readFileSync(thePath, isText? 'utf8' : 'binary') }
-    catch(e) { error(e) }
+    return fs.readFileSync(thePath, isText? 'utf8' : 'binary')
 }
 
 /**
@@ -307,11 +304,8 @@ export async function readJsonFile(thePath:string):Promise<any> {
     catch(err) { error(err); }
 }
 export function readJsonFileSync(thePath:string):any {
-    try {
-        const data = readFileSync(thePath, true);
-        return (typeof data === 'string')? JSON.parse(data) : data;
-    }
-    catch(err) { error(err); }
+    const data = readFileSync(thePath, true);
+    return (typeof data === 'string')? JSON.parse(data) : data;
 }
 
 /**
@@ -330,14 +324,10 @@ export async function writeFile(thePath:string, content:string, isText:boolean=t
     }); 
 }
 export function writeFileSync(thePath:string, content:string, isText:boolean=true):string {
-    try {
-        const encoding:any = isText? 'utf8' : 'binary';
-        mkdirsSync(path.dirname(thePath));
-        fs.writeFileSync(thePath, content, encoding)
-        return thePath;
-    } catch(e) {
-        error(`mkdirs failed in writeFile for '${thePath}': ${e}`)
-    } 
+    const encoding:any = isText? 'utf8' : 'binary';
+    mkdirsSync(path.dirname(thePath));
+    fs.writeFileSync(thePath, content, encoding)
+    return thePath;
 }
 
 /**
@@ -381,9 +371,7 @@ export async function writeJsonFile(thePath:string, obj:any):Promise<string> {
     .catch(error);
 }
 export function writeJsonFileSync(thePath:string, obj:any):string {
-    try {
-        return writeTextFileSync(thePath, JSON.stringify(obj))
-    } catch(e) { error(e) }
+    return writeTextFileSync(thePath, JSON.stringify(obj))
 }
 
 /**
@@ -403,10 +391,8 @@ export async function appendFile(thePath:string, content:string, isText:boolean=
 export function appendFileSync(thePath:string, content:string, isText:boolean=true):string {
     var encoding:any = isText? 'utf8' : {encoding: null};
     mkdirsSync(path.dirname(thePath));
-    try { 
-        fs.appendFileSync(thePath, content, encoding);
-        return thePath;
-    } catch(e) { error(e); };
+    fs.appendFileSync(thePath, content, encoding);
+    return thePath;
 }
 
 /**
@@ -422,14 +408,10 @@ export async function remove(thePath:string):Promise<string> {
 	});
 }
 export function removeSync(thePath:string):string {
-    try {
-        const dir:boolean = isDirectorySync(thePath);
-        if (dir) fs.rmdirSync(thePath)
-            else fs.unlinkSync(thePath);
-        return thePath
-	} catch(e) {
-        error(e)
-    }
+    const dir:boolean = isDirectorySync(thePath);
+    if (dir) fs.rmdirSync(thePath)
+        else fs.unlinkSync(thePath);
+    return thePath
 }
 
 /**
