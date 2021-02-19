@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.14% </span>
+                <span class="strong">86.76% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>61/70</span>
+                <span class='fraction'>59/68</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.32% </span>
+                <span class="strong">90.16% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>56/62</span>
+                <span class='fraction'>55/61</span>
             </div>
         
             
@@ -256,20 +256,7 @@
 <a name='L197'></a><a href='#L197'>197</a>
 <a name='L198'></a><a href='#L198'>198</a>
 <a name='L199'></a><a href='#L199'>199</a>
-<a name='L200'></a><a href='#L200'>200</a>
-<a name='L201'></a><a href='#L201'>201</a>
-<a name='L202'></a><a href='#L202'>202</a>
-<a name='L203'></a><a href='#L203'>203</a>
-<a name='L204'></a><a href='#L204'>204</a>
-<a name='L205'></a><a href='#L205'>205</a>
-<a name='L206'></a><a href='#L206'>206</a>
-<a name='L207'></a><a href='#L207'>207</a>
-<a name='L208'></a><a href='#L208'>208</a>
-<a name='L209'></a><a href='#L209'>209</a>
-<a name='L210'></a><a href='#L210'>210</a>
-<a name='L211'></a><a href='#L211'>211</a>
-<a name='L212'></a><a href='#L212'>212</a>
-<a name='L213'></a><a href='#L213'>213</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L200'></a><a href='#L200'>200</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -336,30 +323,17 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -536,7 +510,7 @@
 /** */
 &nbsp;
 import { URL }          from 'url';
-import { Log }          from './log';   const log = new Log('NodeRequest');
+import { Log }          from './log';   //const log = new Log('NodeRequest');
 import * as fs          from "./fsUtil";
 import http             from 'http';
 import https            from 'https';
@@ -548,34 +522,21 @@ export { Response }     from 'hsutil';
 const html2json = require('html2json').html2json;
 // import { html2json }    from 'html2json'
 &nbsp;
-log.messageLength = 120;
+// log.messageLength = 120;
 &nbsp;
 const protocol = {"http:":http, "https:":https};
 &nbsp;
 &nbsp;
 export class Request extends RequestUtil {
     protected Log: typeof Log = Log
-    // public static decoders = { 
-    //     str2json:  (data:string) =&gt; { try {return JSON.parse(data)} catch(e) { 
-    //         log.error(`parsing TEXT to JSON data`)
-    //         return {}
-    //     }},
-    //     html2json: (data:string) =&gt; { try { return html2json(data); } catch(e) { 
-    //         log.error(`parsing HTML to JSON data`)
-    //         return {}; 
-    //     }}
-    // };
 &nbsp;
     public constructor() {
-        super(Log)
+        super(Log, 'NodeRequest')
         Request.decoders.html2json = (data:string) =&gt; html2json(data.replace(/\uFFFD/g, ''));
     }
 &nbsp;
-    /** the `log` facility to use */
-    // protected log: Log = log;
-&nbsp;
     public <span class="fstat-no" title="function not covered" >setLogFile(</span>file:string) {
-<span class="cstat-no" title="statement not covered" >        log.logFile(file);</span>
+        (<span class="cstat-no" title="statement not covered" >this.log as Log).logFile(file);</span>
     }
 &nbsp;
     /** 
@@ -615,9 +576,9 @@ export class Request extends RequestUtil {
             const ext = getExtension(meta.headers['content-type'])
             const data = await fs.readFile(`${fname}.${ext}`, false);
             <span class="missing-if-branch" title="if path not taken" >I</span>if (this.pace) {
-<span class="cstat-no" title="statement not covered" >                log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) found cache for ${fname} `); </span>
+<span class="cstat-no" title="statement not covered" >                this.log.transient(`(${this.pace.inQueue()} | ${this.pace.inProgress()}) found cache for ${fname} `); </span>
             } else {
-                log.transient(`found cache for ${fname} `); 
+                this.log.transient(`found cache for ${fname} `); 
             }
             return {response:meta, data: data};   
         } catch(e) {
@@ -638,7 +599,7 @@ export class Request extends RequestUtil {
             await fs.writeTextFile(`${fname}-meta.json`, JSON.stringify(meta).replace(/\p{Control}/gu,""));
             await fs.writeFile(`${fname}.${ext}`, &lt;string&gt;response.data, false);
        } catch(e) { 
-<span class="cstat-no" title="statement not covered" >           log.warn(`error writing cache for content ${response.response.headers["content-type"]} and file ${fname}: ${e}`); </span>
+<span class="cstat-no" title="statement not covered" >           this.log.warn(`error writing cache for content ${response.response.headers["content-type"]} and file ${fname}: ${e}`); </span>
         }
     }
 &nbsp;
@@ -648,7 +609,7 @@ export class Request extends RequestUtil {
             const result = await this.readCached(fname); 
             if (result !== undefined) {
                 result.cached = true 
-                log.transient(`read from cache ${options.method} ${result.response.statusCode||result.response.status} ${options.url} `);
+                this.log.transient(`read from cache ${options.method} ${result.response.statusCode||result.response.status} ${options.url} `);
                 return result; }
         }
 &nbsp;
@@ -670,7 +631,7 @@ export class Request extends RequestUtil {
         const isTextualContent = this.isTextualContent.bind(this)
         return new Promise((resolve:(out:Response)=&gt;void, reject:(e:any)=&gt;void) =&gt; {
             let data = ''; 
-            log.debug(<span class="fstat-no" title="function not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >`requesting ${options.url}`)</span>;
+            this.log.debug(<span class="fstat-no" title="function not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >`requesting ${options.url}`)</span>;
             const req = prot.request(options, (res:any) =&gt; {
                 res.txt = isTextualContent(res.headers['content-type'], res.headers['content-length'], options.url)
                 res.setEncoding(res.txt?'utf8':'binary');    // returns data as Buffer if not set
