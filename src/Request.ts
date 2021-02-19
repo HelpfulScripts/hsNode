@@ -53,7 +53,7 @@
 /** */
 
 import { URL }          from 'url';
-import { Log }          from './log';   const log = new Log('NodeRequest');
+import { Log }          from './log';   //const log = new Log('NodeRequest');
 import * as fs          from "./fsUtil";
 import http             from 'http';
 import https            from 'https';
@@ -63,23 +63,23 @@ import { Response }     from 'hsutil';
 export { Response }     from 'hsutil';
 
 const html2json = require('html2json').html2json;
+// import { html2json }    from 'html2json'
 
-log.messageLength = 120;
+// log.messageLength = 120;
 
 const protocol = {"http:":http, "https:":https};
 
 
 export class Request extends RequestUtil {
-    public static decoders = { 
-        str2json:  (data:string) => { try {return JSON.parse(data)} catch(e) { return {}}},
-        html2json: (data:string) => { try { return html2json(data); } catch(e) { return {}; }}
-    };
+    protected Log: typeof Log = Log
 
-    /** the `log` facility to use */
-    protected log: Log = log;
+    public constructor() {
+        super(Log, 'NodeRequest')
+        Request.decoders.html2json = (data:string) => html2json(data.replace(/\uFFFD/g, ''));
+    }
 
     public setLogFile(file:string) {
-        this.log.logFile(file);
+        (this.log as Log).logFile(file);
     }
 
     /** 
@@ -139,7 +139,7 @@ export class Request extends RequestUtil {
                 txt:            response.response.txt
             }
             const ext = getExtension(meta.headers['content-type'])
-            await fs.writeTextFile(`${fname}-meta.json`, JSON.stringify(meta));
+            await fs.writeTextFile(`${fname}-meta.json`, JSON.stringify(meta).replace(/\p{Control}/gu,""));
             await fs.writeFile(`${fname}.${ext}`, <string>response.data, false);
        } catch(e) { 
            this.log.warn(`error writing cache for content ${response.response.headers["content-type"]} and file ${fname}: ${e}`); 
@@ -150,7 +150,10 @@ export class Request extends RequestUtil {
         const fname = this.cacheName(options);
         if (fname && useCached && options.method === 'GET') { 
             const result = await this.readCached(fname); 
-            if (result !== undefined) { return result; }
+            if (result !== undefined) {
+                result.cached = true 
+                this.log.transient(`read from cache ${options.method} ${result.response.statusCode||result.response.status} ${options.url} `);
+                return result; }
         }
 
         const response = await super.requestOptions(options, useCached, postData);

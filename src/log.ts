@@ -61,7 +61,7 @@ const COLOR = {
 * - adaptation of `color` codes for use in a terminal
 */
 export class Log extends LogUtil {
-    public static log:LogUtil = Log.globalLog(Log);
+    public static Log:LogUtil = Log.globalLog(Log);
 
     /** name of the current log file, or undefined */
     protected static LogFile: string;	// initially disabled
