@@ -112,38 +112,62 @@ describe('Request', ()=>{
         afterAll(async () => {
             return await fsUtil.removeAll(__dirname + '/../bin/cache/'); 
         });
-        it('should request online', async (done) => {
-            expect.assertions(2);
+        it('should fail requesting cached', async (done) => {
+            expect.assertions(3);
             const calls = http.request.mock.calls.length;
             const response = await request.get('http://my.space.com/myCached');
             const pageText = <string>response.data;
+            expect(response.cached).toBeFalsy();
+            expect(pageText.length).toBe(0);
+            expect(http.request.mock.calls.length).toBe(calls);
+            done();
+        });
+        it('should request online', async (done) => {
+            expect.assertions(3);
+            const calls = http.request.mock.calls.length;
+            const response = await request.get('http://my.space.com/myCached',{useCached:false});
+            const pageText = <string>response.data;
+            expect(response.cached).toBeFalsy();
             expect(pageText.length).toBe(135);
             expect(http.request.mock.calls.length).toBe(calls+1);
             done();
         });
         it('should request cached', async (done) => {
-            expect.assertions(2);
+            expect.assertions(3);
             const calls = http.request.mock.calls.length;
             const response = await request.get('http://my.space.com/myCached');
             const pageText = <string>response.data;
+            expect(response.cached).toBe(true);
             expect(pageText.length).toBe(135);
             expect(http.request.mock.calls.length).toBe(calls); // same as before
             done();
         }); 
-        it('should request online binary', async (done) => {
-            expect.assertions(2);
+        it('should fail requesting cached binary', async (done) => {
+            expect.assertions(3);
             const calls = http.request.mock.calls.length;
             const response = await request.get('http://my.space.com/myCached.jpg');
             const pageText = <string>response.data;
+            expect(response.cached).toBeFalsy();
+            expect(pageText.length).toBe(0);
+            expect(http.request.mock.calls.length).toBe(calls);
+            done();
+        });
+        it('should request online binary', async (done) => {
+            expect.assertions(3);
+            const calls = http.request.mock.calls.length;
+            const response = await request.get('http://my.space.com/myCached.jpg',{useCached:false});
+            const pageText = <string>response.data;
+            expect(response.cached).toBeFalsy();
             expect(pageText.length).toBe(40);
             expect(http.request.mock.calls.length).toBe(calls+1);
             done();
         });
         it('should request cached binary', async (done) => {
-            expect.assertions(2);
+            expect.assertions(3);
             const calls = http.request.mock.calls.length;
             const response = await request.get('http://my.space.com/myCached.jpg'); 
             const pageText = <string>response.data;
+            expect(response.cached).toBe(true);
             expect(pageText.length).toBe(40);
             expect(http.request.mock.calls.length).toBe(calls); // same as before
             done();

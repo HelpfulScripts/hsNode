@@ -15,15 +15,18 @@
  * - Digest
  * 
  * ### Caching
- * If caching is enabled, `GET` requests will attempt to return an available cached content
- * before issuing the request to the server.
  * Caching is disabled by default and can be enabled by setting a caching directory location before any `GET` call
  * `request.cache = './data'`.
+ * 
+ * If caching is enabled, i.e. a cache file is set, `GET` requests, per default, will return an available cached content
+ * or issue an error if none is available. In this case, to make an actual server `GET` request, pass `{useCached:false}` 
+ * as an option to the `get` call.
+ * 
  * Once set, individual `request.get(url)` requests will by default use caching. This can be 
- * disabled on a per call basis by providing `false` as a second parameter:
- * `request.get(url, false)` behaves as if `cache` is undefined.
- * Likewise, to disable all caching on future `GET` calls, set 
- * `request.cache = undefined`.
+ * disabled on a per call basis by providing `{useCached:false}` as a second parameter:
+ * `request.get(url, {useCached:false})` ignores any cached version and issues a server call.
+ * 
+ * Likewise, to disable all caching on future `GET` calls, set `request.cache = undefined`.
  * 
  * ### Decoding
  * Content received from a server or a cache can be decoded before returning the result. 
@@ -153,18 +156,25 @@ export class Request extends RequestUtil {
             if (result !== undefined) {
                 result.cached = true 
                 this.log.transient(`read from cache ${options.method} ${result.response.statusCode||result.response.status} ${options.url} `);
-                return result; }
-        }
-
-        const response = await super.requestOptions(options, useCached, postData);
-        
-        const code = response.response.statusCode||response.response.status;
-        if(code >= 200 && code < 300) {
-            if (fname && options.method === 'GET') {
-                await this.writeCached(fname, response);
+                return result; 
             }
+            this.log.warn(`     did not find cached '${fname}'`)
+            return {
+                response: undefined,
+                data: '',
+                cached:false
+            }
+        } else {
+            const response = await super.requestOptions(options, useCached, postData);
+        
+            const code = response.response.statusCode||response.response.status;
+            if(code >= 200 && code < 300) {
+                if (fname && options.method === 'GET') {
+                    await this.writeCached(fname, response);
+                }
+            }
+            return response;
         }
-        return response;
     }
 
 
