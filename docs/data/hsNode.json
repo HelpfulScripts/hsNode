@@ -85,7 +85,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Auth.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Auth.d.ts",
 									"line": 5,
 									"character": 21
 								}
@@ -106,7 +106,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/AuthDigest.ts",
+									"fileName": "node/hsNode/src/AuthDigest.ts",
 									"line": 11,
 									"character": 6
 								}
@@ -127,7 +127,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Auth.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Auth.d.ts",
 									"line": 5,
 									"character": 12
 								}
@@ -152,7 +152,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Auth.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Auth.d.ts",
 									"line": 4,
 									"character": 12
 								}
@@ -240,7 +240,7 @@
 													},
 													"sources": [
 														{
-															"fileName": "hsLibs/node/hsNode/src/AuthDigest.ts",
+															"fileName": "node/hsNode/src/AuthDigest.ts",
 															"line": 34,
 															"character": 22
 														}
@@ -261,7 +261,7 @@
 													},
 													"sources": [
 														{
-															"fileName": "hsLibs/node/hsNode/src/AuthDigest.ts",
+															"fileName": "node/hsNode/src/AuthDigest.ts",
 															"line": 34,
 															"character": 34
 														}
@@ -289,7 +289,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/AuthDigest.ts",
+									"fileName": "node/hsNode/src/AuthDigest.ts",
 									"line": 28,
 									"character": 18
 								}
@@ -371,7 +371,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/AuthDigest.ts",
+									"fileName": "node/hsNode/src/AuthDigest.ts",
 									"line": 43,
 									"character": 12
 								}
@@ -409,7 +409,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/AuthDigest.ts",
+									"fileName": "node/hsNode/src/AuthDigest.ts",
 									"line": 16,
 									"character": 12
 								}
@@ -445,7 +445,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/AuthDigest.ts",
+							"fileName": "node/hsNode/src/AuthDigest.ts",
 							"line": 10,
 							"character": 23
 						}
@@ -467,7 +467,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/AuthDigest.ts",
+							"fileName": "node/hsNode/src/AuthDigest.ts",
 							"line": 1,
 							"character": 49
 						}
@@ -519,7 +519,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/AuthDigest.ts",
+							"fileName": "node/hsNode/src/AuthDigest.ts",
 							"line": 89,
 							"character": 22
 						}
@@ -565,7 +565,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/AuthDigest.ts",
+							"fileName": "node/hsNode/src/AuthDigest.ts",
 							"line": 79,
 							"character": 17
 						}
@@ -611,7 +611,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/AuthDigest.ts",
+							"fileName": "node/hsNode/src/AuthDigest.ts",
 							"line": 102,
 							"character": 28
 						}
@@ -645,7 +645,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "hsLibs/node/hsNode/src/AuthDigest.ts",
+					"fileName": "node/hsNode/src/AuthDigest.ts",
 					"line": 1,
 					"character": 0
 				}
@@ -715,7 +715,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/Request.ts",
+									"fileName": "node/hsNode/src/Request.ts",
 									"line": 77,
 									"character": 35
 								}
@@ -736,7 +736,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/Request.ts",
+									"fileName": "node/hsNode/src/Request.ts",
 									"line": 77,
 									"character": 17
 								}
@@ -764,7 +764,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/Request.ts",
+									"fileName": "node/hsNode/src/Request.ts",
 									"line": 93,
 									"character": 16
 								}
@@ -784,7 +784,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 65,
 									"character": 13
 								}
@@ -816,7 +816,7 @@
 									],
 									"sources": [
 										{
-											"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+											"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 											"line": 65,
 											"character": 14
 										}
@@ -839,7 +839,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 66,
 									"character": 10
 								}
@@ -866,7 +866,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 53,
 									"character": 26
 								}
@@ -892,7 +892,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 54,
 									"character": 18
 								}
@@ -917,7 +917,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 59,
 									"character": 16
 								}
@@ -965,7 +965,7 @@
 									],
 									"sources": [
 										{
-											"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+											"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 											"line": 59,
 											"character": 17
 										}
@@ -988,7 +988,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 58,
 									"character": 18
 								}
@@ -1050,7 +1050,7 @@
 									],
 									"sources": [
 										{
-											"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+											"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 											"line": 58,
 											"character": 19
 										}
@@ -1073,7 +1073,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 60,
 									"character": 11
 								}
@@ -1129,7 +1129,7 @@
 																	},
 																	"sources": [
 																		{
-																			"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+																			"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 																			"line": 60,
 																			"character": 43
 																		}
@@ -1149,7 +1149,7 @@
 																	},
 																	"sources": [
 																		{
-																			"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+																			"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 																			"line": 60,
 																			"character": 25
 																		}
@@ -1169,7 +1169,7 @@
 																	},
 																	"sources": [
 																		{
-																			"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+																			"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 																			"line": 60,
 																			"character": 20
 																		}
@@ -1193,7 +1193,7 @@
 															],
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 																	"line": 60,
 																	"character": 14
 																}
@@ -1210,7 +1210,7 @@
 									],
 									"sources": [
 										{
-											"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+											"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 											"line": 60,
 											"character": 12
 										}
@@ -1234,7 +1234,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 49,
 									"character": 19
 								}
@@ -1260,7 +1260,7 @@
 											},
 											"sources": [
 												{
-													"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+													"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 													"line": 51,
 													"character": 17
 												}
@@ -1307,7 +1307,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+															"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 															"line": 51,
 															"character": 18
 														}
@@ -1325,7 +1325,7 @@
 											},
 											"sources": [
 												{
-													"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+													"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 													"line": 50,
 													"character": 16
 												}
@@ -1372,7 +1372,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+															"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 															"line": 50,
 															"character": 17
 														}
@@ -1393,7 +1393,7 @@
 									],
 									"sources": [
 										{
-											"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+											"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 											"line": 49,
 											"character": 20
 										}
@@ -1456,7 +1456,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/Request.ts",
+									"fileName": "node/hsNode/src/Request.ts",
 									"line": 107,
 									"character": 20
 								}
@@ -1554,7 +1554,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 79,
 									"character": 28
 								}
@@ -1636,7 +1636,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 																	"line": 67,
 																	"character": 47
 																}
@@ -1664,7 +1664,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 																	"line": 67,
 																	"character": 38
 																}
@@ -1687,7 +1687,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+															"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 															"line": 67,
 															"character": 26
 														}
@@ -1715,7 +1715,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 67,
 									"character": 7
 								}
@@ -1794,7 +1794,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 78,
 									"character": 24
 								}
@@ -1859,7 +1859,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/Request.ts",
+									"fileName": "node/hsNode/src/Request.ts",
 									"line": 95,
 									"character": 20
 								}
@@ -1941,7 +1941,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 83,
 									"character": 30
 								}
@@ -2017,8 +2017,8 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/Request.ts",
-									"line": 182,
+									"fileName": "node/hsNode/src/Request.ts",
+									"line": 188,
 									"character": 32
 								}
 							],
@@ -2111,7 +2111,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 																	"line": 74,
 																	"character": 52
 																}
@@ -2141,7 +2141,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+															"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 															"line": 74,
 															"character": 42
 														}
@@ -2169,7 +2169,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 74,
 									"character": 8
 								}
@@ -2264,7 +2264,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 																	"line": 71,
 																	"character": 51
 																}
@@ -2294,7 +2294,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+															"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 															"line": 71,
 															"character": 41
 														}
@@ -2322,7 +2322,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 71,
 									"character": 7
 								}
@@ -2386,7 +2386,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/Request.ts",
+									"fileName": "node/hsNode/src/Request.ts",
 									"line": 119,
 									"character": 30
 								}
@@ -2458,7 +2458,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 81,
 									"character": 21
 								}
@@ -2547,7 +2547,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/Request.ts",
+									"fileName": "node/hsNode/src/Request.ts",
 									"line": 152,
 									"character": 34
 								}
@@ -2598,7 +2598,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/Request.ts",
+									"fileName": "node/hsNode/src/Request.ts",
 									"line": 84,
 									"character": 21
 								}
@@ -2664,7 +2664,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/Request.ts",
+									"fileName": "node/hsNode/src/Request.ts",
 									"line": 135,
 									"character": 31
 								}
@@ -2729,7 +2729,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 48,
 									"character": 25
 								}
@@ -2787,7 +2787,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/Request.d.ts",
 									"line": 84,
 									"character": 37
 								}
@@ -2848,7 +2848,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/Request.ts",
+							"fileName": "node/hsNode/src/Request.ts",
 							"line": 76,
 							"character": 20
 						}
@@ -2870,7 +2870,7 @@
 					},
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/Request.ts",
+							"fileName": "node/hsNode/src/Request.ts",
 							"line": 68,
 							"character": 15
 						}
@@ -2916,8 +2916,8 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/Request.ts",
-							"line": 206,
+							"fileName": "node/hsNode/src/Request.ts",
+							"line": 212,
 							"character": 21
 						}
 					]
@@ -2939,7 +2939,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/Request.ts",
+									"fileName": "node/hsNode/src/Request.ts",
 									"line": 73,
 									"character": 25
 								}
@@ -2958,7 +2958,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/Request.ts",
+									"fileName": "node/hsNode/src/Request.ts",
 									"line": 73,
 									"character": 40
 								}
@@ -2982,7 +2982,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/Request.ts",
+							"fileName": "node/hsNode/src/Request.ts",
 							"line": 73,
 							"character": 14
 						}
@@ -3032,7 +3032,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "hsLibs/node/hsNode/src/Request.ts",
+					"fileName": "node/hsNode/src/Request.ts",
 					"line": 1,
 					"character": 0
 				}
@@ -3146,7 +3146,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "hsLibs/node/hsNode/src/cpUtil.ts",
+																	"fileName": "node/hsNode/src/cpUtil.ts",
 																	"line": 32,
 																	"character": 68
 																}
@@ -3166,7 +3166,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "hsLibs/node/hsNode/src/cpUtil.ts",
+																	"fileName": "node/hsNode/src/cpUtil.ts",
 																	"line": 32,
 																	"character": 56
 																}
@@ -3189,7 +3189,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "hsLibs/node/hsNode/src/cpUtil.ts",
+															"fileName": "node/hsNode/src/cpUtil.ts",
 															"line": 32,
 															"character": 49
 														}
@@ -3203,7 +3203,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/cpUtil.ts",
+									"fileName": "node/hsNode/src/cpUtil.ts",
 									"line": 32,
 									"character": 8
 								}
@@ -3221,7 +3221,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/cpUtil.ts",
+							"fileName": "node/hsNode/src/cpUtil.ts",
 							"line": 19,
 							"character": 26
 						}
@@ -3243,7 +3243,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "hsLibs/node/hsNode/src/cpUtil.ts",
+					"fileName": "node/hsNode/src/cpUtil.ts",
 					"line": 1,
 					"character": 0
 				}
@@ -3349,7 +3349,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 384,
 							"character": 32
 						}
@@ -3422,7 +3422,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 391,
 							"character": 30
 						}
@@ -3462,7 +3462,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 85,
 							"character": 14
 						}
@@ -3521,7 +3521,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 131,
 							"character": 30
 						}
@@ -3567,7 +3567,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 138,
 							"character": 28
 						}
@@ -3626,7 +3626,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 163,
 							"character": 33
 						}
@@ -3672,7 +3672,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 170,
 							"character": 31
 						}
@@ -3731,7 +3731,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 147,
 							"character": 28
 						}
@@ -3777,7 +3777,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 154,
 							"character": 26
 						}
@@ -3836,7 +3836,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 179,
 							"character": 28
 						}
@@ -3882,7 +3882,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 186,
 							"character": 26
 						}
@@ -3934,7 +3934,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 72,
 							"character": 20
 						}
@@ -3974,7 +3974,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 78,
 							"character": 18
 						}
@@ -4033,7 +4033,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 198,
 							"character": 28
 						}
@@ -4079,7 +4079,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 218,
 							"character": 26
 						}
@@ -4138,7 +4138,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 114,
 							"character": 32
 						}
@@ -4184,7 +4184,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 122,
 							"character": 30
 						}
@@ -4246,7 +4246,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 244,
 							"character": 29
 						}
@@ -4295,7 +4295,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 257,
 							"character": 27
 						}
@@ -4371,7 +4371,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 270,
 							"character": 24
 						}
@@ -4431,7 +4431,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 277,
 							"character": 28
 						}
@@ -4490,7 +4490,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 299,
 							"character": 34
 						}
@@ -4536,7 +4536,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 306,
 							"character": 32
 						}
@@ -4595,7 +4595,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 286,
 							"character": 34
 						}
@@ -4641,7 +4641,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 290,
 							"character": 32
 						}
@@ -4700,7 +4700,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 98,
 							"character": 30
 						}
@@ -4746,7 +4746,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 104,
 							"character": 28
 						}
@@ -4805,7 +4805,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 403,
 							"character": 28
 						}
@@ -4867,7 +4867,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 422,
 							"character": 31
 						}
@@ -4916,7 +4916,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 432,
 							"character": 29
 						}
@@ -4962,7 +4962,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 410,
 							"character": 26
 						}
@@ -5014,7 +5014,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 48,
 							"character": 19
 						}
@@ -5054,7 +5054,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 60,
 							"character": 17
 						}
@@ -5146,7 +5146,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 318,
 							"character": 31
 						}
@@ -5219,7 +5219,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 326,
 							"character": 29
 						}
@@ -5294,7 +5294,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 367,
 							"character": 35
 						}
@@ -5353,7 +5353,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 373,
 							"character": 33
 						}
@@ -5428,7 +5428,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 339,
 							"character": 33
 						}
@@ -5500,7 +5500,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 353,
 							"character": 35
 						}
@@ -5559,7 +5559,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+							"fileName": "node/hsNode/src/fsUtil.ts",
 							"line": 357,
 							"character": 33
 						}
@@ -5616,7 +5616,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "hsLibs/node/hsNode/src/fsUtil.ts",
+					"fileName": "node/hsNode/src/fsUtil.ts",
 					"line": 1,
 					"character": 0
 				}
@@ -5687,7 +5687,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "hsLibs/node/hsNode/src/index.ts",
+					"fileName": "node/hsNode/src/index.ts",
 					"line": 1,
 					"character": 0
 				}
@@ -5764,7 +5764,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 49,
 									"character": 29
 								}
@@ -5786,7 +5786,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 49,
 									"character": 19
 								}
@@ -5812,7 +5812,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 47,
 									"character": 25
 								}
@@ -5838,7 +5838,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 48,
 									"character": 26
 								}
@@ -5865,7 +5865,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 13,
 									"character": 25
 								}
@@ -5893,7 +5893,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 16,
 									"character": 25
 								}
@@ -5921,7 +5921,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 18,
 									"character": 34
 								}
@@ -5951,7 +5951,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 14,
 									"character": 24
 								}
@@ -5979,7 +5979,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 64,
 									"character": 21
 								}
@@ -6005,7 +6005,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 67,
 									"character": 28
 								}
@@ -6027,7 +6027,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 15,
 									"character": 24
 								}
@@ -6055,7 +6055,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 42,
 									"character": 27
 								}
@@ -6082,7 +6082,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 19,
 									"character": 31
 								}
@@ -6110,7 +6110,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 12,
 									"character": 43
 								}
@@ -6138,7 +6138,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 46,
 									"character": 32
 								}
@@ -6165,7 +6165,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 20,
 									"character": 27
 								}
@@ -6191,7 +6191,7 @@
 											},
 											"sources": [
 												{
-													"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+													"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 													"line": 21,
 													"character": 13
 												}
@@ -6217,7 +6217,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 24,
 																	"character": 16
 																}
@@ -6237,7 +6237,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 22,
 																	"character": 22
 																}
@@ -6257,7 +6257,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 23,
 																	"character": 15
 																}
@@ -6281,7 +6281,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+															"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 															"line": 21,
 															"character": 14
 														}
@@ -6299,7 +6299,7 @@
 											},
 											"sources": [
 												{
-													"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+													"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 													"line": 36,
 													"character": 13
 												}
@@ -6325,7 +6325,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 39,
 																	"character": 16
 																}
@@ -6345,7 +6345,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 37,
 																	"character": 22
 																}
@@ -6365,7 +6365,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 38,
 																	"character": 15
 																}
@@ -6389,7 +6389,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+															"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 															"line": 36,
 															"character": 14
 														}
@@ -6407,7 +6407,7 @@
 											},
 											"sources": [
 												{
-													"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+													"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 													"line": 26,
 													"character": 12
 												}
@@ -6433,7 +6433,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 29,
 																	"character": 16
 																}
@@ -6453,7 +6453,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 27,
 																	"character": 22
 																}
@@ -6473,7 +6473,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 28,
 																	"character": 15
 																}
@@ -6497,7 +6497,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+															"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 															"line": 26,
 															"character": 13
 														}
@@ -6515,7 +6515,7 @@
 											},
 											"sources": [
 												{
-													"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+													"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 													"line": 31,
 													"character": 12
 												}
@@ -6541,7 +6541,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 34,
 																	"character": 16
 																}
@@ -6561,7 +6561,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 32,
 																	"character": 22
 																}
@@ -6581,7 +6581,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 33,
 																	"character": 15
 																}
@@ -6605,7 +6605,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+															"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 															"line": 31,
 															"character": 13
 														}
@@ -6628,7 +6628,7 @@
 									],
 									"sources": [
 										{
-											"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+											"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 											"line": 20,
 											"character": 28
 										}
@@ -6652,7 +6652,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 44,
 									"character": 14
 								}
@@ -6679,7 +6679,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 43,
 									"character": 30
 								}
@@ -6706,7 +6706,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 17,
 									"character": 35
 								}
@@ -6787,12 +6787,12 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 51,
 									"character": 21
 								},
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 52,
 									"character": 21
 								}
@@ -6851,7 +6851,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 66,
 																	"character": 14
 																}
@@ -6872,7 +6872,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 67,
 																	"character": 14
 																}
@@ -6893,7 +6893,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 68,
 																	"character": 13
 																}
@@ -6917,7 +6917,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+															"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 															"line": 65,
 															"character": 15
 														}
@@ -6939,7 +6939,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 65,
 									"character": 10
 								}
@@ -6970,15 +6970,19 @@
 									"parameters": [
 										{
 											"id": 209,
-											"name": "msg",
+											"name": "msgs",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
-												"isExported": true
+												"isExported": true,
+												"isRest": true
 											},
 											"type": {
-												"type": "intrinsic",
-												"name": "any"
+												"type": "array",
+												"elementType": {
+													"type": "intrinsic",
+													"name": "any"
+												}
 											}
 										}
 									],
@@ -6995,7 +6999,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 54,
 									"character": 9
 								}
@@ -7026,15 +7030,19 @@
 									"parameters": [
 										{
 											"id": 224,
-											"name": "msg",
+											"name": "msgs",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
-												"isExported": true
+												"isExported": true,
+												"isRest": true
 											},
 											"type": {
-												"type": "intrinsic",
-												"name": "any"
+												"type": "array",
+												"elementType": {
+													"type": "intrinsic",
+													"name": "any"
+												}
 											}
 										}
 									],
@@ -7051,7 +7059,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 59,
 									"character": 9
 								}
@@ -7108,7 +7116,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 63,
 									"character": 10
 								}
@@ -7223,7 +7231,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 133,
 									"character": 27
 								}
@@ -7253,15 +7261,19 @@
 									"parameters": [
 										{
 											"id": 218,
-											"name": "msg",
+											"name": "msgs",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
-												"isExported": true
+												"isExported": true,
+												"isRest": true
 											},
 											"type": {
-												"type": "intrinsic",
-												"name": "any"
+												"type": "array",
+												"elementType": {
+													"type": "intrinsic",
+													"name": "any"
+												}
 											}
 										}
 									],
@@ -7278,7 +7290,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 57,
 									"character": 8
 								}
@@ -7351,7 +7363,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 70,
 																	"character": 45
 																}
@@ -7374,7 +7386,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 70,
 																	"character": 29
 																}
@@ -7394,7 +7406,7 @@
 															},
 															"sources": [
 																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+																	"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 																	"line": 70,
 																	"character": 37
 																}
@@ -7418,7 +7430,7 @@
 													],
 													"sources": [
 														{
-															"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+															"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 															"line": 70,
 															"character": 21
 														}
@@ -7440,7 +7452,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 70,
 									"character": 11
 								}
@@ -7511,7 +7523,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 53,
 									"character": 9
 								}
@@ -7584,7 +7596,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 62,
 									"character": 25
 								}
@@ -7661,7 +7673,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 97,
 									"character": 18
 								}
@@ -7708,8 +7720,20 @@
 												"isExported": true
 											},
 											"type": {
-												"type": "intrinsic",
-												"name": "any"
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "any"
+													},
+													{
+														"type": "array",
+														"elementType": {
+															"type": "intrinsic",
+															"name": "any"
+														}
+													}
+												]
 											}
 										},
 										{
@@ -7739,7 +7763,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 60,
 									"character": 17
 								}
@@ -7827,7 +7851,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 73,
 									"character": 20
 								}
@@ -7883,7 +7907,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 64,
 									"character": 10
 								}
@@ -7914,15 +7938,19 @@
 									"parameters": [
 										{
 											"id": 215,
-											"name": "msg",
+											"name": "msgs",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
-												"isExported": true
+												"isExported": true,
+												"isRest": true
 											},
 											"type": {
-												"type": "intrinsic",
-												"name": "any"
+												"type": "array",
+												"elementType": {
+													"type": "intrinsic",
+													"name": "any"
+												}
 											}
 										}
 									],
@@ -7939,7 +7967,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 56,
 									"character": 12
 								}
@@ -7970,15 +7998,19 @@
 									"parameters": [
 										{
 											"id": 212,
-											"name": "msg",
+											"name": "msgs",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
-												"isExported": true
+												"isExported": true,
+												"isRest": true
 											},
 											"type": {
-												"type": "intrinsic",
-												"name": "any"
+												"type": "array",
+												"elementType": {
+													"type": "intrinsic",
+													"name": "any"
+												}
 											}
 										}
 									],
@@ -7995,7 +8027,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 55,
 									"character": 13
 								}
@@ -8026,15 +8058,19 @@
 									"parameters": [
 										{
 											"id": 221,
-											"name": "msg",
+											"name": "msgs",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
-												"isExported": true
+												"isExported": true,
+												"isRest": true
 											},
 											"type": {
-												"type": "intrinsic",
-												"name": "any"
+												"type": "array",
+												"elementType": {
+													"type": "intrinsic",
+													"name": "any"
+												}
 											}
 										}
 									],
@@ -8051,7 +8087,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 58,
 									"character": 8
 								}
@@ -8112,7 +8148,7 @@
 							],
 							"sources": [
 								{
-									"fileName": "local/node_modules/hsutil/bin/esm/log.d.ts",
+									"fileName": "standalone/hsUtil/bin/esm/log.d.ts",
 									"line": 45,
 									"character": 30
 								}
@@ -8189,7 +8225,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/log.ts",
+							"fileName": "node/hsNode/src/log.ts",
 							"line": 63,
 							"character": 16
 						}
@@ -8221,7 +8257,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 47,
 									"character": 11
 								}
@@ -8240,7 +8276,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 51,
 									"character": 10
 								}
@@ -8259,7 +8295,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 53,
 									"character": 10
 								}
@@ -8278,7 +8314,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 49,
 									"character": 11
 								}
@@ -8297,7 +8333,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 52,
 									"character": 13
 								}
@@ -8316,7 +8352,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 48,
 									"character": 9
 								}
@@ -8335,7 +8371,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 54,
 									"character": 11
 								}
@@ -8354,7 +8390,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 50,
 									"character": 12
 								}
@@ -8373,7 +8409,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 30,
 									"character": 9
 								}
@@ -8392,7 +8428,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 26,
 									"character": 9
 								}
@@ -8411,7 +8447,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 34,
 									"character": 8
 								}
@@ -8430,7 +8466,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 23,
 									"character": 8
 								}
@@ -8449,7 +8485,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 21,
 									"character": 9
 								}
@@ -8468,7 +8504,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 36,
 									"character": 8
 								}
@@ -8487,7 +8523,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 42,
 									"character": 12
 								}
@@ -8506,7 +8542,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 44,
 									"character": 12
 								}
@@ -8525,7 +8561,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 40,
 									"character": 13
 								}
@@ -8544,7 +8580,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 43,
 									"character": 15
 								}
@@ -8563,7 +8599,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 39,
 									"character": 11
 								}
@@ -8582,7 +8618,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 41,
 									"character": 14
 								}
@@ -8601,7 +8637,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 24,
 									"character": 7
 								}
@@ -8620,7 +8656,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 45,
 									"character": 8
 								}
@@ -8639,7 +8675,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 32,
 									"character": 9
 								}
@@ -8658,7 +8694,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 28,
 									"character": 10
 								}
@@ -8677,7 +8713,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 35,
 									"character": 11
 								}
@@ -8696,7 +8732,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 31,
 									"character": 7
 								}
@@ -8715,7 +8751,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 27,
 									"character": 11
 								}
@@ -8734,7 +8770,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 25,
 									"character": 14
 								}
@@ -8753,7 +8789,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 37,
 									"character": 9
 								}
@@ -8772,7 +8808,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "hsLibs/node/hsNode/src/log.ts",
+									"fileName": "node/hsNode/src/log.ts",
 									"line": 33,
 									"character": 10
 								}
@@ -8824,7 +8860,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "hsLibs/node/hsNode/src/log.ts",
+							"fileName": "node/hsNode/src/log.ts",
 							"line": 20,
 							"character": 11
 						}
@@ -8853,7 +8889,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "hsLibs/node/hsNode/src/log.ts",
+					"fileName": "node/hsNode/src/log.ts",
 					"line": 1,
 					"character": 0
 				}
@@ -8874,7 +8910,7 @@
 			},
 			"sources": [
 				{
-					"fileName": "hsLibs/node/hsNode/src/overview.ts",
+					"fileName": "node/hsNode/src/overview.ts",
 					"line": 1,
 					"character": 0
 				}

@@ -168,9 +168,15 @@ export class Request extends RequestUtil {
             const response = await super.requestOptions(options, useCached, postData);
         
             const code = response.response.statusCode||response.response.status;
+            const redirect = response?.response?.headers?.['location']
             if(code >= 200 && code < 300) {
                 if (fname && options.method === 'GET') {
                     await this.writeCached(fname, response);
+                }
+            } else if(code >= 300 && code < 400) {
+                if (redirect) {
+                    options = this.getOptions(`${options.protocol}//${options.host}${redirect}`, options.method)
+                    return this.requestOptions(options, useCached, postData)
                 }
             }
             return response;
