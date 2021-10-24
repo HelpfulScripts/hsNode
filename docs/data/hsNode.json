@@ -666,16 +666,6 @@
 			},
 			"children": [
 				{
-					"id": 445,
-					"name": "Response",
-					"kind": 16777216,
-					"kindString": "Reference",
-					"flags": {
-						"isExported": true
-					},
-					"target": -1
-				},
-				{
 					"id": 332,
 					"name": "Request",
 					"kind": 128,
@@ -716,8 +706,8 @@
 							"sources": [
 								{
 									"fileName": "hsLibs/node/hsNode/src/Request.ts",
-									"line": 77,
-									"character": 35
+									"line": 75,
+									"character": 34
 								}
 							],
 							"overwrites": {
@@ -737,8 +727,8 @@
 							"sources": [
 								{
 									"fileName": "hsLibs/node/hsNode/src/Request.ts",
-									"line": 77,
-									"character": 17
+									"line": 75,
+									"character": 16
 								}
 							],
 							"type": {
@@ -765,8 +755,8 @@
 							"sources": [
 								{
 									"fileName": "hsLibs/node/hsNode/src/Request.ts",
-									"line": 93,
-									"character": 16
+									"line": 91,
+									"character": 15
 								}
 							],
 							"type": {
@@ -785,7 +775,7 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 65,
+									"line": 69,
 									"character": 13
 								}
 							],
@@ -817,7 +807,7 @@
 									"sources": [
 										{
 											"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-											"line": 65,
+											"line": 69,
 											"character": 14
 										}
 									]
@@ -840,7 +830,7 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 66,
+									"line": 70,
 									"character": 10
 								}
 							],
@@ -867,7 +857,7 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 53,
+									"line": 57,
 									"character": 26
 								}
 							],
@@ -893,7 +883,7 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 54,
+									"line": 58,
 									"character": 18
 								}
 							],
@@ -918,7 +908,7 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 59,
+									"line": 63,
 									"character": 16
 								}
 							],
@@ -966,7 +956,7 @@
 									"sources": [
 										{
 											"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-											"line": 59,
+											"line": 63,
 											"character": 17
 										}
 									]
@@ -989,7 +979,7 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 58,
+									"line": 62,
 									"character": 18
 								}
 							],
@@ -1051,7 +1041,7 @@
 									"sources": [
 										{
 											"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-											"line": 58,
+											"line": 62,
 											"character": 19
 										}
 									]
@@ -1074,7 +1064,7 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 60,
+									"line": 64,
 									"character": 11
 								}
 							],
@@ -1130,7 +1120,7 @@
 																	"sources": [
 																		{
 																			"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-																			"line": 60,
+																			"line": 64,
 																			"character": 43
 																		}
 																	],
@@ -1150,7 +1140,7 @@
 																	"sources": [
 																		{
 																			"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-																			"line": 60,
+																			"line": 64,
 																			"character": 25
 																		}
 																	],
@@ -1170,7 +1160,7 @@
 																	"sources": [
 																		{
 																			"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-																			"line": 60,
+																			"line": 64,
 																			"character": 20
 																		}
 																	],
@@ -1194,7 +1184,7 @@
 															"sources": [
 																{
 																	"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-																	"line": 60,
+																	"line": 64,
 																	"character": 14
 																}
 															]
@@ -1211,7 +1201,7 @@
 									"sources": [
 										{
 											"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-											"line": 60,
+											"line": 64,
 											"character": 12
 										}
 									]
@@ -1235,7 +1225,7 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 49,
+									"line": 53,
 									"character": 19
 								}
 							],
@@ -1261,7 +1251,7 @@
 											"sources": [
 												{
 													"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-													"line": 51,
+													"line": 55,
 													"character": 17
 												}
 											],
@@ -1308,7 +1298,7 @@
 													"sources": [
 														{
 															"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-															"line": 51,
+															"line": 55,
 															"character": 18
 														}
 													]
@@ -1326,7 +1316,7 @@
 											"sources": [
 												{
 													"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-													"line": 50,
+													"line": 54,
 													"character": 16
 												}
 											],
@@ -1373,7 +1363,7 @@
 													"sources": [
 														{
 															"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-															"line": 50,
+															"line": 54,
 															"character": 17
 														}
 													]
@@ -1394,7 +1384,7 @@
 									"sources": [
 										{
 											"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-											"line": 49,
+											"line": 53,
 											"character": 20
 										}
 									]
@@ -1457,13 +1447,13 @@
 							"sources": [
 								{
 									"fileName": "hsLibs/node/hsNode/src/Request.ts",
-									"line": 107,
-									"character": 20
+									"line": 105,
+									"character": 19
 								}
 							]
 						},
 						{
-							"id": 427,
+							"id": 417,
 							"name": "decodedRequest",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1473,7 +1463,7 @@
 							},
 							"signatures": [
 								{
-									"id": 428,
+									"id": 418,
 									"name": "decodedRequest",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1482,7 +1472,7 @@
 									},
 									"parameters": [
 										{
-											"id": 429,
+											"id": 419,
 											"name": "options",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1495,33 +1485,20 @@
 											}
 										},
 										{
-											"id": 430,
-											"name": "useCached",
+											"id": 420,
+											"name": "getOpts",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
 												"isExported": true
 											},
 											"type": {
-												"type": "intrinsic",
-												"name": "boolean"
+												"type": "reference",
+												"name": "GetOptions"
 											}
 										},
 										{
-											"id": 431,
-											"name": "headers",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {
-												"isExported": true
-											},
-											"type": {
-												"type": "intrinsic",
-												"name": "any"
-											}
-										},
-										{
-											"id": 432,
+											"id": 421,
 											"name": "postData",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1547,7 +1524,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 427,
+										"id": 417,
 										"name": "Request.decodedRequest"
 									}
 								}
@@ -1555,13 +1532,13 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 79,
+									"line": 76,
 									"character": 28
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 427,
+								"id": 417,
 								"name": "Request.decodedRequest"
 							}
 						},
@@ -1607,92 +1584,16 @@
 										},
 										{
 											"id": 402,
-											"name": "__namedParameters",
+											"name": "getOpts",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
 												"isExported": true,
 												"isOptional": true
 											},
-											"originalName": "__1",
 											"type": {
-												"type": "reflection",
-												"declaration": {
-													"id": 403,
-													"name": "__type",
-													"kind": 65536,
-													"kindString": "Type literal",
-													"flags": {
-														"isExported": true
-													},
-													"children": [
-														{
-															"id": 405,
-															"name": "headers",
-															"kind": 32,
-															"kindString": "Variable",
-															"flags": {
-																"isExported": true
-															},
-															"sources": [
-																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-																	"line": 67,
-																	"character": 47
-																}
-															],
-															"type": {
-																"type": "reflection",
-																"declaration": {
-																	"id": 406,
-																	"name": "__type",
-																	"kind": 65536,
-																	"kindString": "Type literal",
-																	"flags": {
-																		"isExported": true
-																	}
-																}
-															}
-														},
-														{
-															"id": 404,
-															"name": "useCached",
-															"kind": 32,
-															"kindString": "Variable",
-															"flags": {
-																"isExported": true
-															},
-															"sources": [
-																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-																	"line": 67,
-																	"character": 38
-																}
-															],
-															"type": {
-																"type": "intrinsic",
-																"name": "boolean"
-															}
-														}
-													],
-													"groups": [
-														{
-															"title": "Variables",
-															"kind": 32,
-															"children": [
-																405,
-																404
-															]
-														}
-													],
-													"sources": [
-														{
-															"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-															"line": 67,
-															"character": 26
-														}
-													]
-												}
+												"type": "reference",
+												"name": "GetOptions"
 											}
 										}
 									],
@@ -1716,7 +1617,7 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 67,
+									"line": 71,
 									"character": 7
 								}
 							],
@@ -1727,7 +1628,7 @@
 							}
 						},
 						{
-							"id": 423,
+							"id": 413,
 							"name": "getOptions",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1737,7 +1638,7 @@
 							},
 							"signatures": [
 								{
-									"id": 424,
+									"id": 414,
 									"name": "getOptions",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1746,7 +1647,7 @@
 									},
 									"parameters": [
 										{
-											"id": 425,
+											"id": 415,
 											"name": "url",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1768,7 +1669,7 @@
 											}
 										},
 										{
-											"id": 426,
+											"id": 416,
 											"name": "method",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1787,7 +1688,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 423,
+										"id": 413,
 										"name": "Request.getOptions"
 									}
 								}
@@ -1795,13 +1696,13 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 78,
+									"line": 75,
 									"character": 24
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 423,
+								"id": 413,
 								"name": "Request.getOptions"
 							}
 						},
@@ -1860,8 +1761,8 @@
 							"sources": [
 								{
 									"fileName": "hsLibs/node/hsNode/src/Request.ts",
-									"line": 95,
-									"character": 20
+									"line": 93,
+									"character": 19
 								}
 							],
 							"overwrites": {
@@ -1870,7 +1771,7 @@
 							}
 						},
 						{
-							"id": 437,
+							"id": 426,
 							"name": "isTextualContent",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1880,7 +1781,7 @@
 							},
 							"signatures": [
 								{
-									"id": 438,
+									"id": 427,
 									"name": "isTextualContent",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1889,7 +1790,7 @@
 									},
 									"parameters": [
 										{
-											"id": 439,
+											"id": 428,
 											"name": "contentType",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1902,7 +1803,7 @@
 											}
 										},
 										{
-											"id": 440,
+											"id": 429,
 											"name": "contentLength",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1915,7 +1816,7 @@
 											}
 										},
 										{
-											"id": 441,
+											"id": 430,
 											"name": "url",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1934,7 +1835,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 437,
+										"id": 426,
 										"name": "Request.isTextualContent"
 									}
 								}
@@ -1942,13 +1843,13 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 83,
+									"line": 80,
 									"character": 30
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 437,
+								"id": 426,
 								"name": "Request.isTextualContent"
 							}
 						},
@@ -2019,7 +1920,7 @@
 								{
 									"fileName": "hsLibs/node/hsNode/src/Request.ts",
 									"line": 188,
-									"character": 32
+									"character": 31
 								}
 							],
 							"overwrites": {
@@ -2028,7 +1929,7 @@
 							}
 						},
 						{
-							"id": 415,
+							"id": 408,
 							"name": "post",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2037,7 +1938,7 @@
 							},
 							"signatures": [
 								{
-									"id": 416,
+									"id": 409,
 									"name": "post",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2046,7 +1947,7 @@
 									},
 									"parameters": [
 										{
-											"id": 417,
+											"id": 410,
 											"name": "url",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2068,7 +1969,7 @@
 											}
 										},
 										{
-											"id": 418,
+											"id": 411,
 											"name": "postData",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2081,72 +1982,17 @@
 											}
 										},
 										{
-											"id": 419,
-											"name": "__namedParameters",
+											"id": 412,
+											"name": "getOpts",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
 												"isExported": true,
 												"isOptional": true
 											},
-											"originalName": "__2",
 											"type": {
-												"type": "reflection",
-												"declaration": {
-													"id": 420,
-													"name": "__type",
-													"kind": 65536,
-													"kindString": "Type literal",
-													"flags": {
-														"isExported": true
-													},
-													"children": [
-														{
-															"id": 421,
-															"name": "headers",
-															"kind": 32,
-															"kindString": "Variable",
-															"flags": {
-																"isExported": true
-															},
-															"sources": [
-																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-																	"line": 74,
-																	"character": 52
-																}
-															],
-															"type": {
-																"type": "reflection",
-																"declaration": {
-																	"id": 422,
-																	"name": "__type",
-																	"kind": 65536,
-																	"kindString": "Type literal",
-																	"flags": {
-																		"isExported": true
-																	}
-																}
-															}
-														}
-													],
-													"groups": [
-														{
-															"title": "Variables",
-															"kind": 32,
-															"children": [
-																421
-															]
-														}
-													],
-													"sources": [
-														{
-															"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-															"line": 74,
-															"character": 42
-														}
-													]
-												}
+												"type": "reference",
+												"name": "GetOptions"
 											}
 										}
 									],
@@ -2162,7 +2008,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 415,
+										"id": 408,
 										"name": "Request.post"
 									}
 								}
@@ -2170,18 +2016,18 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 74,
+									"line": 73,
 									"character": 8
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 415,
+								"id": 408,
 								"name": "Request.post"
 							}
 						},
 						{
-							"id": 407,
+							"id": 403,
 							"name": "put",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2190,7 +2036,7 @@
 							},
 							"signatures": [
 								{
-									"id": 408,
+									"id": 404,
 									"name": "put",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2199,7 +2045,7 @@
 									},
 									"parameters": [
 										{
-											"id": 409,
+											"id": 405,
 											"name": "url",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2221,7 +2067,7 @@
 											}
 										},
 										{
-											"id": 410,
+											"id": 406,
 											"name": "postData",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2234,72 +2080,17 @@
 											}
 										},
 										{
-											"id": 411,
-											"name": "__namedParameters",
+											"id": 407,
+											"name": "getOpts",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
 												"isExported": true,
 												"isOptional": true
 											},
-											"originalName": "__2",
 											"type": {
-												"type": "reflection",
-												"declaration": {
-													"id": 412,
-													"name": "__type",
-													"kind": 65536,
-													"kindString": "Type literal",
-													"flags": {
-														"isExported": true
-													},
-													"children": [
-														{
-															"id": 413,
-															"name": "headers",
-															"kind": 32,
-															"kindString": "Variable",
-															"flags": {
-																"isExported": true
-															},
-															"sources": [
-																{
-																	"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-																	"line": 71,
-																	"character": 51
-																}
-															],
-															"type": {
-																"type": "reflection",
-																"declaration": {
-																	"id": 414,
-																	"name": "__type",
-																	"kind": 65536,
-																	"kindString": "Type literal",
-																	"flags": {
-																		"isExported": true
-																	}
-																}
-															}
-														}
-													],
-													"groups": [
-														{
-															"title": "Variables",
-															"kind": 32,
-															"children": [
-																413
-															]
-														}
-													],
-													"sources": [
-														{
-															"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-															"line": 71,
-															"character": 41
-														}
-													]
-												}
+												"type": "reference",
+												"name": "GetOptions"
 											}
 										}
 									],
@@ -2315,7 +2106,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 407,
+										"id": 403,
 										"name": "Request.put"
 									}
 								}
@@ -2323,13 +2114,13 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 71,
+									"line": 72,
 									"character": 7
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 407,
+								"id": 403,
 								"name": "Request.put"
 							}
 						},
@@ -2387,13 +2178,13 @@
 							"sources": [
 								{
 									"fileName": "hsLibs/node/hsNode/src/Request.ts",
-									"line": 119,
-									"character": 30
+									"line": 117,
+									"character": 29
 								}
 							]
 						},
 						{
-							"id": 433,
+							"id": 422,
 							"name": "request",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2403,7 +2194,7 @@
 							},
 							"signatures": [
 								{
-									"id": 434,
+									"id": 423,
 									"name": "request",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2412,7 +2203,7 @@
 									},
 									"parameters": [
 										{
-											"id": 435,
+											"id": 424,
 											"name": "options",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2425,7 +2216,7 @@
 											}
 										},
 										{
-											"id": 436,
+											"id": 425,
 											"name": "postData",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2451,7 +2242,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 433,
+										"id": 422,
 										"name": "Request.request"
 									}
 								}
@@ -2459,13 +2250,13 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 81,
+									"line": 78,
 									"character": 21
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 433,
+								"id": 422,
 								"name": "Request.request"
 							}
 						},
@@ -2503,15 +2294,15 @@
 										},
 										{
 											"id": 356,
-											"name": "useCached",
+											"name": "getOpts",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {
 												"isExported": true
 											},
 											"type": {
-												"type": "intrinsic",
-												"name": "boolean"
+												"type": "reference",
+												"name": "GetOptions"
 											}
 										},
 										{
@@ -2548,8 +2339,8 @@
 							"sources": [
 								{
 									"fileName": "hsLibs/node/hsNode/src/Request.ts",
-									"line": 152,
-									"character": 34
+									"line": 150,
+									"character": 33
 								}
 							],
 							"overwrites": {
@@ -2599,8 +2390,8 @@
 							"sources": [
 								{
 									"fileName": "hsLibs/node/hsNode/src/Request.ts",
-									"line": 84,
-									"character": 21
+									"line": 82,
+									"character": 20
 								}
 							]
 						},
@@ -2665,8 +2456,8 @@
 							"sources": [
 								{
 									"fileName": "hsLibs/node/hsNode/src/Request.ts",
-									"line": 135,
-									"character": 31
+									"line": 133,
+									"character": 30
 								}
 							]
 						},
@@ -2730,7 +2521,7 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 48,
+									"line": 52,
 									"character": 25
 								}
 							],
@@ -2741,7 +2532,7 @@
 							}
 						},
 						{
-							"id": 442,
+							"id": 431,
 							"name": "isTextualRequest",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2752,7 +2543,7 @@
 							},
 							"signatures": [
 								{
-									"id": 443,
+									"id": 432,
 									"name": "isTextualRequest",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2761,7 +2552,7 @@
 									},
 									"parameters": [
 										{
-											"id": 444,
+											"id": 433,
 											"name": "pathName",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2780,7 +2571,7 @@
 									},
 									"inheritedFrom": {
 										"type": "reference",
-										"id": 442,
+										"id": 431,
 										"name": "Request.isTextualRequest"
 									}
 								}
@@ -2788,13 +2579,13 @@
 							"sources": [
 								{
 									"fileName": "local/node_modules/hsutil/bin/esm/Request.d.ts",
-									"line": 84,
+									"line": 81,
 									"character": 37
 								}
 							],
 							"inheritedFrom": {
 								"type": "reference",
-								"id": 442,
+								"id": 431,
 								"name": "Request.isTextualRequest"
 							}
 						}
@@ -2828,28 +2619,28 @@
 							"kind": 2048,
 							"children": [
 								343,
-								427,
+								417,
 								399,
-								423,
+								413,
 								340,
-								437,
+								426,
 								358,
-								415,
-								407,
+								408,
+								403,
 								346,
-								433,
+								422,
 								353,
 								336,
 								349,
 								362,
-								442
+								431
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "hsLibs/node/hsNode/src/Request.ts",
-							"line": 76,
+							"line": 74,
 							"character": 20
 						}
 					],
@@ -2861,7 +2652,7 @@
 					]
 				},
 				{
-					"id": 446,
+					"id": 434,
 					"name": "html2json",
 					"kind": 32,
 					"kindString": "Variable",
@@ -2871,7 +2662,7 @@
 					"sources": [
 						{
 							"fileName": "hsLibs/node/hsNode/src/Request.ts",
-							"line": 68,
+							"line": 66,
 							"character": 15
 						}
 					],
@@ -2882,21 +2673,21 @@
 					"defaultValue": "require('html2json').html2json"
 				},
 				{
-					"id": 450,
+					"id": 438,
 					"name": "getExtension",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 451,
+							"id": 439,
 							"name": "getExtension",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 452,
+									"id": 440,
 									"name": "type",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2923,7 +2714,7 @@
 					]
 				},
 				{
-					"id": 447,
+					"id": 435,
 					"name": "protocol",
 					"kind": 2097152,
 					"kindString": "Object literal",
@@ -2932,7 +2723,7 @@
 					},
 					"children": [
 						{
-							"id": 448,
+							"id": 436,
 							"name": "http:",
 							"kind": 32,
 							"kindString": "Variable",
@@ -2940,7 +2731,7 @@
 							"sources": [
 								{
 									"fileName": "hsLibs/node/hsNode/src/Request.ts",
-									"line": 73,
+									"line": 71,
 									"character": 25
 								}
 							],
@@ -2951,7 +2742,7 @@
 							"defaultValue": "http"
 						},
 						{
-							"id": 449,
+							"id": 437,
 							"name": "https:",
 							"kind": 32,
 							"kindString": "Variable",
@@ -2959,7 +2750,7 @@
 							"sources": [
 								{
 									"fileName": "hsLibs/node/hsNode/src/Request.ts",
-									"line": 73,
+									"line": 71,
 									"character": 40
 								}
 							],
@@ -2975,15 +2766,15 @@
 							"title": "Variables",
 							"kind": 32,
 							"children": [
-								448,
-								449
+								436,
+								437
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "hsLibs/node/hsNode/src/Request.ts",
-							"line": 73,
+							"line": 71,
 							"character": 14
 						}
 					],
@@ -2995,13 +2786,6 @@
 			],
 			"groups": [
 				{
-					"title": "References",
-					"kind": 16777216,
-					"children": [
-						445
-					]
-				},
-				{
 					"title": "Classes",
 					"kind": 128,
 					"children": [
@@ -3012,21 +2796,21 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						446
+						434
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						450
+						438
 					]
 				},
 				{
 					"title": "Object literals",
 					"kind": 2097152,
 					"children": [
-						447
+						435
 					]
 				}
 			],
@@ -5623,7 +5407,7 @@
 			]
 		},
 		{
-			"id": 453,
+			"id": 441,
 			"name": "\"index\"",
 			"kind": 1,
 			"kindString": "Module",
@@ -5633,7 +5417,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/code/ts/hsLibs/node/hsNode/src/index.ts",
 			"children": [
 				{
-					"id": 455,
+					"id": 443,
 					"name": "Log",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -5643,7 +5427,7 @@
 					"target": 138
 				},
 				{
-					"id": 457,
+					"id": 444,
 					"name": "Request",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -5653,17 +5437,7 @@
 					"target": 332
 				},
 				{
-					"id": 456,
-					"name": "Response",
-					"kind": 16777216,
-					"kindString": "Reference",
-					"flags": {
-						"isExported": true
-					},
-					"target": -1
-				},
-				{
-					"id": 454,
+					"id": 442,
 					"name": "cp",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -5678,10 +5452,9 @@
 					"title": "References",
 					"kind": 16777216,
 					"children": [
-						455,
-						457,
-						456,
-						454
+						443,
+						444,
+						442
 					]
 				}
 			],
@@ -8923,7 +8696,7 @@
 			]
 		},
 		{
-			"id": 458,
+			"id": 445,
 			"name": "\"overview\"",
 			"kind": 1,
 			"kindString": "Module",
@@ -8953,9 +8726,9 @@
 				331,
 				322,
 				1,
-				453,
+				441,
 				137,
-				458
+				445
 			]
 		}
 	]

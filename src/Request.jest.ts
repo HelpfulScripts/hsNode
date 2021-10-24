@@ -117,6 +117,7 @@ describe('Request', ()=>{
             const calls = http.request.mock.calls.length;
             const response = await request.get('http://my.space.com/myCached');
             const pageText = <string>response.data;
+            console.log(pageText)
             expect(response.cached).toBeFalsy();
             expect(pageText.length).toBe(0);
             expect(http.request.mock.calls.length).toBe(calls);
